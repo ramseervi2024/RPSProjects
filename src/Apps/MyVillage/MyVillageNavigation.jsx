@@ -1,11 +1,13 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Chrome as Home, Calendar, MessageSquare, Store, Users } from 'lucide-react-native'; // Import icons from lucide-react-native
+import { Chrome as Home, Calendar, MessageSquare, Store, Users,MapPin } from 'lucide-react-native'; // Import icons from lucide-react-native
 import HomeScreen from './screens/HomeScreen';
 import EventsScreen from './screens/EventsScreen';
 import MarketplaceScreen from './screens/MarketplaceScreen';
 import CommunityScreen from './screens/CommunityScreen';
 import DirectoryScreen from './screens/DirectoryScreen';
+import WelcomePage from './screens/WelcomePage';
+import SecondWelcomePage from './screens/SecondWelcomePage';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,7 +25,9 @@ export default function MyVillageNavigation() {
       }}>
       <Tab.Screen
         name="Home"
-        component={HomeScreen}
+        // component={WelcomePage}
+        component={SecondWelcomePage}
+        // component={HomeScreen}
         options={{
           title: 'Home',
           tabBarIcon: ({ color, size }) => (
@@ -52,12 +56,12 @@ export default function MyVillageNavigation() {
         }}
       />
       <Tab.Screen
-        name="Community"
+        name="MapPin"
         component={CommunityScreen}
         options={{
-          title: 'Community',
+          title: 'Area Map',
           tabBarIcon: ({ color, size }) => (
-            <MessageSquare size={size} color={color} />
+            <MapPin size={size} color={color} />
           ),
         }}
       />
