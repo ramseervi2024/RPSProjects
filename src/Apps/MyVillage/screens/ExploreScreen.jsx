@@ -103,6 +103,22 @@ const EXPLORE_POSTS = [
     id: '125',
     image: require('../Images/om2.jpeg'),
   },
+  {
+    id: '125',
+    image: require('../Images/suar.jpeg'),
+  },
+  {
+    id: '125',
+    image: require('../Images/khetmahdi.jpeg'),
+  },
+  {
+    id: '125',
+    image: require('../Images/kakadi.jpeg'),
+  },
+  {
+    id: '125',
+    image: require('../Images/tarbandani.jpeg'),
+  },
 ];
 
 export default function ExploreScreen() {
