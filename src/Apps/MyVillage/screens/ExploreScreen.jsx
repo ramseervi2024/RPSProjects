@@ -68,7 +68,7 @@ const EXPLORE_POSTS = [
   },
   {
     id: '2',
-    image: require('../Images/talab.jpeg'),
+    image: require('../Images/talab1.jpeg'),
   },
   {
     id: '22',

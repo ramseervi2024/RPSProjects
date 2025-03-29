@@ -11,7 +11,7 @@ export default function SecondWelcomePage() {
             <View style={styles.heroContainer}>
                 <Image
                     source={{ uri: 'https://api.a0.dev/assets/image?text=beautiful%20rajasthani%20village%20landscape%20with%20traditional%20houses%20and%20desert%20sunset&aspect=16:9' }}
-                    // source={require('../Images/talab.jpeg')}
+                    // source={require('../Images/talab1.jpeg')}
                     style={[styles.heroImage, { width, height: width * 0.7 }]}
                 />
                 <LinearGradient

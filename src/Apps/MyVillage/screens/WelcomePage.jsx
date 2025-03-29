@@ -19,7 +19,7 @@ export default function WelcomePage() {
           style={styles.headerImage}
         /> */}
           <Image
-          source={require('../Images/talab.jpeg')}
+          source={require('../Images/talab1.jpeg')}
           style={styles.headerImage}
         />
         <View style={styles.headerContent}>
