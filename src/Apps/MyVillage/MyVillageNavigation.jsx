@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Chrome as Home, Search, MessageSquare, Castle, Users,MapPin } from 'lucide-react-native'; // Import icons from lucide-react-native
+import { Chrome as Home, Search, MessageSquare, Castle, Slack,MapPin } from 'lucide-react-native'; // Import icons from lucide-react-native
 import HomeScreen from './screens/HomeScreen';
 import EventsScreen from './screens/EventsScreen';
 import MarketplaceScreen from './screens/MarketplaceScreen';
@@ -41,6 +41,16 @@ export default function MyVillageNavigation() {
           ),
         }}
       />
+       <Tab.Screen
+        name="Social"
+        component={DirectoryScreen}
+        options={{
+          title: 'Social',
+          tabBarIcon: ({ color, size }) => (
+            <Slack size={size} color={color} />
+          ),
+        }}
+      />
       <Tab.Screen
         name="Explore"
         component={ExploreScreen}
@@ -71,16 +81,7 @@ export default function MyVillageNavigation() {
           ),
         }}
       />
-      <Tab.Screen
-        name="Directory"
-        component={DirectoryScreen}
-        options={{
-          title: 'Directory',
-          tabBarIcon: ({ color, size }) => (
-            <Users size={size} color={color} />
-          ),
-        }}
-      />
+     
     </Tab.Navigator>
   );
 }

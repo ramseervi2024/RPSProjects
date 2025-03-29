@@ -2,43 +2,45 @@ import { View, Text, StyleSheet, FlatList, Pressable } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { Heart, MessageCircle, Share2 } from 'lucide-react-native';
 import { formatDistanceToNow } from 'date-fns';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const POSTS = [
   {
     id: '1',
     user: {
-      username: 'sarah_designs',
-      avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330',
+      username: 'developer_rameshseervi',
+      avatar: 'https://images.unsplash.com/photo-1492681290082-e932832941e6?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfHwwfHx8MA%3D%3D',
     },
-    image: 'https://images.unsplash.com/photo-1707343843437-caacff5cfa74',
-    caption: 'Beautiful sunset at the beach 🌅',
-    likes: 234,
+    // image: 'https://images.unsplash.com/photo-1707343843437-caacff5cfa74',
+    image: 'https://plus.unsplash.com/premium_photo-1663945779301-2c51b59c911e?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGZhcm18ZW58MHx8MHx8fDA%3D',
+    caption: 'my farms crop 🍑🥝🥥🍋🌅',
+    likes: 1260,
     comments: 12,
     timestamp: new Date('2024-02-08T18:30:00'),
   },
   {
     id: '2',
     user: {
-      username: 'travel_mike',
-      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e',
+      username: 'pc_seervi',
+      avatar: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHBlcnNvbnxlbnwwfHwwfHx8MA%3D%3D',
     },
-    image: 'https://images.unsplash.com/photo-1707343843437-caacff5cfa74',
-    caption: 'Adventure awaits in every corner 🌎✈️',
+    image: 'https://plus.unsplash.com/premium_photo-1664304095595-e428558e8161?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9saXxlbnwwfHwwfHx8MA%3D%3D',
+    caption: 'Happy Holi 🎉🪅🎨🎊🔫🎊🪅🎨🩷🫧',
     likes: 567,
     comments: 34,
-    timestamp: new Date('2024-02-08T15:45:00'),
+    timestamp: new Date('2025-03-08T15:45:00'),
   },
   {
     id: '3',
     user: {
-      username: 'sarah_designs',
-      avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330',
+      username: 'ansa.rajput_',
+      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e',
     },
     image: 'https://images.unsplash.com/photo-1707343843437-caacff5cfa74',
-    caption: 'Beautiful sunset at the beach 🌅',
+    caption: 'Adventure awaits in every corner 🌎✈️',
     likes: 234,
     comments: 12,
-    timestamp: new Date('2024-02-08T18:30:00'),
+    timestamp: new Date('2024-10-08T18:30:00'),
   },
 ];
 
@@ -80,7 +82,7 @@ function Post({ post }) {
 
 export default function HomeScreen() {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Social Feed</Text>
       </View>
@@ -90,17 +92,16 @@ export default function HomeScreen() {
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
   },
   header: {
-    paddingTop: 60,
+    // paddingTop: 60,
     paddingHorizontal: 16,
     paddingBottom: 16,
     borderBottomWidth: 1,
