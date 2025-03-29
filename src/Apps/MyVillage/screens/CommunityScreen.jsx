@@ -25,7 +25,7 @@ const MyMap = () => (
     >
       <Marker
         coordinate={{ latitude: 25.92467502829789, longitude: 73.52042584507409 }}
-        // title="Surayata Main Bus Stop " 
+        title="Surayata Shiva Temple Main Bus Stop " 
       />
     </MapView>
   </View>
