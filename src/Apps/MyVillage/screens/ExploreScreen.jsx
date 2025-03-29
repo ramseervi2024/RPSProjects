@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, FlatList, Pressable, ActivityIndicator } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import ImageView from 'react-native-image-viewing';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const EXPLORE_POSTS = [
   {
@@ -12,7 +13,7 @@ const EXPLORE_POSTS = [
     id: '1',
     image: require('../Images/images.jpeg'),
   },
- 
+
   {
     id: '3',
     image: require('../Images/image.png'),
@@ -131,7 +132,7 @@ export default function ExploreScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Explore the Beauty of Surayata Village</Text>
         {/* <Text style={styles.headerSubtitle}>A visual journey through rural life</Text> */}
@@ -174,7 +175,7 @@ export default function ExploreScreen() {
         swipeToCloseEnabled
         doubleTapToZoomEnabled
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -184,23 +185,22 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   headerSubtitle: {
-    fontSize: 14,
+    fontSize: 12,
     color: '#666',
     textAlign: 'center',
     fontFamily: 'Inter_400Regular',
     marginTop: 4,
   },
   header: {
-    paddingTop: 60,
+    // paddingTop: 60,
     paddingHorizontal: 16,
-    paddingBottom: 5,
+    paddingBottom: 12,
     borderBottomWidth: 1,
     borderBottomColor: '#f1f1f1',
   },
   headerTitle: {
     fontSize: 18,
     fontFamily: 'Inter_700Bold',
-    textAlign: 'center',
   },
   gridItem: {
     flex: 1 / 3,
