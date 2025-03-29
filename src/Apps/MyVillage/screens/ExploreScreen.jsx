@@ -75,33 +75,33 @@ const EXPLORE_POSTS = [
   },
   {
     id: '125',
-    image: require('../Images/map.png'),
+    image: require('../Images/anicat.jpeg'),
 
   },
   {
     id: '125',
-    image: require('../Images/map.png'),
+    image: require('../Images/om.jpeg'),
   },
 
   {
     id: '125',
-    image: require('../Images/map.png'),
+    image: require('../Images/tractor.jpeg'),
   },
   {
     id: '125',
-    image: require('../Images/map.png'),
+    image: require('../Images/talab.jpg'),
   },
   {
     id: '125',
-    image: require('../Images/map.png'),
+    image: require('../Images/jcb.jpeg'),
   },
   {
     id: '125',
-    image: require('../Images/map.png'),
+    image: require('../Images/jcb2.jpeg'),
   },
   {
     id: '125',
-    image: require('../Images/map.png'),
+    image: require('../Images/om2.jpeg'),
   },
 ];
 
