@@ -1,209 +1,196 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
-import { Search, Filter } from 'lucide-react-native';
+import { Grid2x2 as Grid, List } from 'lucide-react-native';
+import { useState } from 'react';
 
-const PRODUCTS = [
-  {
-    id: '1',
-    name: 'Fresh Farm Vegetables',
-    price: '25.00',
-    seller: 'Green Farm',
-    image: 'https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?w=500&q=80',
-    category: 'Produce',
-  },
-  {
-    id: '2',
-    name: 'Handmade Pottery',
-    price: '45.00',
-    seller: 'Local Artisan',
-    image: 'https://images.unsplash.com/photo-1493106641515-6b5631de4bb9?w=500&q=80',
-    category: 'Crafts',
-  },
-  {
-    id: '3',
-    name: 'Organic Honey',
-    price: '15.00',
-    seller: 'Valley Apiaries',
-    image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=500&q=80',
-    category: 'Food',
-  },
-];
+export default function TouristPlacesScreen() {
+  const [viewMode, setViewMode] = useState('grid');
 
-export default function MarketplaceScreen() {
+  const touristPlaces = [
+    {
+      name: 'Om Ashram, Jadan',
+      category: 'Cultural Site',
+      image: 'https://lh3.googleusercontent.com/p/AF1QipMJ1i3io1eGuyuUPyXionCyL6Yq9z-yADptxeQu=s1360-w1360-h1020',
+    },
+    {
+      name: 'Sardar Samand Fort',
+      category: 'Historical Site',
+      image: 'https://sardarsamand.jodhanaheritage.com/images/4.jpg',
+    },
+    {
+      name: 'Jawai Dam',
+      category: 'Nature',
+      image: 'https://images.unsplash.com/photo-1499883614574-22631ce07525?q=80&w=3628&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    },
+    {
+      name: 'Ranakpur Jain Temple',
+      category: 'Religious Site',
+      image: 'https://images.unsplash.com/photo-1597078804310-7dfe09d55fdc?q=80&w=3474&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    },
+    {
+      name: 'Kumbhalgarh Fort',
+      category: 'Historical Site',
+      image: 'https://plus.unsplash.com/premium_photo-1697730385162-fa617cfd46d8?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    },
+    {
+      name: 'Nimbo Ka Nath',
+      category: 'Religious Site',
+      image: 'https://plus.unsplash.com/premium_photo-1691031429427-97978a028467?q=80&w=3687&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    },
+    {
+      name: 'Nadol Ashapura Mataji Temple',
+      category: 'Religious Site',
+      image: 'https://images.unsplash.com/photo-1593739594181-dcd2709bc51d?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8UGFyc2h1cmFtJTIwTWFoYWRldiUyMG1hbmRpcnxlbnwwfHwwfHx8MA%3D%3D',
+    },
+    {
+      name: 'Om Banna Dham',
+      category: 'Cultural Site',
+      image: 'https://www.mapsofindia.com/ci-moi-images/my-india/2014/04/om-bana-temple.jpg',
+    },
+    {
+      name: 'Mehrangarh Fort',
+      category: 'Historical Site',
+      image: 'https://images.unsplash.com/photo-1566873535350-a3f5d4a804b7?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8TWVocmFuZ2FyaCUyMEZvcnQlMkN8ZW58MHx8MHx8fDA%3D',
+    },
+    {
+      name: 'Shri Aai Mata Temple',
+      category: 'Religious Site',
+      image: 'https://lh3.googleusercontent.com/gps-cs-s/AB5caB_pO3unB4xnJGUiTQK50s511KfXxjdK4ItavGiGA4ZJCFTwvyEhzmgk60BGhdttxQPYmaykRdd_cpY8FF-5golmSCVgPi1qB0jXwBU8g5Tp096_4vDj9L6S_TjI3tN0J5csWQ=s1360-w1360-h1020',
+    },
+    {
+      name: 'Parshuram Mahadev Temple',
+      category: 'Religious Site',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn7-A8CY3BoU3u-gDw_upK3G4_BZs7HzFfjA&s',
+    },
+  ];
+
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Village Market</Text>
-      </View>
-
-      <View style={styles.searchContainer}>
-        <View style={styles.searchBar}>
-          <Search size={20} color="#64748b" />
-          <Text style={styles.searchPlaceholder}>Search products...</Text>
+        <Text style={styles.title}>Tourist Places</Text>
+        <View style={styles.viewToggle}>
+          <TouchableOpacity
+            style={[styles.toggleButton, viewMode === 'grid' && styles.toggleButtonActive]}
+            onPress={() => setViewMode('grid')}>
+            <Grid size={20} color={viewMode === 'grid' ? '#007AFF' : '#666'} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.toggleButton, viewMode === 'list' && styles.toggleButtonActive]}
+            onPress={() => setViewMode('list')}>
+            <List size={20} color={viewMode === 'list' ? '#007AFF' : '#666'} />
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.filterButton}>
-          <Filter size={20} color="#166534" />
-        </TouchableOpacity>
       </View>
 
-      <View style={styles.categoriesContainer}>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <TouchableOpacity style={[styles.categoryButton, styles.categoryButtonActive]}>
-            <Text style={[styles.categoryText, styles.categoryTextActive]}>All</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.categoryButton}>
-            <Text style={styles.categoryText}>Produce</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.categoryButton}>
-            <Text style={styles.categoryText}>Crafts</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.categoryButton}>
-            <Text style={styles.categoryText}>Food</Text>
-          </TouchableOpacity>
-        </ScrollView>
-      </View>
-
-      <View style={styles.productsGrid}>
-        {PRODUCTS.map((product) => (
-          <TouchableOpacity key={product.id} style={styles.productCard}>
-            <Image source={{ uri: product.image }} style={styles.productImage} />
-            <View style={styles.productContent}>
-              <Text style={styles.productCategory}>{product.category}</Text>
-              <Text style={styles.productName}>{product.name}</Text>
-              <Text style={styles.productSeller}>{product.seller}</Text>
-              <Text style={styles.productPrice}>${product.price}</Text>
-            </View>
-          </TouchableOpacity>
-        ))}
-      </View>
-
-      <TouchableOpacity style={styles.addButton}>
-        <Text style={styles.addButtonText}>+ List Your Product</Text>
-      </TouchableOpacity>
-    </ScrollView>
+      <ScrollView style={styles.content}>
+        <View style={viewMode === 'grid' ? styles.gridContainer : styles.listContainer}>
+          {touristPlaces.map((place, index) => (
+            <TouchableOpacity
+              key={index}
+              style={viewMode === 'grid' ? styles.gridCard : styles.listCard}>
+              <Image 
+                source={{ uri: place.image }} 
+                style={viewMode === 'grid' ? styles.gridImage : styles.listImage}
+                resizeMode="cover"
+              />
+              <View style={viewMode === 'grid' ? styles.gridInfo : styles.listInfo}>
+                <Text style={styles.placeName}>{place.name}</Text>
+                <Text style={styles.placeCategory}>{place.category}</Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8fafc',
+    backgroundColor: '#fff',
   },
   header: {
     padding: 20,
+    paddingVertical: 5,
     paddingTop: 60,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#fff',
+    borderBottomWidth: 1,
+    borderBottomColor: '#f0f0f0',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
-  headerTitle: {
-    fontSize: 24,
+  title: {
     fontFamily: 'Inter_700Bold',
-    color: '#166534',
+    fontSize: 28,
+    color: '#1a1a1a',
   },
-  searchContainer: {
+  viewToggle: {
     flexDirection: 'row',
-    padding: 20,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#f5f5f5',
+    borderRadius: 8,
+    padding: 4,
   },
-  searchBar: {
+  toggleButton: {
+    padding: 8,
+    borderRadius: 6,
+  },
+  toggleButtonActive: {
+    backgroundColor: '#fff',
+  },
+  content: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#f8fafc',
-    borderRadius: 8,
-    padding: 12,
-    marginRight: 10,
-  },
-  searchPlaceholder: {
-    marginLeft: 10,
-    color: '#94a3b8',
-    fontSize: 14,
-    fontFamily: 'Inter_400Regular',
-  },
-  filterButton: {
-    width: 44,
-    height: 44,
-    backgroundColor: '#f0fdf4',
-    borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  categoriesContainer: {
-    backgroundColor: '#ffffff',
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-  },
-  categoryButton: {
-    paddingHorizontal: 20,
-    paddingVertical: 8,
-    borderRadius: 20,
-    marginRight: 10,
-    backgroundColor: '#f8fafc',
-  },
-  categoryButtonActive: {
-    backgroundColor: '#166534',
-  },
-  categoryText: {
-    fontSize: 14,
-    fontFamily: 'Inter_500Medium',
-    color: '#64748b',
-  },
-  categoryTextActive: {
-    color: '#ffffff',
-  },
-  productsGrid: {
     padding: 20,
+  },
+  gridContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    gap: 16,
   },
-  productCard: {
-    width: '48%',
-    backgroundColor: '#ffffff',
+  listContainer: {
+    gap: 16,
+  },
+  gridCard: {
+    width: '47%',
+    backgroundColor: '#fff',
     borderRadius: 12,
     overflow: 'hidden',
-    marginBottom: 20,
     borderWidth: 1,
-    borderColor: '#e2e8f0',
+    borderColor: '#f0f0f0',
   },
-  productImage: {
+  listCard: {
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: '#f0f0f0',
+  },
+  gridImage: {
     width: '100%',
     height: 150,
   },
-  productContent: {
+  listImage: {
+    width: 120,
+    height: 120,
+  },
+  gridInfo: {
     padding: 12,
   },
-  productCategory: {
-    fontSize: 12,
+  listInfo: {
+    flex: 1,
+    padding: 16,
+  },
+  placeName: {
+    fontFamily: 'Inter_600SemiBold',
+    fontSize: 16,
+    color: '#1a1a1a',
+    marginBottom: 4,
+  },
+  placeCategory: {
     fontFamily: 'Inter_500Medium',
-    color: '#166534',
-    marginBottom: 4,
-  },
-  productName: {
     fontSize: 14,
-    fontFamily: 'Inter_600SemiBold',
-    color: '#334155',
+    color: '#007AFF',
     marginBottom: 4,
-  },
-  productSeller: {
-    fontSize: 12,
-    fontFamily: 'Inter_400Regular',
-    color: '#64748b',
-    marginBottom: 4,
-  },
-  productPrice: {
-    fontSize: 16,
-    fontFamily: 'Inter_700Bold',
-    color: '#166534',
-  },
-  addButton: {
-    margin: 20,
-    backgroundColor: '#166534',
-    padding: 15,
-    borderRadius: 12,
-    alignItems: 'center',
-  },
-  addButtonText: {
-    color: '#ffffff',
-    fontSize: 16,
-    fontFamily: 'Inter_600SemiBold',
   },
 });

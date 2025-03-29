@@ -133,7 +133,7 @@ export default function ExploreScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Explore Village</Text>
+        <Text style={styles.headerTitle}>Explore the Beauty of Surayata Village</Text>
         {/* <Text style={styles.headerSubtitle}>A visual journey through rural life</Text> */}
       </View>
       <FlatList
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#f1f1f1',
   },
   headerTitle: {
-    fontSize: 20,
+    fontSize: 18,
     fontFamily: 'Inter_700Bold',
     textAlign: 'center',
   },

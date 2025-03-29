@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Chrome as Home, Search, MessageSquare, Store, Users,MapPin } from 'lucide-react-native'; // Import icons from lucide-react-native
+import { Chrome as Home, Search, MessageSquare, Castle, Users,MapPin } from 'lucide-react-native'; // Import icons from lucide-react-native
 import HomeScreen from './screens/HomeScreen';
 import EventsScreen from './screens/EventsScreen';
 import MarketplaceScreen from './screens/MarketplaceScreen';
@@ -15,15 +15,20 @@ const Tab = createBottomTabNavigator();
 export default function MyVillageNavigation() {
   return (
     <Tab.Navigator
-      screenOptions={{
-        tabBarStyle: {
-          backgroundColor: '#ffffff',
-          borderTopColor: '#e2e8f0',
-        },
-        tabBarActiveTintColor: '#166534',
-        tabBarInactiveTintColor: '#64748b',
-        headerShown: false,
-      }}>
+    screenOptions={{
+      headerShown: false,
+      tabBarStyle: {
+        backgroundColor: '#ffffff',
+        borderTopWidth: 0,
+        elevation: 20,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: -4 },
+        shadowOpacity: 0.1,
+        shadowRadius: 8,
+      },
+      tabBarActiveTintColor: '#FF4785',
+      tabBarInactiveTintColor: '#94A3B8',
+    }}>
       <Tab.Screen
         name="Home"
         // component={WelcomePage}
@@ -50,9 +55,9 @@ export default function MyVillageNavigation() {
         name="Marketplace"
         component={MarketplaceScreen}
         options={{
-          title: 'Market',
+          title: 'Top Places',
           tabBarIcon: ({ color, size }) => (
-            <Store size={size} color={color} />
+            <Castle size={size} color={color} />
           ),
         }}
       />

@@ -18,9 +18,9 @@ export default function SecondWelcomePage() {
                     colors={['transparent', 'rgba(11, 1, 1, 0.8)']}
                     style={styles.gradient}
                 >
-                    <View style={{ alignItems: 'center', justifyContent: 'center' , paddingBottom:40}}>
+                    <View style={{ alignItems: 'center', justifyContent: 'center', paddingBottom: 40 }}>
                         <Text style={styles.heroTitle}>Welcome to Surayata</Text>
-                        <Text style={styles.heroSubtitle}>A Gem of Rajasthan</Text>
+                        <Text style={styles.heroSubtitle}>Surayata Village: Explore & Discover</Text>
                     </View>
                 </LinearGradient>
             </View>
@@ -101,6 +101,11 @@ export default function SecondWelcomePage() {
                             <Text style={styles.educationText}>Basic educational facilities available, including government schools</Text>
                             <Text style={styles.educationText}>Basic healthcare centers, markets, and transportation services available</Text>                        </View>
                     </View>
+                </View>
+                <View style={[styles.climateSection, { alignItems: 'center', }]}>
+                    <Text style={styles.temperature}>36°C</Text>
+                    <Text style={styles.weatherDescription}>Partly Cloudy</Text>
+                    <Text style={styles.weatherLocation}>Green Valley Village</Text>
                 </View>
             </View>
         </ScrollView>
@@ -257,7 +262,7 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         fontSize: 14,
         color: '#666',
-        fontWeight:'700'
+        fontWeight: '700'
     },
     economySection: {
         backgroundColor: '#fff',
@@ -298,6 +303,29 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         fontSize: 14,
         color: '#666',
+    },
+    weatherCard: {
+        backgroundColor: '#f0fdf4',
+        borderRadius: 12,
+        padding: 20,
+        alignItems: 'center',
+    },
+    temperature: {
+        fontSize: 36,
+        fontFamily: 'Inter_700Bold',
+        color: '#166534',
+        marginBottom: 8,
+    },
+    weatherDescription: {
+        fontSize: 16,
+        fontFamily: 'Inter_500Medium',
+        color: '#166534',
+        marginBottom: 4,
+    },
+    weatherLocation: {
+        fontSize: 14,
+        fontFamily: 'Inter_400Regular',
+        color: '#166534',
     },
 });
 
