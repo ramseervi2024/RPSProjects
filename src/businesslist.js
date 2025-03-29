@@ -1,6 +1,12 @@
 
 export const business = [
     {
+        "id": 12003,
+        "label": "Rajasthan Tourist",
+        "value": "Explore the state's rich history, culture, and landmarks",
+        "appurl": "RajasthanTourist"
+    },
+    {
         "id": 51,
         "label": "Sports & Fitness Tracker Apps",
         "value": "Apps to track sports activities, fitness progress, and challenges.",

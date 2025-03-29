@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Button } from 'react-native';
 import { business } from './businesslist';
 import { useNavigation } from '@react-navigation/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function AllApps() {
   const navigation = useNavigation();
@@ -11,7 +12,7 @@ export default function AllApps() {
       <Text style={styles.label}>{item.label}</Text>
       <Text style={styles.value}>{item.value}</Text>
       {item.appurl ? (
-        <TouchableOpacity style={styles.button} onPress={() =>  navigation.navigate(item.appurl)}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate(item.appurl)}>
           <Text style={styles.buttonText}>View App</Text>
         </TouchableOpacity>
       ) : null}
@@ -19,14 +20,14 @@ export default function AllApps() {
   );
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <FlatList
         data={business}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.listContainer}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
