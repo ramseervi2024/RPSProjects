@@ -77,9 +77,9 @@ export default function SecondWelcomePage() {
                     <View style={[styles.climateCard]}>
                         <Airplay size={24} color="#E6B17E" />
                         <View style={{ flex: 1 }}>
-                            <Text style={styles.connectivityText}>Nearest Airport: Jodhpur (59 km away)</Text>
-                            <Text style={styles.connectivityText}>Nearest Rail Station: Sojat Road, Marwar Junction, Pali</Text>
-                            <Text style={styles.connectivityText}>Accessible via NH58 and NH62</Text>
+                            <Text style={styles.connectivityText}><Text style={styles.waittext}>Nearest Airport: </Text>Jodhpur (59 km away)</Text>
+                            <Text style={styles.connectivityText}><Text style={styles.waittext}>Nearest Rail Station:  </Text>Sojat Road, Marwar Junction, Pali</Text>
+                            <Text style={styles.connectivityText}><Text style={styles.waittext}>Highways: </Text> Accessible via NH58 and NH62</Text>
                         </View>
                     </View>
                 </View>
@@ -252,6 +252,12 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         fontSize: 14,
         color: '#666',
+    },
+    waittext: {
+        marginLeft: 10,
+        fontSize: 14,
+        color: '#666',
+        fontWeight:'700'
     },
     economySection: {
         backgroundColor: '#fff',

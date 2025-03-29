@@ -1,5 +1,7 @@
-import { View, Text, StyleSheet, FlatList, Pressable } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, FlatList, Pressable, ActivityIndicator } from 'react-native';
 import FastImage from 'react-native-fast-image';
+import ImageView from 'react-native-image-viewing';
 
 const EXPLORE_POSTS = [
   {
@@ -27,116 +29,145 @@ const EXPLORE_POSTS = [
     image: require('../Images/bhesh.jpeg'),
   },
   {
-    id: '12',
+    id: '13',
     image: require('../Images/school.png'),
   },
   {
-    id: '13',
+    id: '14',
     image: require('../Images/valo.png'),
   },
   {
-    id: '14',
+    id: '15',
     image: require('../Images/narayanmaharaj.png'),
   },
   {
-    id: '21',
+    id: '16',
     image: require('../Images/mahendi.jpeg'),
-
   },
   {
-    id: '22',
+    id: '17',
     image: require('../Images/gehu.jpeg'),
-
   },
   {
-    id: '23',
-    image: require('../Images/khet.jpeg'),
-
-  },
-  {
-    id: '24',
-    image: require('../Images/map.png'),
-
-  },
-  {
-    id: '122',
-    image: require('../Images/bakaris.jpeg'),
-
-  },
-  {
-    id: '123',
-    image: require('../Images/bakari.jpeg'),
-
-  },
-  {
-    id: '124',
-    image: require('../Images/bhed.jpeg'),
-
-  },
-  {
-    id: '125',
-    image: require('../Images/anicat.jpeg'),
-
-  },
-  {
-    id: '125',
-    image: require('../Images/om.jpeg'),
-  },
-
-  {
-    id: '125',
-    image: require('../Images/tractor.jpeg'),
-  },
-  {
-    id: '125',
-    image: require('../Images/talab.jpg'),
-  },
-  {
-    id: '125',
-    image: require('../Images/jcb.jpeg'),
-  },
-  {
-    id: '125',
+    id: '18',
     image: require('../Images/jcb2.jpeg'),
   },
   {
-    id: '125',
+    id: '19',
+    image: require('../Images/map.png'),
+  },
+  {
+    id: '20',
+    image: require('../Images/bakaris.jpeg'),
+  },
+  {
+    id: '21',
+    image: require('../Images/bakari.jpeg'),
+  },
+  {
+    id: '22',
+    image: require('../Images/bhed.jpeg'),
+  },
+  {
+    id: '23',
+    image: require('../Images/anicat.jpeg'),
+  },
+  {
+    id: '24',
+    image: require('../Images/om.jpeg'),
+  },
+  {
+    id: '25',
+    image: require('../Images/tractor.jpeg'),
+  },
+  {
+    id: '26',
+    image: require('../Images/talab.jpg'),
+  },
+  {
+    id: '27',
+    image: require('../Images/jcb.jpeg'),
+  },
+  {
+    id: '28',
+    image: require('../Images/khet.jpeg'),
+  },
+  {
+    id: '29',
     image: require('../Images/om2.jpeg'),
   },
   {
-    id: '125',
+    id: '30',
     image: require('../Images/suar.jpeg'),
   },
   {
-    id: '125',
+    id: '31',
     image: require('../Images/khetmahdi.jpeg'),
   },
   {
-    id: '125',
+    id: '32',
     image: require('../Images/kakadi.jpeg'),
   },
   {
-    id: '125',
+    id: '33',
     image: require('../Images/tarbandani.jpeg'),
   },
 ];
 
+
 export default function ExploreScreen() {
+  const [visible, setVisible] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
+
+  const openImageViewer = (index) => {
+    setCurrentImageIndex(index);
+    setVisible(true);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Explore</Text>
+        <Text style={styles.headerTitle}>Explore Village</Text>
+        {/* <Text style={styles.headerSubtitle}>A visual journey through rural life</Text> */}
       </View>
       <FlatList
         data={EXPLORE_POSTS}
-        renderItem={({ item }) => (
-          <Pressable style={styles.gridItem}>
-            <FastImage source={item?.image} style={styles.gridImage} />
+        renderItem={({ item, index }) => (
+          <Pressable
+            style={styles.gridItem}
+            onPress={() => openImageViewer(index)}
+          >
+            <FastImage
+              source={item.image}
+              style={styles.gridImage}
+              resizeMode={FastImage.resizeMode.cover}
+              onLoadStart={() => setLoading(true)}
+              onLoadEnd={() => setLoading(false)}
+            >
+              {loading && (
+                <View style={styles.loadingContainer}>
+                  <ActivityIndicator size="small" color="#0000ff" />
+                </View>
+              )}
+            </FastImage>
           </Pressable>
         )}
         keyExtractor={(item) => item.id}
         numColumns={3}
         showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.listContent}
+      />
+
+      <ImageView
+        images={EXPLORE_POSTS.map(post => post.image)}
+        imageIndex={currentImageIndex}
+        visible={visible}
+        onRequestClose={() => setVisible(false)}
+        presentationStyle="overFullScreen"
+        backgroundColor="rgba(0,0,0,0.9)"
+        swipeToCloseEnabled
+        doubleTapToZoomEnabled
       />
     </View>
   );
@@ -147,24 +178,42 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  headerSubtitle: {
+    fontSize: 14,
+    color: '#666',
+    textAlign: 'center',
+    fontFamily: 'Inter_400Regular',
+    marginTop: 4,
+  },
   header: {
     paddingTop: 60,
     paddingHorizontal: 16,
-    paddingBottom: 16,
+    paddingBottom: 5,
     borderBottomWidth: 1,
     borderBottomColor: '#f1f1f1',
   },
   headerTitle: {
-    fontSize: 24,
+    fontSize: 20,
     fontFamily: 'Inter_700Bold',
+    textAlign: 'center',
   },
   gridItem: {
-    flex: 1 / 3,   // Ensure 3 columns in the grid
-    aspectRatio: 1, // Ensures square aspect ratio for images
-    padding: 1,    // Small padding between images
+    flex: 1 / 3,
+    aspectRatio: 1,
+    padding: 1,
   },
   gridImage: {
-    flex: 1,  // Makes the image take the full space of its container
-    borderRadius: 8,  // Optional: add border radius to make the images look smoother
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f5f5f5',
+  },
+  listContent: {
+    paddingBottom: 20,
   },
 });
