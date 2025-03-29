@@ -5,13 +5,14 @@ import ImageView from 'react-native-image-viewing';
 
 const EXPLORE_POSTS = [
   {
-    id: '1',
+    id: '100',
     image: require('../Images/maingate.jpeg'),
   },
   {
-    id: '2',
-    image: require('../Images/talab.jpeg'),
+    id: '1',
+    image: require('../Images/images.jpeg'),
   },
+ 
   {
     id: '3',
     image: require('../Images/image.png'),
@@ -63,6 +64,10 @@ const EXPLORE_POSTS = [
   {
     id: '21',
     image: require('../Images/bakari.jpeg'),
+  },
+  {
+    id: '2',
+    image: require('../Images/talab.jpeg'),
   },
   {
     id: '22',
