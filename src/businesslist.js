@@ -1,6 +1,12 @@
 
 export const business = [
     {
+        "id": 10011,
+        "label": "Surayata My Village",
+        "value": " This app will include features like local news, events, services, and community discussions",
+        "appurl": "MyVillage"
+    },
+    {
         "id": 12003,
         "label": "Rajasthan Tourist",
         "value": "Explore the state's rich history, culture, and landmarks",

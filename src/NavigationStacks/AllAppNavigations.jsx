@@ -23,6 +23,7 @@ import DashboardManagementNavigation from '../Apps/DashboardManagement/Dashboard
 import FashionTrendAppsNavigation from '../Apps/FashionTrendApps/FashionTrendAppsNavigation';
 import SportsFitnessNavigation from '../Apps/SportsFitness/SportsFitnessNavigation';
 import RajasthanTouristNavigation from '../Apps/RajasthanTourist/RajasthanTouristNavigation';
+import MyVillageNavigation from '../Apps/MyVillage/MyVillageNavigation';
 
 const AllAppNav = createStackNavigator();
 
@@ -51,6 +52,7 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="FashionTrendApps" component={FashionTrendAppsNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="SportsFitness" component={SportsFitnessNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="RajasthanTourist" component={RajasthanTouristNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="MyVillage" component={MyVillageNavigation} options={{ headerShown: false }} />
                 </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>
