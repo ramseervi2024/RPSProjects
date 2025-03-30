@@ -2,18 +2,64 @@ import { View, Text, StyleSheet, FlatList, TextInput, TouchableOpacity } from 'r
 import { useTranslation } from 'react-i18next';
 import { Send } from 'lucide-react-native';
 
+const users = [
+  {
+    id: '1',
+    name: 'Sophia',
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330',
+  },
+  {
+    id: '2',
+    name: 'Emma',
+    image: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Z2lybHN8ZW58MHx8MHx8fDA%3D',
+  },
+  {
+    id: '3',
+    name: 'Olivia',
+    image: 'https://images.unsplash.com/photo-1503104834685-7205e8607eb9?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z2lybHN8ZW58MHx8MHx8fDA%3D',
+  },
+  {
+    id: '4',
+    name: 'Lily',
+    image: 'https://images.unsplash.com/photo-1553860214-87b92d6c1e22?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fGdpcmxzfGVufDB8fDB8fHww',
+  },
+  {
+    id: '5',
+    name: 'Mia',
+    image: 'https://images.unsplash.com/photo-1600600423621-70c9f4416ae9?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGdpcmxzfGVufDB8fDB8fHww',
+  },
+];
+
 const messages = [
   {
     id: '1',
-    text: 'Hey there!',
+    text: 'Hey there, how’s your day going?',
     sent: true,
     timestamp: '10:00 AM',
   },
   {
     id: '2',
-    text: 'Hi! How are you?',
+    text: 'It’s going well, thanks for asking! How about you?',
     sent: false,
     timestamp: '10:01 AM',
+  },
+  {
+    id: '3',
+    text: 'Just started working on a new project. It’s exciting!',
+    sent: true,
+    timestamp: '10:05 AM',
+  },
+  {
+    id: '4',
+    text: 'That sounds awesome! What’s the project about?',
+    sent: false,
+    timestamp: '10:07 AM',
+  },
+  {
+    id: '5',
+    text: 'It’s about building a mobile app. I’m learning a lot!',
+    sent: true,
+    timestamp: '10:10 AM',
   },
 ];
 
@@ -97,10 +143,12 @@ export default function ChatScreen() {
     },
   });
 
+  const currentUser = users[0]; // You can change the current user dynamically
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>Sarah</Text>
+        <Text style={styles.headerText}>{currentUser.name}</Text>
       </View>
       <FlatList
         data={messages}

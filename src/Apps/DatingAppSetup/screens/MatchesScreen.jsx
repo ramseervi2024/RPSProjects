@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const matches = [
   {
@@ -14,6 +15,24 @@ const matches = [
     photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80',
     lastMessage: 'Nice to meet you!',
   },
+  {
+    id: '3',
+    name: 'Olivia',
+    photo: 'https://images.unsplash.com/photo-1503104834685-7205e8607eb9?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z2lybHN8ZW58MHx8MHx8fDA%3D',
+    lastMessage: 'How’s your day going?',
+  },
+  {
+    id: '4',
+    name: 'Mia',
+    photo: 'https://images.unsplash.com/photo-1627067227573-07bc616f46ee?w=900&auto=format&fit=crop&q=60&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGdpcmxzfGVufDB8fDB8fHww',
+    lastMessage: 'Let’s meet for coffee sometime!',
+  },
+  {
+    id: '5',
+    name: 'Lily',
+    photo: 'https://images.unsplash.com/photo-1600600423621-70c9f4416ae9?w=900&auto=format&fit=crop&q=60&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGdpcmxzfGVufDB8fDB8fHww',
+    lastMessage: 'How about a movie night?',
+  },
 ];
 
 export default function MatchesScreen() {
@@ -24,7 +43,7 @@ export default function MatchesScreen() {
     container: {
       flex: 1,
       backgroundColor: '#fff',
-      paddingTop: 60,
+      // paddingTop: 10,
     },
     title: {
       fontSize: 28,
@@ -64,7 +83,7 @@ export default function MatchesScreen() {
   });
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.title}>{t('tabs.matches')}</Text>
       <FlatList
         data={matches}
@@ -79,6 +98,6 @@ export default function MatchesScreen() {
           </TouchableOpacity>
         )}
       />
-    </View>
+    </SafeAreaView>
   );
 }

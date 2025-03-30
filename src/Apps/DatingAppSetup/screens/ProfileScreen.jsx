@@ -4,7 +4,7 @@ import { Settings, CreditCard as Edit2, Globe } from 'lucide-react-native';
 
 export default function ProfileScreen() {
   const { t, i18n } = useTranslation();
-  const isRTL = i18n.language === 'ar';
+  const isRTL = i18n.language == 'ar';
 
   const styles = StyleSheet.create({
     container: {
@@ -68,7 +68,7 @@ export default function ProfileScreen() {
   });
 
   const toggleLanguage = () => {
-    i18n.changeLanguage(i18n.language === 'en' ? 'ar' : 'en');
+    i18n.changeLanguage(i18n.language == 'en' ? 'ar' : 'en');
   };
 
   return (
