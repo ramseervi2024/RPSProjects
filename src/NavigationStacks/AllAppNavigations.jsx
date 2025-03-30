@@ -27,6 +27,7 @@ import MyVillageNavigation from '../Apps/MyVillage/MyVillageNavigation';
 import KisanMarketNavigation from '../Apps/KisanMarket/KisanMarketNavigation';
 import TransportLogisticsNavigation from '../Apps/TransportLogistics/TransportLogisticsNavigation';
 import RenewableEnergyNavigation from '../Apps/RenewableEnergy/RenewableEnergyNavigation';
+import HospitalityManagementNavigation from '../Apps/HospitalityManagement/HospitalityManagementNavigation';
 
 const AllAppNav = createStackNavigator();
 
@@ -60,6 +61,7 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="TransportLogistics" component={TransportLogisticsNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="NewsMagazine" component={NewsMagazineNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="RenewableEnergy" component={RenewableEnergyNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="HospitalityManagement" component={HospitalityManagementNavigation} options={{ headerShown: false }} />
                 </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>
