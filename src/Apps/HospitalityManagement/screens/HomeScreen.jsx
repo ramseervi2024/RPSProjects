@@ -1,5 +1,6 @@
 import { View, Text, ScrollView, StyleSheet, Pressable } from 'react-native';
 import { Users, Calendar, Activity, Clock } from 'lucide-react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Dashboard() {
   const stats = [
@@ -10,6 +11,7 @@ export default function Dashboard() {
   ];
 
   return (
+    <SafeAreaView  style={styles.topcontainer}>
     <ScrollView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.greeting}>Good morning,</Text>
@@ -41,10 +43,15 @@ export default function Dashboard() {
         ))}
       </View>
     </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  topcontainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
   container: {
     flex: 1,
     backgroundColor: '#f3f4f6',
