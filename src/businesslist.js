@@ -2,6 +2,12 @@
 export const business = [
     {
         "id": 10011,
+        "label": "Kisan Market",
+        "value": "This app Provide value to farmers by bridging the gap between them and the market. It will empower them with crucial information, which will enable them to make informed decisions about selling their produce, accessing better prices, and reducing reliance on middlemen.",
+        "appurl": "KisanMarket"
+    },
+    {
+        "id": 10011,
         "label": "Surayata My Village",
         "value": " This app will include features like local news, events, services, and community discussions",
         "appurl": "MyVillage"
