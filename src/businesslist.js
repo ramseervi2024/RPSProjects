@@ -1,6 +1,12 @@
 
 export const business = [
     {
+        "id": 10014,
+        "label": "Renewable Energy App",
+        "value": " This app will showcase renewable energy statistics, educational content, and interactive features.",
+        "appurl": "RenewableEnergy"
+    },
+    {
         "id": 10013,
         "label": "Transport and Logistics App",
         "value": " beautiful and professional Transport and Logistics app using React Native.",
