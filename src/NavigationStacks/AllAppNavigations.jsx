@@ -32,6 +32,7 @@ import MeditationAppsNavigation from '../Apps/MeditationApps/MeditationAppsNavig
 import RoboticsMachineryandIoTNavigation from '../Apps/RoboticsMachineryandIoTApp/RoboticsMachineryandIoTNavigation';
 import RobotsMain from '../Apps/RoboticsMachineryandIoTApp/RobotsMain';
 import AIAppsNavigation from '../Apps/AIApp/AIAppsNavigation';
+import WhatsAppNavigation from '../Apps/WhatsApp/WhatsAppNavigation';
 
 const AllAppNav = createStackNavigator();
 
@@ -69,6 +70,7 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="MeditationApps" component={MeditationAppsNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="RoboticsMachineryandIoT" component={RobotsMain} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="AIApps" component={AIAppsNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="WhatsApp" component={WhatsAppNavigation} options={{ headerShown: false }} />
                 </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>

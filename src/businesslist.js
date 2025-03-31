@@ -2,9 +2,9 @@
 export const business = [
     {
         "id": 10016,
-        "label": "AI App",
+        "label": "WhatsApp",
         "value": "The app will have multiple tabs for different sections like APIs, Roadmaps, Courses, and AI Fields.",
-        "appurl": "AIApps"
+        "appurl": "WhatsApp"
     },
     {
         "id": 10016,
