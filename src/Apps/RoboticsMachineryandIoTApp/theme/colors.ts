@@ -1,0 +1,47 @@
+export const lightTheme = {
+    primary: '#2563eb',
+    secondary: '#475569',
+    background: '#f8fafc',
+    surface: '#ffffff',
+    text: '#1e293b',
+    border: '#e2e8f0',
+    error: '#ef4444',
+    success: '#22c55e',
+    warning: '#f59e0b',
+    info: '#3b82f6',
+    card: '#ffffff',
+    cardHover: '#f1f5f9',
+    accent: '#6366f1',
+  };
+  
+  export const darkTheme = {
+    primary: '#3b82f6',
+    secondary: '#94a3b8',
+    background: '#0f172a',
+    surface: '#1e293b',
+    text: '#f8fafc',
+    border: '#334155',
+    error: '#ef4444',
+    success: '#22c55e',
+    warning: '#f59e0b',
+    info: '#60a5fa',
+    card: '#1e293b',
+    cardHover: '#334155',
+    accent: '#818cf8',
+  };
+  
+  export const industrialTheme = {
+    primary: '#f97316',
+    secondary: '#78716c',
+    background: '#18181b',
+    surface: '#27272a',
+    text: '#fafafa',
+    border: '#3f3f46',
+    error: '#dc2626',
+    success: '#16a34a',
+    warning: '#d97706',
+    info: '#2563eb',
+    card: '#27272a',
+    cardHover: '#3f3f46',
+    accent: '#ea580c',
+  };
