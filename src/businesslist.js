@@ -2,6 +2,12 @@
 export const business = [
     {
         "id": 10016,
+        "label": "AI App",
+        "value": "The app will have multiple tabs for different sections like APIs, Roadmaps, Courses, and AI Fields.",
+        "appurl": "AIApps"
+    },
+    {
+        "id": 10016,
         "label": "Robotics, Machinery, and IoT App",
         "value": "  We'll use a modern, industrial design language with smooth animations and a professional look.",
         "appurl": "RoboticsMachineryandIoT"

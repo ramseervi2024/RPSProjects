@@ -31,6 +31,7 @@ import HospitalityManagementNavigation from '../Apps/HospitalityManagement/Hospi
 import MeditationAppsNavigation from '../Apps/MeditationApps/MeditationAppsNavigation';
 import RoboticsMachineryandIoTNavigation from '../Apps/RoboticsMachineryandIoTApp/RoboticsMachineryandIoTNavigation';
 import RobotsMain from '../Apps/RoboticsMachineryandIoTApp/RobotsMain';
+import AIAppsNavigation from '../Apps/AIApp/AIAppsNavigation';
 
 const AllAppNav = createStackNavigator();
 
@@ -67,6 +68,7 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="HospitalityManagement" component={HospitalityManagementNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="MeditationApps" component={MeditationAppsNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="RoboticsMachineryandIoT" component={RobotsMain} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="AIApps" component={AIAppsNavigation} options={{ headerShown: false }} />
                 </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>
