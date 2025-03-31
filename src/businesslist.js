@@ -2,9 +2,9 @@
 export const business = [
     {
         "id": 10015,
-        "label": "Hospital and Hospitality Management App",
-        "value": "Modern, user-friendly interface with essential features for hospital management.",
-        "appurl": "HospitalityManagement"
+        "label": "Meditation App",
+        "value": " The app will include features like meditation sessions, progress tracking, and a calming user interface.",
+        "appurl": "MeditationApps"
     },
     {
         "id": 10014,
