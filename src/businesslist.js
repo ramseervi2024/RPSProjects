@@ -2,6 +2,12 @@
 export const business = [
     {
         "id": 10016,
+        "label": "TikTok",
+        "value": "The app will have multiple tabs for different sections like APIs, Roadmaps, Courses, and AI Fields.",
+        "appurl": "TikTok"
+    },
+    {
+        "id": 10016,
         "label": "WhatsApp",
         "value": "The app will have multiple tabs for different sections like APIs, Roadmaps, Courses, and AI Fields.",
         "appurl": "WhatsApp"
