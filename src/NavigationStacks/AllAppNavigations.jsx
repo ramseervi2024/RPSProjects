@@ -36,6 +36,7 @@ import WhatsAppNavigation from '../Apps/WhatsApp/WhatsAppNavigation';
 import TikTokNavigation from '../Apps/TikTok/TikTokNavigation';
 import InstagramNavigation from '../Apps/Instagram/InstagramNavigation';
 import FacebookNavigation from '../Apps/Facebook/FacebookNavigation';
+import YouTubeNavigation from '../Apps/YouTube/YouTubeNavigation';
 
 const AllAppNav = createStackNavigator();
 
@@ -77,6 +78,7 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="TikTok" component={TikTokNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="Instagram" component={InstagramNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="Facebook" component={FacebookNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="YouTube" component={YouTubeNavigation} options={{ headerShown: false }} />
                 </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>
