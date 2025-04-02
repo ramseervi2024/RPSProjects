@@ -34,6 +34,7 @@ import RobotsMain from '../Apps/RoboticsMachineryandIoTApp/RobotsMain';
 import AIAppsNavigation from '../Apps/AIApp/AIAppsNavigation';
 import WhatsAppNavigation from '../Apps/WhatsApp/WhatsAppNavigation';
 import TikTokNavigation from '../Apps/TikTok/TikTokNavigation';
+import InstagramNavigation from '../Apps/Instagram/InstagramNavigation';
 
 const AllAppNav = createStackNavigator();
 
@@ -73,6 +74,7 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="AIApps" component={AIAppsNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="WhatsApp" component={WhatsAppNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="TikTok" component={TikTokNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="Instagram" component={InstagramNavigation} options={{ headerShown: false }} />
                 </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>

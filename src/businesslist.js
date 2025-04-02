@@ -1,13 +1,19 @@
 
 export const business = [
     {
-        "id": 10016,
+        "id": 10019,
+        "label": "Instagram",
+        "value": "We'll create a beautiful, production-ready app with key Instagram features like a feed, stories, profile, and camera functionality.",
+        "appurl": "Instagram"
+    },
+    {
+        "id": 10018,
         "label": "TikTok",
         "value": "The app will have multiple tabs for different sections like APIs, Roadmaps, Courses, and AI Fields.",
         "appurl": "TikTok"
     },
     {
-        "id": 10016,
+        "id": 10017,
         "label": "WhatsApp",
         "value": "The app will have multiple tabs for different sections like APIs, Roadmaps, Courses, and AI Fields.",
         "appurl": "WhatsApp"
