@@ -37,6 +37,7 @@ import TikTokNavigation from '../Apps/TikTok/TikTokNavigation';
 import InstagramNavigation from '../Apps/Instagram/InstagramNavigation';
 import FacebookNavigation from '../Apps/Facebook/FacebookNavigation';
 import YouTubeNavigation from '../Apps/YouTube/YouTubeNavigation';
+import AmazonNavigation from '../Apps/Amazon/AmazonNavigation';
 
 const AllAppNav = createStackNavigator();
 
@@ -79,6 +80,7 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="Instagram" component={InstagramNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="Facebook" component={FacebookNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="YouTube" component={YouTubeNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="Amazon" component={AmazonNavigation} options={{ headerShown: false }} />
                 </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>
