@@ -1,11 +1,12 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { MessageCircle, Camera, Phone, Settings } from 'lucide-react-native';
+import { MessageCircle, Camera, Phone, Settings, Users } from 'lucide-react-native';
 import HomeScreen from './screens/HomeScreen';
 import { StyleSheet } from 'react-native';
 import CameraScreen from './screens/CameraScreen';
 import CallsScreen from './screens/CallsScreen';
 import SettingsScreen from './screens/SettingsScreen';
+import CommunitiesScreen from './screens/CommunitiesScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,13 +16,25 @@ export default function WhatsAppNavigation() {
     screenOptions={{
       tabBarStyle: {
         backgroundColor: '#fff',
+        borderTopColor: '#e5e5e5',
+        height: Platform.OS === 'ios' ? 85 : 60,
+        paddingBottom: Platform.OS === 'ios' ? 30 : 10,
+        paddingTop: 10,
       },
       tabBarActiveTintColor: '#128C7E',
       tabBarInactiveTintColor: '#666',
       headerStyle: {
         backgroundColor: '#128C7E',
       },
+      headerTitleStyle: {
+        fontFamily: 'Inter-SemiBold',
+        fontSize: 18,
+      },
       headerTintColor: '#fff',
+      tabBarLabelStyle: {
+        fontFamily: 'Inter-Regular',
+        fontSize: 12,
+      },
     }}>
       <Tab.Screen
         name="Chats"
@@ -30,6 +43,17 @@ export default function WhatsAppNavigation() {
           title: 'Chats',
           tabBarIcon: ({ color, size }) => (
             <MessageCircle size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="communities"
+        component={CommunitiesScreen}
+        options={{
+          title: 'Communities',
+          headerShown: true,
+          tabBarIcon: ({ color, size }) => (
+            <Users size={size} color={color} />
           ),
         }}
       />

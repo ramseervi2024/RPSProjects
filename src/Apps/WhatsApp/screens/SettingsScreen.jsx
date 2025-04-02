@@ -1,23 +1,82 @@
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
-import { ChevronRight, Key, Bell, Globe, Shield, Phone, CircleHelp } from 'lucide-react-native';
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Platform } from 'react-native';
+import { 
+  ChevronRight, 
+  Key, 
+  Bell, 
+  Globe, 
+  Shield, 
+  Phone, 
+  CircleHelp,
+  MessageSquare,
+  Database,
+  Lock,
+  Cloud,
+  Smartphone
+} from 'lucide-react-native';
 
 const SETTINGS_OPTIONS = [
-  { icon: Key, label: 'Account', color: '#128C7E' },
-  { icon: Bell, label: 'Notifications', color: '#FF9500' },
-  { icon: Globe, label: 'Language', color: '#007AFF' },
-  { icon: Shield, label: 'Privacy', color: '#5856D6' },
-  { icon: Phone, label: 'Linked Devices', color: '#FF2D55' },
-  { icon: CircleHelp, label: 'Help', color: '#4CD964' },
+  { 
+    id: 'account',
+    icon: Key, 
+    label: 'Account', 
+    description: 'Security notifications, change number',
+    color: '#128C7E' 
+  },
+  { 
+    id: 'privacy',
+    icon: Lock, 
+    label: 'Privacy', 
+    description: 'Block contacts, disappearing messages',
+    color: '#5856D6' 
+  },
+  { 
+    id: 'chats',
+    icon: MessageSquare, 
+    label: 'Chats',
+    description: 'Theme, wallpapers, chat history',
+    color: '#007AFF' 
+  },
+  { 
+    id: 'notifications',
+    icon: Bell, 
+    label: 'Notifications', 
+    description: 'Message, group & call tones',
+    color: '#FF9500' 
+  },
+  { 
+    id: 'storage',
+    icon: Database, 
+    label: 'Storage and Data',
+    description: 'Network usage, auto-download',
+    color: '#FF2D55' 
+  },
+  { 
+    id: 'app-language',
+    icon: Globe, 
+    label: 'App Language', 
+    description: 'English',
+    color: '#5856D6' 
+  },
+  { 
+    id: 'help',
+    icon: CircleHelp, 
+    label: 'Help',
+    description: 'Help center, contact us, privacy policy',
+    color: '#4CD964' 
+  },
 ];
 
 export default function SettingsScreen() {
-  const renderSettingItem = ({ icon: Icon, label, color }) => (
+  const renderSettingItem = ({ icon: Icon, label, description, color }) => (
     <TouchableOpacity key={label} style={styles.settingItem}>
       <View style={styles.settingLeft}>
         <View style={[styles.iconContainer, { backgroundColor: color }]}>
-          <Icon size={20} color="white" />
+          <Icon size={22} color="white" />
         </View>
-        <Text style={styles.settingLabel}>{label}</Text>
+        <View style={styles.settingTexts}>
+          <Text style={styles.settingLabel}>{label}</Text>
+          <Text style={styles.settingDescription}>{description}</Text>
+        </View>
       </View>
       <ChevronRight size={20} color="#666" />
     </TouchableOpacity>
@@ -25,19 +84,25 @@ export default function SettingsScreen() {
 
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.profile}>
+      <TouchableOpacity style={styles.profile}>
         <Image
           source={{ uri: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100' }}
           style={styles.avatar}
         />
         <View style={styles.profileInfo}>
           <Text style={styles.name}>John Doe</Text>
-          <Text style={styles.status}>Available</Text>
+          <Text style={styles.status}>Living life one code at a time 🚀</Text>
         </View>
+        <ChevronRight size={20} color="#666" />
+      </TouchableOpacity>
+
+      <View style={styles.section}>
+        {SETTINGS_OPTIONS.map(renderSettingItem)}
       </View>
 
-      <View style={styles.settingsList}>
-        {SETTINGS_OPTIONS.map(renderSettingItem)}
+      <View style={styles.footer}>
+        <Text style={styles.version}>WhatsApp from Meta</Text>
+        <Text style={styles.version}>Version 2.25.1</Text>
       </View>
     </ScrollView>
   );
@@ -66,18 +131,21 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 20,
-    fontWeight: '600',
+    fontFamily: 'Inter-SemiBold',
     marginBottom: 4,
+    color: '#000',
   },
   status: {
-    fontSize: 16,
+    fontSize: 14,
+    fontFamily: 'Inter-Regular',
     color: '#666',
   },
-  settingsList: {
+  section: {
     backgroundColor: '#fff',
     borderTopWidth: 1,
     borderBottomWidth: 1,
     borderColor: '#e0e0e0',
+    marginBottom: 20,
   },
   settingItem: {
     flexDirection: 'row',
@@ -90,6 +158,7 @@ const styles = StyleSheet.create({
   settingLeft: {
     flexDirection: 'row',
     alignItems: 'center',
+    flex: 1,
   },
   iconContainer: {
     width: 36,
@@ -99,8 +168,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: 16,
   },
+  settingTexts: {
+    flex: 1,
+  },
   settingLabel: {
     fontSize: 16,
+    fontFamily: 'Inter-SemiBold',
     color: '#000',
+    marginBottom: 2,
+  },
+  settingDescription: {
+    fontSize: 13,
+    fontFamily: 'Inter-Regular',
+    color: '#666',
+  },
+  footer: {
+    padding: 20,
+    alignItems: 'center',
+  },
+  version: {
+    fontSize: 14,
+    fontFamily: 'Inter-Regular',
+    color: '#666',
+    marginBottom: 4,
   },
 });
