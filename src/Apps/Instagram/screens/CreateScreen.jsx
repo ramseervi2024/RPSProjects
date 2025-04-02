@@ -1,34 +1,50 @@
 import { useState, useRef } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
-import { Camera as CameraIcon, Image as ImageIcon } from 'lucide-react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Platform, Image, ScrollView } from 'react-native';
+import { Camera as CameraIcon, Image as ImageIcon, Aperture, Repeat2, Slash as Flash } from 'lucide-react-native';
 // import { CameraView, CameraType } from 'expo-camera';
 
+const filters = [
+  { id: '1', name: 'Normal' },
+  { id: '2', name: 'Clarendon' },
+  { id: '3', name: 'Gingham' },
+  { id: '4', name: 'Moon' },
+  { id: '5', name: 'Lark' },
+  { id: '6', name: 'Reyes' },
+];
+
 export default function CreateScreen() {
-//   const [permission, requestPermission] = Platform.select({
-//     web: [true, () => {}],
-//     default: CameraView.useCameraPermissions(),
-//   });
+  const [permission, requestPermission] = Platform.select({
+    web: [true, () => {}],
+    default: '',
+    // default: CameraView.useCameraPermissions(),
+  });
 
   const [type, setType] = useState('back');
-//   const cameraRef = useRef(null);
+  const [selectedFilter, setSelectedFilter] = useState('1');
+  const [flashMode, setFlashMode] = useState('off');
+  const cameraRef = useRef(null);
 
-//   if (!permission) {
-//     return <View />;
-//   }
+  // if (!permission) {
+  //   return <View />;
+  // }
 
-//   if (!permission.granted && Platform.OS !== 'web') {
-//     return (
-//       <View style={styles.container}>
-//         <Text style={styles.text}>We need your permission to show the camera</Text>
-//         <TouchableOpacity style={styles.button} onPress={requestPermission}>
-//           <Text style={styles.buttonText}>Grant Permission</Text>
-//         </TouchableOpacity>
-//       </View>
-//     );
-//   }
+  // if (!permission.granted && Platform.OS !== 'web') {
+  //   return (
+  //     <View style={styles.container}>
+  //       <Text style={styles.text}>We need your permission to show the camera</Text>
+  //       <TouchableOpacity style={styles.button} onPress={requestPermission}>
+  //         <Text style={styles.buttonText}>Grant Permission</Text>
+  //       </TouchableOpacity>
+  //     </View>
+  //   );
+  // }
 
   function toggleCameraType() {
     setType(current => (current === 'back' ? 'front' : 'back'));
+  }
+
+  function toggleFlash() {
+    setFlashMode(current => (current === 'on' ? 'off' : 'on'));
   }
 
   return (
@@ -48,20 +64,98 @@ export default function CreateScreen() {
           </View>
         </View>
       ) : (
-        // <CameraView style={styles.camera} type={type} ref={cameraRef}>
-        //   <View style={styles.buttonContainer}>
-        //     <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
-        //       <Text style={styles.buttonText}>Flip Camera</Text>
-        //     </TouchableOpacity>
-        //   </View>
-        // </CameraView>
-         <View style={styles.camera} >
-         <View style={styles.buttonContainer}>
-           <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
-             <Text style={styles.buttonText}>Flip Camera</Text>
-           </TouchableOpacity>
-         </View>
-       </View>
+        <>
+          <View style={styles.camera} type={type} ref={cameraRef}>
+            <View style={styles.topControls}>
+              <TouchableOpacity style={styles.controlButton} onPress={toggleFlash}>
+                <Flash size={24} color="#fff" />
+              </TouchableOpacity>
+            </View>
+            
+            <View style={styles.bottomControls}>
+              <TouchableOpacity style={styles.galleryPreview}>
+                <Image
+                  source={{
+                    uri: 'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=100&h=100&fit=crop',
+                  }}
+                  style={styles.galleryImage}
+                />
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.captureButton}>
+                <View style={styles.captureButtonInner} />
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.controlButton} onPress={toggleCameraType}>
+                <Repeat2 size={24} color="#fff" />
+              </TouchableOpacity>
+            </View>
+
+            <ScrollView horizontal style={styles.filters} showsHorizontalScrollIndicator={false}>
+              {filters.map((filter) => (
+                <TouchableOpacity
+                  key={filter.id}
+                  style={[
+                    styles.filterOption,
+                    selectedFilter === filter.id && styles.selectedFilter,
+                  ]}
+                  onPress={() => setSelectedFilter(filter.id)}>
+                  <Text style={[
+                    styles.filterText,
+                    selectedFilter === filter.id && styles.selectedFilterText,
+                  ]}>
+                    {filter.name}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </View>
+          {/* <CameraView style={styles.camera} type={type} ref={cameraRef}>
+            <View style={styles.topControls}>
+              <TouchableOpacity style={styles.controlButton} onPress={toggleFlash}>
+                <Flash size={24} color="#fff" />
+              </TouchableOpacity>
+            </View>
+            
+            <View style={styles.bottomControls}>
+              <TouchableOpacity style={styles.galleryPreview}>
+                <Image
+                  source={{
+                    uri: 'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=100&h=100&fit=crop',
+                  }}
+                  style={styles.galleryImage}
+                />
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.captureButton}>
+                <View style={styles.captureButtonInner} />
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.controlButton} onPress={toggleCameraType}>
+                <Repeat2 size={24} color="#fff" />
+              </TouchableOpacity>
+            </View>
+
+            <ScrollView horizontal style={styles.filters} showsHorizontalScrollIndicator={false}>
+              {filters.map((filter) => (
+                <TouchableOpacity
+                  key={filter.id}
+                  style={[
+                    styles.filterOption,
+                    selectedFilter === filter.id && styles.selectedFilter,
+                  ]}
+                  onPress={() => setSelectedFilter(filter.id)}>
+                  <Text style={[
+                    styles.filterText,
+                    selectedFilter === filter.id && styles.selectedFilterText,
+                  ]}>
+                    {filter.name}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </CameraView> */}
+        </>
       )}
     </View>
   );
@@ -70,30 +164,94 @@ export default function CreateScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
   },
   camera: {
     flex: 1,
   },
-  buttonContainer: {
+  topControls: {
     position: 'absolute',
-    bottom: 20,
-    alignSelf: 'center',
+    top: 60,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
   },
-  button: {
+  bottomControls: {
+    position: 'absolute',
+    bottom: 40,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+  },
+  controlButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  captureButton: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    backgroundColor: 'rgba(255,255,255,0.3)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  captureButtonInner: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
     backgroundColor: '#fff',
-    padding: 15,
-    borderRadius: 10,
-    marginTop: 20,
   },
-  buttonText: {
-    fontSize: 16,
+  galleryPreview: {
+    width: 44,
+    height: 44,
+    borderRadius: 8,
+    overflow: 'hidden',
+    borderWidth: 2,
+    borderColor: '#fff',
+  },
+  galleryImage: {
+    width: '100%',
+    height: '100%',
+  },
+  filters: {
+    position: 'absolute',
+    bottom: 140,
+    left: 0,
+    right: 0,
+    paddingHorizontal: 10,
+  },
+  filterOption: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    marginHorizontal: 4,
+    borderRadius: 16,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+  },
+  selectedFilter: {
+    backgroundColor: '#fff',
+  },
+  filterText: {
+    color: '#fff',
+    fontSize: 14,
     fontFamily: 'Inter_600SemiBold',
+  },
+  selectedFilterText: {
+    color: '#000',
   },
   text: {
     fontSize: 16,
     fontFamily: 'Inter_400Regular',
     textAlign: 'center',
+    color: '#fff',
   },
   placeholder: {
     flex: 1,
