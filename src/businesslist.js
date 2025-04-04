@@ -1,6 +1,18 @@
 
 export const business = [
     {
+        "id": 10028,
+        "label": "Cashify",
+        "value": ". This will be a modern financial management app with features like expense tracking, budgeting, and financial insights.",
+        "appurl": "Cashify"
+    },
+    {
+        "id": 10027,
+        "label": "Justdial",
+        "value": "We'll create a modern, feature-rich business directory app with a beautiful UI and essential features.",
+        "appurl": "Justdial"
+    },
+    {
         "id": 10026,
         "label": "PayPal",
         "value": " We'll create a fully featured payment app with tabs for transactions, sending/receiving money, and account management.",

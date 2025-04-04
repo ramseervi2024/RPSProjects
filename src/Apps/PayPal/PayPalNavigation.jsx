@@ -19,46 +19,6 @@ export default function PayPalNavigation() {
         tabBarInactiveTintColor: '#6C7C8C',
         tabBarLabelStyle: styles.tabLabel,
       }}>
-      {/* <Tab.Screen
-        name="index"
-        component={HomeScreen}
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color, size }) => <Home size={size} color={color} />,
-        }}
-      />
-      <Tab.Screen
-        name="search"
-        component={SearchScreen}
-        options={{
-          title: 'Search',
-          tabBarIcon: ({ color, size }) => <Search size={size} color={color} />,
-        }}
-      />
-      <Tab.Screen
-        name="watchlist"
-        component={WatchlistScreen}
-        options={{
-          title: 'Watchlist',
-          tabBarIcon: ({ color, size }) => <Heart size={size} color={color} />,
-        }}
-      />
-      <Tab.Screen
-        name="cart"
-        component={CartScreen}
-        options={{
-          title: 'Cart',
-          tabBarIcon: ({ color, size }) => <ShoppingBag size={size} color={color} />,
-        }}
-      />
-      <Tab.Screen
-        name="profile"
-        component={ProfileScreen}
-        options={{
-          title: 'Profile',
-          tabBarIcon: ({ color, size }) => <User size={size} color={color} />,
-        }}
-      /> */}
       <Tab.Screen
         name="index"
         component={HomeScreen}
