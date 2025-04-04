@@ -1,6 +1,18 @@
 
 export const business = [
     {
+        "id": 10026,
+        "label": "PayPal",
+        "value": " We'll create a fully featured payment app with tabs for transactions, sending/receiving money, and account management.",
+        "appurl": "PayPal"
+    },
+    {
+        "id": 10025,
+        "label": "eBay",
+        "value": "We'll create a modern e-commerce app with essential features like product listings, search, categories, and user profiles.",
+        "appurl": "eBay"
+    },
+    {
         "id": 10024,
         "label": "Netflix",
         "value": "We'll create a streaming app with features like movie browsing, categories, and a detailed view.",
