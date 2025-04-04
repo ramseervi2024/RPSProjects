@@ -43,6 +43,7 @@ import NetflixNavigation from '../Apps/Netflix/NetflixNavigation';
 import eBayNavigation from '../Apps/eBay/eBayNavigation';
 import PayPalNavigation from '../Apps/PayPal/PayPalNavigation';
 import JustdialNavigation from '../Apps/Justdial/JustdialNavigation';
+import CashifyNavigation from '../Apps/Cashify/CashifyNavigation';
 
 const AllAppNav = createStackNavigator();
 
@@ -91,6 +92,7 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="eBay" component={eBayNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="PayPal" component={PayPalNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="Justdial" component={JustdialNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="Cashify" component={CashifyNavigation} options={{ headerShown: false }} />
                 </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>
