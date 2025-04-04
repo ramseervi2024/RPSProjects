@@ -1,6 +1,12 @@
 
 export const business = [
     {
+        "id": 10023,
+        "label": "Spotify",
+        "value": "We'll implement key features like music playback, playlists, and a modern UI.",
+        "appurl": "Spotify"
+    },
+    {
         "id": 10022,
         "label": "Amazon",
         "value": "create a fully featured e-commerce app with multiple tabs for Home, Categories, Cart, and Profile.",
