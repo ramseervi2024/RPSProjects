@@ -52,6 +52,7 @@ import SnapdealNavigation from '../Apps/Snapdeal/SnapdealNavigation';
 import CanvaNavigation from '../Apps/Canva/CanvaNavigation';
 import ProductDetailsNavigation from '../Apps/ProductDetails/ProductDetailsNavigation';
 import FlipkartNavigation from '../Apps/Flipkart/FlipkartNavigation';
+import SnapchatNavigation from '../Apps/Snapchat/SnapchatNavigation';
 
 const AllAppNav = createStackNavigator();
 
@@ -75,6 +76,7 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="TravelTourism" component={TravelTourismNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="B2BApp" component={B2BAppNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="SmartHomeManagement" component={SmartHomeManagementNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="SmRoboticsMachineryandIoTartHomeManagement" component={RoboticsMachineryandIoTNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="DatingAppSetup" component={DatingAppSetupNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="DashboardManagement" component={DashboardManagementNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="FashionTrendApps" component={FashionTrendAppsNavigation} options={{ headerShown: false }} />
@@ -109,6 +111,7 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="Canva" component={CanvaNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="ProductDetails" component={ProductDetailsNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="Flipkart" component={FlipkartNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="Snapchat" component={SnapchatNavigation} options={{ headerShown: false }} />
                 </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>

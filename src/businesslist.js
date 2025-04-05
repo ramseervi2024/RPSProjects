@@ -1,6 +1,12 @@
 
 export const business = [
     {
+        "id": 2009,
+        "label": "Snapchat",
+        "value": " Snapchat-like application with React Native and Expo. We'll implement core features like camera functionality, stories, chat, and filters.",
+        "appurl": "Snapchat"
+    },
+    {
         "id": 2008,
         "label": "ProductDetails",
         "value": "Product Details, Cart and Payment Section, Review Details, and a Review Section, you can break down the app into several screens, each with its own set of components. ",
