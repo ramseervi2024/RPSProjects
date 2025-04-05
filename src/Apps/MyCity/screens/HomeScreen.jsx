@@ -58,6 +58,15 @@ export default function HomeScreen({ navigation }) {
                 if (category.title === 'Weather') {
                   navigation.navigate('WeatherScreen');
                 }
+                if (category.title === 'News & Events') {
+                  navigation.navigate('NewsEventsScreen');
+                }
+                if (category.title === 'Business Directory') {
+                  navigation.navigate('BusinessDirectoryScreen');
+                }
+                if (category.title === 'Transport') {
+                  navigation.navigate('TransportScreen');
+                }
               }}
             >
               {category.icon}

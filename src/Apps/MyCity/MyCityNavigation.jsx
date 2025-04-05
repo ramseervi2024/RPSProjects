@@ -6,6 +6,9 @@ import CityOverviewScreen from './screens/CityOverviewScreen';
 import LocalAttractionsScreen from './screens/LocalAttractionsScreen';
 import EmergencyServicesScreen from './screens/EmergencyServicesScreen';
 import WeatherScreen from './screens/WeatherScreen';
+import NewsEventsScreen from './screens/NewsEventsScreen';
+import TransportScreen from './screens/TransportScreen';
+import BusinessDirectoryScreen from './screens/BusinessDirectoryScreen';
 export default function MyCityNavigation() {
 
   const MyCityApp = createStackNavigator();
@@ -16,6 +19,10 @@ export default function MyCityNavigation() {
       <MyCityApp.Screen name="LocalAttractions" component={LocalAttractionsScreen} options={{ headerShown: false }} />
       <MyCityApp.Screen name="EmergencyServices" component={EmergencyServicesScreen} options={{ headerShown: false }} />
       <MyCityApp.Screen name="WeatherScreen" component={WeatherScreen} options={{ headerShown: false }} />
-    </MyCityApp.Navigator>
+      <MyCityApp.Screen name="NewsEventsScreen" component={NewsEventsScreen} options={{ headerShown: false }} />
+      <MyCityApp.Screen name="TransportScreen" component={TransportScreen} options={{ headerShown: false }} />
+      {/* <MyCityApp.Screen name="TransportScreen" component={TransportScreen} options={{ headerShown: false }} /> */}
+      <MyCityApp.Screen name="BusinessDirectoryScreen" component={BusinessDirectoryScreen} options={{ headerShown: false }} />
+      </MyCityApp.Navigator>
   )
 }
