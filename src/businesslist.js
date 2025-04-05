@@ -1,6 +1,12 @@
 
 export const business = [
     {
+        "id": 10011,
+        "label": "Sojat My City",
+        "value": " This app will include features like local news, events, services, and community discussions",
+        "appurl": "MyCity"
+    },
+    {
         "id": 2009,
         "label": "Snapchat",
         "value": " Snapchat-like application with React Native and Expo. We'll implement core features like camera functionality, stories, chat, and filters.",
