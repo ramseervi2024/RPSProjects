@@ -1,6 +1,54 @@
 
 export const business = [
     {
+        "id": 2008,
+        "label": "ProductDetails",
+        "value": "Product Details, Cart and Payment Section, Review Details, and a Review Section, you can break down the app into several screens, each with its own set of components. ",
+        "appurl": "ProductDetails"
+    },
+    {
+        "id": 2007,
+        "label": "Canva",
+        "value": "We'll create a modern, beautiful interface with core Canva features like the feed, profile, and notifications.",
+        "appurl": "Canva"
+    },
+    {
+        "id": 2006,
+        "label": "Snapdeal",
+        "value": "We'll create a modern, beautiful interface with core Snapdeal features like the feed, profile, and notifications.",
+        "appurl": "Snapdeal"
+    },
+    {
+        "id": 2005,
+        "label": "BigBasket",
+        "value": "We'll create a modern, beautiful interface with core BigBasket features like the feed, profile, and notifications.",
+        "appurl": "BigBasket"
+    },
+    {
+        "id": 2004,
+        "label": "Truecaller",
+        "value": "We'll create a modern, beautiful interface with core Truecaller features like the feed, profile, and notifications.",
+        "appurl": "Truecaller"
+    },
+    {
+        "id": 2003,
+        "label": "Myntra",
+        "value": "We'll create a modern, beautiful interface with core Myntra features like the feed, profile, and notifications.",
+        "appurl": "Myntra"
+    },
+    {
+        "id": 2002,
+        "label": "Twitter",
+        "value": "We'll create a modern, beautiful interface with core Twitter features like the feed, profile, and notifications.",
+        "appurl": "Twitter"
+    },
+    {
+        "id": 2001,
+        "label": "Flipkart",
+        "value": "We'll create a fully featured app with tabs for Home, Categories, Cart, and Profile.",
+        "appurl": "Flipkart"
+    },
+    {
         "id": 10028,
         "label": "Cashify",
         "value": ". This will be a modern financial management app with features like expense tracking, budgeting, and financial insights.",

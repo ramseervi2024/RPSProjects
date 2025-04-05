@@ -44,6 +44,14 @@ import eBayNavigation from '../Apps/eBay/eBayNavigation';
 import PayPalNavigation from '../Apps/PayPal/PayPalNavigation';
 import JustdialNavigation from '../Apps/Justdial/JustdialNavigation';
 import CashifyNavigation from '../Apps/Cashify/CashifyNavigation';
+import TwitterNavigation from '../Apps/Twitter/TwitterNavigation';
+import MyntraNavigation from '../Apps/Myntra/MyntraNavigation';
+import TruecallerNavigation from '../Apps/Truecaller/TruecallerNavigation';
+import BigBasketNavigation from '../Apps/BigBasket/BigBasketNavigation';
+import SnapdealNavigation from '../Apps/Snapdeal/SnapdealNavigation';
+import CanvaNavigation from '../Apps/Canva/CanvaNavigation';
+import ProductDetailsNavigation from '../Apps/ProductDetails/ProductDetailsNavigation';
+import FlipkartNavigation from '../Apps/Flipkart/FlipkartNavigation';
 
 const AllAppNav = createStackNavigator();
 
@@ -93,6 +101,14 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="PayPal" component={PayPalNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="Justdial" component={JustdialNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="Cashify" component={CashifyNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="Twitter" component={TwitterNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="Myntra" component={MyntraNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="Truecaller" component={TruecallerNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="BigBasket" component={BigBasketNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="Snapdeal" component={SnapdealNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="Canva" component={CanvaNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="ProductDetails" component={ProductDetailsNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="Flipkart" component={FlipkartNavigation} options={{ headerShown: false }} />
                 </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>
