@@ -25,7 +25,7 @@ export default function HomeScreen({ navigation }) {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <View style={styles.header}>
-          <Text style={styles.cityName}>Sojat City</Text>
+          <Text style={styles.cityName}>Sojat City – “The Henna City”</Text>
           <Text style={styles.pincode}>306104</Text>
         </View>
 
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#2E7D32',
   },
   cityName: {
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: 'bold',
     color: 'white',
   },

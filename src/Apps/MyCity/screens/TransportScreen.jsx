@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { 
   Bus, 
   Train, 
-  Taxi, 
+  CarTaxiFront, 
   Route, 
   Clock, 
   WalletCards,
@@ -23,7 +23,7 @@ export default function TransportScreen() {
     switch (type) {
       case 'bus': return <Bus size={32} color="#2E7D32" />;
       case 'train': return <Train size={32} color="#2E7D32" />;
-      case 'taxi': return <Bus size={32} color="#2E7D32" />;
+      case 'taxi': return <CarTaxiFront size={32} color="#2E7D32" />;
       default: return <Bus size={32} color="#2E7D32" />;
     }
   };
