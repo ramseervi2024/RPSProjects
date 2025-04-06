@@ -1,6 +1,12 @@
 
 export const business = [
     {
+        "id": 10017,
+        "label": "Google Maps",
+        "value": " beautiful, production-ready app with features like location search, markers, and custom styling.",
+        "appurl": "GoogleMaps"
+    },
+    {
         "id": 10016,
         "label": "Meesho",
         "value": "This will be a fully featured e-commerce app with multiple modules and beautiful UI.",
