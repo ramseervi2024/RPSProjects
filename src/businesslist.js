@@ -1,6 +1,12 @@
 
 export const business = [
     {
+        "id": 10016,
+        "label": "Meesho",
+        "value": "This will be a fully featured e-commerce app with multiple modules and beautiful UI.",
+        "appurl": "Meesho"
+    },
+    {
         "id": 10015,
         "label": "McDonald",
         "value": "create a modern, user-friendly interface with features like menu browsing, ordering, and store locations.",
