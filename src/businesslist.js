@@ -1,6 +1,12 @@
 
 export const business = [
     {
+        "id": 10014,
+        "label": "Duolingo",
+        "value": "create a beautiful and functional app with core features like lessons, progress tracking, and a gamified learning experience.",
+        "appurl": "Duolingo"
+    },
+    {
         "id": 10013,
         "label": "Discord",
         "value": "implement key features like channels, messages, and user profiles while maintaining a clean and modern design",
