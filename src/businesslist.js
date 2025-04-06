@@ -1,6 +1,12 @@
 
 export const business = [
     {
+        "id": 10012,
+        "label": "Booking",
+        "value": " We'll create a fully featured app with hotel search, filtering, and booking capabilities.",
+        "appurl": "Booking"
+    },
+    {
         "id": 10011,
         "label": "Sojat My City",
         "value": " This app will include features like local news, events, services, and community discussions",

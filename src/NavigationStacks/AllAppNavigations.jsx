@@ -54,6 +54,7 @@ import ProductDetailsNavigation from '../Apps/ProductDetails/ProductDetailsNavig
 import FlipkartNavigation from '../Apps/Flipkart/FlipkartNavigation';
 import SnapchatNavigation from '../Apps/Snapchat/SnapchatNavigation';
 import MyCityNavigation from '../Apps/MyCity/MyCityNavigation';
+import BookingNavigation from '../Apps/Booking/BookingNavigation';
 
 const AllAppNav = createStackNavigator();
 
@@ -114,6 +115,7 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="Flipkart" component={FlipkartNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="Snapchat" component={SnapchatNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="MyCity" component={MyCityNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="Booking" component={BookingNavigation} options={{ headerShown: false }} />
                 </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>
