@@ -1,6 +1,12 @@
 
 export const business = [
     {
+        "id": 10013,
+        "label": "Discord",
+        "value": "implement key features like channels, messages, and user profiles while maintaining a clean and modern design",
+        "appurl": "Discord"
+    },
+    {
         "id": 10012,
         "label": "Booking",
         "value": " We'll create a fully featured app with hotel search, filtering, and booking capabilities.",
