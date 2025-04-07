@@ -1,6 +1,12 @@
 
 export const business = [
     {
+        "id": 10023,
+        "label": "Rapido",
+        "value": "Let's set up a modern, production-ready delivery app with a clean design and intuitive user experience.",
+        "appurl": "Rapido"
+    },
+    {
         "id": 10022,
         "label": "Spa Services",
         "value": " We'll create a fully featured app with service listings, booking functionality, and a clean, relaxing design.",
