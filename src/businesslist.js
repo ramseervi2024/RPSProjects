@@ -1,10 +1,10 @@
 
 export const business = [
     {
-        "id": 10018,
-        "label": "School Management",
-        "value": " beacreate a beautiful and functional app with features like student profiles, attendance tracking, grades, and schedules.",
-        "appurl": "SchoolManagement"
+        "id": 10019,
+        "label": "Marbles",
+        "value": "Create a comprehensive app with features like product listings, categories, detailed views, and a shopping cart.",
+        "appurl": "Marbles"
     },
     {
         "id": 10017,

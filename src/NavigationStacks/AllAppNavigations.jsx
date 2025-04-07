@@ -61,6 +61,7 @@ import McDonaldNavigation from '../Apps/McDonald/McDonaldNavigation';
 import MeeshoNavigation from '../Apps/Meesho/MeeshoNavigation';
 import GoogleMapsNavigation from '../Apps/GoogleMaps/GoogleMapsNavigation';
 import SchoolManagementNavigation from '../Apps/SchoolManagement/SchoolManagementNavigation';
+import MarblesNavigation from '../Apps/Marbles/MarblesNavigation';
 
 const AllAppNav = createStackNavigator();
 
@@ -128,6 +129,7 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="Meesho" component={MeeshoNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="GoogleMaps" component={GoogleMapsNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="SchoolManagement" component={SchoolManagementNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="Marbles" component={MarblesNavigation} options={{ headerShown: false }} />
                 </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>
