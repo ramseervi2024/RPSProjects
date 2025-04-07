@@ -64,6 +64,7 @@ import SchoolManagementNavigation from '../Apps/SchoolManagement/SchoolManagemen
 import MarblesNavigation from '../Apps/Marbles/MarblesNavigation';
 import PerfumeNavigation from '../Apps/Perfume/PerfumeNavigation';
 import LoversNavigation from '../Apps/Lovers/LoversNavigation';
+import SpaServicesNavigation from '../Apps/SpaServices/SpaServicesNavigation';
 
 const AllAppNav = createStackNavigator();
 
@@ -134,6 +135,7 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="Marbles" component={MarblesNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="Perfume" component={PerfumeNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="Lovers" component={LoversNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="SpaServices" component={SpaServicesNavigation} options={{ headerShown: false }} />
                 </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>

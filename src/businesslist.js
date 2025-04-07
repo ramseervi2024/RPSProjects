@@ -1,10 +1,16 @@
 
 export const business = [
     {
+        "id": 10022,
+        "label": "Spa Services",
+        "value": " We'll create a fully featured app with service listings, booking functionality, and a clean, relaxing design.",
+        "appurl": "SpaServices"
+    },
+    {
         "id": 10021,
-        "label": "Lovers",
+        "label": "SpaServices",
         "value": "This app will help users manage their perfume collection, track usage, and discover new fragrances.",
-        "appurl": "Lovers"
+        "appurl": "SpaServices"
     },
     {
         "id": 10020,
