@@ -1,6 +1,12 @@
 
 export const business = [
     {
+        "id": 10021,
+        "label": "Lovers",
+        "value": "This app will help users manage their perfume collection, track usage, and discover new fragrances.",
+        "appurl": "Lovers"
+    },
+    {
         "id": 10020,
         "label": "Perfume",
         "value": "This app will help users manage their perfume collection, track usage, and discover new fragrances.",
