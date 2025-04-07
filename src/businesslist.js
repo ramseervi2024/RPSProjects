@@ -1,6 +1,12 @@
 
 export const business = [
     {
+        "id": 10018,
+        "label": "School Management",
+        "value": " beacreate a beautiful and functional app with features like student profiles, attendance tracking, grades, and schedules.",
+        "appurl": "SchoolManagement"
+    },
+    {
         "id": 10017,
         "label": "Google Maps",
         "value": " beautiful, production-ready app with features like location search, markers, and custom styling.",
