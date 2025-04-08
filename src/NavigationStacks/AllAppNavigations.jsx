@@ -68,6 +68,7 @@ import SpaServicesNavigation from '../Apps/SpaServices/SpaServicesNavigation';
 import RapidoNavigation from '../Apps/Rapido/RapidoNavigation';
 import AppleCompanyNavigation from '../Apps/AppleCompany/AppleCompanyNavigation';
 import NVIDIANavigation from '../Apps/NVIDIA/NVIDIANavigation';
+import GrowTradingNavigation from '../Apps/GrowTrading/GrowTradingNavigation';
 
 const AllAppNav = createStackNavigator();
 
@@ -142,6 +143,7 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="Rapido" component={RapidoNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="AppleCompany" component={AppleCompanyNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="NVIDIA" component={NVIDIANavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="GrowTrading" component={GrowTradingNavigation} options={{ headerShown: false }} />
                 </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>

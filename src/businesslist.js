@@ -1,6 +1,12 @@
 
 export const business = [
     {
+        "id": 10026,
+        "label": "Grow trading",
+        "value": "create a modern, feature-rich trading platform with a clean UI and essential trading functionalities.",
+        "appurl": "GrowTrading"
+    },
+    {
         "id": 10025,
         "label": "NVIDIA",
         "value": "create a professional React Native app for NVIDIA Company with a modern, sleek design that reflects their brand identity and technological leadership",
