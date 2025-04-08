@@ -1,6 +1,12 @@
 
 export const business = [
     {
+        "id": 10027,
+        "label": "Tent Rental",
+        "value": "create a modern, user-friendly interface with essential features for tent rental management.",
+        "appurl": "TentRental"
+    },
+    {
         "id": 10026,
         "label": "Grow trading",
         "value": "create a modern, feature-rich trading platform with a clean UI and essential trading functionalities.",
