@@ -1,6 +1,18 @@
 
 export const business = [
     {
+        "id": 10025,
+        "label": "NVIDIA",
+        "value": "create a professional React Native app for NVIDIA Company with a modern, sleek design that reflects their brand identity and technological leadership",
+        "appurl": "NVIDIA"
+    },
+    {
+        "id": 10024,
+        "label": "AppleCompany",
+        "value": "create a modern, sleek design that follows Apple's design principles.",
+        "appurl": "AppleCompany"
+    },
+    {
         "id": 10023,
         "label": "Rapido",
         "value": "Let's set up a modern, production-ready delivery app with a clean design and intuitive user experience.",
