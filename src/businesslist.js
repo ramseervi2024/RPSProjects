@@ -1,6 +1,12 @@
 
 export const business = [
     {
+        "id": 10029,
+        "label": "VillageHub",
+        "value": "This will be a professional-grade app for a hardware and tools marketplace with features like product browsing, categories, search, and a shopping cart.",
+        "appurl": "VillageHub"
+    },
+    {
         "id": 10028,
         "label": "ToolMart",
         "value": "This will be a professional-grade app for a hardware and tools marketplace with features like product browsing, categories, search, and a shopping cart.",
