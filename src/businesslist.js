@@ -1,6 +1,12 @@
 
 export const business = [
     {
+        "id": 10030,
+        "label": "FarmerHelper",
+        "value": "categories: Weather, News & Events, Business Directory, and Transport. Let me create these screens with beautiful layouts and useful functionality.",
+        "appurl": "FarmerHelper"
+    },
+    {
         "id": 10029,
         "label": "VillageHub",
         "value": "This will be a professional-grade app for a hardware and tools marketplace with features like product browsing, categories, search, and a shopping cart.",

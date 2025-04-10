@@ -72,6 +72,7 @@ import GrowTradingNavigation from '../Apps/GrowTrading/GrowTradingNavigation';
 import TentRentalNavigation from '../Apps/TentRental/TentRentalNavigation';
 import ToolMartNavigation from '../Apps/ToolMart/ToolMartNavigation';
 import VillageHubNavigation from '../Apps/VillageHub/VillageHubNavigation';
+import FarmerHelperNavigation from '../Apps/FarmerHelper/FarmerHelperNavigation';
 
 const AllAppNav = createStackNavigator();
 
@@ -150,6 +151,7 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="TentRental" component={TentRentalNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="ToolMart" component={ToolMartNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="VillageHub" component={VillageHubNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="FarmerHelper" component={FarmerHelperNavigation} options={{ headerShown: false }} />
                 </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>
