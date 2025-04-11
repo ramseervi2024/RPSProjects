@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, TextInput, Platform } from 'react-native';
 import { Search, Bell, Cast, X } from 'lucide-react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import YouTube from 'react-native-youtube-iframe';
@@ -235,7 +235,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingTop:60
+    paddingTop: Platform.OS == 'android' ? 20 : 60
   },
   header: {
     flexDirection: 'row',

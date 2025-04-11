@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, RefreshControl } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, RefreshControl, Platform } from 'react-native';
 import { useState, useCallback } from 'react';
 import { Flame, Newspaper, Briefcase, Drum } from 'lucide-react-native';
 import NewsCard from './NewsCard';
@@ -93,41 +93,41 @@ export default function LocalNewScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Image 
+        <Image
           source={{ uri: 'https://api.a0.dev/assets/image?text=rajasthan%20traditional%20art%20pattern%20minimalist&aspect=4:1' }}
           style={styles.headerImage}
         />
         <Text style={styles.headerTitle}>राजस्थान समाचार</Text>
       </View>
-      
-      <ScrollView 
+
+      <ScrollView
         style={styles.content}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
         <View style={styles.categories}>
-          <CategoryButton 
-            icon="flame" 
-            label="ट्रेंडिंग" 
+          <CategoryButton
+            icon="flame"
+            label="ट्रेंडिंग"
             isActive={activeCategory === 'flame'}
             onPress={() => setActiveCategory('flame')}
           />
-          <CategoryButton 
-            icon="newspaper" 
-            label="राज्य" 
+          <CategoryButton
+            icon="newspaper"
+            label="राज्य"
             isActive={activeCategory === 'newspaper'}
             onPress={() => setActiveCategory('newspaper')}
           />
-          <CategoryButton 
-            icon="briefcase" 
-            label="व्यापार" 
+          <CategoryButton
+            icon="briefcase"
+            label="व्यापार"
             isActive={activeCategory === 'briefcase'}
             onPress={() => setActiveCategory('briefcase')}
           />
-          <CategoryButton 
-            icon="cricket" 
-            label="खेल" 
+          <CategoryButton
+            icon="cricket"
+            label="खेल"
             isActive={activeCategory === 'cricket'}
             onPress={() => setActiveCategory('cricket')}
           />
@@ -139,7 +139,7 @@ export default function LocalNewScreen() {
           {activeCategory === 'briefcase' && 'व्यापार समाचार'}
           {activeCategory === 'cricket' && 'खेल समाचार'}
         </Text>
-        
+
         {newsData[activeCategory].map((news) => (
           <NewsCard
             key={news.id}
@@ -164,13 +164,13 @@ function CategoryButton({ icon, label, isActive, onPress }) {
   }[icon];
 
   return (
-    <TouchableOpacity 
+    <TouchableOpacity
       style={[styles.categoryButton, isActive && styles.activeCategory]}
       onPress={onPress}
     >
-      <IconComponent 
-        size={24} 
-        color={isActive ? '#D24D4D' : '#666'} 
+      <IconComponent
+        size={24}
+        color={isActive ? '#D24D4D' : '#666'}
       />
       <Text style={[styles.categoryLabel, isActive && styles.activeCategoryLabel]}>
         {label}
@@ -189,7 +189,8 @@ const styles = StyleSheet.create({
     padding: 16,
     borderBottomWidth: 1,
     borderBottomColor: '#E0E0E0',
-    paddingTop: 60
+    paddingTop: Platform.OS == 'android' ? 20 : 60
+
   },
   headerImage: {
     width: '100%',
