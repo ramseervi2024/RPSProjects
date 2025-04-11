@@ -23,7 +23,7 @@ const videos = [
     "channel": "History of Sojat",
     "views": "200K views",
     "timestamp": "3 weeks ago",
-    "avatar": "https://images.unsplash.com/photo-1527980965255-d3b416303d12",
+    "avatar": "https://images.unsplash.com/photo-1657179127488-a258bf1eff99?q=80&w=3376&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "url": "https://www.youtube.com/watch?v=xDsKsbvGjBc"
   },
   {
@@ -33,7 +33,7 @@ const videos = [
     "channel": "Explore Sojat",
     "views": "180K views",
     "timestamp": "2 weeks ago",
-    "avatar": "https://images.unsplash.com/photo-1599566150163-29194dcaad36",
+    "avatar": "https://plus.unsplash.com/premium_photo-1718570256549-702fc900db10?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "url": "https://www.youtube.com/watch?v=EZZbp7Hujqs&t=20s"
   },
   {
@@ -43,7 +43,7 @@ const videos = [
     "channel": "Indian Culture Vlogs",
     "views": "300K views",
     "timestamp": "1 month ago",
-    "avatar": "https://images.unsplash.com/photo-1604477385295-d4b0ad1322c8",
+    "avatar": "https://plus.unsplash.com/premium_photo-1718570263415-bfed3d1414bd?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDM4fHx8ZW58MHx8fHx8",
     "url": "https://www.youtube.com/watch?v=vgXehKeG0Qk&t=8s"
   },
   {
@@ -53,7 +53,7 @@ const videos = [
     "channel": "Amazing India",
     "views": "250K views",
     "timestamp": "1 month ago",
-    "avatar": "https://images.unsplash.com/photo-1510290660451-c8b409bb98b9",
+    "avatar": "https://images.unsplash.com/photo-1657179127488-a258bf1eff99?q=80&w=3376&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "url": "https://www.youtube.com/watch?v=7JXw32kpx04"
   },
   {
@@ -63,7 +63,7 @@ const videos = [
     "channel": "Rajasthan Vibes",
     "views": "120K views",
     "timestamp": "1 week ago",
-    "avatar": "https://images.unsplash.com/photo-1532850402252-d5da3d6b242d",
+    "avatar": "https://images.unsplash.com/photo-1547723224-babfe5ccbc15?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHJhamFzdGhhbiUyMG9sZCUyMGd1eXN8ZW58MHx8MHx8fDA%3D",
     "url": "https://www.youtube.com/watch?v=XeY4FE6IQ58"
   },
   {
@@ -73,7 +73,7 @@ const videos = [
     "channel": "Indian Craftsmanship",
     "views": "230K views",
     "timestamp": "1 month ago",
-    "avatar": "https://images.unsplash.com/photo-1561492180-c0f41a3e5d9d",
+    "avatar": "https://plus.unsplash.com/premium_photo-1718570262641-54c3ea3142e9?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDM5fHx8ZW58MHx8fHx8",
     "url": "https://www.youtube.com/watch?v=aZ8gMjYPgA8"
   },
   {
@@ -83,7 +83,7 @@ const videos = [
     "channel": "Travel Rajasthan",
     "views": "180K views",
     "timestamp": "2 weeks ago",
-    "avatar": "https://images.unsplash.com/photo-1580802060147-dc138623fa5e",
+    "avatar": "https://plus.unsplash.com/premium_photo-1718570263415-bfed3d1414bd?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDM4fHx8ZW58MHx8fHx8",
     "url": "https://www.youtube.com/watch?v=0Ug6f6vW1HU"
   },
   {
@@ -93,7 +93,7 @@ const videos = [
     "channel": "Sojat Life",
     "views": "90K views",
     "timestamp": "3 weeks ago",
-    "avatar": "https://images.unsplash.com/photo-1543530713-bdb57280da8e",
+    "avatar": "https://images.unsplash.com/photo-1547723224-babfe5ccbc15?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHJhamFzdGhhbiUyMG9sZCUyMGd1eXN8ZW58MHx8MHx8fDA%3D",
     "url": "https://www.youtube.com/watch?v=IWyfAq5QsW8"
   },
   {
@@ -103,7 +103,7 @@ const videos = [
     "channel": "Incredible India",
     "views": "350K views",
     "timestamp": "2 weeks ago",
-    "avatar": "https://images.unsplash.com/photo-1567324862205-dc477c2f9bb7",
+    "avatar": "https://plus.unsplash.com/premium_photo-1718570263415-bfed3d1414bd?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDM4fHx8ZW58MHx8fHx8",
     "url": "https://www.youtube.com/watch?v=sk_URqzX5aQ"
   }
 ];
