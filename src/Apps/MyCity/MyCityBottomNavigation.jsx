@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Chrome as Home, Calendar, MessageSquare, Store, Users } from 'lucide-react-native'; // Import icons from lucide-react-native
+import { LandPlot, Video, Tractor, Newspaper, ChartCandlestick } from 'lucide-react-native'; // Import icons from lucide-react-native
 import HomeScreen from './screens/HomeScreen';
 import EventsScreen from './screens/EventsScreen';
 import MarketplaceScreen from './screens/MarketplaceScreen';
@@ -32,47 +32,47 @@ export default function MyCityBottomNavigation() {
         options={{
           title: 'Home',
           tabBarIcon: ({ color, size }) => (
-            <Home size={size} color={color} />
+            <LandPlot size={size} color={color} />
           ),
         }}
       />
       <Tab.Screen
-        name="Events"
+        name="Videos"
         component={EventsScreen}
         options={{
-          title: 'Events',
+          title: 'Videos',
           tabBarIcon: ({ color, size }) => (
-            <Calendar size={size} color={color} />
+            <Video size={size} color={color} />
           ),
         }}
       />
       <Tab.Screen
-        name="Marketplace"
+        name="News"
         component={LocalNewScreen}
+        options={{
+          title: 'News',
+          tabBarIcon: ({ color, size }) => (
+            <Newspaper size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="agriculture"
+        component={CommunityScreen}
+        options={{
+          title: 'agriculture',
+          tabBarIcon: ({ color, size }) => (
+            <Tractor size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Market"
+        component={DirectoryScreen}
         options={{
           title: 'Market',
           tabBarIcon: ({ color, size }) => (
-            <Store size={size} color={color} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Community"
-        component={CommunityScreen}
-        options={{
-          title: 'Community',
-          tabBarIcon: ({ color, size }) => (
-            <MessageSquare size={size} color={color} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Directory"
-        component={DirectoryScreen}
-        options={{
-          title: 'Directory',
-          tabBarIcon: ({ color, size }) => (
-            <Users size={size} color={color} />
+            <ChartCandlestick size={size} color={color} />
           ),
         }}
       />

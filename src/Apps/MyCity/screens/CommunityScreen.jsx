@@ -1,80 +1,116 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
-import { MessageCircle, Heart, Share2 } from 'lucide-react-native';
+import { View, Text, StyleSheet, ScrollView, Image, Pressable, TouchableOpacity } from 'react-native';
+import { Sun, TrendingUp, TrendingDown, AlertCircle, Clock, DollarSign, Sprout, Droplet, Users } from 'lucide-react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useState } from 'react';
 
-const POSTS = [
-  {
-    id: '1',
-    author: 'Sarah Johnson',
-    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80',
-    content: 'Just finished organizing the community garden. Thanks to everyone who helped out! 🌱',
-    image: 'https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=500&q=80',
-    likes: 24,
-    comments: 8,
-    time: '2 hours ago',
-  },
-  {
-    id: '2',
-    author: 'Mike Thompson',
-    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80',
-    content: 'Looking for volunteers for this weekend\'s village cleanup drive. Let\'s make our community better together! 🧹',
-    likes: 15,
-    comments: 12,
-    time: '4 hours ago',
-  },
-];
+export default function HomeScreen() {
+  const insets = useSafeAreaInsets();
+  const [selectedCrop, setSelectedCrop] = useState('wheat');
+  const crops = {
+    mehndi: { name: 'Mehndi', hindiName: 'मेहंदी', season: 'Rabi', waterNeed: 'Low' },
+    bajra: { name: 'Bajra', hindiName: 'बाजरा', season: 'Kharif', waterNeed: 'Low' },
+    cotton: { name: 'Cotton', hindiName: 'कपास', season: 'Kharif', waterNeed: 'High' },
+    wheat: { name: 'Wheat', hindiName: 'गेहूं', season: 'Rabi', waterNeed: 'Moderate' },
+    barley: { name: 'Barley', hindiName: 'जौ', season: 'Rabi', waterNeed: 'Moderate' },
+    guar: { name: 'Guar (Cluster Bean)', hindiName: 'ग्वार', season: 'Kharif', waterNeed: 'Low' },
+    sesame: { name: 'Sesame', hindiName: 'तिल', season: 'Kharif', waterNeed: 'Low' },
+    groundnut: { name: 'Groundnut', hindiName: 'मूंगफली', season: 'Kharif', waterNeed: 'Moderate' },
+    soybean: { name: 'Soybean', hindiName: 'सोयाबीन', season: 'Kharif', waterNeed: 'Moderate' },
+    maize: { name: 'Maize', hindiName: 'मक्का', season: 'Kharif', waterNeed: 'High' },
+    chili: { name: 'Chili', hindiName: 'मिर्च', season: 'Kharif', waterNeed: 'Moderate' },
+  };
+  
 
-export default function CommunityScreen() {
+  const weather = {
+    temp: '32°C',
+    condition: 'Sunny',
+    humidity: '45%',
+    rainfall: '0mm'
+  };
+
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Community</Text>
-        <TouchableOpacity style={styles.newPostButton}>
-          <Text style={styles.newPostButtonText}>New Post</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.createPost}>
-        <Image
-          source={{ uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80' }}
-          style={styles.userAvatar}
+      <View style={[styles.header, { paddingTop: insets.top }]}>
+        <LinearGradient
+          colors={['rgba(0,0,0,0.7)', 'transparent']}
+          style={styles.headerGradient}
         />
-        <TouchableOpacity style={styles.postInput}>
-          <Text style={styles.postInputText}>Share something with your community...</Text>
-        </TouchableOpacity>
+        <Image 
+          source={{ uri: 'https://api.a0.dev/assets/image?text=beautiful%20agricultural%20fields%20in%20rajasthan%20with%20farmers%20working&aspect=16:9' }}
+          style={styles.headerImage}
+        />
+        <View style={styles.headerContent}>
+          <Text style={styles.headerTitle}> सोजत कृषि</Text>
+          <Text style={styles.headerSubtitle}>Sojat Agriculture</Text>
+        </View>
       </View>
 
-      <View style={styles.posts}>
-        {POSTS.map((post) => (
-          <View key={post.id} style={styles.postCard}>
-            <View style={styles.postHeader}>
-              <Image source={{ uri: post.avatar }} style={styles.authorAvatar} />
-              <View style={styles.postHeaderText}>
-                <Text style={styles.authorName}>{post.author}</Text>
-                <Text style={styles.postTime}>{post.time}</Text>
-              </View>
-            </View>
-
-            <Text style={styles.postContent}>{post.content}</Text>
-            
-            {post.image && (
-              <Image source={{ uri: post.image }} style={styles.postImage} />
-            )}
-
-            <View style={styles.postActions}>
-              <TouchableOpacity style={styles.actionButton}>
-                <Heart size={20} color="#64748b" />
-                <Text style={styles.actionText}>{post.likes}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.actionButton}>
-                <MessageCircle size={20} color="#64748b" />
-                <Text style={styles.actionText}>{post.comments}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.actionButton}>
-                <Share2 size={20} color="#64748b" />
-              </TouchableOpacity>
-            </View>
+      <View style={styles.weatherCard}>
+        <Text style={styles.cardTitle}>Today's Weather</Text>
+        <View style={styles.weatherInfo}>
+          <View style={styles.weatherMain}>
+            <Sun size={40} color="#FFB347" />
+            <Text style={styles.temperature}>{weather.temp}</Text>
           </View>
-        ))}
+          <View style={styles.weatherDetails}>
+            <Text style={styles.weatherText}>Humidity: {weather.humidity}</Text>
+            <Text style={styles.weatherText}>Rainfall: {weather.rainfall}</Text>
+          </View>
+        </View>
+      </View>
+
+      <View style={styles.cropSection}>
+        <Text style={styles.sectionTitle}>Major Crops</Text>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.cropScroll}>
+          {Object.entries(crops).map(([key, crop]) => (
+            <TouchableOpacity
+              key={key}
+              style={[
+                styles.cropCard,
+                selectedCrop === key && styles.selectedCrop
+              ]}
+              onPress={() => setSelectedCrop(key)}
+            >
+              <Image 
+                source={{ uri: `https://api.a0.dev/assets/image?text=${crop.name}%20crop%20in%20farm&aspect=1:1` }}
+                style={styles.cropImage}
+              />
+              <Text style={styles.cropName}>{crop.name}</Text>
+              <Text style={styles.cropName}>{crop.hindiName}</Text>
+              <Text style={styles.cropSeason}>{crop.season}</Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </View>
+
+      <View style={styles.quickActions}>
+        <Pressable style={styles.actionButton}>
+          <DollarSign size={24} color="#4CAF50" />
+          <Text style={styles.actionText}>Market Prices</Text>
+        </Pressable>
+        <Pressable style={styles.actionButton}>
+          <Sprout size={24} color="#4CAF50" />
+          <Text style={styles.actionText}>Farming Tips</Text>
+        </Pressable>
+        <Pressable style={styles.actionButton}>
+          <Droplet size={24} color="#4CAF50" />
+          <Text style={styles.actionText}>Irrigation</Text>
+        </Pressable>
+      </View>
+
+      <View style={styles.communitySection}>
+        <Text style={styles.sectionTitle}>Community Resources</Text>
+        <View style={styles.resourceCard}>
+          <Image 
+            source={{ uri: 'https://api.a0.dev/assets/image?text=farmers%20meeting%20in%20village&aspect=16:9' }}
+            style={styles.resourceImage}
+          />
+          <View style={styles.resourceContent}>
+            <Text style={styles.resourceTitle}>Farmers' Meeting</Text>
+            <Text style={styles.resourceText}>Join weekly discussions on agricultural practices and market trends</Text>
+          </View>
+        </View>
       </View>
     </ScrollView>
   );
@@ -83,120 +119,181 @@ export default function CommunityScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8fafc',
+    backgroundColor: '#F5F5F5',
   },
   header: {
+    height: 250,
+    position: 'relative',
+  },
+  headerImage: {
+    width: '100%',
+    height: '100%',
+  },
+  headerGradient: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: '100%',
+    zIndex: 1,
+  },
+  headerContent: {
+    position: 'absolute',
+    bottom: 20,
+    left: 20,
+    zIndex: 2,
+  },
+  headerTitle: {
+    fontSize: 36,
+    color: '#FFF',
+    fontWeight: 'bold',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10,
+  },
+  headerSubtitle: {
+    fontSize: 20,
+    color: '#FFF',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10,
+  },
+  weatherCard: {
+    backgroundColor: '#FFF',
+    margin: 15,
+    padding: 15,
+    borderRadius: 12,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 10,
+  },
+  weatherInfo: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 20,
-    paddingTop: 60,
-    backgroundColor: '#ffffff',
   },
-  headerTitle: {
-    fontSize: 24,
-    fontFamily: 'Inter_700Bold',
-    color: '#166534',
-  },
-  newPostButton: {
-    backgroundColor: '#166534',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 20,
-  },
-  newPostButtonText: {
-    color: '#ffffff',
-    fontSize: 14,
-    fontFamily: 'Inter_600SemiBold',
-  },
-  createPost: {
+  weatherMain: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 20,
-    backgroundColor: '#ffffff',
-    marginTop: 10,
   },
-  userAvatar: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    marginRight: 12,
+  temperature: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: '#333',
+    marginLeft: 10,
   },
-  postInput: {
-    flex: 1,
-    backgroundColor: '#f8fafc',
-    borderRadius: 20,
-    padding: 12,
+  weatherDetails: {
+    alignItems: 'flex-end',
   },
-  postInputText: {
-    color: '#94a3b8',
+  weatherText: {
     fontSize: 14,
-    fontFamily: 'Inter_400Regular',
+    color: '#666',
+    marginBottom: 5,
   },
-  posts: {
-    padding: 20,
-  },
-  postCard: {
-    backgroundColor: '#ffffff',
-    borderRadius: 12,
+  cropSection: {
     padding: 15,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#333',
     marginBottom: 15,
-    borderWidth: 1,
-    borderColor: '#e2e8f0',
   },
-  postHeader: {
+  cropScroll: {
     flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 12,
   },
-  authorAvatar: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    marginRight: 12,
+  cropCard: {
+    backgroundColor: '#FFF',
+    borderRadius: 12,
+    padding: 10,
+    marginRight: 15,
+    width: 140,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
-  postHeaderText: {
-    flex: 1,
+  selectedCrop: {
+    borderColor: '#4CAF50',
+    borderWidth: 2,
   },
-  authorName: {
-    fontSize: 16,
-    fontFamily: 'Inter_600SemiBold',
-    color: '#334155',
-  },
-  postTime: {
-    fontSize: 12,
-    fontFamily: 'Inter_400Regular',
-    color: '#94a3b8',
-    marginTop: 2,
-  },
-  postContent: {
-    fontSize: 14,
-    fontFamily: 'Inter_400Regular',
-    color: '#334155',
-    lineHeight: 20,
-    marginBottom: 12,
-  },
-  postImage: {
+  cropImage: {
     width: '100%',
-    height: 200,
+    height: 100,
     borderRadius: 8,
-    marginBottom: 12,
   },
-  postActions: {
+  cropName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#333',
+    marginTop: 8,
+  },
+  cropSeason: {
+    fontSize: 14,
+    color: '#666',
+    marginTop: 4,
+  },
+  quickActions: {
     flexDirection: 'row',
-    borderTopWidth: 1,
-    borderTopColor: '#e2e8f0',
-    paddingTop: 12,
+    justifyContent: 'space-around',
+    padding: 15,
   },
   actionButton: {
-    flexDirection: 'row',
+    backgroundColor: '#FFF',
+    padding: 15,
+    borderRadius: 12,
     alignItems: 'center',
-    marginRight: 20,
+    width: '30%',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   actionText: {
-    marginLeft: 6,
+    fontSize: 12,
+    color: '#333',
+    marginTop: 8,
+    textAlign: 'center',
+  },
+  communitySection: {
+    padding: 15,
+  },
+  resourceCard: {
+    backgroundColor: '#FFF',
+    borderRadius: 12,
+    overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  resourceImage: {
+    width: '100%',
+    height: 150,
+  },
+  resourceContent: {
+    padding: 15,
+  },
+  resourceTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 8,
+  },
+  resourceText: {
     fontSize: 14,
-    fontFamily: 'Inter_500Medium',
-    color: '#64748b',
+    color: '#666',
+    lineHeight: 20,
   },
 });

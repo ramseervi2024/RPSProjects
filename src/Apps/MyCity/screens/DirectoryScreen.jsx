@@ -1,214 +1,284 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
-import { Search, Phone, Mail, MapPin } from 'lucide-react-native';
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Info, Clock, Leaf, Phone } from 'lucide-react-native';
 
-const CATEGORIES = [
-  { id: '1', name: 'Emergency', icon: '🚑' },
-  { id: '2', name: 'Healthcare', icon: '🏥' },
-  { id: '3', name: 'Education', icon: '🎓' },
-  { id: '4', name: 'Services', icon: '🔧' },
+const markets = [
+  {
+    id: 1,
+    name: 'सोजत मेहंदी मंडी',
+    location: 'Sojat Mehndi Market',
+    schedule: 'Monday to Friday, 9 AM - 5 PM',
+    products: ['Natural Mehndi Leaves', 'Henna Powder', 'Herbal Products'],
+    contact: '+91 9876543213',
+    image: 'https://api.a0.dev/assets/image?text=sojat%20mehndi%20market%20henna&aspect=16:9'
+  },
+  {
+    id: 2,
+    name: 'बाबा रामदेव बाजार',
+    location: 'Baba Ramdev Market, Sojat',
+    schedule: 'Daily, 8 AM - 8 PM',
+    products: ['Spices', 'Handicrafts', 'Household Goods'],
+    contact: '+91 9876543214',
+    image: 'https://api.a0.dev/assets/image?text=sojat%20baba%20ramdev%20market&aspect=16:9'
+  },
+  {
+    id: 3,
+    name: 'सोजत रोड मंडी',
+    location: 'Sojat Road Market',
+    schedule: 'Daily, 7 AM - 6 PM',
+    products: ['Local Produce', 'Textiles', 'Groceries'],
+    contact: '+91 9876543215',
+    image: 'https://api.a0.dev/assets/image?text=sojat%20road%20market%20local%20produce&aspect=16:9'
+  },
+  {
+    id: 4,
+    name: 'कृषि उपज मंडी',
+    location: 'Krishi Upaj Mandi, Sojat',
+    schedule: 'Monday to Saturday, 7 AM - 4 PM',
+    products: ['Grains', 'Vegetables', 'Agri Products'],
+    contact: '+91 9876543216',
+    image: 'https://api.a0.dev/assets/image?text=sojat%20krishi%20mandi%20farmers&aspect=16:9'
+  },
+  {
+    id: 5,
+    name: 'हर्बल उत्पाद बाजार',
+    location: 'Herbal Products Market, Sojat',
+    schedule: 'Weekly, Tuesday & Friday, 10 AM - 5 PM',
+    products: ['Herbal Extracts', 'Natural Oils', 'Cosmetic Herbs'],
+    contact: '+91 9876543217',
+    image: 'https://api.a0.dev/assets/image?text=sojat%20herbal%20products%20market&aspect=16:9'
+  },
+  {
+    id: 6,
+    name: 'हाथकरघा वस्त्र बाजार',
+    location: 'Handloom Fabric Market, Sojat',
+    schedule: 'Every Wednesday, 9 AM - 3 PM',
+    products: ['Handloom Sarees', 'Cotton Fabric', 'Dyeing Material'],
+    contact: '+91 9876543218',
+    image: 'https://api.a0.dev/assets/image?text=sojat%20handloom%20textile%20market&aspect=16:9'
+  },
+  {
+    id: 7,
+    name: 'स्थानीय शिल्प हाट',
+    location: 'Local Handicraft Bazaar, Sojat',
+    schedule: 'Sunday, 10 AM - 6 PM',
+    products: ['Wood Crafts', 'Metal Art', 'Rajasthani Decor'],
+    contact: '+91 9876543219',
+    image: 'https://api.a0.dev/assets/image?text=sojat%20handicrafts%20bazaar&aspect=16:9'
+  },
+  {
+    id: 8,
+    name: 'ग्रामिण उत्पाद मंडी',
+    location: 'Rural Produce Market, Sojat',
+    schedule: 'Monday to Friday, 7 AM - 2 PM',
+    products: ['Pulses', 'Oilseeds', 'Dry Vegetables'],
+    contact: '+91 9876543220',
+    image: 'https://api.a0.dev/assets/image?text=sojat%20rural%20produce%20market&aspect=16:9'
+  },
+  {
+    id: 9,
+    name: 'मेहंदी निर्यात केंद्र',
+    location: 'Henna Export Hub, Sojat',
+    schedule: 'Weekdays, 10 AM - 6 PM',
+    products: ['Bulk Henna Powder', 'Packaging Materials', 'Organic Certification Help'],
+    contact: '+91 9876543221',
+    image: 'https://api.a0.dev/assets/image?text=sojat%20henna%20export%20center&aspect=16:9'
+  },
+  {
+    id: 10,
+    name: 'कपड़ा एवं बर्तन बाजार',
+    location: 'Textile & Utensil Market, Sojat',
+    schedule: 'Daily, 9 AM - 8 PM',
+    products: ['Clothing', 'Steel Utensils', 'General Items'],
+    contact: '+91 9876543222',
+    image: 'https://api.a0.dev/assets/image?text=sojat%20textile%20utensil%20market&aspect=16:9'
+  },
+  {
+    id: 11,
+    name: 'जयपुर किसान मंडी',
+    location: 'Jaipur Organic Farmers Market',
+    schedule: 'Every Saturday, 6 AM - 12 PM',
+    products: ['Organic Millets', 'Indigenous Cotton', 'Medicinal Herbs'],
+    contact: '+91 9876543210',
+    image: 'https://api.a0.dev/assets/image?text=jaipur%20organic%20farmers%20market%20traditional&aspect=16:9'
+  },
+  {
+    id: 12,
+    name: 'जोधपुर हरित बाजार',
+    location: 'Jodhpur Green Market',
+    schedule: 'Wednesday & Sunday, 7 AM - 1 PM',
+    products: ['Desert Beans', 'Organic Spices', 'Local Fruits'],
+    contact: '+91 9876543211',
+    image: 'https://api.a0.dev/assets/image?text=jodhpur%20green%20market%20organic%20produce&aspect=16:9'
+  },
+  {
+    id: 13,
+    name: 'उदयपुर जैविक मंडी',
+    location: 'Udaipur Organic Market',
+    schedule: 'Daily, 8 AM - 6 PM',
+    products: ['Organic Vegetables', 'Traditional Grains', 'Dairy Products'],
+    contact: '+91 9876543212',
+    image: 'https://api.a0.dev/assets/image?text=udaipur%20organic%20market%20traditional%20produce&aspect=16:9'
+  }
 ];
 
-const LISTINGS = [
-  {
-    id: '1',
-    name: 'Village Medical Center',
-    category: 'Healthcare',
-    phone: '+1 234-567-8900',
-    email: 'info@villagemedical.com',
-    address: '123 Health Street',
-    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=500&q=80',
-  },
-  {
-    id: '2',
-    name: 'Community School',
-    category: 'Education',
-    phone: '+1 234-567-8901',
-    email: 'info@communityschool.edu',
-    address: '456 Education Ave',
-    image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=500&q=80',
-  },
-  {
-    id: '3',
-    name: 'Local Repair Shop',
-    category: 'Services',
-    phone: '+1 234-567-8902',
-    email: 'service@repairshop.com',
-    address: '789 Service Road',
-    image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&q=80',
-  },
-];
-
-export default function DirectoryScreen() {
+export default function LocalMarkets() {
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Village Directory</Text>
-      </View>
-
-      <View style={styles.searchContainer}>
-        <View style={styles.searchBar}>
-          <Search size={20} color="#64748b" />
-          <Text style={styles.searchPlaceholder}>Search directory...</Text>
+    <View style={styles.container}>
+      <ScrollView>
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>Local Markets</Text>
+          <Text style={styles.headerSubtitle}>स्थानीय मंडियां</Text>
         </View>
-      </View>
 
-      <View style={styles.categoriesContainer}>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {CATEGORIES.map((category) => (
-            <TouchableOpacity key={category.id} style={styles.categoryButton}>
-              <Text style={styles.categoryIcon}>{category.icon}</Text>
-              <Text style={styles.categoryText}>{category.name}</Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-      </View>
+        <View style={styles.infoBox}>
+          <Info size={24} color="#2E7D32" />
+          <Text style={styles.infoText}>
+            Connect directly with organic markets and buyers. All products are certified organic and locally sourced.
+          </Text>
+        </View>
 
-      <View style={styles.listings}>
-        {LISTINGS.map((listing) => (
-          <TouchableOpacity key={listing.id} style={styles.listingCard}>
-            <Image source={{ uri: listing.image }} style={styles.listingImage} />
-            <View style={styles.listingContent}>
-              <View style={styles.categoryTag}>
-                <Text style={styles.categoryTagText}>{listing.category}</Text>
+        {markets.map((market) => (
+          <View key={market.id} style={styles.marketCard}>
+            <Image source={{ uri: market.image }} style={styles.marketImage} />
+            <View style={styles.marketContent}>
+              <Text style={styles.marketName}>{market.name}</Text>
+              <Text style={styles.marketLocation}>{market.location}</Text>
+
+              <View style={styles.scheduleContainer}>
+                <Clock size={20} color="#2E7D32" />
+                <Text style={styles.scheduleText}>{market.schedule}</Text>
               </View>
-              <Text style={styles.listingName}>{listing.name}</Text>
-              
-              <View style={styles.contactInfo}>
-                <View style={styles.contactItem}>
-                  <Phone size={16} color="#64748b" />
-                  <Text style={styles.contactText}>{listing.phone}</Text>
-                </View>
-                <View style={styles.contactItem}>
-                  <Mail size={16} color="#64748b" />
-                  <Text style={styles.contactText}>{listing.email}</Text>
-                </View>
-                <View style={styles.contactItem}>
-                  <MapPin size={16} color="#64748b" />
-                  <Text style={styles.contactText}>{listing.address}</Text>
-                </View>
+
+              <View style={styles.productsContainer}>
+                <Text style={styles.productsTitle}>Available Products:</Text>
+                {market.products.map((product, index) => (
+                  <View key={index} style={styles.productItem}>
+                    <Leaf size={16} color="#2E7D32" />
+                    <Text style={styles.productText}>{product}</Text>
+                  </View>
+                ))}
               </View>
 
               <TouchableOpacity style={styles.contactButton}>
-                <Text style={styles.contactButtonText}>Contact</Text>
+                <Phone size={20} color="white" />
+                <Text style={styles.contactButtonText}>{market.contact}</Text>
               </TouchableOpacity>
             </View>
-          </TouchableOpacity>
+          </View>
         ))}
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8fafc',
+    backgroundColor: '#F5F5F5',
   },
   header: {
     padding: 20,
-    paddingTop: 60,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#2E7D32',
+    paddingTop: 70
   },
   headerTitle: {
-    fontSize: 24,
-    fontFamily: 'Inter_700Bold',
-    color: '#166534',
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: 'white',
   },
-  searchContainer: {
-    padding: 20,
-    backgroundColor: '#ffffff',
+  headerSubtitle: {
+    fontSize: 18,
+    color: '#E8F5E9',
+    marginTop: 5,
   },
-  searchBar: {
+  infoBox: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#f8fafc',
-    borderRadius: 8,
-    padding: 12,
+    backgroundColor: '#E8F5E9',
+    margin: 15,
+    padding: 15,
+    borderRadius: 10,
   },
-  searchPlaceholder: {
+  infoText: {
+    flex: 1,
     marginLeft: 10,
-    color: '#94a3b8',
+    color: '#1B5E20',
     fontSize: 14,
-    fontFamily: 'Inter_400Regular',
   },
-  categoriesContainer: {
-    backgroundColor: '#ffffff',
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-  },
-  categoryButton: {
-    alignItems: 'center',
-    marginRight: 20,
-  },
-  categoryIcon: {
-    fontSize: 24,
-    marginBottom: 8,
-  },
-  categoryText: {
-    fontSize: 12,
-    fontFamily: 'Inter_500Medium',
-    color: '#64748b',
-  },
-  listings: {
-    padding: 20,
-  },
-  listingCard: {
-    backgroundColor: '#ffffff',
-    borderRadius: 12,
+  marketCard: {
+    backgroundColor: 'white',
+    borderRadius: 15,
+    margin: 15,
     overflow: 'hidden',
-    marginBottom: 20,
-    borderWidth: 1,
-    borderColor: '#e2e8f0',
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
   },
-  listingImage: {
+  marketImage: {
     width: '100%',
     height: 200,
   },
-  listingContent: {
+  marketContent: {
     padding: 15,
   },
-  categoryTag: {
-    backgroundColor: '#f0fdf4',
-    paddingHorizontal: 12,
-    paddingVertical: 4,
-    borderRadius: 12,
-    alignSelf: 'flex-start',
-    marginBottom: 10,
+  marketName: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#1B5E20',
   },
-  categoryTagText: {
-    color: '#166534',
-    fontSize: 12,
-    fontFamily: 'Inter_500Medium',
+  marketLocation: {
+    fontSize: 16,
+    color: '#666',
+    marginTop: 5,
   },
-  listingName: {
-    fontSize: 18,
-    fontFamily: 'Inter_600SemiBold',
-    color: '#334155',
-    marginBottom: 10,
-  },
-  contactInfo: {
-    marginBottom: 15,
-  },
-  contactItem: {
+  scheduleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginTop: 10,
+    backgroundColor: '#E8F5E9',
+    padding: 8,
+    borderRadius: 8,
+  },
+  scheduleText: {
+    marginLeft: 8,
+    color: '#1B5E20',
+    fontSize: 14,
+  },
+  productsContainer: {
+    marginTop: 15,
+  },
+  productsTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#2E7D32',
     marginBottom: 8,
   },
-  contactText: {
-    fontSize: 14,
-    fontFamily: 'Inter_400Regular',
-    color: '#64748b',
+  productItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 4,
+  },
+  productText: {
     marginLeft: 8,
+    color: '#666',
+    fontSize: 14,
   },
   contactButton: {
-    backgroundColor: '#166534',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#2E7D32',
     padding: 12,
     borderRadius: 8,
-    alignItems: 'center',
+    marginTop: 15,
   },
   contactButtonText: {
-    color: '#ffffff',
-    fontSize: 14,
-    fontFamily: 'Inter_600SemiBold',
+    color: 'white',
+    marginLeft: 8,
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });

@@ -134,7 +134,7 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Text style={{ fontSize: 18, fontWeight: '600' }}>Sojat Videos</Text>
+        <Text style={{ fontSize: 18, fontWeight: '600' }}>Top Videos</Text>
         <View style={styles.headerIcons}>
           <Cast style={styles.icon} size={24} color="#000" />
           <Bell style={styles.icon} size={24} color="#000" />
