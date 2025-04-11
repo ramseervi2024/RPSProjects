@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { LandPlot, Video, Tractor, Newspaper, ChartCandlestick } from 'lucide-react-native'; // Import icons from lucide-react-native
+import { LandPlot, Video, Target, Newspaper, ChartCandlestick } from 'lucide-react-native'; // Import icons from lucide-react-native
 import HomeScreen from './screens/HomeScreen';
 import EventsScreen from './screens/EventsScreen';
 import MarketplaceScreen from './screens/MarketplaceScreen';
@@ -60,9 +60,9 @@ export default function MyCityBottomNavigation() {
         name="agriculture"
         component={CommunityScreen}
         options={{
-          title: 'Agriculture',
+          title: 'Overview',
           tabBarIcon: ({ color, size }) => (
-            <Tractor size={size} color={color} />
+            <Target size={size} color={color} />
           ),
         }}
       />

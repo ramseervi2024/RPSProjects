@@ -8,7 +8,7 @@ import YouTube from 'react-native-youtube-iframe';
 const videos = [
   {
     "id": "1",
-    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLdg94m69dzhT3LYDdjzqrnLgb14JHaSAPew&s",
+    "thumbnail": "https://images.unsplash.com/photo-1638863957212-1ec0bc29e776?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWVsYXxlbnwwfHwwfHx8MA%3D%3D",
     "title": "Sojat Mela 2025 || 🎡सोजत का प्रसिद्ध मेला",
     "channel": "Sojat Tourism Official",
     "views": "150K views",
@@ -18,7 +18,7 @@ const videos = [
   },
   {
     "id": "2",
-    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt4cb9Fr4UmGMKRiYBCnHLgE7lIqTPfmEadg&s",
+    "thumbnail": "https://images.unsplash.com/photo-1631867675167-90a456a90863?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHJhamFzdGhhbnxlbnwwfHwwfHx8MA%3D%3D",
     "title": "15 Best Places To Visit In Sojat Rajasthan | Sojat Tourist Places | Sojat - Rajasthan Tourism",
     "channel": "History of Sojat",
     "views": "200K views",
@@ -28,7 +28,7 @@ const videos = [
   },
   {
     "id": "3",
-    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNddSsTeF80_IK3jAAY5VYwhMqyPffl905gw&s",
+    "thumbnail": "https://images.unsplash.com/photo-1708674454070-0e8fbd05506f?q=80&w=3435&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "title": "Sojat ki paramparik gair |सोजत की पारंपरिक गैर| #गैर #sojat #happyholi #holi #pali",
     "channel": "Explore Sojat",
     "views": "180K views",
@@ -58,7 +58,7 @@ const videos = [
   },
   {
     "id": "6",
-    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ23s9Gop-G584f7q1iVgJb17avo_DfAt0rSw&s",
+    "thumbnail": "https://images.unsplash.com/photo-1600954700722-b9a768fc9397?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDZ8fHxlbnwwfHx8fHw%3D",
     "title": "Sojat: A Blend of Modernity and Tradition",
     "channel": "Rajasthan Vibes",
     "views": "120K views",
@@ -68,7 +68,7 @@ const videos = [
   },
   {
     "id": "7",
-    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9TYDkMMr03ooMzJ4tP0uShK_8XyVj1-m-lg&s",
+    "thumbnail": "https://plus.unsplash.com/premium_photo-1661962428918-6a57ab674e23?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmFqYXN0aGFufGVufDB8fDB8fHww",
     "title": "The Crafts of Sojat: Making Mehndi Art",
     "channel": "Indian Craftsmanship",
     "views": "230K views",
@@ -98,7 +98,7 @@ const videos = [
   },
   {
     "id": "10",
-    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSILMosHGwZf172yXGt118r6o39y8eEwdnJwg&s",
+    "thumbnail": "https://images.unsplash.com/photo-1671727337724-e2ecddad92e4?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE5fHx8ZW58MHx8fHx8",
     "title": "Sojat City: The Heart of Rajasthan",
     "channel": "Incredible India",
     "views": "350K views",
