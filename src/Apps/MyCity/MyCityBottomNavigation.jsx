@@ -10,6 +10,7 @@ import NewsScreen from './screens/NewsScreen';
 import PlacesScreen from './screens/PlacesScreen';
 import ServicesScreen from './screens/ServicesScreen';
 import WeatherScreen from './screens/WeatherScreen';
+import LocalNewScreen from './screens/LocalNewScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -47,7 +48,7 @@ export default function MyCityBottomNavigation() {
       />
       <Tab.Screen
         name="Marketplace"
-        component={MarketplaceScreen}
+        component={LocalNewScreen}
         options={{
           title: 'Market',
           tabBarIcon: ({ color, size }) => (

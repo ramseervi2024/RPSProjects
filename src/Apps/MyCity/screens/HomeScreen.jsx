@@ -22,7 +22,7 @@ export default function HomeScreen({ navigation }) {
   ];
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <ScrollView>
         <View style={styles.header}>
           <Text style={styles.cityName}>Sojat City – “The Henna City”</Text>
@@ -75,7 +75,7 @@ export default function HomeScreen({ navigation }) {
           ))}
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
   header: {
     padding: 16,
     backgroundColor: '#2E7D32',
+    paddingTop:80
   },
   cityName: {
     fontSize: 24,

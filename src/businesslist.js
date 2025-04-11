@@ -1,6 +1,12 @@
 
 export const business = [
     {
+        "id": 10011,
+        "label": "Sojat My City",
+        "value": " This app will include features like local news, events, services, and community discussions",
+        "appurl": "MyCity"
+    },
+    {
         "id": 10030,
         "label": "FarmerHelper",
         "value": "categories: Weather, News & Events, Business Directory, and Transport. Let me create these screens with beautiful layouts and useful functionality.",
@@ -108,12 +114,7 @@ export const business = [
         "value": " We'll create a fully featured app with hotel search, filtering, and booking capabilities.",
         "appurl": "Booking"
     },
-    {
-        "id": 10011,
-        "label": "Sojat My City",
-        "value": " This app will include features like local news, events, services, and community discussions",
-        "appurl": "MyCity"
-    },
+   
     {
         "id": 2009,
         "label": "Snapchat",
