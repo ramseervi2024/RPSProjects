@@ -1,154 +1,300 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { 
-  Landmark, 
-  Cloud, 
-  Calendar, 
-  Store, 
-  Bus, 
-  MapPin, 
-  AlertCircle 
-} from 'lucide-react-native';
+import { View, Text, StyleSheet, ScrollView, Image, Pressable, TouchableOpacity } from 'react-native';
+import { Sun, TrendingUp, TrendingDown, AlertCircle, Clock, DollarSign, Sprout, Droplet, Users } from 'lucide-react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useState } from 'react';
 
-export default function HomeScreen({ navigation }) {
-  const categories = [
-    { id: 1, title: 'City Overview', icon: <MapPin size={32} color="#2E7D32" /> },
-    { id: 2, title: 'Local Attractions', icon: <Landmark size={32} color="#2E7D32" /> },
-    { id: 3, title: 'Emergency Services', icon: <AlertCircle size={32} color="#2E7D32" /> },
-    { id: 4, title: 'Weather', icon: <Cloud size={32} color="#2E7D32" /> },
-    { id: 5, title: 'News & Events', icon: <Calendar size={32} color="#2E7D32" /> },
-    { id: 6, title: 'Business Directory', icon: <Store size={32} color="#2E7D32" /> },
-    { id: 7, title: 'Transport', icon: <Bus size={32} color="#2E7D32" /> },
-  ];
+export default function HomeScreen() {
+  const insets = useSafeAreaInsets();
+  const [selectedCrop, setSelectedCrop] = useState('wheat');
+  const crops = {
+    mehndi: { name: 'Mehndi', hindiName: 'मेहंदी', season: 'Rabi', waterNeed: 'Low' },
+    bajra: { name: 'Bajra', hindiName: 'बाजरा', season: 'Kharif', waterNeed: 'Low' },
+    cotton: { name: 'Cotton', hindiName: 'कपास', season: 'Kharif', waterNeed: 'High' },
+    wheat: { name: 'Wheat', hindiName: 'गेहूं', season: 'Rabi', waterNeed: 'Moderate' },
+    barley: { name: 'Barley', hindiName: 'जौ', season: 'Rabi', waterNeed: 'Moderate' },
+    guar: { name: 'Guar (Cluster Bean)', hindiName: 'ग्वार', season: 'Kharif', waterNeed: 'Low' },
+    sesame: { name: 'Sesame', hindiName: 'तिल', season: 'Kharif', waterNeed: 'Low' },
+    groundnut: { name: 'Groundnut', hindiName: 'मूंगफली', season: 'Kharif', waterNeed: 'Moderate' },
+    soybean: { name: 'Soybean', hindiName: 'सोयाबीन', season: 'Kharif', waterNeed: 'Moderate' },
+    maize: { name: 'Maize', hindiName: 'मक्का', season: 'Kharif', waterNeed: 'High' },
+    chili: { name: 'Chili', hindiName: 'मिर्च', season: 'Kharif', waterNeed: 'Moderate' },
+  };
+  
+
+  const weather = {
+    temp: '32°C',
+    condition: 'Sunny',
+    humidity: '45%',
+    rainfall: '0mm'
+  };
 
   return (
-    <View style={styles.container}>
-      <ScrollView>
-        <View style={styles.header}>
-          <Text style={styles.cityName}>Sojat City – “The Henna City”</Text>
-          <Text style={styles.pincode}>306104</Text>
+    <ScrollView style={styles.container}>
+      <View style={[styles.header, { paddingTop: insets.top }]}>
+        <LinearGradient
+          colors={['rgba(0,0,0,0.7)', 'transparent']}
+          style={styles.headerGradient}
+        />
+        <Image 
+          source={{ uri: 'https://api.a0.dev/assets/image?text=beautiful%20agricultural%20fields%20in%20rajasthan%20with%20farmers%20working&aspect=16:9' }}
+          style={styles.headerImage}
+        />
+        <View style={styles.headerContent}>
+          <Text style={styles.headerTitle}> सोजत सिटी (मेहंदी नगरी)</Text>
+          <Text style={styles.headerSubtitle}>Sojat City – “The Henna City”</Text>
         </View>
+      </View>
 
-        <View style={styles.heroContainer}>
-          <Image 
-            source={{ uri: 'https://api.a0.dev/assets/image?text=beautiful%20aerial%20view%20of%20Sojat%20City%20Rajasthan%20traditional%20architecture&aspect=16:9' }}
-            style={styles.heroImage}
-          />
-          <View style={styles.overlay}>
-            <Text style={styles.welcomeText}>Welcome to</Text>
-            <Text style={styles.tagline}>The Heart of Rajasthan</Text>
+      <View style={styles.weatherCard}>
+        <Text style={styles.cardTitle}>Today's Weather</Text>
+        <View style={styles.weatherInfo}>
+          <View style={styles.weatherMain}>
+            <Sun size={40} color="#FFB347" />
+            <Text style={styles.temperature}>{weather.temp}</Text>
+          </View>
+          <View style={styles.weatherDetails}>
+            <Text style={styles.weatherText}>Humidity: {weather.humidity}</Text>
+            <Text style={styles.weatherText}>Rainfall: {weather.rainfall}</Text>
           </View>
         </View>
+      </View>
 
-        <View style={styles.categoryGrid}>
-          {categories.map((category) => (            
-            <TouchableOpacity 
-              key={category.id} 
-              style={styles.categoryCard}
-              onPress={() => {
-                if (category.title === 'City Overview') {
-                  navigation.navigate('CityOverview');
-                }
-                if (category.title === 'Local Attractions') {
-                  navigation.navigate('LocalAttractions');
-                }
-                if (category.title === 'Emergency Services') {
-                  navigation.navigate('EmergencyServices');
-                }
-                if (category.title === 'Weather') {
-                  navigation.navigate('WeatherScreen');
-                }
-                if (category.title === 'News & Events') {
-                  navigation.navigate('NewsEventsScreen');
-                }
-                if (category.title === 'Business Directory') {
-                  navigation.navigate('BusinessDirectoryScreen');
-                }
-                if (category.title === 'Transport') {
-                  navigation.navigate('TransportScreen');
-                }
-              }}
+      <View style={styles.cropSection}>
+        <Text style={styles.sectionTitle}>Major Crops</Text>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.cropScroll}>
+          {Object.entries(crops).map(([key, crop]) => (
+            <TouchableOpacity
+              key={key}
+              style={[
+                styles.cropCard,
+                selectedCrop === key && styles.selectedCrop
+              ]}
+              onPress={() => setSelectedCrop(key)}
             >
-              {category.icon}
-              <Text style={styles.categoryTitle}>{category.title}</Text>
+              <Image 
+                source={{ uri: `https://api.a0.dev/assets/image?text=${crop.name}%20crop%20in%20farm&aspect=1:1` }}
+                style={styles.cropImage}
+              />
+              <Text style={styles.cropName}>{crop.name}</Text>
+              <Text style={styles.cropName}>{crop.hindiName}</Text>
+              <Text style={styles.cropSeason}>{crop.season}</Text>
             </TouchableOpacity>
           ))}
+        </ScrollView>
+      </View>
+
+      <View style={styles.quickActions}>
+        <Pressable style={styles.actionButton}>
+          <DollarSign size={24} color="#4CAF50" />
+          <Text style={styles.actionText}>Market Prices</Text>
+        </Pressable>
+        <Pressable style={styles.actionButton}>
+          <Sprout size={24} color="#4CAF50" />
+          <Text style={styles.actionText}>Farming Tips</Text>
+        </Pressable>
+        <Pressable style={styles.actionButton}>
+          <Droplet size={24} color="#4CAF50" />
+          <Text style={styles.actionText}>Irrigation</Text>
+        </Pressable>
+      </View>
+
+      <View style={styles.communitySection}>
+        <Text style={styles.sectionTitle}>Community Resources</Text>
+        <View style={styles.resourceCard}>
+          <Image 
+            source={{ uri: 'https://api.a0.dev/assets/image?text=farmers%20meeting%20in%20village&aspect=16:9' }}
+            style={styles.resourceImage}
+          />
+          <View style={styles.resourceContent}>
+            <Text style={styles.resourceTitle}>Farmers' Meeting</Text>
+            <Text style={styles.resourceText}>Join weekly discussions on agricultural practices and market trends</Text>
+          </View>
         </View>
-      </ScrollView>
-    </View>
+      </View>
+    </ScrollView>
   );
 }
 
-// Styles remain the same as your original code
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#F5F5F5',
   },
   header: {
-    padding: 16,
-    backgroundColor: '#2E7D32',
-    paddingTop:80
-  },
-  cityName: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'white',
-  },
-  pincode: {
-    fontSize: 16,
-    color: '#E8F5E9',
-  },
-  heroContainer: {
-    height: 200,
+    height: 250,
     position: 'relative',
   },
-  heroImage: {
+  headerImage: {
     width: '100%',
     height: '100%',
   },
-  overlay: {
+  headerGradient: {
     position: 'absolute',
-    bottom: 0,
     left: 0,
     right: 0,
-    padding: 16,
-    backgroundColor: 'rgba(0,0,0,0.4)',
+    top: 0,
+    height: '100%',
+    zIndex: 1,
   },
-  welcomeText: {
-    color: 'white',
-    fontSize: 16,
+  headerContent: {
+    position: 'absolute',
+    bottom: 20,
+    left: 20,
+    zIndex: 2,
   },
-  tagline: {
-    color: 'white',
-    fontSize: 24,
+  headerTitle: {
+    fontSize: 32,
+    color: '#FFF',
     fontWeight: 'bold',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10,
   },
-  categoryGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    padding: 8,
+  headerSubtitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#FFF',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10,
   },
-  categoryCard: {
-    backgroundColor: 'white',
-    width: '45%',
-    margin: '2.5%',
-    padding: 16,
+  weatherCard: {
+    backgroundColor: '#FFF',
+    margin: 15,
+    padding: 15,
     borderRadius: 12,
-    alignItems: 'center',
-    justifyContent: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
-    height: 120,
   },
-  categoryTitle: {
-    marginTop: 8,
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 10,
+  },
+  weatherInfo: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  weatherMain: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  temperature: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: '#333',
+    marginLeft: 10,
+  },
+  weatherDetails: {
+    alignItems: 'flex-end',
+  },
+  weatherText: {
     fontSize: 14,
-    fontWeight: '600',
+    color: '#666',
+    marginBottom: 5,
+  },
+  cropSection: {
+    padding: 15,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 15,
+  },
+  cropScroll: {
+    flexDirection: 'row',
+  },
+  cropCard: {
+    backgroundColor: '#FFF',
+    borderRadius: 12,
+    padding: 10,
+    marginRight: 15,
+    width: 140,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  selectedCrop: {
+    borderColor: '#4CAF50',
+    borderWidth: 2,
+  },
+  cropImage: {
+    width: '100%',
+    height: 100,
+    borderRadius: 8,
+  },
+  cropName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#333',
+    marginTop: 8,
+  },
+  cropSeason: {
+    fontSize: 14,
+    color: '#666',
+    marginTop: 4,
+  },
+  quickActions: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 15,
+  },
+  actionButton: {
+    backgroundColor: '#FFF',
+    padding: 15,
+    borderRadius: 12,
+    alignItems: 'center',
+    width: '30%',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  actionText: {
+    fontSize: 12,
+    color: '#333',
+    marginTop: 8,
     textAlign: 'center',
-    color: '#424242',
+  },
+  communitySection: {
+    padding: 15,
+  },
+  resourceCard: {
+    backgroundColor: '#FFF',
+    borderRadius: 12,
+    overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  resourceImage: {
+    width: '100%',
+    height: 150,
+  },
+  resourceContent: {
+    padding: 15,
+  },
+  resourceTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 8,
+  },
+  resourceText: {
+    fontSize: 14,
+    color: '#666',
+    lineHeight: 20,
   },
 });

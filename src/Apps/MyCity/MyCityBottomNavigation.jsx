@@ -60,7 +60,7 @@ export default function MyCityBottomNavigation() {
         name="agriculture"
         component={CommunityScreen}
         options={{
-          title: 'agriculture',
+          title: 'Agriculture',
           tabBarIcon: ({ color, size }) => (
             <Tractor size={size} color={color} />
           ),

@@ -13,7 +13,7 @@ const videos = [
     "channel": "Sojat Tourism Official",
     "views": "150K views",
     "timestamp": "1 month ago",
-    "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde",
+    "avatar": "https://images.unsplash.com/photo-1547723224-babfe5ccbc15?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHJhamFzdGhhbiUyMG9sZCUyMGd1eXN8ZW58MHx8MHx8fDA%3D",
     "url": "https://www.youtube.com/watch?v=lQxxRmcLZsc"
   },
   {
@@ -132,7 +132,7 @@ export default function HomeScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.header}>
         <Text style={{ fontSize: 18, fontWeight: '600' }}>Top Videos</Text>
         <View style={styles.headerIcons}>
@@ -227,7 +227,7 @@ export default function HomeScreen() {
           );
         })}
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -235,6 +235,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    paddingTop:60
   },
   header: {
     flexDirection: 'row',

@@ -4,6 +4,15 @@ import { Info, Clock, Leaf, Phone } from 'lucide-react-native';
 
 const markets = [
   {
+    id: 11,
+    name: 'बाजार सब्जी मंडी',
+    location: 'Jaipur Organic Farmers Market',
+    schedule: 'Every Saturday, 6 AM - 12 PM',
+    products: ['Organic Millets', 'Indigenous Cotton', 'Medicinal Herbs'],
+    contact: '+91 9876543210',
+    image: 'https://api.a0.dev/assets/image?text=jaipur%20organic%20farmers%20market%20traditional&aspect=16:9'
+  },
+  {
     id: 1,
     name: 'सोजत मेहंदी मंडी',
     location: 'Sojat Mehndi Market',
@@ -93,15 +102,7 @@ const markets = [
     contact: '+91 9876543222',
     image: 'https://api.a0.dev/assets/image?text=sojat%20textile%20utensil%20market&aspect=16:9'
   },
-  {
-    id: 11,
-    name: 'जयपुर किसान मंडी',
-    location: 'Jaipur Organic Farmers Market',
-    schedule: 'Every Saturday, 6 AM - 12 PM',
-    products: ['Organic Millets', 'Indigenous Cotton', 'Medicinal Herbs'],
-    contact: '+91 9876543210',
-    image: 'https://api.a0.dev/assets/image?text=jaipur%20organic%20farmers%20market%20traditional&aspect=16:9'
-  },
+ 
   {
     id: 12,
     name: 'जोधपुर हरित बाजार',

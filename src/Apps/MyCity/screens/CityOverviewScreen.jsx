@@ -5,10 +5,10 @@ import { cityOverview } from '../data/cityData';
 
 export default function CityOverviewScreen() {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <ScrollView>
         <Image
-          source={{ uri: 'https://api.a0.dev/assets/image?text=beautiful%20cityscape%20of%20Sojat%20City%20during%20sunset&aspect=16:9' }}
+          source={{ uri: 'https://images.unsplash.com/photo-1633209451905-b38d1342805c?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHNvamF0JTIwY2l0eXxlbnwwfHwwfHx8MA%3D%3D' }}
           style={styles.headerImage}
         />
         
@@ -42,7 +42,7 @@ export default function CityOverviewScreen() {
           ))}
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   headerImage: {
     width: '100%',
-    height: 200,
+    height: 250,
   },
   content: {
     padding: 16,
