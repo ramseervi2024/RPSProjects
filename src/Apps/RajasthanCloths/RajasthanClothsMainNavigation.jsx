@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import RajasthanClothsNavigation from './RajasthanClothsNavigation';
 import ProductDetailsScreen from './screens/ProductDetailsScreen';
 import AllProductList from './screens/AllProductList';
+import DeliveryDetailsScreen from './screens/DeliveryDetailsScreen';
 export default function RajasthanClothsMainNavigation() {
 
   const MyCityApp = createStackNavigator();
@@ -12,6 +13,7 @@ export default function RajasthanClothsMainNavigation() {
       <MyCityApp.Screen name="RajasthanClothsNavigation" component={RajasthanClothsNavigation} options={{ headerShown: false }} />
       <MyCityApp.Screen name="ProductDetailsScreen" component={ProductDetailsScreen} options={{ headerShown: false }} />
       <MyCityApp.Screen name="AllProductList" component={AllProductList} options={{ headerShown: false }} />
+      <MyCityApp.Screen name="DeliveryDetailsScreen" component={DeliveryDetailsScreen} options={{ headerShown: false }} />
       </MyCityApp.Navigator>
   )
 }

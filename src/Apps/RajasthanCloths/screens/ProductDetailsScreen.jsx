@@ -12,6 +12,7 @@ import ProductGallery from './components/ProductGallery';
 import SizeSelector from './components/SizeSelector';
 import ColorSelector from './components/ColorSelector';
 import { toast } from 'sonner-native';
+import ReviewsScreen from './ReviewsScreen';
 
 export default function ProductDetailsScreen({ route }) {
   // Destructure the passed parameter
@@ -165,6 +166,7 @@ export default function ProductDetailsScreen({ route }) {
             </Text>
           </View>
         </View>
+        <ReviewsScreen/>
       </ScrollView>
     </SafeAreaView>
   );

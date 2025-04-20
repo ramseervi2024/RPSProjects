@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { Minus, Plus, Trash2 } from 'lucide-react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const CART_ITEMS = [
   {
@@ -73,6 +74,10 @@ export default function CartScreen() {
 
   const totalAmount = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
+  const navigation = useNavigation()
+  const navigatetoproduct = (category) => {
+    navigation.navigate('DeliveryDetailsScreen')
+  }
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -88,7 +93,7 @@ export default function CartScreen() {
               <Text style={styles.itemName}>{item.name}</Text>
               <Text style={styles.itemSize}>Size: {item.size}</Text>
               <Text style={styles.itemPrice}>₹{item.price}</Text>
-              
+
               <View style={styles.quantityContainer}>
                 <TouchableOpacity
                   onPress={() => updateQuantity(item.id, false)}
@@ -120,7 +125,7 @@ export default function CartScreen() {
           <Text style={styles.totalLabel}>Total Amount:</Text>
           <Text style={styles.totalAmount}>₹{totalAmount}</Text>
         </View>
-        <TouchableOpacity style={styles.checkoutButton}>
+        <TouchableOpacity style={styles.checkoutButton} onPress={() => navigatetoproduct()}>
           <Text style={styles.checkoutButtonText}>Proceed to Checkout</Text>
         </TouchableOpacity>
       </View>
