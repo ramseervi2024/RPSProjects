@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -13,10 +13,11 @@ import SizeSelector from './components/SizeSelector';
 import ColorSelector from './components/ColorSelector';
 import { toast } from 'sonner-native';
 import ReviewsScreen from './ReviewsScreen';
+import LoaderTwo from './LoaderTwo';
 
 export default function ProductDetailsScreen({ route }) {
   // Destructure the passed parameter
-  const { item,type } = route.params;
+  const { item, type } = route.params;
 
   const IMAGES = [
     // `https://images.unsplash.com/photo-1738301824209-0a1016f5b06f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE0fHx8ZW58MHx8fHx8`,
@@ -31,21 +32,21 @@ export default function ProductDetailsScreen({ route }) {
     `https://api.a0.dev/assets/image?text=beautiful%marwari%20traditional%${type}%20with%20bandhani%20pattern%20in%20yellow&aspect=4:5`,
     `https://api.a0.dev/assets/image?text=beautiful%marwari%20traditional%${type}%20with%20multicolor%20patchwork%20design&aspect=4:5`,
   ];
-  
+
   const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
   const COLORS = [
-    
+
     { name: 'Dark Red', code: '#8B0000' },
     { name: 'Royal Purple', code: '#6A0DAD' },
     { name: 'Gray', code: '#708090' },
     { name: 'Dark Orange', code: '#FF8C00' },
     { name: 'Wheat', code: '#F5DEB3' },
   ];
-  
-  
+
+
 
   console.log(item, type, 'typetypetype');
-  
+
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
@@ -70,105 +71,119 @@ export default function ProductDetailsScreen({ route }) {
     });
   };
 
+
+  const [isLoading, setIsLoading] = useState(true); // 👈 Loading state
+
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 2000); // 👈 2 seconds loader
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <ProductGallery images={IMAGES} />
-        
-        <View style={styles.contentContainer}>
-          <View style={styles.header}>
-            <View>
-              <Text style={styles.brand}>PREMIUM ESSENTIALS</Text>
-              <Text style={styles.title}>Classic Cotton {type}</Text>
-            </View>
-            <Pressable
-              onPress={() => setIsWishlisted(!isWishlisted)}
-              style={styles.wishlistButton}
-            >
-              <Heart
-                size={28}
-                color={isWishlisted ? '#FF3B30' : '#000'}
-              />
-            </Pressable>
-          </View>
+    <>
+      {
+        isLoading ? <LoaderTwo /> :
+          <SafeAreaView style={styles.container}>
+            <ScrollView showsVerticalScrollIndicator={false}>
+              <ProductGallery images={IMAGES} />
 
-          <View style={styles.priceContainer}>
-            <Text style={styles.price}>₹{item?.price}</Text>
-            <Text style={styles.originalPrice}>₹{item?.originalPrice}</Text>
-            <View style={styles.discountBadge}>
-              <Text style={styles.discountText}>25% OFF</Text>
-            </View>
-          </View>
+              <View style={styles.contentContainer}>
+                <View style={styles.header}>
+                  <View>
+                    <Text style={styles.brand}>PREMIUM ESSENTIALS</Text>
+                    <Text style={styles.title}>Classic Cotton {type}</Text>
+                  </View>
+                  <Pressable
+                    onPress={() => setIsWishlisted(!isWishlisted)}
+                    style={styles.wishlistButton}
+                  >
+                    <Heart
+                      size={28}
+                      color={isWishlisted ? '#FF3B30' : '#000'}
+                    />
+                  </Pressable>
+                </View>
 
-          <View style={styles.ratingContainer}>
-            <View style={styles.stars}>
-              {[1, 2, 3, 4, 5].map((star) => (
-                <Star
-                  key={star}
-                  size={16}
-                  color={star <= 4 ? '#FFB800' : '#dcdcdc'}
+                <View style={styles.priceContainer}>
+                  <Text style={styles.price}>₹{item?.price}</Text>
+                  <Text style={styles.originalPrice}>₹{item?.originalPrice}</Text>
+                  <View style={styles.discountBadge}>
+                    <Text style={styles.discountText}>25% OFF</Text>
+                  </View>
+                </View>
+
+                <View style={styles.ratingContainer}>
+                  <View style={styles.stars}>
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star
+                        key={star}
+                        size={16}
+                        color={star <= 4 ? '#FFB800' : '#dcdcdc'}
+                      />
+                    ))}
+                  </View>
+                  <Text style={styles.reviewCount}>4.0 (2.5k reviews)</Text>
+                </View>
+
+                <Text style={styles.description}>
+                  Premium quality cotton t-shirt designed for maximum comfort and style. Features a classic fit
+                  with reinforced stitching and premium fabric that gets softer with each wash while maintaining
+                  its shape.
+                </Text>
+
+                <ColorSelector
+                  colors={COLORS}
+                  selectedColor={selectedColor}
+                  onSelectColor={setSelectedColor}
                 />
-              ))}
-            </View>
-            <Text style={styles.reviewCount}>4.0 (2.5k reviews)</Text>
-          </View>
 
-          <Text style={styles.description}>
-            Premium quality cotton t-shirt designed for maximum comfort and style. Features a classic fit
-            with reinforced stitching and premium fabric that gets softer with each wash while maintaining
-            its shape.
-          </Text>
+                <SizeSelector
+                  sizes={SIZES}
+                  selectedSize={selectedSize}
+                  onSelectSize={setSelectedSize}
+                />
 
-          <ColorSelector
-            colors={COLORS}
-            selectedColor={selectedColor}
-            onSelectColor={setSelectedColor}
-          />
+                <View style={styles.quantityContainer}>
+                  <Text style={styles.label}>Quantity</Text>
+                  <View style={styles.quantitySelector}>
+                    <Pressable
+                      onPress={() => handleQuantityChange(false)}
+                      style={styles.quantityButton}
+                    >
+                      <Text style={styles.quantityButtonText}>-</Text>
+                    </Pressable>
+                    <Text style={styles.quantity}>{quantity}</Text>
+                    <Pressable
+                      onPress={() => handleQuantityChange(true)}
+                      style={styles.quantityButton}
+                    >
+                      <Text style={styles.quantityButtonText}>+</Text>
+                    </Pressable>
+                  </View>
+                </View>
 
-          <SizeSelector
-            sizes={SIZES}
-            selectedSize={selectedSize}
-            onSelectSize={setSelectedSize}
-          />
+                <View style={styles.stockInfo}>
+                  <Star name="check-circle" size={20} color="green" />
+                  <Text style={styles.stockText}>In Stock - Ships within 24 hours</Text>
+                </View>
 
-          <View style={styles.quantityContainer}>
-            <Text style={styles.label}>Quantity</Text>
-            <View style={styles.quantitySelector}>
-              <Pressable
-                onPress={() => handleQuantityChange(false)}
-                style={styles.quantityButton}
-              >
-                <Text style={styles.quantityButtonText}>-</Text>
-              </Pressable>
-              <Text style={styles.quantity}>{quantity}</Text>
-              <Pressable
-                onPress={() => handleQuantityChange(true)}
-                style={styles.quantityButton}
-              >
-                <Text style={styles.quantityButtonText}>+</Text>
-              </Pressable>
-            </View>
-          </View>
+                <Pressable style={styles.addToCartButton} onPress={handleAddToCart}>
+                  <Text style={styles.addToCartText}>Add to Cart</Text>
+                </Pressable>
 
-          <View style={styles.stockInfo}>
-            <Star name="check-circle" size={20} color="green" />
-            <Text style={styles.stockText}>In Stock - Ships within 24 hours</Text>
-          </View>
-
-          <Pressable style={styles.addToCartButton} onPress={handleAddToCart}>
-            <Text style={styles.addToCartText}>Add to Cart</Text>
-          </Pressable>
-
-          <View style={styles.deliveryInfo}>
-            <Text style={styles.deliveryTitle}>Free Delivery</Text>
-            <Text style={styles.deliveryText}>
-              Estimated delivery: 2-4 business days
-            </Text>
-          </View>
-        </View>
-        <ReviewsScreen/>
-      </ScrollView>
-    </SafeAreaView>
+                <View style={styles.deliveryInfo}>
+                  <Text style={styles.deliveryTitle}>Free Delivery</Text>
+                  <Text style={styles.deliveryText}>
+                    Estimated delivery: 2-4 business days
+                  </Text>
+                </View>
+              </View>
+              <ReviewsScreen />
+            </ScrollView>
+          </SafeAreaView>
+      }
+    </>
   );
 }
 
