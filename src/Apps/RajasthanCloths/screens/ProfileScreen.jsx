@@ -13,7 +13,7 @@ const MENU_ITEMS = [
 
 export default function ProfileScreen() {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <ScrollView>
         <View style={styles.header}>
           <View style={styles.profileInfo}>
@@ -54,7 +54,7 @@ export default function ProfileScreen() {
           <Text style={styles.logoutButtonText}>Logout</Text>
         </TouchableOpacity>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -62,10 +62,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
+    // backgroundColor: '#E83E8C',
   },
   header: {
     padding: 16,
     backgroundColor: '#E83E8C',
+    paddingTop:70
   },
   profileInfo: {
     flexDirection: 'row',

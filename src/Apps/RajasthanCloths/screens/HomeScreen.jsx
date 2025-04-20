@@ -1,179 +1,137 @@
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-
-const CATEGORIES = [
-  { id: 1, name: 'Women Ethnic', image: 'https://images.unsplash.com/photo-1583391733956-6c74c9e3e1b4?w=500' },
-  { id: 2, name: 'Women Western', image: 'https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?w=500' },
-  { id: 3, name: 'Men', image: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=500' },
-  { id: 4, name: 'Kids', image: 'https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=500' },
-];
-
-const TRENDING_PRODUCTS = [
-  {
-    id: 1,
-    name: 'Floral Print Dress',
-    price: 499,
-    image: 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=500',
-    rating: 4.5,
-    reviews: 2345
-  },
-  {
-    id: 2,
-    name: 'Denim Jacket',
-    price: 899,
-    image: 'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?w=500',
-    rating: 4.2,
-    reviews: 1289
-  },
-  {
-    id: 3,
-    name: 'Cotton T-Shirt',
-    price: 299,
-    image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500',
-    rating: 4.0,
-    reviews: 890
-  },
-];
+import { View, Text, ScrollView, StyleSheet, RefreshControl } from 'react-native';
+import { useState } from 'react';
+import { Search, ShoppingCart } from 'lucide-react-native';
+import CategoryCard from './components/CategoryCard';
 
 export default function HomeScreen() {
-  return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {/* Header */}
-        <View style={styles.header}>
-          <Text style={styles.headerTitle}>Meesho</Text>
-          <Text style={styles.headerSubtitle}>Lowest Prices Best Quality Shopping</Text>
-        </View>
+  const [refreshing, setRefreshing] = useState(false);
 
-        {/* Categories */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Top Categories</Text>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.categoriesContainer}>
-            {CATEGORIES.map((category) => (
-              <TouchableOpacity key={category.id} style={styles.categoryCard}>
-                <Image source={{ uri: category.image }} style={styles.categoryImage} />
-                <Text style={styles.categoryName}>{category.name}</Text>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-        </View>
+  const onRefresh = () => {
+    setRefreshing(true);
+    setTimeout(() => setRefreshing(false), 2000);
+  };
 
-        {/* Trending Products */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Trending Products</Text>
-          <View style={styles.productsGrid}>
-            {TRENDING_PRODUCTS.map((product) => (
-              <TouchableOpacity key={product.id} style={styles.productCard}>
-                <Image source={{ uri: product.image }} style={styles.productImage} />
-                <View style={styles.productInfo}>
-                  <Text style={styles.productName}>{product.name}</Text>
-                  <Text style={styles.productPrice}>₹{product.price}</Text>
-                  <View style={styles.ratingContainer}>
-                    <Text style={styles.rating}>★ {product.rating}</Text>
-                    <Text style={styles.reviews}>{product.reviews} Reviews</Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
-            ))}
-          </View>
-        </View>
+  // Categories for Marwari Wedding Dresses with unique items for each section
+  const Allcategories = [
+    { id: 1, title: 'Luxurious Wedding Dresses', imageUrl: 'https://api.a0.dev/assets/image?text=Luxurious%20Wedding%20Dresses%20with%20gold%20embroidery&aspect=4:5' },
+    { id: 2, title: 'Groom Wedding Sherwanis', imageUrl: 'https://api.a0.dev/assets/image?text=Wedding%20Sherwani%20with%20intricate%20embroidery&aspect=4:5' },
+    { id: 3, title: 'Traditional Marwari Festive Wear', imageUrl: 'https://api.a0.dev/assets/image?text=Traditional%20Marwari%20Ethnic%20Wear%20for%20Festivals&aspect=4:5' },
+    { id: 4, title: 'Fusion Ethnic Wear', imageUrl: 'https://api.a0.dev/assets/image?text=Fusion%20Ethnic%20Wear%20with%20modern%20touches&aspect=4:5' },
+    { id: 5, title: 'Sarees for Weddings', imageUrl: 'https://api.a0.dev/assets/image?text=Beautiful%20Wedding%20Sarees%20with%20embroidery&aspect=4:5' },
+  ];
+
+  const WeddingCollectionategories = [
+    { id: 1, title: 'Exclusive Bridal Lehenga', imageUrl: 'https://api.a0.dev/assets/image?text=Bridal%20Lehenga%20with%20gold%20work&aspect=4:5' },
+    { id: 2, title: 'Dulhan Accessories', imageUrl: 'https://api.a0.dev/assets/image?text=Bridal%20Jewelry%20Set&aspect=4:5' },
+    { id: 3, title: 'Lehengas for Weddings', imageUrl: 'https://api.a0.dev/assets/image?text=Elegant%20Lehenga%20for%20Bride&aspect=4:5' },
+    { id: 4, title: 'Bridal Dupattas', imageUrl: 'https://api.a0.dev/assets/image?text=Bridal%20Dupatta%20with%20work&aspect=4:5' },
+    { id: 5, title: 'Bridal Footwear', imageUrl: 'https://api.a0.dev/assets/image?text=Traditional%20Bridal%20Footwear%20for%20Weddings&aspect=4:5' },
+  ];
+
+  const DulhanWear = [
+    { id: 1, title: 'Bride’s Wedding Lehenga', imageUrl: 'https://api.a0.dev/assets/image?text=Bride%20Lehenga%20in%20Gold%20and%20Red&aspect=4:5' },
+    { id: 2, title: 'Bridal Saree Collection', imageUrl: 'https://api.a0.dev/assets/image?text=Luxury%20Bridal%20Sarees%20with%20Embroidery&aspect=4:5' },
+    { id: 3, title: 'Wedding Blouse Designs', imageUrl: 'https://api.a0.dev/assets/image?text=Wedding%20Blouse%20Designs%20in%20Contemporary%20Style&aspect=4:5' },
+    { id: 4, title: 'Bridal Choli Designs', imageUrl: 'https://api.a0.dev/assets/image?text=Bridal%20Choli%20in%20Red%20and%20Gold&aspect=4:5' },
+    { id: 5, title: 'Bridal Gowns', imageUrl: 'https://api.a0.dev/assets/image?text=Stunning%20Bridal%20Gown%20with%20Intricate%20Designs&aspect=4:5' },
+  ];
+
+  const DulhaWear = [
+    { id: 1, title: 'Wedding Sherwani for Groom', imageUrl: 'https://api.a0.dev/assets/image?text=Luxurious%20Wedding%20Sherwani%20for%20Groom&aspect=4:5' },
+    { id: 2, title: 'Groom’s Turban Collection', imageUrl: 'https://api.a0.dev/assets/image?text=Traditional%20Turban%20for%20Groom&aspect=4:5' },
+    { id: 3, title: 'Designer Kurta for Groom', imageUrl: 'https://api.a0.dev/assets/image?text=Designer%20Kurta%20for%20Wedding%20Groom&aspect=4:5' },
+    { id: 4, title: 'Groom’s Wedding Footwear', imageUrl: 'https://api.a0.dev/assets/image?text=Traditional%20Footwear%20for%20Groom&aspect=4:5' },
+    { id: 5, title: 'Groom Accessories', imageUrl: 'https://api.a0.dev/assets/image?text=Groom%20Accessories%20like%20Neckpieces%20and%20Rings&aspect=4:5' },
+  ];
+
+  const TraditionalMarwari = [
+    { id: 1, title: 'Traditional Marwari Kurta', imageUrl: 'https://api.a0.dev/assets/image?text=Traditional%20Marwari%20Kurta%20in%20Red%20and%20Gold&aspect=4:5' },
+    { id: 2, title: 'Marwari Wedding Dupatta', imageUrl: 'https://api.a0.dev/assets/image?text=Marwari%20Wedding%20Dupatta%20with%20work&aspect=4:5' },
+    { id: 3, title: 'Marwari Bridal Jewelry', imageUrl: 'https://api.a0.dev/assets/image?text=Traditional%20Marwari%20Jewelry%20for%20Bride&aspect=4:5' },
+    { id: 4, title: 'Marwari Festive Sarees', imageUrl: 'https://api.a0.dev/assets/image?text=Marwari%20Saree%20Collection%20for%20Festivals&aspect=4:5' },
+    { id: 5, title: 'Marwari Wedding Shawls', imageUrl: 'https://api.a0.dev/assets/image?text=Traditional%20Marwari%20Wedding%20Shawls%20for%20Groom%20and%20Bride&aspect=4:5' },
+  ];
+
+  // Function to render category sections
+  const renderCategorySection = (categoryList, sectionTitle) => (
+    <>
+      <Text style={styles.sectionTitle}>{sectionTitle}</Text>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.categoryContainer}>
+        {categoryList.map((category) => (
+          <CategoryCard
+            key={category.id}
+            title={category.title}
+            imageUrl={category.imageUrl}
+            onPress={() => {}}
+            label={true}
+          />
+        ))}
       </ScrollView>
-    </SafeAreaView>
+    </>
+  );
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Marwari Dresses</Text>
+        <View style={styles.headerIcons}>
+          <Search size={24} color="#333" style={styles.icon} />
+          <ShoppingCart size={24} color="#333" style={styles.icon} />
+        </View>
+      </View>
+
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+      >
+        {renderCategorySection(Allcategories, 'Wedding Dress Collections')}
+        {renderCategorySection(WeddingCollectionategories, 'Exclusive Bridal Lehengas')}
+        {renderCategorySection(DulhanWear, 'Bridal Accessories & Jewelry')}
+        {renderCategorySection(DulhaWear, 'Groom’s Wedding Essentials')}
+        {renderCategorySection(TraditionalMarwari, 'Traditional Marwari Festive Wear')}
+        {renderCategorySection(Allcategories, 'Fusion & Contemporary Ethnic Wear')}
+        {renderCategorySection(WeddingCollectionategories, 'Groom’s Luxury Sherwanis')}
+        {renderCategorySection(DulhanWear, 'Festive Saree Collections')}
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#fff',
+    paddingTop: 60,
   },
   header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: 16,
-    backgroundColor: '#E83E8C',
+    backgroundColor: 'white',
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
   },
   headerTitle: {
-    fontFamily: 'Poppins_700Bold',
     fontSize: 24,
-    color: '#ffffff',
+    fontWeight: 'bold',
+    color: '#333',
   },
-  headerSubtitle: {
-    fontFamily: 'Poppins_400Regular',
-    fontSize: 14,
-    color: '#ffffff',
-    marginTop: 4,
+  headerIcons: {
+    flexDirection: 'row',
   },
-  section: {
-    padding: 16,
+  icon: {
+    marginLeft: 20,
   },
   sectionTitle: {
-    fontFamily: 'Poppins_600SemiBold',
-    fontSize: 18,
-    marginBottom: 16,
+    fontSize: 20,
+    fontWeight: '600',
+    marginHorizontal: 16,
+    marginTop: 20,
+    marginBottom: 12,
+    color: '#333',
   },
-  categoriesContainer: {
-    marginHorizontal: -16,
-    paddingHorizontal: 16,
-  },
-  categoryCard: {
-    marginRight: 16,
-    width: 120,
-  },
-  categoryImage: {
-    width: 120,
-    height: 120,
-    borderRadius: 8,
-  },
-  categoryName: {
-    fontFamily: 'Poppins_500Medium',
-    fontSize: 14,
-    marginTop: 8,
-    textAlign: 'center',
-  },
-  productsGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginHorizontal: -8,
-  },
-  productCard: {
-    width: '50%',
-    padding: 8,
-  },
-  productImage: {
-    width: '100%',
-    height: 200,
-    borderRadius: 8,
-  },
-  productInfo: {
-    padding: 8,
-  },
-  productName: {
-    fontFamily: 'Poppins_500Medium',
-    fontSize: 14,
-  },
-  productPrice: {
-    fontFamily: 'Poppins_600SemiBold',
-    fontSize: 16,
-    color: '#E83E8C',
-    marginTop: 4,
-  },
-  ratingContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 4,
-  },
-  rating: {
-    backgroundColor: '#4CAF50',
-    color: '#ffffff',
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    borderRadius: 4,
-    fontSize: 12,
-    fontFamily: 'Poppins_500Medium',
-  },
-  reviews: {
-    marginLeft: 8,
-    fontSize: 12,
-    color: '#666666',
-    fontFamily: 'Poppins_400Regular',
+  categoryContainer: {
+    paddingLeft: 8,
   },
 });

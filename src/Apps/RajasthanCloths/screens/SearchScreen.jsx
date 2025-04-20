@@ -1,183 +1,235 @@
+import { View, Text, ScrollView, StyleSheet, RefreshControl } from 'react-native';
 import { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, FlatList, Image, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Search as SearchIcon } from 'lucide-react-native';
+import CategoryCard from './components/CategoryCard';
+import ProductCard from './components/ProductCard';
+import { Search, ShoppingCart } from 'lucide-react-native';
 
-const TRENDING_SEARCHES = [
-  'Summer Dresses',
-  'Men\'s T-Shirts',
-  'Kids Party Wear',
-  'Ethnic Wear',
-  'Casual Shoes',
-];
+export default function HomeScreen() {
+  const [refreshing, setRefreshing] = useState(false);
 
-const RECENT_SEARCHES = [
-  'Floral Print Dress',
-  'Cotton T-Shirt',
-  'Denim Jacket',
-];
+  // Extended the featuredProducts array to include 20 products
+  const featuredProducts = [
+    {
+      id: 1,
+      title: 'Bandhani Print Silk Saree',
+      price: 2499,
+      originalPrice: 4999,
+      imageUrl: 'https://api.a0.dev/assets/image?text=elegant%20bandhani%20print%20silk%20saree%20in%20rich%20colors&aspect=4:5',
+    },
+    {
+      id: 2,
+      title: 'Men\'s Traditional Kurta Set',
+      price: 1899,
+      originalPrice: 3299,
+      imageUrl: 'https://api.a0.dev/assets/image?text=mens%20traditional%20rajasthani%20kurta%20set%20with%20ethnic%20prints&aspect=4:5',
+    },
+    {
+      id: 3,
+      title: 'Designer Lehenga Choli',
+      price: 3999,
+      originalPrice: 7999,
+      imageUrl: 'https://api.a0.dev/assets/image?text=designer%20rajasthani%20lehenga%20choli%20with%20mirror%20work&aspect=4:5',
+    },
+    {
+      id: 4,
+      title: 'Kids Dhoti Kurta Set',
+      price: 999,
+      originalPrice: 1999,
+      imageUrl: 'https://api.a0.dev/assets/image?text=kids%20traditional%20dhoti%20kurta%20set%20festive%20wear&aspect=4:5',
+    },
+    {
+      id: 5,
+      title: 'Rajasthani Anarkali Dress',
+      price: 2899,
+      originalPrice: 5499,
+      imageUrl: 'https://api.a0.dev/assets/image?text=rajasthani%20anarkali%20dress%20with%20intricate%20work&aspect=4:5',
+    },
+    {
+      id: 6,
+      title: 'Embroidered Chikan Kurta',
+      price: 1799,
+      originalPrice: 3499,
+      imageUrl: 'https://api.a0.dev/assets/image?text=embroidered%20chikan%20kurta%20for%20women&aspect=4:5',
+    },
+    {
+      id: 7,
+      title: 'Silk Dupatta with Gold Work',
+      price: 1299,
+      originalPrice: 2499,
+      imageUrl: 'https://api.a0.dev/assets/image?text=silk%20dupatta%20with%20gold%20work%20design&aspect=4:5',
+    },
+    {
+      id: 8,
+      title: 'Traditional Marwari Sherwani',
+      price: 4999,
+      originalPrice: 7999,
+      imageUrl: 'https://api.a0.dev/assets/image?text=traditional%20marwari%20sherwani%20for%20men&aspect=4:5',
+    },
+    {
+      id: 9,
+      title: 'Designer Lehenga Dupatta Set',
+      price: 5499,
+      originalPrice: 8999,
+      imageUrl: 'https://api.a0.dev/assets/image?text=designer%20lehenga%20dupatta%20set%20for%20women&aspect=4:5',
+    },
+    {
+      id: 10,
+      title: 'Traditional Marwari Saree Set',
+      price: 3999,
+      originalPrice: 6999,
+      imageUrl: 'https://api.a0.dev/assets/image?text=traditional%20marwari%20saree%20set%20with%20blouse&aspect=4:5',
+    },
+    {
+      id: 11,
+      title: 'Kurta Pajama Set for Men',
+      price: 1599,
+      originalPrice: 2999,
+      imageUrl: 'https://api.a0.dev/assets/image?text=kurta%20pajama%20set%20for%20men%20traditional%20wear&aspect=4:5',
+    },
+    {
+      id: 12,
+      title: 'Kids Ghagras for Festivals',
+      price: 1499,
+      originalPrice: 2999,
+      imageUrl: 'https://api.a0.dev/assets/image?text=kids%20ghagras%20for%20festivals%20bright%20colors&aspect=4:5',
+    },
+    {
+      id: 13,
+      title: 'Festive Marwari Lehenga',
+      price: 4999,
+      originalPrice: 8999,
+      imageUrl: 'https://api.a0.dev/assets/image?text=festive%20marwari%20lehenga%20for%20special%20occasions&aspect=4:5',
+    },
+    {
+      id: 14,
+      title: 'Traditional Marwari Kurta',
+      price: 1899,
+      originalPrice: 3499,
+      imageUrl: 'https://api.a0.dev/assets/image?text=traditional%20marwari%20kurta%20set%20for%20men&aspect=4:5',
+    },
+    {
+      id: 15,
+      title: 'Embroidered Wedding Lehenga',
+      price: 7999,
+      originalPrice: 12999,
+      imageUrl: 'https://api.a0.dev/assets/image?text=embroidered%20wedding%20lehenga%20set%20for%20bride&aspect=4:5',
+    },
+    {
+      id: 16,
+      title: 'Marwari Wedding Sherwani',
+      price: 5999,
+      originalPrice: 9999,
+      imageUrl: 'https://api.a0.dev/assets/image?text=marwari%20wedding%20sherwani%20for%20groom&aspect=4:5',
+    },
+    {
+      id: 17,
+      title: 'Marwari Dupatta for Women',
+      price: 1299,
+      originalPrice: 1999,
+      imageUrl: 'https://api.a0.dev/assets/image?text=marwari%20dupatta%20for%20women%20traditional%20design&aspect=4:5',
+    },
+    {
+      id: 18,
+      title: 'Ethnic Floral Kurtis',
+      price: 1599,
+      originalPrice: 2899,
+      imageUrl: 'https://api.a0.dev/assets/image?text=ethnic%20floral%20kurtis%20with%20traditional%20design&aspect=4:5',
+    },
+    {
+      id: 19,
+      title: 'Rajasthani Bandhej Dupatta',
+      price: 999,
+      originalPrice: 1999,
+      imageUrl: 'https://api.a0.dev/assets/image?text=rajasthani%20bandhej%20dupatta%20for%20women&aspect=4:5',
+    },
+    {
+      id: 20,
+      title: 'Kanchipuram Silk Saree',
+      price: 7999,
+      originalPrice: 12999,
+      imageUrl: 'https://api.a0.dev/assets/image?text=kanchipuram%20silk%20saree%20with%20golden%20border&aspect=4:5',
+    },
+  ];
 
-const SEARCH_RESULTS = [
-  {
-    id: 1,
-    name: 'Floral Print Dress',
-    price: 499,
-    image: 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=500',
-    rating: 4.5,
-  },
-  {
-    id: 2,
-    name: 'Denim Jacket',
-    price: 899,
-    image: 'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?w=500',
-    rating: 4.2,
-  },
-];
-
-export default function SearchScreen() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [isSearching, setIsSearching] = useState(false);
+  const onRefresh = () => {
+    setRefreshing(true);
+    setTimeout(() => setRefreshing(false), 2000);
+  };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.header}>
-        <View style={styles.searchContainer}>
-          <SearchIcon size={20} color="#666666" style={styles.searchIcon} />
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Search for Products, Brands and More"
-            value={searchQuery}
-            onChangeText={(text) => {
-              setSearchQuery(text);
-              setIsSearching(text.length > 0);
-            }}
-          />
+        <Text style={styles.headerTitle}>Top Trending Dresses</Text>
+        <View style={styles.headerIcons}>
+          <Search size={24} color="#333" style={styles.icon} />
+          <ShoppingCart size={24} color="#333" style={styles.icon} />
         </View>
       </View>
 
-      {isSearching ? (
-        <FlatList
-          data={SEARCH_RESULTS}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <TouchableOpacity style={styles.resultItem}>
-              <Image source={{ uri: item.image }} style={styles.resultImage} />
-              <View style={styles.resultInfo}>
-                <Text style={styles.resultName}>{item.name}</Text>
-                <Text style={styles.resultPrice}>₹{item.price}</Text>
-                <Text style={styles.resultRating}>★ {item.rating}</Text>
-              </View>
-            </TouchableOpacity>
-          )}
-        />
-      ) : (
-        <View style={styles.content}>
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Recent Searches</Text>
-            {RECENT_SEARCHES.map((search, index) => (
-              <TouchableOpacity key={index} style={styles.searchItem}>
-                <SearchIcon size={16} color="#666666" />
-                <Text style={styles.searchText}>{search}</Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Trending Searches</Text>
-            {TRENDING_SEARCHES.map((search, index) => (
-              <TouchableOpacity key={index} style={styles.searchItem}>
-                <SearchIcon size={16} color="#666666" />
-                <Text style={styles.searchText}>{search}</Text>
-              </TouchableOpacity>
-            ))}
-          </View>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+      >
+        <Text style={styles.sectionTitle}>Featured Collection</Text>
+        <View style={styles.productsGrid}>
+          {featuredProducts.map((product) => (
+            <ProductCard
+              key={product.id}
+              title={product.title}
+              price={product.price}
+              originalPrice={product.originalPrice}
+              imageUrl={product.imageUrl}
+              onPress={() => {}}
+            />
+          ))}
         </View>
-      )}
-    </SafeAreaView>
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#fff',
+    paddingTop: 60,
   },
   header: {
-    padding: 16,
-    backgroundColor: '#E83E8C',
-  },
-  searchContainer: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#ffffff',
-    borderRadius: 8,
-    padding: 8,
-  },
-  searchIcon: {
-    marginRight: 8,
-  },
-  searchInput: {
-    flex: 1,
-    fontFamily: 'Poppins_400Regular',
-    fontSize: 14,
-  },
-  content: {
     padding: 16,
+    backgroundColor: 'white',
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
   },
-  section: {
-    marginBottom: 24,
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#333',
+  },
+  headerIcons: {
+    flexDirection: 'row',
+  },
+  icon: {
+    marginLeft: 20,
   },
   sectionTitle: {
-    fontFamily: 'Poppins_600SemiBold',
-    fontSize: 16,
-    marginBottom: 16,
+    fontSize: 20,
+    fontWeight: '600',
+    marginHorizontal: 16,
+    marginTop: 20,
+    marginBottom: 12,
+    color: '#333',
   },
-  searchItem: {
+  categoryContainer: {
+    paddingLeft: 8,
+  },
+  productsGrid: {
     flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
-  },
-  searchText: {
-    fontFamily: 'Poppins_400Regular',
-    fontSize: 14,
-    marginLeft: 12,
-  },
-  resultItem: {
-    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
     padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
-  },
-  resultImage: {
-    width: 80,
-    height: 80,
-    borderRadius: 8,
-  },
-  resultInfo: {
-    marginLeft: 16,
-    flex: 1,
-  },
-  resultName: {
-    fontFamily: 'Poppins_500Medium',
-    fontSize: 14,
-  },
-  resultPrice: {
-    fontFamily: 'Poppins_600SemiBold',
-    fontSize: 16,
-    color: '#E83E8C',
-    marginTop: 4,
-  },
-  resultRating: {
-    backgroundColor: '#4CAF50',
-    color: '#ffffff',
-    alignSelf: 'flex-start',
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    borderRadius: 4,
-    marginTop: 4,
-    fontSize: 12,
-    fontFamily: 'Poppins_500Medium',
   },
 });

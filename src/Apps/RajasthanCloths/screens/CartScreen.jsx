@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { Minus, Plus, Trash2 } from 'lucide-react-native';
 
 const CART_ITEMS = [
@@ -42,7 +41,7 @@ export default function CartScreen() {
   const totalAmount = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Shopping Cart</Text>
         <Text style={styles.itemCount}>{cartItems.length} Items</Text>
@@ -92,7 +91,7 @@ export default function CartScreen() {
           <Text style={styles.checkoutButtonText}>Proceed to Checkout</Text>
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -104,6 +103,7 @@ const styles = StyleSheet.create({
   header: {
     padding: 16,
     backgroundColor: '#E83E8C',
+    paddingTop:70
   },
   headerTitle: {
     fontFamily: 'Poppins_700Bold',

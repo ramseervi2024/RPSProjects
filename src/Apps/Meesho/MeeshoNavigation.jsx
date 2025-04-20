@@ -9,7 +9,7 @@ import SearchScreen from './screens/SearchScreen';
 
 const Tab = createBottomTabNavigator();
 
-export default function RajasthanClothsNavigation() {
+export default function MeeshoNavigation() {
   return (
     <Tab.Navigator
     screenOptions={{

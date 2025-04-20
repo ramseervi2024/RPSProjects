@@ -72,8 +72,8 @@ import GrowTradingNavigation from '../Apps/GrowTrading/GrowTradingNavigation';
 import TentRentalNavigation from '../Apps/TentRental/TentRentalNavigation';
 import ToolMartNavigation from '../Apps/ToolMart/ToolMartNavigation';
 import VillageHubNavigation from '../Apps/VillageHub/VillageHubNavigation';
-import FarmerHelperNavigation from '../Apps/FarmerHelper/FarmerHelperNavigation';
-import RajasthanClothsNavigation from '../Apps/Meesho/MeeshoNavigation';
+import FarmerHelperNavigation from '../Apps/FarmerHelper/FarmerHelperNavigation'; 
+import RajasthanClothsNavigation from '../Apps/RajasthanCloths/RajasthanClothsNavigation';
 
 const AllAppNav = createStackNavigator();
 

@@ -9,7 +9,7 @@ import SearchScreen from './screens/SearchScreen';
 
 const Tab = createBottomTabNavigator();
 
-export default function MeeshoNavigation() {
+export default function RajasthanClothsNavigation() {
   return (
     <Tab.Navigator
     screenOptions={{
@@ -17,7 +17,7 @@ export default function MeeshoNavigation() {
         backgroundColor: '#ffffff',
         borderTopWidth: 1,
         borderTopColor: '#f0f0f0',
-        height: 60,
+        height: 70,
         paddingBottom: 8,
       },
       tabBarActiveTintColor: '#E83E8C',

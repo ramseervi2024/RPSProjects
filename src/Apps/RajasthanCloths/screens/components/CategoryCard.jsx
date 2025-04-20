@@ -5,12 +5,15 @@ export default function CategoryCard({ title, imageUrl, onPress }) {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image source={{ uri: imageUrl }} style={styles.image} />
-      {/* <LinearGradient
+      <LinearGradient
         colors={['transparent', 'rgba(0,0,0,0.8)']}
         style={styles.gradient}
-      > */}
-        <Text style={styles.title}>{title}</Text>
-      {/* </LinearGradient> */}
+      >
+        <Text style={styles.title}>
+          {title.split(' ').slice(0, 10).join(' ')}
+          {title.split(' ').length > 10 ? '...' : ''}
+        </Text>
+      </LinearGradient>
     </TouchableOpacity>
   );
 }
@@ -23,6 +26,8 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     overflow: 'hidden',
     backgroundColor: '#f0f0f0',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   image: {
     width: '100%',
@@ -34,12 +39,14 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: '50%',
-    justifyContent: 'flex-end',
-    padding: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   title: {
     color: 'white',
     fontSize: 16,
     fontWeight: '600',
+    padding: 12,
+    textAlign: 'center',  // Make sure the text is centered horizontally
   },
 });
