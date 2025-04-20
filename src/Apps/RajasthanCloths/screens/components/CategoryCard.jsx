@@ -1,9 +1,15 @@
+import { useNavigation } from '@react-navigation/native';
+import { Navigation } from 'lucide-react-native';
 import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 export default function CategoryCard({ title, imageUrl, onPress }) {
+  const navigation=useNavigation()
+  const navigatetoproduct=()=>{
+    navigation.navigate('ProductDetailsScreen', {type:1})
+  }
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
+    <TouchableOpacity style={styles.container} onPress={navigatetoproduct}>
       <Image source={{ uri: imageUrl }} style={styles.image} />
       <LinearGradient
         colors={['transparent', 'rgba(0,0,0,0.8)']}

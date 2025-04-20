@@ -4,7 +4,6 @@ import { Home, Search, ShoppingCart, User, Grid } from 'lucide-react-native';
 import CartScreen from './screens/CartScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import HomeScreen from './screens/HomeScreen';
-import CategoriesScreen from './screens/CategoriesScreen';
 import SearchScreen from './screens/SearchScreen';
 import AllCategoeires from './screens/AllCategoeires';
 
