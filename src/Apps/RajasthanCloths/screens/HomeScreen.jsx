@@ -13,16 +13,15 @@ export default function HomeScreen() {
 
   // Categories for Marwari Wedding Dresses with unique items for each section
   const Allcategories = [
-    { id: 1, title: 'Luxurious Wedding Dresses', imageUrl: 'https://api.a0.dev/assets/image?text=Luxurious%20Wedding%20Dresses%20with%20gold%20embroidery&aspect=4:5' },
+    { id: 1, title: 'Luxurious Wedding Dresses', imageUrl: 'https://images.unsplash.com/photo-1677691257363-eebd2abeafec?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZHVsaGFufGVufDB8fDB8fHww' },
     { id: 2, title: 'Groom Wedding Sherwanis', imageUrl: 'https://api.a0.dev/assets/image?text=Wedding%20Sherwani%20with%20intricate%20embroidery&aspect=4:5' },
     { id: 3, title: 'Traditional Marwari Festive Wear', imageUrl: 'https://api.a0.dev/assets/image?text=Traditional%20Marwari%20Ethnic%20Wear%20for%20Festivals&aspect=4:5' },
-    { id: 4, title: 'Fusion Ethnic Wear', imageUrl: 'https://api.a0.dev/assets/image?text=Fusion%20Ethnic%20Wear%20with%20modern%20touches&aspect=4:5' },
     { id: 5, title: 'Sarees for Weddings', imageUrl: 'https://api.a0.dev/assets/image?text=Beautiful%20Wedding%20Sarees%20with%20embroidery&aspect=4:5' },
   ];
 
   const WeddingCollectionategories = [
     { id: 1, title: 'Exclusive Bridal Lehenga', imageUrl: 'https://api.a0.dev/assets/image?text=Bridal%20Lehenga%20with%20gold%20work&aspect=4:5' },
-    { id: 2, title: 'Dulhan Accessories', imageUrl: 'https://api.a0.dev/assets/image?text=Bridal%20Jewelry%20Set&aspect=4:5' },
+    { id: 2, title: 'Dulhan Accessories', imageUrl: 'https://images.unsplash.com/photo-1714236856260-66606362af13?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDI0fHx8ZW58MHx8fHx8' },
     { id: 3, title: 'Lehengas for Weddings', imageUrl: 'https://api.a0.dev/assets/image?text=Elegant%20Lehenga%20for%20Bride&aspect=4:5' },
     { id: 4, title: 'Bridal Dupattas', imageUrl: 'https://api.a0.dev/assets/image?text=Bridal%20Dupatta%20with%20work&aspect=4:5' },
     { id: 5, title: 'Bridal Footwear', imageUrl: 'https://api.a0.dev/assets/image?text=Traditional%20Bridal%20Footwear%20for%20Weddings&aspect=4:5' },
@@ -51,6 +50,37 @@ export default function HomeScreen() {
     { id: 4, title: 'Marwari Festive Sarees', imageUrl: 'https://api.a0.dev/assets/image?text=Marwari%20Saree%20Collection%20for%20Festivals&aspect=4:5' },
     { id: 5, title: 'Marwari Wedding Shawls', imageUrl: 'https://api.a0.dev/assets/image?text=Traditional%20Marwari%20Wedding%20Shawls%20for%20Groom%20and%20Bride&aspect=4:5' },
   ];
+
+  const  shadikekapadeforreletvie = [
+    { 
+      id: 1, 
+      title: 'Rajasthani Ghagra Choli', 
+      imageUrl: 'https://api.a0.dev/assets/image?text=Rajasthani%20Ghagra%20Choli%20in%20Bright%20Colors&aspect=4:5' 
+    },
+    { 
+      id: 10, 
+      title: 'Rajputi Saafa (Turban)', 
+      imageUrl: 'https://images.unsplash.com/photo-1706185651641-70fde5591275?q=80&w=2400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' 
+    },
+    { 
+      id: 2, 
+      title: 'Rajputi Poshak', 
+      imageUrl: 'https://images.unsplash.com/photo-1683600209750-e01db74c47ca?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDQzfHx8ZW58MHx8fHx8' 
+    },
+    { 
+      id: 4, 
+      title: 'Rajasthani Sherwani for Men', 
+      imageUrl: 'https://api.a0.dev/assets/image?text=Rajasthani%20Sherwani%20for%20Men%20in%20Golden%20and%20Cream%20Colors&aspect=4:5' 
+    },
+    { 
+      id: 9, 
+      title: 'Rajasthani Lehenga Choli', 
+      imageUrl: 'https://api.a0.dev/assets/image?text=Rajasthani%20Lehenga%20Choli%20for%20Bride%20in%20Maroon%20and%20Gold&aspect=4:5' 
+    },
+    
+  ];
+  
+
 
   // Function to render category sections
   const renderCategorySection = (categoryList, sectionTitle) => (
@@ -84,14 +114,12 @@ export default function HomeScreen() {
         showsVerticalScrollIndicator={false}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
       >
+        {renderCategorySection(shadikekapadeforreletvie, 'Cloths Collections')}
         {renderCategorySection(Allcategories, 'Wedding Dress Collections')}
         {renderCategorySection(WeddingCollectionategories, 'Exclusive Bridal Lehengas')}
         {renderCategorySection(DulhanWear, 'Bridal Accessories & Jewelry')}
         {renderCategorySection(DulhaWear, 'Groom’s Wedding Essentials')}
         {renderCategorySection(TraditionalMarwari, 'Traditional Marwari Festive Wear')}
-        {renderCategorySection(Allcategories, 'Fusion & Contemporary Ethnic Wear')}
-        {renderCategorySection(WeddingCollectionategories, 'Groom’s Luxury Sherwanis')}
-        {renderCategorySection(DulhanWear, 'Festive Saree Collections')}
       </ScrollView>
     </View>
   );

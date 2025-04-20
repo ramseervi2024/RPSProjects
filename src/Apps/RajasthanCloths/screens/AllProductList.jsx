@@ -66,7 +66,7 @@ export default function AllProductList({ route }) {
 
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 2000); // 👈 2 seconds loader
+    const timer = setTimeout(() => setIsLoading(false), 1000); // 👈 2 seconds loader
     return () => clearTimeout(timer);
   }, []);
 

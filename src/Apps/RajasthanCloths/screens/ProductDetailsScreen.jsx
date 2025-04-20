@@ -14,6 +14,7 @@ import ColorSelector from './components/ColorSelector';
 import { toast } from 'sonner-native';
 import ReviewsScreen from './ReviewsScreen';
 import LoaderTwo from './LoaderTwo';
+import { useNavigation } from '@react-navigation/native';
 
 export default function ProductDetailsScreen({ route }) {
   // Destructure the passed parameter
@@ -52,23 +53,28 @@ export default function ProductDetailsScreen({ route }) {
   const [selectedColor, setSelectedColor] = useState('');
   const [isWishlisted, setIsWishlisted] = useState(false);
 
-  const handleAddToCart = () => {
-    if (!selectedSize) {
-      toast.error('Please select a size');
-      return;
-    }
-    if (!selectedColor) {
-      toast.error('Please select a color');
-      return;
-    }
-    toast.success('Added to cart successfully!');
-  };
+  const navigation=useNavigation()
 
-  const handleQuantityChange = (increment) => {
-    setQuantity((prev) => {
-      const newQuantity = increment ? prev + 1 : prev - 1;
-      return Math.max(1, Math.min(newQuantity, 10));
-    });
+  const handleAddToCart = () => {
+  //   if (!selectedSize) {
+  //     toast.error('Please select a size');
+  //     return;
+  //   }
+  //   if (!selectedColor) {
+  //     toast.error('Please select a color');
+  //     return;
+  //   }
+  //   toast.success('Added to cart successfully!');
+  // };
+
+  // const handleQuantityChange = (increment) => {
+  //   setQuantity((prev) => {
+  //     const newQuantity = increment ? prev + 1 : prev - 1;
+  //     return Math.max(1, Math.min(newQuantity, 10));
+  //   });
+  
+  navigation.navigate('DeliveryDetailsScreen')
+
   };
 
 
@@ -76,7 +82,7 @@ export default function ProductDetailsScreen({ route }) {
 
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 2000); // 👈 2 seconds loader
+    const timer = setTimeout(() => setIsLoading(false), 1000); // 👈 2 seconds loader
     return () => clearTimeout(timer);
   }, []);
 
