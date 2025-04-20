@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, StyleSheet, RefreshControl } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, RefreshControl, Platform } from 'react-native';
 import { useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CategoryCard from './components/CategoryCard';
@@ -107,7 +107,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingTop: 60,
+    paddingTop: Platform.OS == 'ios' ? 70 : 30
+
   },
   header: {
     flexDirection: 'row',

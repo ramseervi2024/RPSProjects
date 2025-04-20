@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ChevronRight, Package, Heart, MapPin, CreditCard, Settings, HelpCircle } from 'lucide-react-native';
 
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   header: {
     padding: 16,
     backgroundColor: '#E83E8C',
-    paddingTop:70
+    paddingTop:Platform.OS=='ios'? 70:50
   },
   profileInfo: {
     flexDirection: 'row',
