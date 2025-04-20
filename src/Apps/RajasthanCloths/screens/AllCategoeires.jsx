@@ -5,7 +5,7 @@ const categories = [
   {
     id: 1,
     name: 'Wedding Collection',
-    imageUrl: 'https://api.a0.dev/assets/image?text=Luxurious%20Wedding%20Dresses%20with%20gold%20embroidery&aspect=4:5',
+    imageUrl: 'https://images.unsplash.com/photo-1617288991572-9e8755a88209?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDI0fHx8ZW58MHx8fHx8',
     color: '#E53935'
   },
   {
@@ -23,13 +23,13 @@ const categories = [
   {
     id: 4,
     name: 'Traditional Marwari Wear',
-    imageUrl: 'https://api.a0.dev/assets/image?text=Traditional%20Marwari%20Ethnic%20Wear%20for%20Festivals&aspect=4:5',
+    imageUrl: 'https://images.unsplash.com/photo-1627913755902-dddc0b4c8c63?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D',
     color: '#FB8C00'
   },
   {
     id: 5,
     name: 'Fashion Ethnic Wear',
-    imageUrl: 'https://api.a0.dev/assets/image?text=Fusion%20Ethnic%20Wear%20with%20modern%20touches&aspect=4:5',
+    imageUrl: 'https://images.unsplash.com/photo-1654764746225-e63f5e90facd?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDIxfHx8ZW58MHx8fHx8',
     color: '#EC407A'
   },
   {
@@ -53,13 +53,13 @@ const categories = [
   {
     id: 9,
     name: 'Bridal Collection',
-    imageUrl: 'https://api.a0.dev/assets/image?text=Bridal%20Collection%20with%20luxury%20embroidery&aspect=4:5',
+    imageUrl: 'https://images.unsplash.com/photo-1654764746221-7bc58ef4dbad?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDExfHx8ZW58MHx8fHx8',
     color: '#F57C00'
   },
   {
     id: 10,
     name: 'Wedding Accessories',
-    imageUrl: 'https://api.a0.dev/assets/image?text=Wedding%20Accessories%20for%20your%20special%20day&aspect=4:5',
+    imageUrl: 'https://images.unsplash.com/photo-1617633150878-7df1d12a9a57?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE1fHx8ZW58MHx8fHx8',
     color: '#1976D2'
   },
 ];
@@ -83,7 +83,7 @@ export default function AllCategories() {
               <TouchableOpacity key={category.id} style={styles.categoryCard} onPress={() => { navigatetoproduct(category) }}>
                 <View style={styles.iconContainer}>
                   <Image source={{ uri: category.imageUrl }} style={styles.categoryImage} />
-                </View>
+                </View> 
                 <Text style={styles.categoryName}>{category.name}</Text>
               </TouchableOpacity>
             );
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   },
   header: {
     padding: 20,
-    paddingTop: 60,
+    paddingTop: 70,
     backgroundColor: '#fff',
   },
   headerTitle: {
@@ -118,6 +118,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     padding: 20,
+    paddingTop: 0,
   },
   grid: {
     flexDirection: 'row',
@@ -136,6 +137,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+    borderWidth:0.4,
+    borderColor:'gray'
   },
   iconContainer: {
     width: '100%',

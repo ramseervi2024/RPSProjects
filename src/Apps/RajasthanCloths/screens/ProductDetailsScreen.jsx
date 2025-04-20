@@ -33,11 +33,14 @@ export default function ProductDetailsScreen({ route }) {
   
   const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
   const COLORS = [
-    { name: 'White', code: '#FFFFFF' },
-    { name: 'Black', code: '#000000' },
-    { name: 'Navy', code: '#000080' },
-    { name: 'Gray', code: '#808080' },
+    
+    { name: 'Dark Red', code: '#8B0000' },
+    { name: 'Royal Purple', code: '#6A0DAD' },
+    { name: 'Gray', code: '#708090' },
+    { name: 'Dark Orange', code: '#FF8C00' },
+    { name: 'Wheat', code: '#F5DEB3' },
   ];
+  
   
 
   console.log(item, type, 'typetypetype');
@@ -89,8 +92,8 @@ export default function ProductDetailsScreen({ route }) {
           </View>
 
           <View style={styles.priceContainer}>
-            <Text style={styles.price}>₹2000</Text>
-            <Text style={styles.originalPrice}>₹500</Text>
+            <Text style={styles.price}>₹{item?.price}</Text>
+            <Text style={styles.originalPrice}>₹{item?.originalPrice}</Text>
             <View style={styles.discountBadge}>
               <Text style={styles.discountText}>25% OFF</Text>
             </View>
