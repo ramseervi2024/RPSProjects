@@ -1,7 +1,13 @@
 
 export const business = [
     {
-        "id": 10011,
+        "id": 10032,
+        "label": "Loader Page App",
+        "value": " This app will include features like local news, events, services, and community discussions",
+        "appurl": "LoaderPage"
+    },
+    {
+        "id": 10031,
         "label": "Rajasthan cloths",
         "value": " This app will include features like local news, events, services, and community discussions",
         "appurl": "RajasthanCloths"
