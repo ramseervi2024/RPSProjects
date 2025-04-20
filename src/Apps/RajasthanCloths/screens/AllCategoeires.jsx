@@ -83,7 +83,7 @@ export default function AllCategories() {
               <TouchableOpacity key={category.id} style={styles.categoryCard} onPress={() => { navigatetoproduct(category) }}>
                 <View style={styles.iconContainer}>
                   <Image source={{ uri: category.imageUrl }} style={styles.categoryImage} />
-                </View> 
+                </View>
                 <Text style={styles.categoryName}>{category.name}</Text>
               </TouchableOpacity>
             );
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   },
   header: {
     padding: 20,
-    paddingTop: 70,
+    paddingTop: Platform.OS == 'ios' ? 80 : 30,
     backgroundColor: '#fff',
   },
   headerTitle: {
@@ -137,8 +137,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
-    borderWidth:0.4,
-    borderColor:'gray'
+    borderWidth: 0.4,
+    borderColor: 'gray'
   },
   iconContainer: {
     width: '100%',

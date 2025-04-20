@@ -98,7 +98,7 @@ export default function ProductDetailsScreen({ route }) {
                 <View style={styles.header}>
                   <View>
                     <Text style={styles.brand}>PREMIUM ESSENTIALS</Text>
-                    <Text style={styles.title}>Classic Cotton {type}</Text>
+                    <Text style={styles.title}>{type} Classic Cotton</Text>
                   </View>
                   <Pressable
                     onPress={() => setIsWishlisted(!isWishlisted)}
@@ -133,7 +133,7 @@ export default function ProductDetailsScreen({ route }) {
                 </View>
 
                 <Text style={styles.description}>
-                  Premium quality cotton t-shirt designed for maximum comfort and style. Features a classic fit
+                  Premium quality cotton {type} designed for maximum comfort and style. Features a classic fit
                   with reinforced stitching and premium fabric that gets softer with each wash while maintaining
                   its shape.
                 </Text>
