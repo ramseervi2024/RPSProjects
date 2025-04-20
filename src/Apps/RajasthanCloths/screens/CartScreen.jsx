@@ -5,21 +5,54 @@ import { Minus, Plus, Trash2 } from 'lucide-react-native';
 const CART_ITEMS = [
   {
     id: 1,
-    name: 'Floral Print Dress',
+    name: 'Luxurious Wedding Dress',
     price: 499,
-    image: 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=500',
+    image: 'https://api.a0.dev/assets/image?text=Luxurious%20Wedding%20Dresses%20with%20gold%20embroidery&aspect=4:5',
     quantity: 1,
     size: 'M',
   },
   {
     id: 2,
-    name: 'Denim Jacket',
+    name: 'Bridal Lehenga Choli',
     price: 899,
-    image: 'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?w=500',
+    image: 'https://api.a0.dev/assets/image?text=Bridal%20Lehenga%20Choli%20with%20gold%20embroidery&aspect=4:5',
     quantity: 2,
     size: 'L',
   },
+  {
+    id: 3,
+    name: 'Groom Sherwani',
+    price: 1199,
+    image: 'https://api.a0.dev/assets/image?text=Groom%20Sherwani%20with%20traditional%20embroidery&aspect=4:5',
+    quantity: 1,
+    size: 'L',
+  },
+  {
+    id: 4,
+    name: 'Bridal Bridal Veil',
+    price: 199,
+    image: 'https://api.a0.dev/assets/image?text=Elegant%20Bridal%20Veil%20with%20lace%20details&aspect=4:5',
+    quantity: 1,
+    size: 'One Size',
+  },
+  {
+    id: 5,
+    name: 'Wedding Suit for Men',
+    price: 799,
+    image: 'https://api.a0.dev/assets/image?text=Wedding%20Suit%20for%20Men%20with%20tailored%20fit&aspect=4:5',
+    quantity: 1,
+    size: 'M',
+  },
+  {
+    id: 6,
+    name: 'Bridal Accessories Set',
+    price: 249,
+    image: 'https://api.a0.dev/assets/image?text=Bridal%20Accessories%20Set%20with%20necklace%2C%20earrings%20and%20headpiece&aspect=4:5',
+    quantity: 1,
+    size: 'One Size',
+  }
 ];
+
 
 export default function CartScreen() {
   const [cartItems, setCartItems] = useState(CART_ITEMS);
@@ -27,7 +60,7 @@ export default function CartScreen() {
   const updateQuantity = (id, increment) => {
     setCartItems(items =>
       items.map(item =>
-        item.id === id
+        item.id == id
           ? { ...item, quantity: increment ? item.quantity + 1 : Math.max(1, item.quantity - 1) }
           : item
       )
@@ -43,7 +76,7 @@ export default function CartScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Shopping Cart</Text>
+        <Text style={styles.headerTitle}>Wedding Dress Cart</Text>
         <Text style={styles.itemCount}>{cartItems.length} Items</Text>
       </View>
 
@@ -98,22 +131,22 @@ export default function CartScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#fff',
   },
   header: {
-    padding: 16,
-    backgroundColor: '#E83E8C',
-    paddingTop:70
+    padding: 20,
+    backgroundColor: '#E83E8C', // Soft pink background
+    paddingTop: 70,
   },
   headerTitle: {
     fontFamily: 'Poppins_700Bold',
-    fontSize: 24,
-    color: '#ffffff',
+    fontSize: 28,
+    color: '#fff',
   },
   itemCount: {
     fontFamily: 'Poppins_400Regular',
     fontSize: 14,
-    color: '#ffffff',
+    color: '#fff',
     marginTop: 4,
   },
   content: {
@@ -121,39 +154,40 @@ const styles = StyleSheet.create({
   },
   cartItem: {
     flexDirection: 'row',
-    padding: 16,
+    padding: 20,
     borderBottomWidth: 1,
     borderBottomColor: '#f0f0f0',
   },
   itemImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 8,
+    width: 120,
+    height: 180, // Adjust image size
+    borderRadius: 12,
+    marginRight: 16,
   },
   itemInfo: {
     flex: 1,
-    marginLeft: 16,
   },
   itemName: {
     fontFamily: 'Poppins_500Medium',
-    fontSize: 16,
+    fontSize: 18,
+    color: '#333',
   },
   itemSize: {
     fontFamily: 'Poppins_400Regular',
     fontSize: 14,
     color: '#666666',
-    marginTop: 4,
+    marginTop: 6,
   },
   itemPrice: {
     fontFamily: 'Poppins_600SemiBold',
     fontSize: 18,
     color: '#E83E8C',
-    marginTop: 4,
+    marginTop: 6,
   },
   quantityContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 8,
+    marginTop: 10,
   },
   quantityButton: {
     width: 32,
@@ -172,7 +206,7 @@ const styles = StyleSheet.create({
     marginLeft: 'auto',
   },
   footer: {
-    padding: 16,
+    padding: 20,
     borderTopWidth: 1,
     borderTopColor: '#f0f0f0',
   },
@@ -180,11 +214,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: 20,
   },
   totalLabel: {
     fontFamily: 'Poppins_500Medium',
     fontSize: 16,
+    color: '#333',
   },
   totalAmount: {
     fontFamily: 'Poppins_700Bold',
@@ -200,6 +235,6 @@ const styles = StyleSheet.create({
   checkoutButtonText: {
     fontFamily: 'Poppins_600SemiBold',
     fontSize: 16,
-    color: '#ffffff',
+    color: '#fff',
   },
 });
