@@ -12,29 +12,36 @@ import ProductGallery from './components/ProductGallery';
 import SizeSelector from './components/SizeSelector';
 import ColorSelector from './components/ColorSelector';
 import { toast } from 'sonner-native';
-const IMAGES = [
-  'https://images.unsplash.com/photo-1738301824209-0a1016f5b06f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE0fHx8ZW58MHx8fHx8',
-  'https://images.unsplash.com/photo-1711128640065-cdac1e385dc2?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8',
-  'https://api.a0.dev/assets/image?text=beautiful%marwari%20traditional%20LehengaSuits%20with%20golden%20embroidery%20in%20blue&aspect=4:5',
-  'https://api.a0.dev/assets/image?text=beautiful%marwari%20traditional%20LehengaSuits%20with%20peacock%20feather%20motifs&aspect=4:5',
-  'https://api.a0.dev/assets/image?text=beautiful%marwari%20traditional%20LehengaSuits%20in%20green%20with%20mirror%20work&aspect=4:5',
-  'https://api.a0.dev/assets/image?text=beautiful%marwari%20traditional%20LehengaSuits%20with%20floral%20prints%20in%20pink&aspect=4:5',
-  'https://api.a0.dev/assets/image?text=beautiful%marwari%20traditional%20LehengaSuits%20with%20golden%20brocade%20and%20red%20border&aspect=4:5',
-  'https://api.a0.dev/assets/image?text=beautiful%marwari%20traditional%20LehengaSuits%20with%20embroidered%20paisley%20design%20in%20maroon&aspect=4:5',
-  'https://api.a0.dev/assets/image?text=beautiful%marwari%20traditional%20LehengaSuits%20in%20blue%20with%20silver%20thread%20work&aspect=4:5',
-  'https://api.a0.dev/assets/image?text=beautiful%marwari%20traditional%20LehengaSuits%20with%20bandhani%20pattern%20in%20yellow&aspect=4:5',
-  'https://api.a0.dev/assets/image?text=beautiful%marwari%20traditional%20LehengaSuits%20with%20multicolor%20patchwork%20design&aspect=4:5',
-];
 
-const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
-const COLORS = [
-  { name: 'White', code: '#FFFFFF' },
-  { name: 'Black', code: '#000000' },
-  { name: 'Navy', code: '#000080' },
-  { name: 'Gray', code: '#808080' },
-];
+export default function ProductDetailsScreen({ route }) {
+  // Destructure the passed parameter
+  const { item,type } = route.params;
 
-export default function ProductDetailsScreen() {
+  const IMAGES = [
+    // `https://images.unsplash.com/photo-1738301824209-0a1016f5b06f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE0fHx8ZW58MHx8fHx8`,
+    // `https://images.unsplash.com/photo-1711128640065-cdac1e385dc2?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8`,
+    `https://api.a0.dev/assets/image?text=beautiful%marwari%20traditional%${type}%20with%20golden%20embroidery%20in%20blue&aspect=4:5`,
+    `https://api.a0.dev/assets/image?text=beautiful%marwari%20traditional%${type}%20with%20peacock%20feather%20motifs&aspect=4:5`,
+    `https://api.a0.dev/assets/image?text=beautiful%marwari%20traditional%${type}%20in%20green%20with%20mirror%20work&aspect=4:5`,
+    `https://api.a0.dev/assets/image?text=beautiful%marwari%20traditional%${type}%20with%20floral%20prints%20in%20pink&aspect=4:5`,
+    `https://api.a0.dev/assets/image?text=beautiful%marwari%20traditional%${type}%20with%20golden%20brocade%20and%20red%20border&aspect=4:5`,
+    `https://api.a0.dev/assets/image?text=beautiful%marwari%20traditional%${type}%20with%20embroidered%20paisley%20design%20in%20maroon&aspect=4:5`,
+    `https://api.a0.dev/assets/image?text=beautiful%marwari%20traditional%${type}%20in%20blue%20with%20silver%20thread%20work&aspect=4:5`,
+    `https://api.a0.dev/assets/image?text=beautiful%marwari%20traditional%${type}%20with%20bandhani%20pattern%20in%20yellow&aspect=4:5`,
+    `https://api.a0.dev/assets/image?text=beautiful%marwari%20traditional%${type}%20with%20multicolor%20patchwork%20design&aspect=4:5`,
+  ];
+  
+  const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+  const COLORS = [
+    { name: 'White', code: '#FFFFFF' },
+    { name: 'Black', code: '#000000' },
+    { name: 'Navy', code: '#000080' },
+    { name: 'Gray', code: '#808080' },
+  ];
+  
+
+  console.log(item, type, 'typetypetype');
+  
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
@@ -68,7 +75,7 @@ export default function ProductDetailsScreen() {
           <View style={styles.header}>
             <View>
               <Text style={styles.brand}>PREMIUM ESSENTIALS</Text>
-              <Text style={styles.title}>Classic Cotton T-Shirt</Text>
+              <Text style={styles.title}>Classic Cotton {type}</Text>
             </View>
             <Pressable
               onPress={() => setIsWishlisted(!isWishlisted)}
@@ -82,8 +89,8 @@ export default function ProductDetailsScreen() {
           </View>
 
           <View style={styles.priceContainer}>
-            <Text style={styles.price}>$29.99</Text>
-            <Text style={styles.originalPrice}>$39.99</Text>
+            <Text style={styles.price}>₹2000</Text>
+            <Text style={styles.originalPrice}>₹500</Text>
             <View style={styles.discountBadge}>
               <Text style={styles.discountText}>25% OFF</Text>
             </View>

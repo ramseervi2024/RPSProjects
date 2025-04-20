@@ -6,7 +6,7 @@ import LinearGradient from 'react-native-linear-gradient';
 export default function CategoryCard({ title, imageUrl, onPress }) {
   const navigation=useNavigation()
   const navigatetoproduct=()=>{
-    navigation.navigate('ProductDetailsScreen', {type:1})
+    navigation.navigate('AllProductList', {type:title})
   }
   return (
     <TouchableOpacity style={styles.container} onPress={navigatetoproduct}>

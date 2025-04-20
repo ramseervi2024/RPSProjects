@@ -5,7 +5,9 @@ import CategoryCard from './components/CategoryCard';
 import ProductCard from './components/ProductCard';
 import { Search, ShoppingCart } from 'lucide-react-native';
 
-export default function HomeScreen() {
+export default function AllProductList({ route }) {
+  // Destructure the passed parameter
+  const { type } = route.params;
   const [refreshing, setRefreshing] = useState(false);
 
   // Extended the featuredProducts array to include 20 products
@@ -160,18 +162,18 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Top Trending Dresses</Text>
-        <View style={styles.headerIcons}>
+        <Text style={styles.headerTitle}>{type || 'Top Trending Dresses'} </Text>
+        {/* <View style={styles.headerIcons}>
           <Search size={24} color="#333" style={styles.icon} />
           <ShoppingCart size={24} color="#333" style={styles.icon} />
-        </View>
+        </View> */}
       </View>
 
       <ScrollView
         showsVerticalScrollIndicator={false}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
       >
-        <Text style={styles.sectionTitle}>Featured Collection</Text>
+        {/* <Text style={styles.sectionTitle}>{type || 'Featured Collection'}</Text> */}
         <View style={styles.productsGrid}>
           {featuredProducts.map((product) => (
             <ProductCard
@@ -180,7 +182,7 @@ export default function HomeScreen() {
               price={product.price}
               originalPrice={product.originalPrice}
               imageUrl={product.imageUrl}
-              onPress={() => {}}
+              onPress={() => { }}
               item={product}
             />
           ))}

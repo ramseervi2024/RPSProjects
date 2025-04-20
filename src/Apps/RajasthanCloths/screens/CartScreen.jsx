@@ -76,7 +76,7 @@ export default function CartScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Wedding Dress Cart</Text>
+        <Text style={styles.headerTitle}>Cart </Text>
         <Text style={styles.itemCount}>{cartItems.length} Items</Text>
       </View>
 
@@ -139,12 +139,11 @@ const styles = StyleSheet.create({
     paddingTop: 70,
   },
   headerTitle: {
-    fontFamily: 'Poppins_700Bold',
-    fontSize: 28,
+    fontSize: 24,
+    fontWeight: 'bold',
     color: '#fff',
   },
   itemCount: {
-    fontFamily: 'Poppins_400Regular',
     fontSize: 14,
     color: '#fff',
     marginTop: 4,
