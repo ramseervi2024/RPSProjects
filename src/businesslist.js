@@ -2,9 +2,9 @@
 export const business = [
     {
         "id": 10011,
-        "label": "Sojat My City",
+        "label": "Rajasthan cloths",
         "value": " This app will include features like local news, events, services, and community discussions",
-        "appurl": "MyCity"
+        "appurl": "RajasthanCloths"
     },
     {
         "id": 10030,

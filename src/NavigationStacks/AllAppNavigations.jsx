@@ -73,6 +73,7 @@ import TentRentalNavigation from '../Apps/TentRental/TentRentalNavigation';
 import ToolMartNavigation from '../Apps/ToolMart/ToolMartNavigation';
 import VillageHubNavigation from '../Apps/VillageHub/VillageHubNavigation';
 import FarmerHelperNavigation from '../Apps/FarmerHelper/FarmerHelperNavigation';
+import RajasthanClothsNavigation from '../Apps/Meesho/MeeshoNavigation';
 
 const AllAppNav = createStackNavigator();
 
@@ -152,6 +153,7 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="ToolMart" component={ToolMartNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="VillageHub" component={VillageHubNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="FarmerHelper" component={FarmerHelperNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="RajasthanCloths" component={RajasthanClothsNavigation} options={{ headerShown: false }} />
                 </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>
