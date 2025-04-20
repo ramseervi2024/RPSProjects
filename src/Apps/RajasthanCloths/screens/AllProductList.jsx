@@ -11,148 +11,53 @@ export default function AllProductList({ route }) {
   const [refreshing, setRefreshing] = useState(false);
 
   // Extended the featuredProducts array to include 20 products
-  const featuredProducts = [
-    {
-      id: 1,
-      title: 'Bandhani Print Silk Saree',
-      price: 2499,
-      originalPrice: 4999,
-      imageUrl: 'https://api.a0.dev/assets/image?text=elegant%20bandhani%20print%20silk%20saree%20in%20rich%20colors&aspect=4:5',
-    },
-    {
-      id: 2,
-      title: 'Men\'s Traditional Kurta Set',
-      price: 1899,
-      originalPrice: 3299,
-      imageUrl: 'https://api.a0.dev/assets/image?text=mens%20traditional%20rajasthani%20kurta%20set%20with%20ethnic%20prints&aspect=4:5',
-    },
-    {
-      id: 3,
-      title: 'Designer Lehenga Choli',
-      price: 3999,
-      originalPrice: 7999,
-      imageUrl: 'https://api.a0.dev/assets/image?text=designer%20rajasthani%20lehenga%20choli%20with%20mirror%20work&aspect=4:5',
-    },
-    {
-      id: 4,
-      title: 'Kids Dhoti Kurta Set',
-      price: 999,
-      originalPrice: 1999,
-      imageUrl: 'https://api.a0.dev/assets/image?text=kids%20traditional%20dhoti%20kurta%20set%20festive%20wear&aspect=4:5',
-    },
-    {
-      id: 5,
-      title: 'Rajasthani Anarkali Dress',
-      price: 2899,
-      originalPrice: 5499,
-      imageUrl: 'https://api.a0.dev/assets/image?text=rajasthani%20anarkali%20dress%20with%20intricate%20work&aspect=4:5',
-    },
-    {
-      id: 6,
-      title: 'Embroidered Chikan Kurta',
-      price: 1799,
-      originalPrice: 3499,
-      imageUrl: 'https://api.a0.dev/assets/image?text=embroidered%20chikan%20kurta%20for%20women&aspect=4:5',
-    },
-    {
-      id: 7,
-      title: 'Silk Dupatta with Gold Work',
-      price: 1299,
-      originalPrice: 2499,
-      imageUrl: 'https://api.a0.dev/assets/image?text=silk%20dupatta%20with%20gold%20work%20design&aspect=4:5',
-    },
-    {
-      id: 8,
-      title: 'Traditional Marwari Sherwani',
-      price: 4999,
-      originalPrice: 7999,
-      imageUrl: 'https://api.a0.dev/assets/image?text=traditional%20marwari%20sherwani%20for%20men&aspect=4:5',
-    },
-    {
-      id: 9,
-      title: 'Designer Lehenga Dupatta Set',
-      price: 5499,
-      originalPrice: 8999,
-      imageUrl: 'https://api.a0.dev/assets/image?text=designer%20lehenga%20dupatta%20set%20for%20women&aspect=4:5',
-    },
-    {
-      id: 10,
-      title: 'Traditional Marwari Saree Set',
-      price: 3999,
-      originalPrice: 6999,
-      imageUrl: 'https://api.a0.dev/assets/image?text=traditional%20marwari%20saree%20set%20with%20blouse&aspect=4:5',
-    },
-    {
-      id: 11,
-      title: 'Kurta Pajama Set for Men',
-      price: 1599,
-      originalPrice: 2999,
-      imageUrl: 'https://api.a0.dev/assets/image?text=kurta%20pajama%20set%20for%20men%20traditional%20wear&aspect=4:5',
-    },
-    {
-      id: 12,
-      title: 'Kids Ghagras for Festivals',
-      price: 1499,
-      originalPrice: 2999,
-      imageUrl: 'https://api.a0.dev/assets/image?text=kids%20ghagras%20for%20festivals%20bright%20colors&aspect=4:5',
-    },
-    {
-      id: 13,
-      title: 'Festive Marwari Lehenga',
-      price: 4999,
-      originalPrice: 8999,
-      imageUrl: 'https://api.a0.dev/assets/image?text=festive%20marwari%20lehenga%20for%20special%20occasions&aspect=4:5',
-    },
-    {
-      id: 14,
-      title: 'Traditional Marwari Kurta',
-      price: 1899,
-      originalPrice: 3499,
-      imageUrl: 'https://api.a0.dev/assets/image?text=traditional%20marwari%20kurta%20set%20for%20men&aspect=4:5',
-    },
-    {
-      id: 15,
-      title: 'Embroidered Wedding Lehenga',
-      price: 7999,
-      originalPrice: 12999,
-      imageUrl: 'https://api.a0.dev/assets/image?text=embroidered%20wedding%20lehenga%20set%20for%20bride&aspect=4:5',
-    },
-    {
-      id: 16,
-      title: 'Marwari Wedding Sherwani',
-      price: 5999,
-      originalPrice: 9999,
-      imageUrl: 'https://api.a0.dev/assets/image?text=marwari%20wedding%20sherwani%20for%20groom&aspect=4:5',
-    },
-    {
-      id: 17,
-      title: 'Marwari Dupatta for Women',
-      price: 1299,
-      originalPrice: 1999,
-      imageUrl: 'https://api.a0.dev/assets/image?text=marwari%20dupatta%20for%20women%20traditional%20design&aspect=4:5',
-    },
-    {
-      id: 18,
-      title: 'Ethnic Floral Kurtis',
-      price: 1599,
-      originalPrice: 2899,
-      imageUrl: 'https://api.a0.dev/assets/image?text=ethnic%20floral%20kurtis%20with%20traditional%20design&aspect=4:5',
-    },
-    {
-      id: 19,
-      title: 'Rajasthani Bandhej Dupatta',
-      price: 999,
-      originalPrice: 1999,
-      imageUrl: 'https://api.a0.dev/assets/image?text=rajasthani%20bandhej%20dupatta%20for%20women&aspect=4:5',
-    },
-    {
-      id: 20,
-      title: 'Kanchipuram Silk Saree',
-      price: 7999,
-      originalPrice: 12999,
-      imageUrl: 'https://api.a0.dev/assets/image?text=kanchipuram%20silk%20saree%20with%20golden%20border&aspect=4:5',
-    },
-  ];
+  const category = 'Wedding Dresses'; // The category passed (you can change this dynamically)
+
+const featuredProducts = [
+  {
+    id: 1,
+    title: 'Luxurious Wedding Gown with Lace Details',
+    price: 24999,
+    originalPrice: 49999,
+    imageUrl: `https://api.a0.dev/assets/image?text=${category}%20luxurious%20wedding%20gown%20with%20lace%20details&aspect=4:5`,
+  },
+  {
+    id: 2,
+    title: 'Bridal Silk Lehenga with Heavy Embroidery',
+    price: 19999,
+    originalPrice: 34999,
+    imageUrl: `https://api.a0.dev/assets/image?text=${category}%20bridal%20silk%20lehenga%20with%20heavy%20embroidery&aspect=4:5`,
+  },
+  {
+    id: 3,
+    title: 'Satin Wedding Dress with Crystal Beading',
+    price: 22999,
+    originalPrice: 42999,
+    imageUrl: `https://api.a0.dev/assets/image?text=${category}%20satin%20wedding%20dress%20with%20crystal%20beading&aspect=4:5`,
+  },
+  {
+    id: 4,
+    title: 'Traditional Velvet Bridal Saree',
+    price: 16999,
+    originalPrice: 31999,
+    imageUrl: `https://api.a0.dev/assets/image?text=${category}%20traditional%20velvet%20bridal%20saree&aspect=4:5`,
+  },
+  {
+    id: 5,
+    title: 'Embroidered Wedding Anarkali Dress',
+    price: 15999,
+    originalPrice: 29999,
+    imageUrl: `https://api.a0.dev/assets/image?text=${category}%20embroidered%20wedding%20anarkali%20dress&aspect=4:5`,
+  },
+  {
+    id: 6,
+    title: 'Designer Bridal Choli with Mirror Work',
+    price: 18999,
+    originalPrice: 36999,
+    imageUrl: `https://api.a0.dev/assets/image?text=${category}%20designer%20bridal%20choli%20with%20mirror%20work&aspect=4:5`,
+  },
+];
+
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -163,10 +68,6 @@ export default function AllProductList({ route }) {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>{type || 'Top Trending Dresses'} </Text>
-        {/* <View style={styles.headerIcons}>
-          <Search size={24} color="#333" style={styles.icon} />
-          <ShoppingCart size={24} color="#333" style={styles.icon} />
-        </View> */}
       </View>
 
       <ScrollView

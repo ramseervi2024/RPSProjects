@@ -1,10 +1,12 @@
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { Heart } from 'lucide-react-native'; // Replacing MaterialIcons with Lucide React Native
+import { useNavigation } from '@react-navigation/native';
 
 export default function ProductCard({ title, price, originalPrice, imageUrl, onPress, item }) {
   const discount = Math.round(((originalPrice - price) / originalPrice) * 100);
-  const navigatetoproduct=()=>{
-    navigation.navigate('ProductDetailsScreen', {type:title, item:item})
+  const navigation = useNavigation()
+  const navigatetoproduct = () => {
+    navigation.navigate('ProductDetailsScreen', { type: title, item: item })
   }
   return (
     <TouchableOpacity style={styles.container} onPress={navigatetoproduct}>
