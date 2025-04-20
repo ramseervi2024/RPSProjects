@@ -6,6 +6,7 @@ import ProfileScreen from './screens/ProfileScreen';
 import HomeScreen from './screens/HomeScreen';
 import CategoriesScreen from './screens/CategoriesScreen';
 import SearchScreen from './screens/SearchScreen';
+import AllCategoeires from './screens/AllCategoeires';
 
 const Tab = createBottomTabNavigator();
 
@@ -34,7 +35,7 @@ export default function RajasthanClothsNavigation() {
     />
     <Tab.Screen
       name="categories"
-        component={CategoriesScreen}
+        component={AllCategoeires}
         options={{
         title: 'Categories',
         tabBarIcon: ({ color, size }) => <Grid size={size} color={color} />,
