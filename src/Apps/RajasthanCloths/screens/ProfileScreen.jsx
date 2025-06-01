@@ -18,12 +18,12 @@ export default function ProfileScreen() {
         <View style={styles.header}>
           <View style={styles.profileInfo}>
             <Image
-              source={{ uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500' }}
+              source={{ uri: 'https://plus.unsplash.com/premium_photo-1718570264126-48594b527c85?q=80&w=3636&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }}
               style={styles.profileImage}
             />
             <View style={styles.profileText}>
-              <Text style={styles.profileName}>Sarah Johnson</Text>
-              <Text style={styles.profileEmail}>sarah.j@example.com</Text>
+              <Text style={styles.profileName}>Ramesh Seervi</Text>
+              <Text style={styles.profileEmail}>ramesh2002@gmail.com</Text>
             </View>
           </View>
           <TouchableOpacity style={styles.editButton}>
