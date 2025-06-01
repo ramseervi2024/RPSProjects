@@ -1,6 +1,5 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import AllApps from './src/AllApps'
 import { NavigationContainer } from '@react-navigation/native'
 import AllAppNavigations from './src/NavigationStacks/AllAppNavigations'
 
