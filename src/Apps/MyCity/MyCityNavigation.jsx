@@ -23,6 +23,6 @@ export default function MyCityNavigation() {
       <MyCityApp.Screen name="TransportScreen" component={TransportScreen} options={{ headerShown: false }} />
       {/* <MyCityApp.Screen name="TransportScreen" component={TransportScreen} options={{ headerShown: false }} /> */}
       <MyCityApp.Screen name="BusinessDirectoryScreen" component={BusinessDirectoryScreen} options={{ headerShown: false }} />
-      </MyCityApp.Navigator>
+    </MyCityApp.Navigator>
   )
 }
