@@ -6,6 +6,11 @@ import ProfileScreen from './screens/ProfileScreen';
 import HomeScreen from './screens/HomeScreen';
 import CategoriesScreen from './screens/CategoriesScreen';
 import MapAnimation from './screens/MapAnimation';
+import WavesAnimation from './screens/WavesAnimation';
+import ParticlesAnimation from './screens/ParticlesAnimation';
+import MorphingAnimation from './screens/MorphingAnimation';
+import LiquidAnimation from './screens/LiquidAnimation';
+import GalaxyAnimation from './screens/GalaxyAnimation';
 
 const Tab = createBottomTabNavigator();
 
@@ -62,6 +67,56 @@ export default function OrderStatusNavigation() {
         component={MapAnimation}
         options={{
           title: 'MapAnimation',
+          tabBarIcon: ({ color, size }) => (
+            <User size={size} color={color} />
+          ),
+        }}
+      />
+       <Tab.Screen
+        name="WavesAnimation"
+        component={WavesAnimation}
+        options={{
+          title: 'WavesAnimation',
+          tabBarIcon: ({ color, size }) => (
+            <Home size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="ParticlesAnimation"
+        component={ParticlesAnimation}
+        options={{
+          title: 'ParticlesAnimation',
+          tabBarIcon: ({ color, size }) => (
+            <Grid size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="MorphingAnimation"
+        component={MorphingAnimation}
+        options={{
+          title: 'MorphingAnimation',
+          tabBarIcon: ({ color, size }) => (
+            <ShoppingCart size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="LiquidAnimation"
+        component={LiquidAnimation}
+        options={{
+          title: 'LiquidAnimation',
+          tabBarIcon: ({ color, size }) => (
+            <User size={size} color={color} />
+          ),
+        }}
+      />
+       <Tab.Screen
+        name="GalaxyAnimation"
+        component={GalaxyAnimation}
+        options={{
+          title: 'GalaxyAnimation',
           tabBarIcon: ({ color, size }) => (
             <User size={size} color={color} />
           ),
