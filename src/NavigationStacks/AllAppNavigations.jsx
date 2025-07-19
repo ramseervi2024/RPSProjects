@@ -77,6 +77,7 @@ import RajasthanClothsNavigation from '../Apps/RajasthanCloths/RajasthanClothsNa
 import RajasthanClothsMainNavigation from '../Apps/RajasthanCloths/RajasthanClothsMainNavigation';
 import LoaderPageNavigation from '../Apps/LoaderPage/LoaderPageNavigation';
 import AnimationSplashNavigation from '../Apps/AnimationSplash/AnimationSplashNavigation';
+import OrderStatusNavigation from '../Apps/OrderStatusAnimation/OrderStatusNavigation';
 
 const AllAppNav = createStackNavigator();
 
@@ -159,6 +160,7 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="RajasthanCloths" component={RajasthanClothsMainNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="LoaderPage" component={LoaderPageNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="AnimationSplash" component={AnimationSplashNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="OrderStatus" component={OrderStatusNavigation} options={{ headerShown: false }} />
                 </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>

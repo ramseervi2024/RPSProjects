@@ -1,6 +1,12 @@
 
 export const business = [
     {
+        "id": 10037,
+        "label": "Order Status",
+        "value": "This app will include features like local news, events, services, and community discussions",
+        "appurl": "OrderStatus"
+    },
+    {
         "id": 10036,
         "label": "Animation Splash",
         "value": "This app will include features like local news, events, services, and community discussions",
