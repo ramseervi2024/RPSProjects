@@ -13,12 +13,6 @@ export const business = [
         "appurl": "MyVillage"
     },
     {
-        "id": 10033,
-        "label": "MyVillage",
-        "value": "This app will include features like local news, events, services, and community discussions",
-        "appurl": "MyVillage"
-    },
-    {
         "id": 10032,
         "label": "Loader Page App",
         "value": " This app will include features like local news, events, services, and community discussions",
