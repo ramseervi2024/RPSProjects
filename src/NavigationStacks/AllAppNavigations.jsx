@@ -76,6 +76,7 @@ import FarmerHelperNavigation from '../Apps/FarmerHelper/FarmerHelperNavigation'
 import RajasthanClothsNavigation from '../Apps/RajasthanCloths/RajasthanClothsNavigation';
 import RajasthanClothsMainNavigation from '../Apps/RajasthanCloths/RajasthanClothsMainNavigation';
 import LoaderPageNavigation from '../Apps/LoaderPage/LoaderPageNavigation';
+import AnimationSplashNavigation from '../Apps/AnimationSplash/AnimationSplashNavigation';
 
 const AllAppNav = createStackNavigator();
 
@@ -157,6 +158,7 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="FarmerHelper" component={FarmerHelperNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="RajasthanCloths" component={RajasthanClothsMainNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="LoaderPage" component={LoaderPageNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="AnimationSplash" component={AnimationSplashNavigation} options={{ headerShown: false }} />
                 </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>

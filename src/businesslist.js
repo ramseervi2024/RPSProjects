@@ -1,14 +1,20 @@
 
 export const business = [
     {
+        "id": 10036,
+        "label": "Animation Splash",
+        "value": "This app will include features like local news, events, services, and community discussions",
+        "appurl": "AnimationSplash"
+    },
+    {
         "id": 10035,
-        "label": "MyCityNavigation",
+        "label": "My City",
         "value": "This app will include features like local news, events, services, and community discussions",
         "appurl": "MyCity"
     },
     {
         "id": 10034,
-        "label": "MyVillage",
+        "label": "My Village",
         "value": "This app will include features like local news, events, services, and community discussions",
         "appurl": "MyVillage"
     },
