@@ -21,6 +21,8 @@ export default function OrderStatusNavigation() {
         tabBarActiveTintColor: '#FF9900',
         tabBarInactiveTintColor: '#111111',
         headerShown:false,
+        tabBarShowLabel:false
+        
       }}>
       <Tab.Screen
         name="Home"

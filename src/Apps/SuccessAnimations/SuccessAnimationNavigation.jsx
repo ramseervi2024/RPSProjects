@@ -26,7 +26,7 @@ import {
 
 const Tab = createBottomTabNavigator();
 
-export default function AnimationSplashNavigation() {
+export default function SuccessAnimationNavigation() {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -38,7 +38,6 @@ export default function AnimationSplashNavigation() {
           paddingBottom: 20,
           paddingTop: 10,
         },
-        
         tabBarActiveTintColor: '#4f46e5',
         tabBarInactiveTintColor: '#6b7280',
         tabBarLabelStyle: {
@@ -46,7 +45,6 @@ export default function AnimationSplashNavigation() {
           fontWeight: '600',
         },
         tabBarShowLabel:false
-
       }}
     >
       <Tab.Screen
