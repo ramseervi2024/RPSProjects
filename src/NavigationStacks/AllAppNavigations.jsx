@@ -79,6 +79,7 @@ import LoaderPageNavigation from '../Apps/LoaderPage/LoaderPageNavigation';
 import AnimationSplashNavigation from '../Apps/AnimationSplash/AnimationSplashNavigation';
 import OrderStatusNavigation from '../Apps/OrderStatusAnimation/OrderStatusNavigation';
 import SuccessAnimationNavigation from '../Apps/SuccessAnimations/SuccessAnimationNavigation';
+import ShowcaseAniNavigation from '../Apps/ShowcaseAni/ShowcaseAniNavigation';
 
 const AllAppNav = createStackNavigator();
 
@@ -163,6 +164,7 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="AnimationSplash" component={AnimationSplashNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="OrderStatus" component={OrderStatusNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="SuccessAnimation" component={SuccessAnimationNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="ShowcaseAni" component={ShowcaseAniNavigation} options={{ headerShown: false }} />
                 </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>
