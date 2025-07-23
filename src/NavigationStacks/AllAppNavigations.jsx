@@ -81,6 +81,7 @@ import OrderStatusNavigation from '../Apps/OrderStatusAnimation/OrderStatusNavig
 import SuccessAnimationNavigation from '../Apps/SuccessAnimations/SuccessAnimationNavigation';
 import ShowcaseAniNavigation from '../Apps/ShowcaseAni/ShowcaseAniNavigation';
 import VisualFeedbackNavigation from '../Apps/VisualFeedback/VisualFeedbackNavigation';
+import AnimationLottieNavigation from '../Apps/AnimationLottie/AnimationLottieNavigation';
 
 const AllAppNav = createStackNavigator();
 
@@ -167,6 +168,7 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="SuccessAnimation" component={SuccessAnimationNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="ShowcaseAni" component={ShowcaseAniNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="VisualFeedback" component={VisualFeedbackNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="AnimationLottie" component={AnimationLottieNavigation} options={{ headerShown: false }} />
                 </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>

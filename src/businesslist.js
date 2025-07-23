@@ -1,6 +1,12 @@
 
 export const business = [
     {
+        "id": 10041,
+        "label": "AnimationLottieNavigation",
+        "value": "This app will include features like local news, events, services, and community discussions",
+        "appurl": "AnimationLottie"
+    },
+    {
         "id": 10040,
         "label": "Visual Feedback",
         "value": "This app will include features like local news, events, services, and community discussions",
