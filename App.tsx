@@ -8,7 +8,7 @@ export default function App() {
   return (
     // <SafeAreaView style={{flex:1, backgroundColor:'#fff'}}>
       <NavigationContainer>
-        <AllAppNavigations />
+        <PokeSwipe />
       </NavigationContainer>
     // </SafeAreaView>
   )
