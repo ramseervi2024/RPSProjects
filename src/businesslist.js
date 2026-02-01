@@ -1,6 +1,12 @@
 
 export const business = [
     {
+        "id": 10044,
+        "label": "BazaarHubNavigation",
+        "value": "This app will include features like local news, events, services, and community discussions",
+        "appurl": "BazaarHubNavigation"
+    },
+    {
         "id": 10043,
         "label": "PokeSwipe",
         "value": "This app will include features like local news, events, services, and community discussions",
@@ -236,115 +242,115 @@ export const business = [
         "appurl": "Flipkart"
     },
     {
-        "id": 10028,
+        "id": 100281,
         "label": "Cashify",
         "value": ". This will be a modern financial management app with features like expense tracking, budgeting, and financial insights.",
         "appurl": "Cashify"
     },
     {
-        "id": 10027,
+        "id": 100271,
         "label": "Justdial",
         "value": "We'll create a modern, feature-rich business directory app with a beautiful UI and essential features.",
         "appurl": "Justdial"
     },
     {
-        "id": 10026,
+        "id": 100261,
         "label": "PayPal",
         "value": " We'll create a fully featured payment app with tabs for transactions, sending/receiving money, and account management.",
         "appurl": "PayPal"
     },
     {
-        "id": 10025,
+        "id": 100251,
         "label": "eBay",
         "value": "We'll create a modern e-commerce app with essential features like product listings, search, categories, and user profiles.",
         "appurl": "eBay"
     },
     {
-        "id": 10024,
+        "id": 100241,
         "label": "Netflix",
         "value": "We'll create a streaming app with features like movie browsing, categories, and a detailed view.",
         "appurl": "Netflix"
     },
     {
-        "id": 10023,
+        "id": 100231,
         "label": "Spotify",
         "value": "We'll implement key features like music playback, playlists, and a modern UI.",
         "appurl": "Spotify"
     },
     {
-        "id": 10022,
+        "id": 100221,
         "label": "Amazon",
         "value": "create a fully featured e-commerce app with multiple tabs for Home, Categories, Cart, and Profile.",
         "appurl": "Amazon"
     },
     {
-        "id": 10021,
+        "id": 100211,
         "label": "YouTube",
         "value": "We'll create a beautiful and functional app with features like video listing, search, and video playback.",
         "appurl": "YouTube"
     },
     {
-        "id": 10020,
+        "id": 100201,
         "label": "Facebook",
         "value": "We'll implement key features like a news feed, stories, and navigation tabs.",
         "appurl": "Facebook"
     },
     {
-        "id": 10019,
+        "id": 100191,
         "label": "Instagram",
         "value": "We'll create a beautiful, production-ready app with key Instagram features like a feed, stories, profile, and camera functionality.",
         "appurl": "Instagram"
     },
     {
-        "id": 10018,
+        "id": 100181,
         "label": "TikTok",
         "value": "The app will have multiple tabs for different sections like APIs, Roadmaps, Courses, and AI Fields.",
         "appurl": "TikTok"
     },
     {
-        "id": 10017,
+        "id": 100171,
         "label": "WhatsApp",
         "value": "The app will have multiple tabs for different sections like APIs, Roadmaps, Courses, and AI Fields.",
         "appurl": "WhatsApp"
     },
     {
-        "id": 10016,
+        "id": 100161,
         "label": "Robotics, Machinery, and IoT App",
         "value": "  We'll use a modern, industrial design language with smooth animations and a professional look.",
         "appurl": "RoboticsMachineryandIoT"
     },
     {
-        "id": 10015,
+        "id": 100151,
         "label": "Meditation App",
         "value": " The app will include features like meditation sessions, progress tracking, and a calming user interface.",
         "appurl": "MeditationApps"
     },
     {
-        "id": 10014,
+        "id": 100141,
         "label": "Renewable Energy App",
         "value": " This app will showcase renewable energy statistics, educational content, and interactive features.",
         "appurl": "RenewableEnergy"
     },
     {
-        "id": 10013,
+        "id": 100131,
         "label": "Transport and Logistics App",
         "value": " beautiful and professional Transport and Logistics app using React Native.",
         "appurl": "TransportLogistics"
     },
     {
-        "id": 10012,
+        "id": 100121,
         "label": "Kisan Market",
         "value": "This app Provide value to farmers by bridging the gap between them and the market. It will empower them with crucial information, which will enable them to make informed decisions about selling their produce, accessing better prices, and reducing reliance on middlemen.",
         "appurl": "KisanMarket"
     },
     {
-        "id": 10011,
+        "id": 100111,
         "label": "Surayata My Village",
         "value": " This app will include features like local news, events, services, and community discussions",
         "appurl": "MyVillage"
     },
     {
-        "id": 12003,
+        "id": 120031,
         "label": "Rajasthan Tourist",
         "value": "Explore the state's rich history, culture, and landmarks",
         "appurl": "RajasthanTourist"
