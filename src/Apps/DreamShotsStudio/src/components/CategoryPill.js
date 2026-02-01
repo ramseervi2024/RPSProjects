@@ -17,22 +17,22 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 10,
         borderRadius: 25,
-        backgroundColor: '#111827',
+        backgroundColor: '#FFFFFF',
         marginRight: 10,
         borderWidth: 1,
-        borderColor: '#374151',
+        borderColor: '#000000',
     },
     activeContainer: {
-        backgroundColor: '#FFD700',
-        borderColor: '#FFD700',
+        backgroundColor: '#000000',
+        borderColor: '#000000',
     },
     text: {
-        color: '#9CA3AF',
+        color: '#000000',
         fontSize: 14,
         fontWeight: '600',
     },
     activeText: {
-        color: '#0F172A',
+        color: '#FFFFFF',
         fontWeight: 'bold',
     },
 });

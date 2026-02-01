@@ -22,7 +22,7 @@ const PhotographerDetailsScreen = ({ route, navigation }) => {
                             <Text style={styles.location}>{photographer.city}</Text>
                         </View>
                         <View style={styles.ratingRow}>
-                            <Star color="#FFD700" fill="#FFD700" size={16} />
+                            <Star color="#000000" fill="#000000" size={16} />
                             <Text style={styles.rating}>{photographer.rating} Rating</Text>
                         </View>
                     </View>
@@ -56,7 +56,7 @@ const PhotographerDetailsScreen = ({ route, navigation }) => {
                             <View style={styles.featuresList}>
                                 {pkg.features.map((feature, idx) => (
                                     <View key={idx} style={styles.featureRow}>
-                                        <Check color="#FFD700" size={14} />
+                                        <Check color="#000000" size={14} />
                                         <Text style={styles.featureText}>{feature}</Text>
                                     </View>
                                 ))}
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
         height: 80,
         borderRadius: 40,
         borderWidth: 4,
-        borderColor: '#0F172A',
+        borderColor: '#000000',
     },
     headerInfo: {
         marginLeft: 16,

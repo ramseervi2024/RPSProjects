@@ -60,7 +60,7 @@ const ChatScreen = () => {
                     onChangeText={setInputText}
                 />
                 <TouchableOpacity style={styles.sendButton} onPress={sendMessage}>
-                    <Send color="#0F172A" size={20} />
+                    <Send color="#FFFFFF" size={20} />
                 </TouchableOpacity>
             </KeyboardAvoidingView>
         </View>
@@ -70,7 +70,7 @@ const ChatScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#0F172A',
+        backgroundColor: '#FFFFFF',
     },
     list: {
         padding: 20,
@@ -83,23 +83,25 @@ const styles = StyleSheet.create({
         marginBottom: 12,
     },
     bubbleMe: {
-        backgroundColor: '#FFD700',
+        backgroundColor: '#000000',
         alignSelf: 'flex-end',
         borderBottomRightRadius: 4,
     },
     bubbleThem: {
-        backgroundColor: '#1F2937',
+        backgroundColor: '#E5E7EB',
         alignSelf: 'flex-start',
         borderBottomLeftRadius: 4,
+        borderWidth: 1,
+        borderColor: '#D1D5DB',
     },
     messageText: {
         fontSize: 16,
     },
     textMe: {
-        color: '#0F172A',
+        color: '#FFFFFF',
     },
     textThem: {
-        color: '#F3F4F6',
+        color: '#000000',
     },
     time: {
         fontSize: 10,
@@ -110,20 +112,24 @@ const styles = StyleSheet.create({
     inputContainer: {
         flexDirection: 'row',
         padding: 16,
-        backgroundColor: '#111827',
+        backgroundColor: '#FFFFFF',
         alignItems: 'center',
+        borderTopWidth: 1,
+        borderTopColor: '#E5E7EB',
     },
     input: {
         flex: 1,
-        backgroundColor: '#1F2937',
-        color: '#F3F4F6',
+        backgroundColor: '#F3F4F6',
+        color: '#000000',
         borderRadius: 24,
         paddingHorizontal: 16,
         paddingVertical: 10,
         marginRight: 10,
+        borderWidth: 1,
+        borderColor: '#E5E7EB',
     },
     sendButton: {
-        backgroundColor: '#FFD700',
+        backgroundColor: '#000000',
         padding: 10,
         borderRadius: 24,
     },

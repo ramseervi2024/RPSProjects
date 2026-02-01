@@ -40,10 +40,10 @@ const HomeScreen = ({ navigation }) => {
 
                 {/* Search Bar */}
                 <View style={styles.searchContainer}>
-                    <Search color="#9CA3AF" size={20} />
+                    <Search color="#000000" size={20} />
                     <TextInput
                         placeholder="Search photographers, location..."
-                        placeholderTextColor="#9CA3AF"
+                        placeholderTextColor="#6B7280"
                         style={styles.searchInput}
                     />
                 </View>
@@ -93,7 +93,7 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#0F172A',
+        backgroundColor: '#FFFFFF',
     },
     heroContainer: {
         height: 250,
@@ -108,35 +108,35 @@ const styles = StyleSheet.create({
         bottom: 20,
         left: 20,
         right: 20,
-        backgroundColor: 'rgba(0,0,0,0.4)',
+        backgroundColor: 'rgba(0,0,0,0.6)',
         padding: 10,
         borderRadius: 8,
     },
     heroTitle: {
-        color: '#F3F4F6',
+        color: '#FFFFFF',
         fontSize: 24,
         fontWeight: 'bold',
     },
     heroSubtitle: {
-        color: '#FFD700',
+        color: '#FFFFFF',
         fontSize: 16,
         marginTop: 4,
     },
     searchContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#1F2937',
+        backgroundColor: '#FFFFFF',
         margin: 20,
         paddingHorizontal: 16,
         paddingVertical: 12,
         borderRadius: 12,
         borderWidth: 1,
-        borderColor: '#374151',
+        borderColor: '#000000',
     },
     searchInput: {
         flex: 1,
         marginLeft: 10,
-        color: '#F3F4F6',
+        color: '#000000',
         fontSize: 16,
     },
     categoriesContainer: {
@@ -153,10 +153,10 @@ const styles = StyleSheet.create({
     sectionTitle: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#F3F4F6',
+        color: '#000000',
     },
     seeAll: {
-        color: '#FFD700',
+        color: '#000000',
         fontSize: 14,
         fontWeight: '600',
     },

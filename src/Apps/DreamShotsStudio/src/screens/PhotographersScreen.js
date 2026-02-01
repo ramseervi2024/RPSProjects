@@ -27,7 +27,7 @@ const PhotographersScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#0F172A',
+        backgroundColor: '#FFFFFF',
     },
     listContainer: {
         padding: 20,

@@ -8,7 +8,7 @@ const Header = ({ title, showNotification = true }) => {
             <Text style={styles.title}>{title}</Text>
             {showNotification && (
                 <TouchableOpacity style={styles.iconButton}>
-                    <Bell color="#FFD700" size={24} />
+                    <Bell color="#000000" size={24} />
                 </TouchableOpacity>
             )}
         </View>
@@ -22,17 +22,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 20,
         paddingVertical: 15,
-        backgroundColor: '#0F172A',
+        backgroundColor: '#FFFFFF',
     },
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#F3F4F6',
+        color: '#000000',
     },
     iconButton: {
         padding: 8,
-        backgroundColor: '#1F2937',
+        backgroundColor: '#FFFFFF',
         borderRadius: 12,
+        borderWidth: 1,
+        borderColor: '#000000',
     },
 });
 

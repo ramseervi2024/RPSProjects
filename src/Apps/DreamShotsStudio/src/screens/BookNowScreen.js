@@ -22,7 +22,7 @@ const BookNowScreen = ({ route, navigation }) => {
     if (isSuccess) {
         return (
             <View style={[styles.container, styles.centerContent]}>
-                <CheckCircle size={80} color="#FFD700" />
+                <CheckCircle size={80} color="#000000" />
                 <Text style={styles.successTitle}>Booking Confirmed!</Text>
                 <Text style={styles.successText}>
                     Your session with {photographer.name} on {selectedDate} is booked.
@@ -49,7 +49,7 @@ const BookNowScreen = ({ route, navigation }) => {
                             style={[styles.dateCard, selectedDate === date && styles.dateCardActive]}
                             onPress={() => setSelectedDate(date)}
                         >
-                            <Calendar color={selectedDate === date ? '#0F172A' : '#9CA3AF'} size={24} />
+                            <Calendar color={selectedDate === date ? '#FFFFFF' : '#6B7280'} size={24} />
                             <Text style={[styles.dateText, selectedDate === date && styles.dateTextActive]}>{date}</Text>
                         </TouchableOpacity>
                     ))}
@@ -102,7 +102,7 @@ const BookNowScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#0F172A',
+        backgroundColor: '#FFFFFF',
     },
     colorContent: {
         padding: 20,
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     subtitle: {
-        color: '#F3F4F6',
+        color: '#000000',
         fontSize: 18,
         fontWeight: 'bold',
         marginVertical: 16,
@@ -120,75 +120,77 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     dateCard: {
-        backgroundColor: '#1F2937',
+        backgroundColor: '#FFFFFF',
         padding: 16,
         borderRadius: 12,
         alignItems: 'center',
         marginRight: 12,
         borderWidth: 1,
-        borderColor: '#374151',
+        borderColor: '#000000',
         width: 80,
     },
     dateCardActive: {
-        backgroundColor: '#FFD700',
-        borderColor: '#FFD700',
+        backgroundColor: '#000000',
+        borderColor: '#000000',
     },
     dateText: {
-        color: '#9CA3AF',
+        color: '#4B5563',
         marginTop: 8,
         fontWeight: '600',
     },
     dateTextActive: {
-        color: '#0F172A',
+        color: '#FFFFFF',
         fontWeight: 'bold',
     },
     packageCard: {
-        backgroundColor: '#111827',
+        backgroundColor: '#FFFFFF',
         padding: 16,
         borderRadius: 12,
         marginBottom: 12,
         borderWidth: 1,
-        borderColor: '#374151',
+        borderColor: '#000000',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
     },
     packageCardActive: {
-        borderColor: '#FFD700',
-        backgroundColor: 'rgba(255, 215, 0, 0.1)',
+        borderColor: '#000000',
+        backgroundColor: 'rgba(0, 0, 0, 0.05)',
     },
     pkgName: {
-        color: '#F3F4F6',
+        color: '#000000',
         fontSize: 16,
         fontWeight: 'bold',
     },
     pkgNameActive: {
-        color: '#FFD700',
+        color: '#000000',
     },
     pkgFeatures: {
-        color: '#9CA3AF',
+        color: '#4B5563',
         fontSize: 12,
         marginTop: 4,
     },
     pkgPrice: {
-        color: '#F3F4F6',
+        color: '#000000',
         fontSize: 16,
         fontWeight: 'bold',
     },
     pkgPriceActive: {
-        color: '#FFD700',
+        color: '#000000',
     },
     summaryTitle: {
-        color: '#F3F4F6',
+        color: '#000000',
         fontSize: 18,
         fontWeight: 'bold',
         marginTop: 20,
         marginBottom: 12,
     },
     summaryCard: {
-        backgroundColor: '#1F2937',
+        backgroundColor: '#F3F4F6',
         padding: 20,
         borderRadius: 16,
+        borderWidth: 1,
+        borderColor: '#E5E7EB',
     },
     summaryRow: {
         flexDirection: 'row',
@@ -196,30 +198,30 @@ const styles = StyleSheet.create({
         marginBottom: 12,
     },
     summaryLabel: {
-        color: '#9CA3AF',
+        color: '#4B5563',
     },
     summaryValue: {
-        color: '#F3F4F6',
+        color: '#000000',
         fontWeight: '600',
     },
     summaryPrice: {
-        color: '#FFD700',
+        color: '#000000',
         fontWeight: 'bold',
         fontSize: 18,
     },
     footer: {
         padding: 20,
         borderTopWidth: 1,
-        borderTopColor: '#1F2937',
+        borderTopColor: '#000000',
     },
     confirmButton: {
-        backgroundColor: '#FFD700',
+        backgroundColor: '#000000',
         padding: 16,
         borderRadius: 30,
         alignItems: 'center',
     },
     confirmButtonText: {
-        color: '#0F172A',
+        color: '#FFFFFF',
         fontWeight: 'bold',
         fontSize: 18,
     },
@@ -229,26 +231,28 @@ const styles = StyleSheet.create({
         padding: 40,
     },
     successTitle: {
-        color: '#FFD700',
+        color: '#000000',
         fontSize: 24,
         fontWeight: 'bold',
         marginTop: 20,
     },
     successText: {
-        color: '#D1D5DB',
+        color: '#4B5563',
         textAlign: 'center',
         marginTop: 10,
         fontSize: 16,
     },
     homeButton: {
         marginTop: 40,
-        backgroundColor: '#1F2937',
+        backgroundColor: '#FFFFFF',
         paddingHorizontal: 24,
         paddingVertical: 12,
         borderRadius: 24,
+        borderWidth: 1,
+        borderColor: '#000000',
     },
     homeButtonText: {
-        color: '#F3F4F6',
+        color: '#000000',
         fontWeight: '600',
     },
 });

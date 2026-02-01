@@ -51,15 +51,15 @@ const MyBookingsScreen = () => {
 
                         <View style={styles.details}>
                             <View style={styles.row}>
-                                <Calendar size={16} color="#9CA3AF" />
+                                <Calendar size={16} color="#4B5563" />
                                 <Text style={styles.detailText}>{item.date}</Text>
                             </View>
                             <View style={styles.row}>
-                                <Clock size={16} color="#9CA3AF" />
+                                <Clock size={16} color="#4B5563" />
                                 <Text style={styles.detailText}>{item.time}</Text>
                             </View>
                             <View style={styles.row}>
-                                <MapPin size={16} color="#9CA3AF" />
+                                <MapPin size={16} color="#4B5563" />
                                 <Text style={styles.detailText}>{item.location}</Text>
                             </View>
                         </View>
@@ -73,18 +73,18 @@ const MyBookingsScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#0F172A',
+        backgroundColor: '#FFFFFF',
     },
     list: {
         padding: 20,
     },
     card: {
-        backgroundColor: '#111827',
+        backgroundColor: '#FFFFFF',
         borderRadius: 16,
         padding: 16,
         marginBottom: 16,
         borderWidth: 1,
-        borderColor: '#374151',
+        borderColor: '#000000',
     },
     header: {
         flexDirection: 'row',
@@ -99,12 +99,12 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     name: {
-        color: '#F3F4F6',
+        color: '#000000',
         fontWeight: 'bold',
         fontSize: 16,
     },
     pkg: {
-        color: '#9CA3AF',
+        color: '#4B5563',
         fontSize: 14,
         marginBottom: 8,
     },
@@ -115,19 +115,19 @@ const styles = StyleSheet.create({
         borderRadius: 6,
     },
     badgeUpcoming: {
-        backgroundColor: 'rgba(255, 215, 0, 0.2)',
+        backgroundColor: 'rgba(0, 0, 0, 0.05)',
     },
     badgeCompleted: {
-        backgroundColor: 'rgba(52, 211, 153, 0.2)',
+        backgroundColor: 'rgba(52, 211, 153, 0.1)',
     },
     badgeText: {
-        color: '#F3F4F6',
+        color: '#000000',
         fontSize: 12,
         fontWeight: '600',
     },
     divider: {
         height: 1,
-        backgroundColor: '#374151',
+        backgroundColor: '#E5E7EB',
         marginVertical: 12,
     },
     details: {
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
         gap: 4,
     },
     detailText: {
-        color: '#D1D5DB',
+        color: '#374151',
         fontSize: 12,
         marginLeft: 4,
     },

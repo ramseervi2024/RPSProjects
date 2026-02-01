@@ -30,7 +30,7 @@ export const BookingLandingScreen = ({ navigation }) => (
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#0F172A',
+        backgroundColor: '#FFFFFF',
     },
     center: {
         flex: 1,
@@ -38,23 +38,23 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     text: {
-        color: '#F3F4F6',
+        color: '#000000',
         fontSize: 18,
         fontWeight: 'bold',
     },
     subtext: {
-        color: '#9CA3AF',
+        color: '#4B5563',
         marginTop: 8,
     },
     button: {
         marginTop: 20,
-        backgroundColor: '#FFD700',
+        backgroundColor: '#000000',
         paddingHorizontal: 24,
         paddingVertical: 12,
         borderRadius: 24,
     },
     buttonText: {
-        color: '#0F172A',
+        color: '#FFFFFF',
         fontWeight: 'bold',
     },
 });

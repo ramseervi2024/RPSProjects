@@ -15,14 +15,14 @@ const BottomTabs = () => {
             screenOptions={{
                 headerShown: false,
                 tabBarStyle: {
-                    backgroundColor: '#0F172A',
-                    borderTopColor: '#1F2937',
+                    backgroundColor: '#FFFFFF',
+                    borderTopColor: '#E5E7EB',
                     height: 80,
                     paddingBottom: 20,
                     paddingTop: 10,
                 },
-                tabBarActiveTintColor: '#FFD700',
-                tabBarInactiveTintColor: '#9CA3AF',
+                tabBarActiveTintColor: '#000000',
+                tabBarInactiveTintColor: '#6B7280',
                 tabBarLabelStyle: {
                     fontSize: 10,
                     fontWeight: '600',

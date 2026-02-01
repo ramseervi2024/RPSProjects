@@ -6,8 +6,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const DreamShotsStudioNavigation = () => {
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#0F172A' }}>
-            <StatusBar barStyle="light-content" backgroundColor="#0F172A" />
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
+            <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
             <StackNavigator />
         </SafeAreaView>
     );

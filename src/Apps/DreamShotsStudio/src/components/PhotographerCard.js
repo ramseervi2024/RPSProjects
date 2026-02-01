@@ -10,13 +10,13 @@ const PhotographerCard = ({ photographer, onPress }) => {
                 <View style={styles.headerRow}>
                     <Text style={styles.name}>{photographer.name}</Text>
                     <View style={styles.ratingContainer}>
-                        <Star color="#FFD700" fill="#FFD700" size={14} />
+                        <Star color="#000000" fill="#000000" size={14} />
                         <Text style={styles.rating}>{photographer.rating}</Text>
                     </View>
                 </View>
 
                 <View style={styles.locationRow}>
-                    <MapPin color="#9CA3AF" size={14} />
+                    <MapPin color="#4B5563" size={14} />
                     <Text style={styles.location}>{photographer.city}</Text>
                 </View>
 
@@ -37,15 +37,17 @@ const PhotographerCard = ({ photographer, onPress }) => {
 
 const styles = StyleSheet.create({
     card: {
-        backgroundColor: '#111827',
+        backgroundColor: '#FFFFFF',
         borderRadius: 16,
         marginBottom: 16,
         overflow: 'hidden',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
+        shadowOpacity: 0.1,
         shadowRadius: 8,
-        elevation: 5,
+        elevation: 3,
+        borderWidth: 1,
+        borderColor: '#000000',
     },
     image: {
         width: '100%',
@@ -64,18 +66,18 @@ const styles = StyleSheet.create({
     name: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#F3F4F6',
+        color: '#000000',
     },
     ratingContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: 'rgba(255, 215, 0, 0.1)',
+        backgroundColor: 'rgba(0, 0, 0, 0.05)',
         paddingHorizontal: 8,
         paddingVertical: 4,
         borderRadius: 8,
     },
     rating: {
-        color: '#FFD700',
+        color: '#000000',
         fontWeight: 'bold',
         marginLeft: 4,
         fontSize: 12,
@@ -86,7 +88,7 @@ const styles = StyleSheet.create({
         marginBottom: 12,
     },
     location: {
-        color: '#9CA3AF',
+        color: '#4B5563',
         marginLeft: 4,
         fontSize: 14,
     },
@@ -99,19 +101,21 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     categoryBadge: {
-        backgroundColor: '#1F2937',
+        backgroundColor: '#F3F4F6',
         paddingHorizontal: 8,
         paddingVertical: 4,
         borderRadius: 8,
         marginRight: 6,
+        borderWidth: 1,
+        borderColor: '#E5E7EB',
     },
     categoryText: {
-        color: '#D1D5DB',
+        color: '#374151',
         fontSize: 10,
         fontWeight: '600',
     },
     price: {
-        color: '#FFD700',
+        color: '#000000',
         fontWeight: 'bold',
         fontSize: 16,
     },
