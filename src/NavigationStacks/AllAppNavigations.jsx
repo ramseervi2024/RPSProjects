@@ -72,7 +72,7 @@ import GrowTradingNavigation from '../Apps/GrowTrading/GrowTradingNavigation';
 import TentRentalNavigation from '../Apps/TentRental/TentRentalNavigation';
 import ToolMartNavigation from '../Apps/ToolMart/ToolMartNavigation';
 import VillageHubNavigation from '../Apps/VillageHub/VillageHubNavigation';
-import FarmerHelperNavigation from '../Apps/FarmerHelper/FarmerHelperNavigation'; 
+import FarmerHelperNavigation from '../Apps/FarmerHelper/FarmerHelperNavigation';
 import RajasthanClothsNavigation from '../Apps/RajasthanCloths/RajasthanClothsNavigation';
 import RajasthanClothsMainNavigation from '../Apps/RajasthanCloths/RajasthanClothsMainNavigation';
 import LoaderPageNavigation from '../Apps/LoaderPage/LoaderPageNavigation';
@@ -179,7 +179,7 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="BazaarHubNavigation" component={BazaarHubNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="DreamShotsStudioNavigation" component={DreamShotsStudioNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="FixMyHome" component={FixMyHome} options={{ headerShown: false }} />
-                </AllAppNav.Navigator>
+            </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>
     );
