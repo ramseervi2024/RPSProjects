@@ -8,7 +8,7 @@ import { safaris } from '../data/safaris';
 const ProfileScreen = () => {
     return (
         <View style={styles.container}>
-            <Header title="My Profile" showMenu={false} />
+            <Header title="My Profile" />
             <ScrollView contentContainerStyle={styles.scrollContent}>
 
                 <View style={styles.profileHeader}>

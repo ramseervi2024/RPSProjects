@@ -3,7 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'react-native';
 import StackNavigator from './src/navigation/StackNavigator';
 
-const App = () => {
+const RoyalTourTrip = () => {
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
             <StatusBar barStyle="dark-content" backgroundColor="#fff" />
@@ -12,4 +12,4 @@ const App = () => {
     );
 };
 
-export default App;
+export default RoyalTourTrip;

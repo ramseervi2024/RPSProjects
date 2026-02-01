@@ -7,7 +7,7 @@ import { destinations } from '../data/destinations';
 const DestinationsScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <Header title="All Destinations" showMenu={false} />
+            <Header title="All Destinations" />
             <FlatList
                 data={destinations}
                 contentContainerStyle={styles.listContainer}
@@ -16,6 +16,7 @@ const DestinationsScreen = ({ navigation }) => {
                         <DestinationCard
                             item={item}
                             onPress={() => navigation.navigate('DestinationDetail', { item })}
+                            style={{ width: '100%', marginRight: 0 }}
                         />
                     </View>
                 )}

@@ -101,13 +101,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
     },
     bannerContainer: {
-        height: 250,
+        width: width,
+        aspectRatio: 1.6, // Approx 16:10 ratio
         marginBottom: 20,
         position: 'relative',
     },
     bannerImage: {
         width: width,
-        height: 250,
+        height: '100%',
     },
     welcomeContainer: {
         position: 'absolute',

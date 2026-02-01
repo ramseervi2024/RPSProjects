@@ -7,7 +7,7 @@ import { safaris } from '../data/safaris';
 const SafariBookingScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <Header title="Book a Safari" showMenu={false} />
+            <Header title="Book a Safari" />
             <FlatList
                 data={safaris}
                 numColumns={2}

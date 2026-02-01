@@ -12,7 +12,7 @@ const TripPlannerScreen = () => {
 
     return (
         <View style={styles.container}>
-            <Header title="Plan Your Trip" showMenu={false} />
+            <Header title="Plan Your Trip" />
             <ScrollView contentContainerStyle={styles.scrollContent}>
 
                 <View style={styles.formContainer}>

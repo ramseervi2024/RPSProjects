@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
-        height: 120,
+        aspectRatio: 1.5, // Responsive image height
     },
     details: {
         padding: 12,

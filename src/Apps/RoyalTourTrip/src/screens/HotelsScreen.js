@@ -28,7 +28,7 @@ const HotelsScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Header title="Hotels & Stays" showMenu={false} />
+            <Header title="Hotels & Stays" />
             {renderFilter()}
             <FlatList
                 data={hotels}

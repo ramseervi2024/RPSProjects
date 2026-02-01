@@ -4,9 +4,9 @@ import { MapPin } from 'lucide-react-native';
 
 const { width } = Dimensions.get('window');
 
-const DestinationCard = ({ item, onPress }) => {
+const DestinationCard = ({ item, onPress, style }) => {
     return (
-        <TouchableOpacity style={styles.card} onPress={onPress}>
+        <TouchableOpacity style={[styles.card, style]} onPress={onPress}>
             <Image source={{ uri: item.imageUrl }} style={styles.image} resizeMode="cover" />
             <View style={styles.overlay} />
             <View style={styles.content}>
@@ -23,7 +23,7 @@ const DestinationCard = ({ item, onPress }) => {
 const styles = StyleSheet.create({
     card: {
         width: width * 0.7, // Horizontal scrolling card width
-        height: 250,
+        aspectRatio: 1.2, // Maintain aspect ratio for responsiveness
         marginRight: 16,
         borderRadius: 16,
         overflow: 'hidden',
