@@ -1,14 +1,13 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import {
     StyleSheet,
     Text,
     View,
     ScrollView,
     TouchableOpacity,
-    SafeAreaView,
     StatusBar,
-    Animated,
-    Dimensions
+    Dimensions,
+    Platform
 } from 'react-native';
 import {
     ArrowLeft, CheckCircle, IndianRupee,
@@ -17,12 +16,25 @@ import {
 import * as Icons from 'lucide-react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import useWishlistStore from '../store/useWishlistStore';
+import Animated, {
+    useAnimatedScrollHandler,
+    useSharedValue,
+    useAnimatedStyle,
+    interpolate,
+    Extrapolate,
+    FadeInDown
+} from 'react-native-reanimated';
+import { BlurView } from "@react-native-community/blur";
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
+const HEADER_HEIGHT = 320;
 
 const BusinessDetails = ({ route, navigation }) => {
     const { business } = route.params;
     const IconComponent = Icons[business.iconName] || Briefcase;
+    const scrollY = useSharedValue(0);
+    const insets = useSafeAreaInsets();
 
     // Wishlist Logic
     const { isInWishlist, toggleWishlist } = useWishlistStore();
@@ -32,203 +44,223 @@ const BusinessDetails = ({ route, navigation }) => {
         navigation.goBack();
     };
 
+    const scrollHandler = useAnimatedScrollHandler((event) => {
+        scrollY.value = event.contentOffset.y;
+    });
+
+    const headerStyle = useAnimatedStyle(() => {
+        return {
+            height: HEADER_HEIGHT,
+            transform: [
+                {
+                    translateY: interpolate(
+                        scrollY.value,
+                        [-HEADER_HEIGHT, 0, HEADER_HEIGHT],
+                        [-HEADER_HEIGHT / 2, 0, HEADER_HEIGHT * 0.75],
+                        Extrapolate.CLAMP
+                    ),
+                },
+                {
+                    scale: interpolate(
+                        scrollY.value,
+                        [-HEADER_HEIGHT, 0],
+                        [2, 1],
+                        Extrapolate.CLAMP
+                    )
+                }
+            ],
+        };
+    });
+
+    const imageOpacityStyle = useAnimatedStyle(() => {
+        const opacity = interpolate(
+            scrollY.value,
+            [0, HEADER_HEIGHT * 0.5],
+            [1, 0],
+            Extrapolate.CLAMP
+        );
+        return { opacity };
+    });
+
     return (
         <View style={styles.container}>
             <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
 
-            {/* Header / Hero Section */}
-            <View style={styles.header}>
+            {/* Animated Parallax Header */}
+            <Animated.View style={[styles.headerContainer, headerStyle]}>
                 <LinearGradient
-                    colors={['#1E293B', '#0F172A']}
+                    colors={['#0F172A', '#1E293B', '#334155']}
                     style={StyleSheet.absoluteFill}
                 />
 
-                {/* Background Pattern */}
-                <View style={styles.headerPattern}>
-                    <IconComponent size={200} color="rgba(255,255,255,0.03)" />
-                </View>
+                {/* Giant Background Icon Pattern */}
+                <Animated.View style={[styles.headerPattern, imageOpacityStyle]}>
+                    <IconComponent size={300} color="rgba(255,255,255,0.05)" />
+                </Animated.View>
 
-                <SafeAreaView>
-                    <View style={styles.heroContent}>
-                        <View style={styles.heroIconContainer}>
-                            <LinearGradient
-                                colors={['#3B82F6', '#2563EB']}
-                                style={styles.heroIconGradient}
-                            >
-                                <IconComponent size={40} color="white" />
-                            </LinearGradient>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <View style={styles.categoryTag}>
-                                <Text style={styles.categoryTagText}>{business.category}</Text>
-                            </View>
-                            <Text style={styles.heroTitle} numberOfLines={2}>
-                                {business.name}
-                            </Text>
-                        </View>
+                {/* Content Overlay */}
+                <Animated.View style={[styles.heroContent, imageOpacityStyle, { paddingTop: insets.top + 20 }]}>
+                    <View style={styles.heroIconWrapper}>
+                        <LinearGradient
+                            colors={['rgba(255,255,255,0.2)', 'rgba(255,255,255,0.05)']}
+                            style={styles.heroIconGlass}
+                        >
+                            <IconComponent size={48} color="white" />
+                        </LinearGradient>
                     </View>
-                </SafeAreaView>
-            </View>
+                    <View style={styles.categoryBadge}>
+                        <Text style={styles.categoryText}>{business.category}</Text>
+                    </View>
+                    <Text style={styles.heroTitle}>{business.name}</Text>
+                </Animated.View>
+            </Animated.View>
 
-            <View style={styles.contentContainer}>
-                <ScrollView
-                    showsVerticalScrollIndicator={false}
-                    contentContainerStyle={styles.scrollContent}
+            {/* Back Button (Fixed) */}
+            <TouchableOpacity
+                onPress={handleBack}
+                style={[styles.backButton, { top: insets.top + 10 }]}
+            >
+                <BlurView
+                    style={styles.glassButton}
+                    blurType="light"
+                    blurAmount={20}
+                    reducedTransparencyFallbackColor="white"
                 >
-                    {/* Key Stats Cards */}
-                    <View style={styles.statsRow}>
-                        <View style={styles.statCard}>
-                            <View style={[styles.statIcon, { backgroundColor: '#FFF7ED' }]}>
+                    <ArrowLeft size={24} color="white" />
+                </BlurView>
+            </TouchableOpacity>
+
+            {/* Scrollable Content */}
+            <Animated.ScrollView
+                onScroll={scrollHandler}
+                scrollEventThrottle={16}
+                style={styles.scrollView}
+                contentContainerStyle={{ paddingTop: HEADER_HEIGHT - 40, paddingBottom: 120 }}
+                showsVerticalScrollIndicator={false}
+            >
+                <View style={styles.contentBody}>
+                    {/* Stats Section with Glass Effect */}
+                    <Animated.View entering={FadeInDown.delay(100).duration(600)} style={styles.statsContainer}>
+                        <View style={styles.statBox}>
+                            <View style={[styles.statIconBadge, { backgroundColor: '#FFF7ED' }]}>
                                 <IndianRupee size={20} color="#F97316" />
                             </View>
-                            <Text style={styles.statLabel}>Investment</Text>
-                            <Text style={styles.statValue}>{business.minInvestment}</Text>
+                            <View>
+                                <Text style={styles.statLabel}>Investment</Text>
+                                <Text style={styles.statValue}>{business.minInvestment}</Text>
+                            </View>
                         </View>
-                        <View style={styles.statCard}>
-                            <View style={[styles.statIcon, { backgroundColor: '#F0FDF4' }]}>
+                        <View style={styles.verticalDivider} />
+                        <View style={styles.statBox}>
+                            <View style={[styles.statIconBadge, { backgroundColor: '#F0FDF4' }]}>
                                 <TrendingUp size={20} color="#16A34A" />
                             </View>
-                            <Text style={styles.statLabel}>Monthly Income</Text>
-                            <Text style={styles.statValue}>{business.monthlyIncome}</Text>
+                            <View>
+                                <Text style={styles.statLabel}>Monthly Income</Text>
+                                <Text style={styles.statValue}>{business.monthlyIncome}</Text>
+                            </View>
                         </View>
-                    </View>
+                    </Animated.View>
 
                     {/* Overview */}
-                    <View style={styles.section}>
-                        <Text style={styles.overviewText}>
-                            {business.detailedOverview}
-                        </Text>
-                    </View>
+                    <Animated.View entering={FadeInDown.delay(200).duration(600)} style={styles.section}>
+                        <Text style={styles.sectionHeader}>Overview</Text>
+                        <Text style={styles.bodyText}>{business.detailedOverview}</Text>
+                    </Animated.View>
 
-                    {/* Workflow */}
-                    <View style={styles.card}>
+                    {/* How It Works */}
+                    <Animated.View entering={FadeInDown.delay(300).duration(600)} style={styles.cardContainer}>
                         <View style={styles.cardHeader}>
-                            <View style={[styles.cardIconBox, { backgroundColor: '#EFF6FF' }]}>
+                            <View style={[styles.iconBox, { backgroundColor: '#EFF6FF' }]}>
                                 <Target size={20} color="#2563EB" />
                             </View>
                             <Text style={styles.cardTitle}>How it works</Text>
                         </View>
-
                         <View style={styles.timeline}>
                             {business.workflowSteps.map((step, index) => (
                                 <View key={index} style={styles.timelineItem}>
-                                    <View style={styles.timelineLeft}>
-                                        <View style={styles.timelineCircle}>
-                                            <Text style={styles.timelineNumber}>{index + 1}</Text>
-                                        </View>
-                                        {index !== business.workflowSteps.length - 1 && (
-                                            <View style={styles.timelineLine} />
-                                        )}
+                                    <View style={styles.timelineIndicator}>
+                                        <View style={styles.timelineDot} />
+                                        {index !== business.workflowSteps.length - 1 && <View style={styles.timelineLine} />}
                                     </View>
-                                    <View style={styles.timelineContent}>
-                                        <Text style={styles.timelineText}>{step}</Text>
-                                    </View>
+                                    <Text style={styles.timelineText}>{step}</Text>
                                 </View>
                             ))}
                         </View>
-                    </View>
-
-                    {/* Setup Guide */}
-                    <View style={styles.card}>
-                        <View style={styles.cardHeader}>
-                            <View style={[styles.cardIconBox, { backgroundColor: '#FEF2F2' }]}>
-                                <Wrench size={20} color="#EF4444" />
-                            </View>
-                            <Text style={styles.cardTitle}>Setup Process</Text>
-                        </View>
-                        <View style={styles.checklist}>
-                            {business.setupProcess.map((step, index) => (
-                                <View key={index} style={styles.checklistItem}>
-                                    <CheckCircle size={20} color="#22C55E" style={styles.checkIcon} />
-                                    <Text style={styles.checklistText}>{step}</Text>
-                                </View>
-                            ))}
-                        </View>
-                    </View>
+                    </Animated.View>
 
                     {/* Investment Breakdown */}
-                    <View style={styles.card}>
+                    <Animated.View entering={FadeInDown.delay(400).duration(600)} style={styles.cardContainer}>
                         <View style={styles.cardHeader}>
-                            <View style={[styles.cardIconBox, { backgroundColor: '#FFF7ED' }]}>
+                            <View style={[styles.iconBox, { backgroundColor: '#FFF7ED' }]}>
                                 <IndianRupee size={20} color="#F97316" />
                             </View>
-                            <Text style={styles.cardTitle}>Cost Breakdown</Text>
+                            <Text style={styles.cardTitle}>Investment Breakdown</Text>
                         </View>
-
-                        <View style={styles.table}>
-                            {business.investmentBreakdown.map((item, index) => (
-                                <View key={index} style={[
-                                    styles.tableRow,
-                                    index !== business.investmentBreakdown.length - 1 && styles.tableRowBorder
-                                ]}>
-                                    <Text style={styles.tableLabel}>{item.item}</Text>
-                                    <Text style={styles.tableValue}>{item.cost}</Text>
-                                </View>
-                            ))}
-                            <View style={styles.tableTotal}>
-                                <Text style={styles.tableTotalLabel}>Total Estimated Cost</Text>
-                                <Text style={styles.tableTotalValue}>{business.minInvestment}</Text>
+                        {business.investmentBreakdown.map((item, index) => (
+                            <View key={index} style={styles.costRow}>
+                                <Text style={styles.costLabel}>{item.item}</Text>
+                                <Text style={styles.costValue}>{item.cost}</Text>
                             </View>
-                        </View>
-                    </View>
+                        ))}
+                    </Animated.View>
 
-                    {/* Pros & Cons */}
-                    <View style={styles.row}>
-                        <View style={[styles.columnCard, { marginRight: 8 }]}>
-                            <View style={styles.columnHeader}>
+                    {/* Pros & Cons Grid */}
+                    <Animated.View entering={FadeInDown.delay(500).duration(600)} style={styles.gridRow}>
+                        <View style={[styles.gridCard, { backgroundColor: '#F0FDF4', borderColor: '#BBF7D0' }]}>
+                            <View style={styles.gridHeader}>
                                 <ThumbsUp size={16} color="#16A34A" />
-                                <Text style={[styles.columnTitle, { color: '#16A34A' }]}>Pros</Text>
+                                <Text style={[styles.gridTitle, { color: '#16A34A' }]}>Pros</Text>
                             </View>
-                            {business.pros.map((pro, index) => (
-                                <View key={index} style={styles.bulletItem}>
-                                    <View style={[styles.bullet, { backgroundColor: '#16A34A' }]} />
-                                    <Text style={styles.bulletText}>{pro}</Text>
-                                </View>
+                            {business.pros.map((pro, idx) => (
+                                <Text key={idx} style={styles.gridText}>• {pro}</Text>
                             ))}
                         </View>
-                        <View style={[styles.columnCard, { marginLeft: 8 }]}>
-                            <View style={styles.columnHeader}>
+                        <View style={[styles.gridCard, { backgroundColor: '#FEF2F2', borderColor: '#FECACA' }]}>
+                            <View style={styles.gridHeader}>
                                 <ThumbsDown size={16} color="#DC2626" />
-                                <Text style={[styles.columnTitle, { color: '#DC2626' }]}>Cons</Text>
+                                <Text style={[styles.gridTitle, { color: '#DC2626' }]}>Cons</Text>
                             </View>
-                            {business.cons.map((con, index) => (
-                                <View key={index} style={styles.bulletItem}>
-                                    <View style={[styles.bullet, { backgroundColor: '#DC2626' }]} />
-                                    <Text style={styles.bulletText}>{con}</Text>
-                                </View>
+                            {business.cons.map((con, idx) => (
+                                <Text key={idx} style={styles.gridText}>• {con}</Text>
                             ))}
                         </View>
-                    </View>
-                </ScrollView>
-            </View>
+                    </Animated.View>
 
-            {/* Bottom Action Bar */}
-            <View style={styles.bottomBarContainer}>
-                <View style={styles.bottomBarBlur} />
-                <TouchableOpacity
-                    style={styles.actionButtonSecondary}
-                    onPress={handleBack}
-                >
-                    <ArrowLeft size={20} color="#1E293B" />
-                </TouchableOpacity>
+                </View>
+            </Animated.ScrollView>
 
-                <TouchableOpacity
-                    style={[
-                        styles.actionButtonPrimary,
-                        isSaved && styles.wishlistActive
-                    ]}
-                    onPress={() => toggleWishlist(business)}
-                >
-                    <Heart
-                        size={20}
-                        color={isSaved ? "white" : "white"}
-                        fill={isSaved ? "white" : "transparent"}
-                        style={styles.btnIcon}
-                    />
-                    <Text style={styles.btnText}>
-                        {isSaved ? 'Saved to Wishlist' : 'Add to Wishlist'}
-                    </Text>
-                </TouchableOpacity>
+            {/* Glassmorphism Bottom Action Bar */}
+            <View style={styles.bottomBarWrapper}>
+                <BlurView
+                    style={styles.bottomBarBlur}
+                    blurType="light"
+                    blurAmount={20}
+                    reducedTransparencyFallbackColor="white"
+                />
+                <View style={[styles.bottomBarContent, { paddingBottom: insets.bottom + 10 }]}>
+                    <TouchableOpacity
+                        style={styles.secondaryBtn}
+                        onPress={handleBack}
+                    >
+                        <ArrowLeft size={24} color="#334155" />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={[styles.primaryBtn, isSaved && styles.savedBtn]}
+                        onPress={() => toggleWishlist(business)}
+                    >
+                        <Heart
+                            size={20}
+                            color="white"
+                            fill={isSaved ? "white" : "transparent"}
+                            style={{ marginRight: 8 }}
+                        />
+                        <Text style={styles.primaryBtnText}>
+                            {isSaved ? 'Saved to Wishlist' : 'Add to Wishlist'}
+                        </Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </View>
     );
@@ -237,104 +269,120 @@ const BusinessDetails = ({ route, navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F8FAFC',
+        backgroundColor: '#F1F5F9',
     },
-    header: {
-        height: 280,
-        backgroundColor: '#1E293B',
-        position: 'relative',
+    headerContainer: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        overflow: 'hidden',
+        zIndex: 1,
     },
     headerPattern: {
         position: 'absolute',
-        bottom: -40,
-        right: -40,
-        opacity: 0.5,
+        bottom: -50,
+        right: -50,
         transform: [{ rotate: '-15deg' }],
     },
     heroContent: {
-        paddingHorizontal: 24,
-        flexDirection: 'row',
         alignItems: 'center',
-        paddingTop: 60, // Adjusted for safe area/status bar
+        justifyContent: 'center',
+        height: '100%',
+        paddingHorizontal: 20,
     },
-    heroIconContainer: {
-        marginRight: 16,
-        shadowColor: "black",
+    heroIconWrapper: {
+        marginBottom: 16,
+        shadowColor: "#000",
         shadowOffset: { width: 0, height: 10 },
         shadowOpacity: 0.3,
-        shadowRadius: 10,
+        shadowRadius: 20,
         elevation: 10,
     },
-    heroIconGradient: {
-        width: 72,
-        height: 72,
-        borderRadius: 20,
+    heroIconGlass: {
+        width: 80,
+        height: 80,
+        borderRadius: 24,
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 1,
+        borderColor: 'rgba(255,255,255,0.3)',
+    },
+    categoryBadge: {
+        paddingHorizontal: 12,
+        paddingVertical: 6,
+        backgroundColor: 'rgba(255,255,255,0.15)',
+        borderRadius: 100,
+        marginBottom: 12,
+        borderWidth: 1,
         borderColor: 'rgba(255,255,255,0.2)',
     },
-    heroTitle: {
-        fontSize: 24,
-        fontWeight: '800',
-        color: 'white',
-        letterSpacing: -0.5,
-        lineHeight: 30,
-    },
-    categoryTag: {
-        backgroundColor: 'rgba(255,255,255,0.1)',
-        paddingHorizontal: 10,
-        paddingVertical: 4,
-        borderRadius: 100,
-        alignSelf: 'flex-start',
-        marginBottom: 8,
-        borderWidth: 1,
-        borderColor: 'rgba(255,255,255,0.1)',
-    },
-    categoryTagText: {
-        color: '#94A3B8',
-        fontSize: 12,
+    categoryText: {
+        color: '#E2E8F0',
+        fontSize: 13,
         fontWeight: '600',
         letterSpacing: 0.5,
     },
-    contentContainer: {
-        flex: 1,
-        marginTop: -40,
-        borderTopLeftRadius: 32,
-        borderTopRightRadius: 32,
-        backgroundColor: '#F8FAFC',
+    heroTitle: {
+        fontSize: 28,
+        fontWeight: '800',
+        color: 'white',
+        textAlign: 'center',
+        letterSpacing: -0.5,
+        lineHeight: 34,
+        textShadowColor: 'rgba(0,0,0,0.3)',
+        textShadowOffset: { width: 0, height: 2 },
+        textShadowRadius: 4,
+    },
+    backButton: {
+        position: 'absolute',
+        left: 20,
+        zIndex: 100,
+    },
+    glassButton: {
+        width: 44,
+        height: 44,
+        borderRadius: 22,
+        alignItems: 'center',
+        justifyContent: 'center',
         overflow: 'hidden',
     },
-    scrollContent: {
-        padding: 20,
-        paddingTop: 30,
-        paddingBottom: 120, // Added padding for bottom bar
-    },
-    statsRow: {
-        flexDirection: 'row',
-        gap: 16,
-        marginBottom: 24,
-        marginTop: -60,
-    },
-    statCard: {
+    scrollView: {
         flex: 1,
+        zIndex: 2,
+    },
+    contentBody: {
+        paddingHorizontal: 20,
+        backgroundColor: '#F1F5F9',
+        borderTopLeftRadius: 32,
+        borderTopRightRadius: 32,
+        minHeight: height - HEADER_HEIGHT,
+        paddingTop: 30,
+    },
+    statsContainer: {
+        flexDirection: 'row',
         backgroundColor: 'white',
-        borderRadius: 20,
-        padding: 16,
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.05,
-        shadowRadius: 10,
-        elevation: 6,
+        borderRadius: 24,
+        padding: 20,
+        marginTop: -60, // Overlap effect
+        shadowColor: "#64748B",
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.1,
+        shadowRadius: 16,
+        elevation: 8,
+        marginBottom: 24,
+    },
+    statBox: {
+        flex: 1,
         alignItems: 'center',
     },
-    statIcon: {
+    statIconBadge: {
         width: 40,
         height: 40,
         borderRadius: 12,
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 10,
+        marginBottom: 8,
     },
     statLabel: {
         fontSize: 12,
@@ -343,221 +391,165 @@ const styles = StyleSheet.create({
         marginBottom: 4,
     },
     statValue: {
-        fontSize: 15,
+        fontSize: 16,
         fontWeight: '700',
         color: '#0F172A',
-        textAlign: 'center',
+    },
+    verticalDivider: {
+        width: 1,
+        height: '100%',
+        backgroundColor: '#E2E8F0',
+        marginHorizontal: 10,
     },
     section: {
         marginBottom: 24,
     },
-    overviewText: {
-        fontSize: 16,
-        color: '#334155',
-        lineHeight: 26,
+    sectionHeader: {
+        fontSize: 18,
+        fontWeight: '700',
+        color: '#1E293B',
+        marginBottom: 8,
     },
-    card: {
+    bodyText: {
+        fontSize: 16,
+        color: '#475569',
+        lineHeight: 24,
+    },
+    cardContainer: {
         backgroundColor: 'white',
-        borderRadius: 24,
-        padding: 24,
+        borderRadius: 20,
+        padding: 20,
         marginBottom: 20,
-        shadowColor: "#64748B",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.05,
-        shadowRadius: 6,
-        elevation: 3,
         borderWidth: 1,
-        borderColor: '#F1F5F9',
+        borderColor: '#E2E8F0',
     },
     cardHeader: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 20,
+        marginBottom: 16,
     },
-    cardIconBox: {
-        width: 36,
-        height: 36,
-        borderRadius: 10,
+    iconBox: {
+        width: 32,
+        height: 32,
+        borderRadius: 8,
         alignItems: 'center',
         justifyContent: 'center',
-        marginRight: 12,
+        marginRight: 10,
     },
     cardTitle: {
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: '700',
         color: '#0F172A',
     },
     timeline: {
-        paddingLeft: 8,
+        marginLeft: 10,
     },
     timelineItem: {
         flexDirection: 'row',
-        marginBottom: 2,
+        paddingBottom: 20,
     },
-    timelineLeft: {
+    timelineIndicator: {
         alignItems: 'center',
-        width: 30,
-        marginRight: 12,
+        marginRight: 16,
     },
-    timelineCircle: {
-        width: 24,
-        height: 24,
-        borderRadius: 12,
+    timelineDot: {
+        width: 12,
+        height: 12,
+        borderRadius: 6,
         backgroundColor: '#2563EB',
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 1,
-    },
-    timelineNumber: {
-        color: 'white',
-        fontSize: 12,
-        fontWeight: '700',
+        borderWidth: 2,
+        borderColor: '#DBEAFE',
     },
     timelineLine: {
         width: 2,
         flex: 1,
         backgroundColor: '#E2E8F0',
-        marginVertical: 4,
-    },
-    timelineContent: {
-        flex: 1,
-        paddingBottom: 20,
+        marginTop: 4,
     },
     timelineText: {
-        fontSize: 15,
-        color: '#475569',
-        lineHeight: 22,
-        marginTop: 2,
-    },
-    checklist: {
-        gap: 16,
-    },
-    checklistItem: {
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-    },
-    checkIcon: {
-        marginRight: 12,
-        marginTop: 2,
-    },
-    checklistText: {
-        fontSize: 15,
-        color: '#475569',
-        lineHeight: 22,
         flex: 1,
+        fontSize: 15,
+        color: '#334155',
+        lineHeight: 22,
+        marginTop: -4,
     },
-    table: {
-        backgroundColor: '#F8FAFC',
+    costRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingVertical: 12,
+        borderBottomWidth: 1,
+        borderBottomColor: '#F1F5F9',
+    },
+    costLabel: {
+        fontSize: 15,
+        color: '#64748B',
+    },
+    costValue: {
+        fontSize: 15,
+        fontWeight: '600',
+        color: '#0F172A',
+    },
+    gridRow: {
+        flexDirection: 'row',
+        gap: 12,
+    },
+    gridCard: {
+        flex: 1,
         borderRadius: 16,
         padding: 16,
-    },
-    tableRow: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingVertical: 10,
-    },
-    tableRowBorder: {
-        borderBottomWidth: 1,
-        borderBottomColor: '#E2E8F0',
-    },
-    tableLabel: {
-        fontSize: 14,
-        color: '#64748B',
-        flex: 1,
-    },
-    tableValue: {
-        fontSize: 14,
-        color: '#0F172A',
-        fontWeight: '600',
-        marginLeft: 16,
-    },
-    tableTotal: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: 12,
-        paddingTop: 12,
-        borderTopWidth: 2,
-        borderTopColor: '#E2E8F0',
-    },
-    tableTotalLabel: {
-        fontSize: 15,
-        fontWeight: '700',
-        color: '#0F172A',
-    },
-    tableTotalValue: {
-        fontSize: 15,
-        fontWeight: '800',
-        color: '#2563EB',
-    },
-    row: {
-        flexDirection: 'row',
-    },
-    columnCard: {
-        flex: 1,
-        backgroundColor: 'white',
-        borderRadius: 20,
-        padding: 16,
         borderWidth: 1,
-        borderColor: '#F1F5F9',
     },
-    columnHeader: {
+    gridHeader: {
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 12,
     },
-    columnTitle: {
+    gridTitle: {
         fontSize: 14,
         fontWeight: '700',
-        marginLeft: 8,
+        marginLeft: 6,
     },
-    bulletItem: {
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-        marginBottom: 10,
-    },
-    bullet: {
-        width: 6,
-        height: 6,
-        borderRadius: 3,
-        marginTop: 6,
-        marginRight: 8,
-    },
-    bulletText: {
+    gridText: {
         fontSize: 13,
         color: '#475569',
+        marginBottom: 6,
         lineHeight: 18,
-        flex: 1,
     },
-    bottomBarContainer: {
+    bottomBarWrapper: {
         position: 'absolute',
         bottom: 0,
         left: 0,
         right: 0,
+        overflow: 'hidden', // Contain blur
+    },
+    bottomBarBlur: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+    },
+    bottomBarContent: {
         flexDirection: 'row',
         padding: 20,
-        paddingBottom: 30,
-        gap: 16,
-        backgroundColor: 'white',
-        borderTopWidth: 1,
-        borderTopColor: '#F1F5F9',
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: -4 },
-        shadowOpacity: 0.05,
-        shadowRadius: 10,
-        elevation: 20,
+        paddingTop: 20,
+        gap: 12,
+        backgroundColor: 'rgba(255,255,255,0.7)', // Fallback / Overlay
     },
-    actionButtonSecondary: {
-        width: 56,
-        height: 56,
-        borderRadius: 16,
-        backgroundColor: '#F1F5F9',
+    secondaryBtn: {
+        width: 50,
+        height: 50,
+        borderRadius: 14,
+        backgroundColor: 'rgba(255,255,255,0.8)',
         alignItems: 'center',
         justifyContent: 'center',
+        borderWidth: 1,
+        borderColor: '#E2E8F0',
     },
-    actionButtonPrimary: {
+    primaryBtn: {
         flex: 1,
-        height: 56,
-        borderRadius: 16,
+        height: 50,
+        borderRadius: 14,
         backgroundColor: '#2563EB',
         alignItems: 'center',
         justifyContent: 'center',
@@ -566,20 +558,17 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.3,
         shadowRadius: 8,
-        elevation: 8,
+        elevation: 6,
     },
-    wishlistActive: {
-        backgroundColor: '#EC4899',
-        shadowColor: "#EC4899",
+    savedBtn: {
+        backgroundColor: '#BE185D',
+        shadowColor: "#BE185D",
     },
-    btnText: {
-        color: 'white',
+    primaryBtnText: {
         fontSize: 16,
         fontWeight: '700',
+        color: 'white',
     },
-    btnIcon: {
-        marginRight: 8,
-    }
 });
 
 export default BusinessDetails;

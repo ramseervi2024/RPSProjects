@@ -9,17 +9,21 @@ import {
     TouchableOpacity,
     StatusBar,
     SafeAreaView,
-    Platform
+    Platform,
+    Dimensions
 } from 'react-native';
 import BusinessCard from './BusinessCard';
 import { businessIdeas } from './data';
 import { Search, Heart } from 'lucide-react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { BlurView } from "@react-native-community/blur";
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const BusinessList = ({ navigation }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [budgetRange, setBudgetRange] = useState('All');
+    const insets = useSafeAreaInsets();
 
     const categories = ['All', ...new Set(businessIdeas.map(b => b.category))];
     const budgetOptions = ['All', 'Under 10k', '10k - 50k', '50k - 2L', '2L - 5L', '5L+'];
@@ -97,44 +101,50 @@ const BusinessList = ({ navigation }) => {
         </View>
     );
 
+    const HEADER_HEIGHT = Platform.OS === 'ios' ? 180 : 200; // Approx height
+
     return (
         <View style={styles.container}>
-            <StatusBar barStyle="light-content" backgroundColor="#2563EB" />
+            <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
 
-            {/* Sticky Header Section */}
-            <View style={styles.stickyHeader}>
-                <LinearGradient
-                    colors={['#2563EB', '#1D4ED8']}
+            {/* Sticky Glass Header */}
+            <View style={[styles.stickyHeader, { paddingTop: insets.top }]}>
+                {/* Blur Effect */}
+                <BlurView
                     style={StyleSheet.absoluteFill}
+                    blurType="light"
+                    blurAmount={20}
+                    reducedTransparencyFallbackColor="#2563EB"
                 />
-                <SafeAreaView>
-                    <View style={styles.headerContent}>
-                        <View>
-                            <Text style={styles.headerTitle}>BazaarHub</Text>
-                            <Text style={styles.headerSubtitle}>Discover your next big idea</Text>
-                        </View>
-                        <TouchableOpacity
-                            style={styles.wishlistButton}
-                            onPress={() => navigation.navigate('Wishlist')}
-                        >
-                            <Heart size={24} color="white" />
-                        </TouchableOpacity>
-                    </View>
+                {/* Semi-transparent Overlay for color tint */}
+                <View style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(37, 99, 235, 0.85)' }]} />
 
-                    {/* Search Bar - Fixed inside Header */}
-                    <View style={styles.searchContainer}>
-                        <View style={styles.searchBar}>
-                            <Search size={20} color="#64748B" style={styles.searchIcon} />
-                            <TextInput
-                                style={styles.searchInput}
-                                placeholder="Search for ideas..."
-                                placeholderTextColor="#94A3B8"
-                                value={searchTerm}
-                                onChangeText={setSearchTerm}
-                            />
-                        </View>
+                <View style={styles.headerContent}>
+                    <View>
+                        <Text style={styles.headerTitle}>BazaarHub</Text>
+                        <Text style={styles.headerSubtitle}>Discover your next big idea</Text>
                     </View>
-                </SafeAreaView>
+                    <TouchableOpacity
+                        style={styles.wishlistButton}
+                        onPress={() => navigation.navigate('Wishlist')}
+                    >
+                        <Heart size={24} color="white" />
+                    </TouchableOpacity>
+                </View>
+
+                {/* Search Bar - Fixed inside Header */}
+                <View style={styles.searchContainer}>
+                    <View style={styles.searchBar}>
+                        <Search size={20} color="#64748B" style={styles.searchIcon} />
+                        <TextInput
+                            style={styles.searchInput}
+                            placeholder="Search for ideas..."
+                            placeholderTextColor="#94A3B8"
+                            value={searchTerm}
+                            onChangeText={setSearchTerm}
+                        />
+                    </View>
+                </View>
             </View>
 
             {/* Main Content */}
@@ -147,13 +157,17 @@ const BusinessList = ({ navigation }) => {
                         onPress={handleSelectBusiness}
                     />
                 )}
-                ListHeaderComponent={renderFilters}
+                ListHeaderComponent={
+                    <View style={{ marginTop: 20 }}>
+                        {renderFilters()}
+                    </View>
+                }
                 ListEmptyComponent={
                     <View style={styles.emptyContainer}>
                         <Text style={styles.emptyText}>No ideas found matching your criteria.</Text>
                     </View>
                 }
-                contentContainerStyle={styles.listContent}
+                contentContainerStyle={[styles.listContent, { paddingTop: HEADER_HEIGHT + insets.top }]}
                 showsVerticalScrollIndicator={false}
                 style={styles.flatList}
             />
@@ -167,19 +181,22 @@ const styles = StyleSheet.create({
         backgroundColor: '#F8FAFC',
     },
     stickyHeader: {
-        zIndex: 10,
-        backgroundColor: '#2563EB',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
         paddingBottom: 20,
         borderBottomLeftRadius: 24,
         borderBottomRightRadius: 24,
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.1,
-        shadowRadius: 10,
+        overflow: 'hidden', // Required for blur to respect radius
+        shadowColor: "#2563EB",
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.15,
+        shadowRadius: 16,
         elevation: 10,
     },
     headerContent: {
-        marginTop: Platform.OS === 'android' ? 16 : 0,
         paddingHorizontal: 20,
         paddingTop: 10,
         paddingBottom: 20,
@@ -192,11 +209,15 @@ const styles = StyleSheet.create({
         fontWeight: '800',
         color: 'white',
         letterSpacing: -0.5,
+        textShadowColor: 'rgba(0,0,0,0.1)',
+        textShadowOffset: { width: 0, height: 2 },
+        textShadowRadius: 4,
     },
     headerSubtitle: {
         fontSize: 14,
-        color: '#BFDBFE',
+        color: '#DBEAFE',
         marginTop: 4,
+        fontWeight: '500',
     },
     wishlistButton: {
         width: 44,
@@ -206,7 +227,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 1,
-        borderColor: 'rgba(255,255,255,0.1)',
+        borderColor: 'rgba(255,255,255,0.2)',
     },
     searchContainer: {
         paddingHorizontal: 20,
@@ -239,7 +260,6 @@ const styles = StyleSheet.create({
     listContent: {
         paddingHorizontal: 16,
         paddingBottom: 40,
-        paddingTop: 24,
     },
     filterContainer: {
         marginBottom: 8,
