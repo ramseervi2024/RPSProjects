@@ -6,7 +6,7 @@ import LikedScreen from './screens/LikedScreen';
 import { Heart, Sun, Moon, ArrowLeft } from 'lucide-react-native';
 import { light, dark } from './theme/colors';
 
-export default function App() {
+export default function PokeSwipe() {
   const [screen, setScreen] = useState('welcome'); // welcome | swipe | liked
   const [liked, setLiked] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
