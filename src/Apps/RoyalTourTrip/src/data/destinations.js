@@ -1,0 +1,42 @@
+export const destinations = [
+    {
+        id: '1',
+        name: 'Jaisalmer',
+        city: 'Jaisalmer',
+        description: 'The Golden City, known for its yellow sandstone architecture and the magnificent Jaisalmer Fort.',
+        imageUrl: 'https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=1776&auto=format&fit=crop',
+        bestTimeToVisit: 'October to March',
+    },
+    {
+        id: '2',
+        name: 'Jodhpur',
+        city: 'Jodhpur',
+        description: 'The Blue City, famous for the massive Mehrangarh Fort and blue-painted houses.',
+        imageUrl: 'https://images.unsplash.com/photo-1534988755695-17e9ae8b47bb?q=80&w=1770&auto=format&fit=crop',
+        bestTimeToVisit: 'October to March',
+    },
+    {
+        id: '3',
+        name: 'Pushkar',
+        city: 'Pushkar',
+        description: 'A holy city famous for its lake, Brahma Temple, and the annual Pushkar Camel Fair.',
+        imageUrl: 'https://images.unsplash.com/photo-1590766940554-634a7ed0fe29?q=80&w=1762&auto=format&fit=crop',
+        bestTimeToVisit: 'November to February',
+    },
+    {
+        id: '4',
+        name: 'Thar Desert',
+        city: 'Jaisalmer',
+        description: 'The Great Indian Desert, offering camel safaris, camping under the stars, and cultural performances.',
+        imageUrl: 'https://images.unsplash.com/photo-1558266453-294c7764d394?q=80&w=1770&auto=format&fit=crop',
+        bestTimeToVisit: 'October to February',
+    },
+    {
+        id: '5',
+        name: 'Mehrangarh Fort',
+        city: 'Jodhpur',
+        description: 'One of the largest forts in India, standing 410 feet above the city and enclosed by imposing thick walls.',
+        imageUrl: 'https://images.unsplash.com/photo-1595846519845-68e298c2edd8?q=80&w=1887&auto=format&fit=crop',
+        bestTimeToVisit: 'All year round',
+    },
+];

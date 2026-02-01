@@ -1,0 +1,38 @@
+export const hotels = [
+    {
+        id: '1',
+        name: 'Suryagarh Jaisalmer',
+        city: 'Jaisalmer',
+        rating: 4.9,
+        pricePerNight: '₹18,000',
+        imageUrl: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1770&auto=format&fit=crop',
+        amenities: ['Pool', 'Spa', 'Desert View', 'Fine Dining'],
+    },
+    {
+        id: '2',
+        name: 'Umaid Bhawan Palace',
+        city: 'Jodhpur',
+        rating: 5.0,
+        pricePerNight: '₹45,000',
+        imageUrl: 'https://images.unsplash.com/photo-1571407973007-889419106096?q=80&w=1935&auto=format&fit=crop',
+        amenities: ['Heritage Walk', 'Luxury Suites', 'Museum', 'Bar'],
+    },
+    {
+        id: '3',
+        name: 'The Pushkar Bagh',
+        city: 'Pushkar',
+        rating: 4.5,
+        pricePerNight: '₹6,500',
+        imageUrl: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1770&auto=format&fit=crop',
+        amenities: ['Garden', 'Yoga Center', 'Organic Food', 'Bonfire'],
+    },
+    {
+        id: '4',
+        name: 'Rang Mahal',
+        city: 'Jaisalmer',
+        rating: 4.2,
+        pricePerNight: '₹8,000',
+        imageUrl: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1770&auto=format&fit=crop',
+        amenities: ['Pool', 'Folk Dance', 'Buffet', 'Bar'],
+    },
+];

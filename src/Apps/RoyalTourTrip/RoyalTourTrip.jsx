@@ -1,10 +1,15 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar } from 'react-native';
+import StackNavigator from './src/navigation/StackNavigator';
 
-export default function RoyalTourTrip() {
-  return (
-    <View>
-      <Text>RoyalTourTrip</Text>
-    </View>
-  )
-}
+const App = () => {
+    return (
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+            <StatusBar barStyle="dark-content" backgroundColor="#fff" />
+            <StackNavigator />
+        </SafeAreaView>
+    );
+};
+
+export default App;

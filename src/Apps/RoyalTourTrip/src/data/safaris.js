@@ -1,0 +1,38 @@
+export const safaris = [
+    {
+        id: '1',
+        name: 'Desert Safari',
+        duration: '6 Hours',
+        price: '₹2,500',
+        description: 'Experience the thrill of dune bashing and a stunning sunset in the Thar Desert.',
+        imageUrl: 'https://images.unsplash.com/photo-1541410972-68c16029312a?q=80&w=1770&auto=format&fit=crop',
+        includes: ['Jeep Transfer', 'Sunset View', 'Cultural Dance', 'Dinner'],
+    },
+    {
+        id: '2',
+        name: 'Camel Ride',
+        duration: '2 Hours',
+        price: '₹800',
+        description: 'A peaceful camel ride through the golden dunes, perfect for photography enthusiasts.',
+        imageUrl: 'https://images.unsplash.com/photo-1598605272254-e6a730628434?q=80&w=1770&auto=format&fit=crop',
+        includes: ['Camel Ride', 'Guide', 'Water Bottle'],
+    },
+    {
+        id: '3',
+        name: 'Fort Tour',
+        duration: '4 Hours',
+        price: '₹1,200',
+        description: 'Guided tour of the majestic Mehrangarh Fort, exploring its palaces and museums.',
+        imageUrl: 'https://images.unsplash.com/photo-1592657434568-1925b4fa6c5c?q=80&w=1935&auto=format&fit=crop',
+        includes: ['Entry Tickets', 'Expert Guide', 'Audio Guide'],
+    },
+    {
+        id: '4',
+        name: 'Jeep Safari',
+        duration: '3 Hours',
+        price: '₹3,000',
+        description: 'An adventurous off-road jeep safari to explore the remote villages and wildlife of the desert.',
+        imageUrl: 'https://images.unsplash.com/photo-1633512396495-a131804f877f?q=80&w=1974&auto=format&fit=crop',
+        includes: ['4x4 Jeep', 'Village Visit', 'Refreshments'],
+    },
+];
