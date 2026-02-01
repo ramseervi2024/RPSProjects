@@ -4,17 +4,21 @@ import {
     Text,
     View,
     StatusBar,
-    SafeAreaView,
     TouchableOpacity,
     FlatList,
-    Alert
+    Alert,
+    Dimensions
 } from 'react-native';
 import useWishlistStore from '../store/useWishlistStore';
 import { ArrowLeft, Trash2, Heart, ArrowRight } from 'lucide-react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import Animated, { FadeInDown, Layout } from 'react-native-reanimated';
-import { Swipeable, GestureHandlerRootView } from 'react-native-gesture-handler';
 import * as Icons from 'lucide-react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import Animated, { FadeInDown, Layout, SlideInRight, SlideOutRight } from 'react-native-reanimated';
+import { Swipeable, GestureHandlerRootView } from 'react-native-gesture-handler';
+import { BlurView } from "@react-native-community/blur";
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+const { width } = Dimensions.get('window');
 
 const WishlistItem = ({ item, onPress, onRemove, index }) => {
     const IconComponent = Icons[item.iconName] || Icons.Briefcase;
@@ -24,14 +28,22 @@ const WishlistItem = ({ item, onPress, onRemove, index }) => {
             <TouchableOpacity
                 style={styles.deleteAction}
                 onPress={() => onRemove(item.id)}
+                activeOpacity={0.8}
             >
-                <Trash2 size={24} color="white" />
+                <View style={styles.deleteData}>
+                    <Trash2 size={24} color="white" />
+                    <Text style={styles.deleteText}>Delete</Text>
+                </View>
             </TouchableOpacity>
         );
     };
 
     return (
-        <Animated.View entering={FadeInDown.delay(index * 100).duration(500)} layout={Layout.springify()}>
+        <Animated.View
+            entering={FadeInDown.delay(index * 100).springify().damping(14)}
+            layout={Layout.springify()}
+            style={styles.itemWrapper}
+        >
             <Swipeable renderRightActions={renderRightActions}>
                 <TouchableOpacity
                     style={styles.cardContainer}
@@ -40,17 +52,25 @@ const WishlistItem = ({ item, onPress, onRemove, index }) => {
                 >
                     <View style={styles.cardContent}>
                         <View style={styles.iconContainer}>
-                            <IconComponent size={24} color="#2563EB" />
+                            <LinearGradient
+                                colors={['#EFF6FF', '#DBEAFE']}
+                                style={styles.iconGradient}
+                            >
+                                <IconComponent size={24} color="#2563EB" />
+                            </LinearGradient>
                         </View>
                         <View style={styles.textContainer}>
                             <Text style={styles.cardTitle} numberOfLines={1}>{item.name}</Text>
                             <Text style={styles.cardCategory}>{item.category}</Text>
                             <View style={styles.statsContainer}>
-                                <Text style={styles.statText}>Inv: <Text style={styles.statBold}>{item.minInvestment}</Text></Text>
+                                <Text style={styles.statLabel}>Est. Return: </Text>
+                                <Text style={styles.statValue}>{item.monthlyIncome}</Text>
                             </View>
                         </View>
                         <View style={styles.arrowContainer}>
-                            <ArrowRight size={20} color="#CBD5E1" />
+                            <View style={styles.arrowCircle}>
+                                <ArrowRight size={16} color="#94A3B8" />
+                            </View>
                         </View>
                     </View>
                 </TouchableOpacity>
@@ -61,6 +81,7 @@ const WishlistItem = ({ item, onPress, onRemove, index }) => {
 
 const Wishlist = ({ navigation }) => {
     const { wishlist, removeFromWishlist } = useWishlistStore();
+    const insets = useSafeAreaInsets();
 
     const handleSelectBusiness = (business) => {
         navigation.navigate('BusinessDetails', { business });
@@ -72,8 +93,8 @@ const Wishlist = ({ navigation }) => {
 
     const handleRemove = (id) => {
         Alert.alert(
-            "Remove from Wishlist",
-            "Are you sure you want to remove this idea?",
+            "Remove Idea",
+            "Are you sure you want to remove this from your wishlist?",
             [
                 { text: "Cancel", style: "cancel" },
                 { text: "Remove", style: "destructive", onPress: () => removeFromWishlist(id) }
@@ -83,26 +104,41 @@ const Wishlist = ({ navigation }) => {
 
     return (
         <GestureHandlerRootView style={styles.container}>
-            <StatusBar barStyle="light-content" backgroundColor="#2563EB" />
+            <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
 
+            {/* Background Gradient */}
             <LinearGradient
-                colors={['#2563EB', '#1D4ED8']}
-                style={styles.headerBackground}
-            >
-                <SafeAreaView>
-                    <View style={styles.headerContent}>
-                        <TouchableOpacity onPress={handleBack} style={styles.backButton}>
-                            <ArrowLeft size={24} color="white" />
-                        </TouchableOpacity>
+                colors={['#F0F9FF', '#F1F5F9', '#F8FAFC']}
+                style={StyleSheet.absoluteFill}
+            />
+
+            {/* Custom Glass Header */}
+            <View style={[styles.headerContainer, { paddingTop: insets.top }]}>
+                <BlurView
+                    style={StyleSheet.absoluteFill}
+                    blurType="light"
+                    blurAmount={20}
+                    reducedTransparencyFallbackColor="white"
+                />
+                {/* Tint */}
+                <View style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(255,255,255,0.6)' }]} />
+
+                <View style={styles.headerContent}>
+                    <TouchableOpacity
+                        onPress={handleBack}
+                        style={styles.backButton}
+                        activeOpacity={0.7}
+                    >
+                        <ArrowLeft size={24} color="#1E293B" />
+                    </TouchableOpacity>
+                    <View style={styles.headerTitles}>
                         <Text style={styles.headerTitle}>My Wishlist</Text>
-                    </View>
-                    <View style={styles.headerStats}>
-                        <Text style={styles.headerStatsText}>
+                        <Text style={styles.headerSubtitle}>
                             {wishlist.length} {wishlist.length === 1 ? 'Idea' : 'Ideas'} Saved
                         </Text>
                     </View>
-                </SafeAreaView>
-            </LinearGradient>
+                </View>
+            </View>
 
             <FlatList
                 data={wishlist}
@@ -115,22 +151,33 @@ const Wishlist = ({ navigation }) => {
                         onRemove={handleRemove}
                     />
                 )}
-                contentContainerStyle={styles.listContent}
+                contentContainerStyle={[styles.listContent, { paddingTop: insets.top + 80 }]}
                 showsVerticalScrollIndicator={false}
                 ListEmptyComponent={
-                    <Animated.View entering={FadeInDown.delay(300)} style={styles.emptyContainer}>
+                    <Animated.View entering={FadeInDown.delay(300).springify()} style={styles.emptyContainer}>
                         <View style={styles.emptyIconCircle}>
-                            <Heart size={40} color="#CBD5E1" />
+                            <LinearGradient
+                                colors={['#F4F4F5', '#E4E4E7']}
+                                style={styles.emptyGradient}
+                            >
+                                <Heart size={44} color="#94A3B8" />
+                            </LinearGradient>
                         </View>
                         <Text style={styles.emptyTitle}>Your wishlist is empty</Text>
                         <Text style={styles.emptySubtitle}>
-                            Save interesting business ideas here to review them later.
+                            Tap the heart icon on any business idea to save it for later.
                         </Text>
                         <TouchableOpacity
                             style={styles.exploreButton}
                             onPress={handleBack}
+                            activeOpacity={0.8}
                         >
-                            <Text style={styles.exploreButtonText}>Explore Ideas</Text>
+                            <LinearGradient
+                                colors={['#3B82F6', '#2563EB']}
+                                style={styles.exploreGradient}
+                            >
+                                <Text style={styles.exploreButtonText}>Explore Ideas</Text>
+                            </LinearGradient>
                         </TouchableOpacity>
                     </Animated.View>
                 }
@@ -144,63 +191,68 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#F8FAFC',
     },
-    headerBackground: {
-        paddingBottom: 24,
-        borderBottomLeftRadius: 32,
-        borderBottomRightRadius: 32,
-        marginBottom: 16,
-        shadowColor: "#2563EB",
-        shadowOffset: { width: 0, height: 10 },
-        shadowOpacity: 0.2,
-        shadowRadius: 20,
-        elevation: 10,
+    headerContainer: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        overflow: 'hidden',
+        borderBottomWidth: 1,
+        borderBottomColor: 'rgba(255,255,255,0.8)',
     },
     headerContent: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: 20,
+        paddingBottom: 20,
         paddingTop: 10,
-        marginBottom: 10,
     },
     backButton: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-        backgroundColor: 'rgba(255,255,255,0.2)',
+        width: 44,
+        height: 44,
+        borderRadius: 22,
+        backgroundColor: 'rgba(255,255,255,0.6)',
         alignItems: 'center',
         justifyContent: 'center',
         marginRight: 16,
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.05)',
+    },
+    headerTitles: {
+        justifyContent: 'center',
     },
     headerTitle: {
-        fontSize: 24,
+        fontSize: 22,
         fontWeight: '800',
-        color: 'white',
+        color: '#0F172A',
         letterSpacing: -0.5,
     },
-    headerStats: {
-        paddingHorizontal: 76,
-    },
-    headerStatsText: {
-        color: 'rgba(255,255,255,0.8)',
-        fontSize: 14,
+    headerSubtitle: {
+        fontSize: 13,
+        color: '#64748B',
         fontWeight: '600',
+        marginTop: 2,
     },
     listContent: {
         paddingHorizontal: 20,
         paddingBottom: 40,
-        paddingTop: 10,
     },
     // Card Styles
+    itemWrapper: {
+        marginBottom: 16,
+    },
     cardContainer: {
         backgroundColor: 'white',
-        borderRadius: 16,
-        marginBottom: 12,
+        borderRadius: 20,
         shadowColor: "#64748B",
         shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.05,
-        shadowRadius: 8,
-        elevation: 3,
-        overflow: 'hidden',
+        shadowOpacity: 0.06,
+        shadowRadius: 12,
+        elevation: 4,
+        overflow: 'visible', // For shadow
+        borderWidth: 1,
+        borderColor: '#F1F5F9',
     },
     cardContent: {
         flexDirection: 'row',
@@ -208,97 +260,139 @@ const styles = StyleSheet.create({
         padding: 16,
     },
     iconContainer: {
-        width: 48,
-        height: 48,
-        borderRadius: 12,
-        backgroundColor: '#EFF6FF',
+        marginRight: 16,
+    },
+    iconGradient: {
+        width: 52,
+        height: 52,
+        borderRadius: 16,
         alignItems: 'center',
         justifyContent: 'center',
-        marginRight: 16,
     },
     textContainer: {
         flex: 1,
     },
     cardTitle: {
-        fontSize: 16,
+        fontSize: 17,
         fontWeight: '700',
         color: '#0F172A',
         marginBottom: 4,
     },
     cardCategory: {
-        fontSize: 12,
+        fontSize: 13,
         color: '#64748B',
-        marginBottom: 6,
+        marginBottom: 8,
+        fontWeight: '500',
     },
     statsContainer: {
         flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#F8FAFC',
+        alignSelf: 'flex-start',
+        paddingHorizontal: 8,
+        paddingVertical: 4,
+        borderRadius: 8,
     },
-    statText: {
+    statLabel: {
         fontSize: 12,
-        color: '#475569',
+        color: '#64748B',
     },
-    statBold: {
+    statValue: {
+        fontSize: 12,
         fontWeight: '700',
-        color: '#0F172A',
+        color: '#16A34A',
     },
     arrowContainer: {
-        marginLeft: 8,
+        marginLeft: 12,
+    },
+    arrowCircle: {
+        width: 32,
+        height: 32,
+        borderRadius: 16,
+        backgroundColor: '#F8FAFC',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     // Swipe Actions
     deleteAction: {
         backgroundColor: '#EF4444',
         justifyContent: 'center',
         alignItems: 'flex-end',
-        width: 80,
+        width: 100,
         height: '100%',
-        marginBottom: 12,
-        borderRadius: 16,
-        paddingRight: 24,
+        marginBottom: 16,
+        borderRadius: 20, // Match card radius
+        paddingRight: 0,
+        marginLeft: -20, // Pull under
+        zIndex: -1,
+    },
+    deleteData: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 80,
+    },
+    deleteText: {
+        color: 'white',
+        fontWeight: '700',
+        fontSize: 12,
+        marginTop: 4,
     },
     // Empty State
     emptyContainer: {
         padding: 40,
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 40,
+        marginTop: 60,
     },
     emptyIconCircle: {
-        width: 80,
-        height: 80,
-        borderRadius: 40,
-        backgroundColor: '#E2E8F0',
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        marginBottom: 24,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.05,
+        shadowRadius: 20,
+        elevation: 5,
+    },
+    emptyGradient: {
+        flex: 1,
+        borderRadius: 50,
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 20,
     },
     emptyTitle: {
-        fontSize: 18,
-        fontWeight: '700',
-        color: '#334155',
-        marginBottom: 8,
+        fontSize: 20,
+        fontWeight: '800',
+        color: '#1E293B',
+        marginBottom: 12,
     },
     emptySubtitle: {
-        fontSize: 14,
+        fontSize: 15,
         color: '#64748B',
         textAlign: 'center',
-        lineHeight: 22,
-        marginBottom: 24,
+        lineHeight: 24,
+        marginBottom: 32,
     },
     exploreButton: {
-        paddingHorizontal: 24,
-        paddingVertical: 12,
-        backgroundColor: '#2563EB',
-        borderRadius: 12,
+        width: '100%',
+        maxWidth: 200,
         shadowColor: "#2563EB",
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 8,
-        elevation: 4,
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.2,
+        shadowRadius: 16,
+        elevation: 8,
+    },
+    exploreGradient: {
+        paddingVertical: 16,
+        borderRadius: 16,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     exploreButtonText: {
         color: 'white',
-        fontWeight: '600',
-        fontSize: 15,
+        fontWeight: '700',
+        fontSize: 16,
     },
 });
 

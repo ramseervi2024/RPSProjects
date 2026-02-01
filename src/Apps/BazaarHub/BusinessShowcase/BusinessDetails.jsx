@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     StyleSheet,
     Text,
@@ -6,214 +6,140 @@ import {
     ScrollView,
     TouchableOpacity,
     StatusBar,
-    Dimensions,
-    Platform
+    SafeAreaView,
+    Platform,
+    LayoutAnimation,
+    UIManager
 } from 'react-native';
 import {
-    ArrowLeft, CheckCircle, IndianRupee,
-    Target, TrendingUp, Briefcase, Wrench, ThumbsUp, ThumbsDown, Heart
+    CheckCircle, IndianRupee,
+    Target, TrendingUp, Briefcase, Wrench, ThumbsUp, ThumbsDown, Heart, ArrowLeft, ArrowRight, ChevronRight, ChevronLeft
 } from 'lucide-react-native';
 import * as Icons from 'lucide-react-native';
-import LinearGradient from 'react-native-linear-gradient';
 import useWishlistStore from '../store/useWishlistStore';
-import Animated, {
-    useAnimatedScrollHandler,
-    useSharedValue,
-    useAnimatedStyle,
-    interpolate,
-    Extrapolate,
-    FadeInDown
-} from 'react-native-reanimated';
-import { BlurView } from "@react-native-community/blur";
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { businessIdeas } from './data';
 
-const { width, height } = Dimensions.get('window');
-const HEADER_HEIGHT = 320;
+if (Platform.OS === 'android') {
+    if (UIManager.setLayoutAnimationEnabledExperimental) {
+        UIManager.setLayoutAnimationEnabledExperimental(true);
+    }
+}
 
 const BusinessDetails = ({ route, navigation }) => {
     const { business } = route.params;
     const IconComponent = Icons[business.iconName] || Briefcase;
-    const scrollY = useSharedValue(0);
-    const insets = useSafeAreaInsets();
+    const [activeTab, setActiveTab] = useState('Stats');
 
     // Wishlist Logic
     const { isInWishlist, toggleWishlist } = useWishlistStore();
     const isSaved = isInWishlist(business.id);
 
+    // Navigation Logic
+    const currentIndex = businessIdeas.findIndex(b => b.id === business.id);
+    const nextBusiness = currentIndex !== -1 && currentIndex < businessIdeas.length - 1
+        ? businessIdeas[currentIndex + 1]
+        : null;
+
     const handleBack = () => {
         navigation.goBack();
     };
 
-    const scrollHandler = useAnimatedScrollHandler((event) => {
-        scrollY.value = event.contentOffset.y;
-    });
+    const handleNext = () => {
+        if (nextBusiness) {
+            // Reset tab on navigation
+            setActiveTab('Stats');
+            navigation.push('BusinessDetails', { business: nextBusiness });
+        }
+    };
 
-    const headerStyle = useAnimatedStyle(() => {
-        return {
-            height: HEADER_HEIGHT,
-            transform: [
-                {
-                    translateY: interpolate(
-                        scrollY.value,
-                        [-HEADER_HEIGHT, 0, HEADER_HEIGHT],
-                        [-HEADER_HEIGHT / 2, 0, HEADER_HEIGHT * 0.75],
-                        Extrapolate.CLAMP
-                    ),
-                },
-                {
-                    scale: interpolate(
-                        scrollY.value,
-                        [-HEADER_HEIGHT, 0],
-                        [2, 1],
-                        Extrapolate.CLAMP
-                    )
-                }
-            ],
-        };
-    });
+    const tabs = [
+        { id: 'Stats', label: 'Overview' },
+        { id: 'Workflow', label: 'Workflow' },
+        { id: 'Costs', label: 'Costs' },
+        { id: 'ProsCons', label: 'Pros & Cons' },
+    ];
 
-    const imageOpacityStyle = useAnimatedStyle(() => {
-        const opacity = interpolate(
-            scrollY.value,
-            [0, HEADER_HEIGHT * 0.5],
-            [1, 0],
-            Extrapolate.CLAMP
-        );
-        return { opacity };
-    });
+    const handleTabChange = (id) => {
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+        setActiveTab(id);
+    };
 
-    return (
-        <View style={styles.container}>
-            <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
-
-            {/* Animated Parallax Header */}
-            <Animated.View style={[styles.headerContainer, headerStyle]}>
-                <LinearGradient
-                    colors={['#0F172A', '#1E293B', '#334155']}
-                    style={StyleSheet.absoluteFill}
-                />
-
-                {/* Giant Background Icon Pattern */}
-                <Animated.View style={[styles.headerPattern, imageOpacityStyle]}>
-                    <IconComponent size={300} color="rgba(255,255,255,0.05)" />
-                </Animated.View>
-
-                {/* Content Overlay */}
-                <Animated.View style={[styles.heroContent, imageOpacityStyle, { paddingTop: insets.top + 20 }]}>
-                    <View style={styles.heroIconWrapper}>
-                        <LinearGradient
-                            colors={['rgba(255,255,255,0.2)', 'rgba(255,255,255,0.05)']}
-                            style={styles.heroIconGlass}
-                        >
-                            <IconComponent size={48} color="white" />
-                        </LinearGradient>
-                    </View>
-                    <View style={styles.categoryBadge}>
-                        <Text style={styles.categoryText}>{business.category}</Text>
-                    </View>
-                    <Text style={styles.heroTitle}>{business.name}</Text>
-                </Animated.View>
-            </Animated.View>
-
-            {/* Back Button (Fixed) */}
-            <TouchableOpacity
-                onPress={handleBack}
-                style={[styles.backButton, { top: insets.top + 10 }]}
-            >
-                <BlurView
-                    style={styles.glassButton}
-                    blurType="light"
-                    blurAmount={20}
-                    reducedTransparencyFallbackColor="white"
-                >
-                    <ArrowLeft size={24} color="white" />
-                </BlurView>
-            </TouchableOpacity>
-
-            {/* Scrollable Content */}
-            <Animated.ScrollView
-                onScroll={scrollHandler}
-                scrollEventThrottle={16}
-                style={styles.scrollView}
-                contentContainerStyle={{ paddingTop: HEADER_HEIGHT - 40, paddingBottom: 120 }}
-                showsVerticalScrollIndicator={false}
-            >
-                <View style={styles.contentBody}>
-                    {/* Stats Section with Glass Effect */}
-                    <Animated.View entering={FadeInDown.delay(100).duration(600)} style={styles.statsContainer}>
-                        <View style={styles.statBox}>
-                            <View style={[styles.statIconBadge, { backgroundColor: '#FFF7ED' }]}>
-                                <IndianRupee size={20} color="#F97316" />
-                            </View>
-                            <View>
+    const renderContent = () => {
+        switch (activeTab) {
+            case 'Stats':
+                return (
+                    <View style={styles.tabContent}>
+                        <View style={styles.statsRow}>
+                            <View style={styles.statCard}>
+                                <View style={[styles.statIconBadge, { backgroundColor: '#FFF7ED' }]}>
+                                    <IndianRupee size={24} color="#F97316" />
+                                </View>
                                 <Text style={styles.statLabel}>Investment</Text>
                                 <Text style={styles.statValue}>{business.minInvestment}</Text>
                             </View>
-                        </View>
-                        <View style={styles.verticalDivider} />
-                        <View style={styles.statBox}>
-                            <View style={[styles.statIconBadge, { backgroundColor: '#F0FDF4' }]}>
-                                <TrendingUp size={20} color="#16A34A" />
-                            </View>
-                            <View>
+                            <View style={styles.statCard}>
+                                <View style={[styles.statIconBadge, { backgroundColor: '#F0FDF4' }]}>
+                                    <TrendingUp size={24} color="#16A34A" />
+                                </View>
                                 <Text style={styles.statLabel}>Monthly Income</Text>
                                 <Text style={styles.statValue}>{business.monthlyIncome}</Text>
                             </View>
                         </View>
-                    </Animated.View>
-
-                    {/* Overview */}
-                    <Animated.View entering={FadeInDown.delay(200).duration(600)} style={styles.section}>
-                        <Text style={styles.sectionHeader}>Overview</Text>
-                        <Text style={styles.bodyText}>{business.detailedOverview}</Text>
-                    </Animated.View>
-
-                    {/* How It Works */}
-                    <Animated.View entering={FadeInDown.delay(300).duration(600)} style={styles.cardContainer}>
+                    </View>
+                );
+            case 'Workflow':
+                return (
+                    <View style={styles.card}>
                         <View style={styles.cardHeader}>
-                            <View style={[styles.iconBox, { backgroundColor: '#EFF6FF' }]}>
-                                <Target size={20} color="#2563EB" />
-                            </View>
-                            <Text style={styles.cardTitle}>How it works</Text>
+                            <Target size={20} color="#2563EB" />
+                            <Text style={styles.cardTitle}>Step-by-Step Workflow</Text>
                         </View>
-                        <View style={styles.timeline}>
+                        <View style={styles.listContainer}>
                             {business.workflowSteps.map((step, index) => (
-                                <View key={index} style={styles.timelineItem}>
-                                    <View style={styles.timelineIndicator}>
-                                        <View style={styles.timelineDot} />
-                                        {index !== business.workflowSteps.length - 1 && <View style={styles.timelineLine} />}
+                                <View key={index} style={styles.listItem}>
+                                    <View style={styles.stepCircle}>
+                                        <Text style={styles.stepNumber}>{index + 1}</Text>
                                     </View>
-                                    <Text style={styles.timelineText}>{step}</Text>
+                                    <View style={styles.listTextContainer}>
+                                        <Text style={styles.listText}>{step}</Text>
+                                    </View>
                                 </View>
                             ))}
                         </View>
-                    </Animated.View>
-
-                    {/* Investment Breakdown */}
-                    <Animated.View entering={FadeInDown.delay(400).duration(600)} style={styles.cardContainer}>
+                    </View>
+                );
+            case 'Costs':
+                return (
+                    <View style={styles.card}>
                         <View style={styles.cardHeader}>
-                            <View style={[styles.iconBox, { backgroundColor: '#FFF7ED' }]}>
-                                <IndianRupee size={20} color="#F97316" />
-                            </View>
+                            <IndianRupee size={20} color="#F59E0B" />
                             <Text style={styles.cardTitle}>Investment Breakdown</Text>
                         </View>
                         {business.investmentBreakdown.map((item, index) => (
-                            <View key={index} style={styles.costRow}>
-                                <Text style={styles.costLabel}>{item.item}</Text>
-                                <Text style={styles.costValue}>{item.cost}</Text>
+                            <View key={index} style={styles.tableRow}>
+                                <Text style={styles.tableLabel}>{item.item}</Text>
+                                <Text style={styles.tableValue}>{item.cost}</Text>
                             </View>
                         ))}
-                    </Animated.View>
-
-                    {/* Pros & Cons Grid */}
-                    <Animated.View entering={FadeInDown.delay(500).duration(600)} style={styles.gridRow}>
+                        <View style={styles.totalRow}>
+                            <Text style={styles.totalLabel}>Total Estimated</Text>
+                            <Text style={styles.totalValue}>{business.minInvestment}</Text>
+                        </View>
+                    </View>
+                );
+            case 'ProsCons':
+                return (
+                    <View style={styles.gridColumn}>
                         <View style={[styles.gridCard, { backgroundColor: '#F0FDF4', borderColor: '#BBF7D0' }]}>
                             <View style={styles.gridHeader}>
                                 <ThumbsUp size={16} color="#16A34A" />
                                 <Text style={[styles.gridTitle, { color: '#16A34A' }]}>Pros</Text>
                             </View>
-                            {business.pros.map((pro, idx) => (
-                                <Text key={idx} style={styles.gridText}>• {pro}</Text>
+                            {business.pros.map((pro, i) => (
+                                <View key={i} style={styles.bulletRow}>
+                                    <View style={[styles.bulletDot, { backgroundColor: '#16A34A' }]} />
+                                    <Text style={styles.gridText}>{pro}</Text>
+                                </View>
                             ))}
                         </View>
                         <View style={[styles.gridCard, { backgroundColor: '#FEF2F2', borderColor: '#FECACA' }]}>
@@ -221,47 +147,135 @@ const BusinessDetails = ({ route, navigation }) => {
                                 <ThumbsDown size={16} color="#DC2626" />
                                 <Text style={[styles.gridTitle, { color: '#DC2626' }]}>Cons</Text>
                             </View>
-                            {business.cons.map((con, idx) => (
-                                <Text key={idx} style={styles.gridText}>• {con}</Text>
+                            {business.cons.map((con, i) => (
+                                <View key={i} style={styles.bulletRow}>
+                                    <View style={[styles.bulletDot, { backgroundColor: '#DC2626' }]} />
+                                    <Text style={styles.gridText}>{con}</Text>
+                                </View>
                             ))}
                         </View>
-                    </Animated.View>
+                    </View>
+                );
+            default:
+                return null;
+        }
+    };
 
-                </View>
-            </Animated.ScrollView>
+    return (
+        <View style={styles.container}>
+            <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
 
-            {/* Glassmorphism Bottom Action Bar */}
-            <View style={styles.bottomBarWrapper}>
-                <BlurView
-                    style={styles.bottomBarBlur}
-                    blurType="light"
-                    blurAmount={20}
-                    reducedTransparencyFallbackColor="white"
-                />
-                <View style={[styles.bottomBarContent, { paddingBottom: insets.bottom + 10 }]}>
-                    <TouchableOpacity
-                        style={styles.secondaryBtn}
-                        onPress={handleBack}
-                    >
-                        <ArrowLeft size={24} color="#334155" />
-                    </TouchableOpacity>
+            {/* Header: Back - Title - Wishlist */}
+            <View style={styles.header}>
+                <SafeAreaView>
+                    <View style={styles.headerContent}>
+                        <TouchableOpacity
+                            onPress={handleBack}
+                            style={styles.iconButton}
+                            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                        >
+                            <ArrowLeft size={24} color="#1E293B" />
+                        </TouchableOpacity>
 
-                    <TouchableOpacity
-                        style={[styles.primaryBtn, isSaved && styles.savedBtn]}
-                        onPress={() => toggleWishlist(business)}
-                    >
-                        <Heart
-                            size={20}
-                            color="white"
-                            fill={isSaved ? "white" : "transparent"}
-                            style={{ marginRight: 8 }}
-                        />
-                        <Text style={styles.primaryBtnText}>
-                            {isSaved ? 'Saved to Wishlist' : 'Add to Wishlist'}
-                        </Text>
-                    </TouchableOpacity>
-                </View>
+                        <View style={styles.headerTitleWrapper}>
+                            <Text style={styles.headerTitle} numberOfLines={1}>{business.name}</Text>
+                        </View>
+
+                        <TouchableOpacity
+                            onPress={() => toggleWishlist(business)}
+                            style={styles.iconButton}
+                            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                        >
+                            <Heart
+                                size={24}
+                                color={isSaved ? "#EC4899" : "#64748B"}
+                                fill={isSaved ? "#EC4899" : "transparent"}
+                            />
+                        </TouchableOpacity>
+                    </View>
+                </SafeAreaView>
             </View>
+
+            <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={false}
+            >
+                {/* Info Card: Title & Overview */}
+                <View style={styles.infoCard}>
+                    <View style={styles.infoHeader}>
+                        <View style={styles.infoIconBox}>
+                            <IconComponent size={32} color="#2563EB" />
+                        </View>
+                        <View style={{ flex: 1 }}>
+                            <View style={styles.catBadge}>
+                                <Text style={styles.catText}>{business.category}</Text>
+                            </View>
+                            <Text style={styles.infoTitle}>{business.name}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.divider} />
+                    <Text style={styles.overviewText}>{business.detailedOverview}</Text>
+                </View>
+
+                {/* Tabs Row */}
+                <View style={styles.tabsContainer}>
+                    <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.tabsScroll}>
+                        {tabs.map(tab => (
+                            <TouchableOpacity
+                                key={tab.id}
+                                onPress={() => handleTabChange(tab.id)}
+                                style={[
+                                    styles.tabItem,
+                                    activeTab === tab.id ? styles.tabItemActive : styles.tabItemInactive
+                                ]}
+                            >
+                                <Text style={[
+                                    styles.tabText,
+                                    activeTab === tab.id ? styles.tabTextActive : styles.tabTextInactive
+                                ]}>
+                                    {tab.label}
+                                </Text>
+                            </TouchableOpacity>
+                        ))}
+                    </ScrollView>
+                </View>
+
+                {/* Content Area */}
+                <View style={styles.contentArea}>
+                    {renderContent()}
+                </View>
+
+            </ScrollView>
+
+            {/* Bottom Bar: Back - Next */}
+            <SafeAreaView style={styles.bottomBarBackground}>
+                <View style={styles.bottomBar}>
+                    <TouchableOpacity
+                        style={[styles.navButton, styles.navButtonSecondary]}
+                        onPress={handleBack}
+                        activeOpacity={0.7}
+                    >
+                        <ChevronLeft size={20} color="#1E293B" />
+                        <Text style={styles.navButtonTextSecondary}>Back</Text>
+                    </TouchableOpacity>
+
+                    {nextBusiness ? (
+                        <TouchableOpacity
+                            style={[styles.navButton, styles.navButtonPrimary]}
+                            onPress={handleNext}
+                            activeOpacity={0.7}
+                        >
+                            <Text style={styles.navButtonTextPrimary}>Next Business</Text>
+                            <ChevronRight size={20} color="white" />
+                        </TouchableOpacity>
+                    ) : (
+                        <View style={[styles.navButton, styles.navButtonDisabled]}>
+                            <Text style={styles.navButtonTextDisabled}>End of List</Text>
+                        </View>
+                    )}
+                </View>
+            </SafeAreaView>
         </View>
     );
 };
@@ -269,305 +283,361 @@ const BusinessDetails = ({ route, navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F1F5F9',
+        backgroundColor: '#F8FAFC',
     },
-    headerContainer: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        overflow: 'hidden',
-        zIndex: 1,
-    },
-    headerPattern: {
-        position: 'absolute',
-        bottom: -50,
-        right: -50,
-        transform: [{ rotate: '-15deg' }],
-    },
-    heroContent: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100%',
-        paddingHorizontal: 20,
-    },
-    heroIconWrapper: {
-        marginBottom: 16,
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 10 },
-        shadowOpacity: 0.3,
-        shadowRadius: 20,
-        elevation: 10,
-    },
-    heroIconGlass: {
-        width: 80,
-        height: 80,
-        borderRadius: 24,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 1,
-        borderColor: 'rgba(255,255,255,0.3)',
-    },
-    categoryBadge: {
-        paddingHorizontal: 12,
-        paddingVertical: 6,
-        backgroundColor: 'rgba(255,255,255,0.15)',
-        borderRadius: 100,
-        marginBottom: 12,
-        borderWidth: 1,
-        borderColor: 'rgba(255,255,255,0.2)',
-    },
-    categoryText: {
-        color: '#E2E8F0',
-        fontSize: 13,
-        fontWeight: '600',
-        letterSpacing: 0.5,
-    },
-    heroTitle: {
-        fontSize: 28,
-        fontWeight: '800',
-        color: 'white',
-        textAlign: 'center',
-        letterSpacing: -0.5,
-        lineHeight: 34,
-        textShadowColor: 'rgba(0,0,0,0.3)',
-        textShadowOffset: { width: 0, height: 2 },
-        textShadowRadius: 4,
-    },
-    backButton: {
-        position: 'absolute',
-        left: 20,
-        zIndex: 100,
-    },
-    glassButton: {
-        width: 44,
-        height: 44,
-        borderRadius: 22,
-        alignItems: 'center',
-        justifyContent: 'center',
-        overflow: 'hidden',
-    },
-    scrollView: {
-        flex: 1,
-        zIndex: 2,
-    },
-    contentBody: {
-        paddingHorizontal: 20,
-        backgroundColor: '#F1F5F9',
-        borderTopLeftRadius: 32,
-        borderTopRightRadius: 32,
-        minHeight: height - HEADER_HEIGHT,
-        paddingTop: 30,
-    },
-    statsContainer: {
-        flexDirection: 'row',
+    // Header
+    header: {
         backgroundColor: 'white',
-        borderRadius: 24,
-        padding: 20,
-        marginTop: -60, // Overlap effect
-        shadowColor: "#64748B",
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.1,
-        shadowRadius: 16,
-        elevation: 8,
-        marginBottom: 24,
+        borderBottomWidth: 1,
+        borderBottomColor: '#E2E8F0',
+        zIndex: 10,
     },
-    statBox: {
+    headerContent: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingHorizontal: 16,
+        paddingVertical: 12,
+        height: Platform.OS === 'android' ? 60 : 50,
+    },
+    headerTitleWrapper: {
         flex: 1,
+        marginHorizontal: 16,
         alignItems: 'center',
     },
-    statIconBadge: {
-        width: 40,
-        height: 40,
-        borderRadius: 12,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: 8,
-    },
-    statLabel: {
-        fontSize: 12,
-        color: '#64748B',
-        fontWeight: '600',
-        marginBottom: 4,
-    },
-    statValue: {
+    headerTitle: {
         fontSize: 16,
         fontWeight: '700',
         color: '#0F172A',
     },
-    verticalDivider: {
-        width: 1,
-        height: '100%',
-        backgroundColor: '#E2E8F0',
-        marginHorizontal: 10,
+    iconButton: {
+        padding: 8,
+        borderRadius: 8,
     },
-    section: {
+
+    // Scroll
+    scrollView: {
+        flex: 1,
+    },
+    scrollContent: {
+        padding: 20,
+        paddingBottom: 40,
+    },
+
+    // Info Card
+    infoCard: {
+        backgroundColor: 'white',
+        borderRadius: 16,
+        padding: 20,
         marginBottom: 24,
+        shadowColor: "#64748B",
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.05,
+        shadowRadius: 8,
+        elevation: 2,
+        borderWidth: 1,
+        borderColor: '#E2E8F0',
     },
-    sectionHeader: {
-        fontSize: 18,
+    infoHeader: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        marginBottom: 16,
+    },
+    infoIconBox: {
+        width: 56,
+        height: 56,
+        borderRadius: 14,
+        backgroundColor: '#EFF6FF',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: 16,
+    },
+    catBadge: {
+        backgroundColor: '#F1F5F9',
+        paddingHorizontal: 10,
+        paddingVertical: 4,
+        borderRadius: 6,
+        alignSelf: 'flex-start',
+        marginBottom: 6,
+    },
+    catText: {
+        fontSize: 12,
+        color: '#64748B',
+        fontWeight: '600',
+    },
+    infoTitle: {
+        fontSize: 20,
         fontWeight: '700',
-        color: '#1E293B',
-        marginBottom: 8,
+        color: '#0F172A',
+        lineHeight: 26,
     },
-    bodyText: {
-        fontSize: 16,
+    divider: {
+        height: 1,
+        backgroundColor: '#F1F5F9',
+        marginBottom: 16,
+    },
+    overviewText: {
+        fontSize: 15,
         color: '#475569',
         lineHeight: 24,
     },
-    cardContainer: {
-        backgroundColor: 'white',
-        borderRadius: 20,
-        padding: 20,
+
+    // Tabs
+    tabsContainer: {
         marginBottom: 20,
+    },
+    tabsScroll: {
+        paddingRight: 20,
+    },
+    tabItem: {
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        borderRadius: 100,
+        marginRight: 12,
+        borderWidth: 1,
+    },
+    tabItemActive: {
+        backgroundColor: '#2563EB',
+        borderColor: '#2563EB',
+    },
+    tabItemInactive: {
+        backgroundColor: 'white',
+        borderColor: '#E2E8F0',
+    },
+    tabText: {
+        fontSize: 14,
+        fontWeight: '600',
+    },
+    tabTextActive: {
+        color: 'white',
+    },
+    tabTextInactive: {
+        color: '#64748B',
+    },
+
+    // Content Area
+    contentArea: {
+        minHeight: 300,
+    },
+    tabContent: {
+        // Animation container
+    },
+
+    // Stats
+    statsRow: {
+        flexDirection: 'column',
+        gap: 16,
+    },
+    statCard: {
+        backgroundColor: 'white',
+        padding: 24,
+        borderRadius: 16,
+        borderWidth: 1,
+        borderColor: '#E2E8F0',
+        alignItems: 'center',
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.02,
+        shadowRadius: 4,
+        elevation: 1,
+    },
+    statIconBadge: {
+        width: 48,
+        height: 48,
+        borderRadius: 12,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 12,
+    },
+    statLabel: {
+        fontSize: 14,
+        color: '#64748B',
+        marginBottom: 6,
+        fontWeight: '500',
+    },
+    statValue: {
+        fontSize: 24,
+        fontWeight: '700',
+        color: '#0F172A',
+    },
+
+    // Common Card
+    card: {
+        backgroundColor: 'white',
+        borderRadius: 16,
+        padding: 20,
         borderWidth: 1,
         borderColor: '#E2E8F0',
     },
     cardHeader: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 16,
-    },
-    iconBox: {
-        width: 32,
-        height: 32,
-        borderRadius: 8,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginRight: 10,
+        marginBottom: 20,
+        gap: 10,
     },
     cardTitle: {
         fontSize: 16,
         fontWeight: '700',
         color: '#0F172A',
     },
-    timeline: {
-        marginLeft: 10,
+
+    // List
+    listContainer: {
+        gap: 16,
     },
-    timelineItem: {
+    listItem: {
         flexDirection: 'row',
-        paddingBottom: 20,
     },
-    timelineIndicator: {
+    stepCircle: {
+        width: 28,
+        height: 28,
+        borderRadius: 14,
+        backgroundColor: '#DBEAFE',
         alignItems: 'center',
-        marginRight: 16,
+        justifyContent: 'center',
+        marginRight: 14,
+        marginTop: 0,
     },
-    timelineDot: {
-        width: 12,
-        height: 12,
-        borderRadius: 6,
-        backgroundColor: '#2563EB',
-        borderWidth: 2,
-        borderColor: '#DBEAFE',
+    stepNumber: {
+        color: '#2563EB',
+        fontWeight: '700',
+        fontSize: 12,
     },
-    timelineLine: {
-        width: 2,
+    listTextContainer: {
         flex: 1,
-        backgroundColor: '#E2E8F0',
-        marginTop: 4,
+        justifyContent: 'center',
+        minHeight: 28,
     },
-    timelineText: {
-        flex: 1,
+    listText: {
         fontSize: 15,
         color: '#334155',
-        lineHeight: 22,
-        marginTop: -4,
+        lineHeight: 24,
     },
-    costRow: {
+
+    // Table
+    tableRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingVertical: 12,
         borderBottomWidth: 1,
         borderBottomColor: '#F1F5F9',
     },
-    costLabel: {
+    tableLabel: {
         fontSize: 15,
         color: '#64748B',
     },
-    costValue: {
+    tableValue: {
         fontSize: 15,
         fontWeight: '600',
         color: '#0F172A',
     },
-    gridRow: {
+    totalRow: {
         flexDirection: 'row',
-        gap: 12,
+        justifyContent: 'space-between',
+        marginTop: 16,
+        paddingTop: 16,
+        borderTopWidth: 2,
+        borderTopColor: '#F1F5F9',
+    },
+    totalLabel: {
+        fontSize: 16,
+        fontWeight: '700',
+        color: '#0F172A',
+    },
+    totalValue: {
+        fontSize: 18,
+        fontWeight: '700',
+        color: '#2563EB',
+    },
+
+    // Grid (Pros/Cons)
+    gridColumn: {
+        gap: 16,
     },
     gridCard: {
-        flex: 1,
+        padding: 20,
         borderRadius: 16,
-        padding: 16,
         borderWidth: 1,
     },
     gridHeader: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 12,
+        marginBottom: 16,
+        gap: 8,
     },
     gridTitle: {
-        fontSize: 14,
-        fontWeight: '700',
-        marginLeft: 6,
-    },
-    gridText: {
-        fontSize: 13,
-        color: '#475569',
-        marginBottom: 6,
-        lineHeight: 18,
-    },
-    bottomBarWrapper: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        overflow: 'hidden', // Contain blur
-    },
-    bottomBarBlur: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-    },
-    bottomBarContent: {
-        flexDirection: 'row',
-        padding: 20,
-        paddingTop: 20,
-        gap: 12,
-        backgroundColor: 'rgba(255,255,255,0.7)', // Fallback / Overlay
-    },
-    secondaryBtn: {
-        width: 50,
-        height: 50,
-        borderRadius: 14,
-        backgroundColor: 'rgba(255,255,255,0.8)',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 1,
-        borderColor: '#E2E8F0',
-    },
-    primaryBtn: {
-        flex: 1,
-        height: 50,
-        borderRadius: 14,
-        backgroundColor: '#2563EB',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'row',
-        shadowColor: "#2563EB",
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 8,
-        elevation: 6,
-    },
-    savedBtn: {
-        backgroundColor: '#BE185D',
-        shadowColor: "#BE185D",
-    },
-    primaryBtnText: {
         fontSize: 16,
         fontWeight: '700',
+    },
+    bulletRow: {
+        flexDirection: 'row',
+        marginBottom: 10,
+        alignItems: 'flex-start',
+    },
+    bulletDot: {
+        width: 6,
+        height: 6,
+        borderRadius: 3,
+        marginTop: 8,
+        marginRight: 10,
+    },
+    gridText: {
+        fontSize: 15,
+        color: '#475569',
+        flex: 1,
+        lineHeight: 22,
+    },
+
+    // Bottom Bar
+    bottomBarBackground: {
+        backgroundColor: 'white',
+        borderTopWidth: 1,
+        borderTopColor: '#E2E8F0',
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: -2 },
+        shadowOpacity: 0.05,
+        shadowRadius: 5,
+        elevation: 10,
+    },
+    bottomBar: {
+        flexDirection: 'row',
+        padding: 16,
+        paddingTop: 12,
+        gap: 12,
+    },
+    navButton: {
+        flex: 1,
+        height: 50,
+        borderRadius: 12,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        gap: 8,
+    },
+    navButtonSecondary: {
+        backgroundColor: '#F1F5F9',
+    },
+    navButtonPrimary: {
+        backgroundColor: '#2563EB',
+    },
+    navButtonDisabled: {
+        backgroundColor: '#F1F5F9',
+        opacity: 0.5,
+    },
+    navButtonTextSecondary: {
+        fontSize: 15,
+        fontWeight: '600',
+        color: '#1E293B',
+    },
+    navButtonTextPrimary: {
+        fontSize: 15,
+        fontWeight: '600',
         color: 'white',
+    },
+    navButtonTextDisabled: {
+        fontSize: 15,
+        fontWeight: '600',
+        color: '#94A3B8',
     },
 });
 
