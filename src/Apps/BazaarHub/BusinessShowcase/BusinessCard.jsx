@@ -66,9 +66,9 @@ const BusinessCard = ({ business, onPress }) => {
                                 <View style={[styles.statIconBadge, { backgroundColor: '#F0FDF4' }]}>
                                     <TrendingUp size={14} color="#16A34A" />
                                 </View>
-                                <View>
-                                    <Text style={styles.statLabel}>Income</Text>
-                                    <Text style={styles.statValue}>{business.monthlyIncome}</Text>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={styles.statLabel} numberOfLines={1}>Income</Text>
+                                    <Text style={styles.statValue} numberOfLines={1} adjustsFontSizeToFit>{business.monthlyIncome}</Text>
                                 </View>
                             </View>
                         </View>

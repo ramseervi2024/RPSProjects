@@ -7,19 +7,26 @@ import {
     TouchableOpacity,
     SafeAreaView,
     StatusBar,
-    Animated
+    Animated,
+    Dimensions
 } from 'react-native';
 import {
-    ArrowLeft, CheckCircle, Clock, IndianRupee,
-    Target, TrendingUp, AlertCircle, Briefcase, Wrench, ThumbsUp, ThumbsDown
+    ArrowLeft, CheckCircle, IndianRupee,
+    Target, TrendingUp, Briefcase, Wrench, ThumbsUp, ThumbsDown, Heart
 } from 'lucide-react-native';
 import * as Icons from 'lucide-react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import useWishlistStore from '../store/useWishlistStore';
+
+const { width } = Dimensions.get('window');
 
 const BusinessDetails = ({ route, navigation }) => {
     const { business } = route.params;
     const IconComponent = Icons[business.iconName] || Briefcase;
-    const scrollY = useRef(new Animated.Value(0)).current;
+
+    // Wishlist Logic
+    const { isInWishlist, toggleWishlist } = useWishlistStore();
+    const isSaved = isInWishlist(business.id);
 
     const handleBack = () => {
         navigation.goBack();
@@ -42,14 +49,6 @@ const BusinessDetails = ({ route, navigation }) => {
                 </View>
 
                 <SafeAreaView>
-                    <View style={styles.headerTop}>
-                        <TouchableOpacity onPress={handleBack} style={styles.backButton}>
-                            <View style={styles.glassButton}>
-                                <ArrowLeft size={20} color="white" />
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-
                     <View style={styles.heroContent}>
                         <View style={styles.heroIconContainer}>
                             <LinearGradient
@@ -200,9 +199,36 @@ const BusinessDetails = ({ route, navigation }) => {
                             ))}
                         </View>
                     </View>
-
-                    <View style={{ height: 40 }} />
                 </ScrollView>
+            </View>
+
+            {/* Bottom Action Bar */}
+            <View style={styles.bottomBarContainer}>
+                <View style={styles.bottomBarBlur} />
+                <TouchableOpacity
+                    style={styles.actionButtonSecondary}
+                    onPress={handleBack}
+                >
+                    <ArrowLeft size={20} color="#1E293B" />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={[
+                        styles.actionButtonPrimary,
+                        isSaved && styles.wishlistActive
+                    ]}
+                    onPress={() => toggleWishlist(business)}
+                >
+                    <Heart
+                        size={20}
+                        color={isSaved ? "white" : "white"}
+                        fill={isSaved ? "white" : "transparent"}
+                        style={styles.btnIcon}
+                    />
+                    <Text style={styles.btnText}>
+                        {isSaved ? 'Saved to Wishlist' : 'Add to Wishlist'}
+                    </Text>
+                </TouchableOpacity>
             </View>
         </View>
     );
@@ -225,28 +251,11 @@ const styles = StyleSheet.create({
         opacity: 0.5,
         transform: [{ rotate: '-15deg' }],
     },
-    headerTop: {
-        flexDirection: 'row',
-        paddingHorizontal: 16,
-        paddingTop: 10,
-    },
-    backButton: {
-        marginBottom: 20,
-    },
-    glassButton: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-        backgroundColor: 'rgba(255,255,255,0.15)',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 1,
-        borderColor: 'rgba(255,255,255,0.1)',
-    },
     heroContent: {
         paddingHorizontal: 24,
         flexDirection: 'row',
         alignItems: 'center',
+        paddingTop: 60, // Adjusted for safe area/status bar
     },
     heroIconContainer: {
         marginRight: 16,
@@ -299,6 +308,7 @@ const styles = StyleSheet.create({
     scrollContent: {
         padding: 20,
         paddingTop: 30,
+        paddingBottom: 120, // Added padding for bottom bar
     },
     statsRow: {
         flexDirection: 'row',
@@ -467,7 +477,7 @@ const styles = StyleSheet.create({
         marginTop: 12,
         paddingTop: 12,
         borderTopWidth: 2,
-        borderTopColor: '#E2E8F0', // Slightly darker border for total
+        borderTopColor: '#E2E8F0',
     },
     tableTotalLabel: {
         fontSize: 15,
@@ -518,6 +528,58 @@ const styles = StyleSheet.create({
         lineHeight: 18,
         flex: 1,
     },
+    bottomBarContainer: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        flexDirection: 'row',
+        padding: 20,
+        paddingBottom: 30,
+        gap: 16,
+        backgroundColor: 'white',
+        borderTopWidth: 1,
+        borderTopColor: '#F1F5F9',
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: -4 },
+        shadowOpacity: 0.05,
+        shadowRadius: 10,
+        elevation: 20,
+    },
+    actionButtonSecondary: {
+        width: 56,
+        height: 56,
+        borderRadius: 16,
+        backgroundColor: '#F1F5F9',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    actionButtonPrimary: {
+        flex: 1,
+        height: 56,
+        borderRadius: 16,
+        backgroundColor: '#2563EB',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        shadowColor: "#2563EB",
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
+        elevation: 8,
+    },
+    wishlistActive: {
+        backgroundColor: '#EC4899',
+        shadowColor: "#EC4899",
+    },
+    btnText: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: '700',
+    },
+    btnIcon: {
+        marginRight: 8,
+    }
 });
 
 export default BusinessDetails;

@@ -8,11 +8,12 @@ import {
     ScrollView,
     TouchableOpacity,
     StatusBar,
-    SafeAreaView
+    SafeAreaView,
+    Platform
 } from 'react-native';
 import BusinessCard from './BusinessCard';
 import { businessIdeas } from './data';
-import { Search, SlidersHorizontal } from 'lucide-react-native';
+import { Search, Heart } from 'lucide-react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 const BusinessList = ({ navigation }) => {
@@ -44,25 +45,8 @@ const BusinessList = ({ navigation }) => {
         navigation.navigate('BusinessDetails', { business });
     };
 
-    const renderHeader = () => (
-        <View style={styles.headerContainer}>
-            {/* Search Bar */}
-            <View style={styles.searchContainer}>
-                <View style={styles.searchBar}>
-                    <Search size={20} color="#64748B" style={styles.searchIcon} />
-                    <TextInput
-                        style={styles.searchInput}
-                        placeholder="Search for ideas..."
-                        placeholderTextColor="#94A3B8"
-                        value={searchTerm}
-                        onChangeText={setSearchTerm}
-                    />
-                </View>
-                {/* <TouchableOpacity style={styles.filterButton}>
-                    <SlidersHorizontal size={20} color="white" />
-                </TouchableOpacity> */}
-            </View>
-
+    const renderFilters = () => (
+        <View style={styles.filterContainer}>
             {/* Category Filter */}
             <View style={styles.filterSection}>
                 <Text style={styles.sectionTitle}>Categories</Text>
@@ -117,8 +101,8 @@ const BusinessList = ({ navigation }) => {
         <View style={styles.container}>
             <StatusBar barStyle="light-content" backgroundColor="#2563EB" />
 
-            {/* Header Background */}
-            <View style={styles.headerBackground}>
+            {/* Sticky Header Section */}
+            <View style={styles.stickyHeader}>
                 <LinearGradient
                     colors={['#2563EB', '#1D4ED8']}
                     style={StyleSheet.absoluteFill}
@@ -128,6 +112,26 @@ const BusinessList = ({ navigation }) => {
                         <View>
                             <Text style={styles.headerTitle}>BazaarHub</Text>
                             <Text style={styles.headerSubtitle}>Discover your next big idea</Text>
+                        </View>
+                        <TouchableOpacity
+                            style={styles.wishlistButton}
+                            onPress={() => navigation.navigate('Wishlist')}
+                        >
+                            <Heart size={24} color="white" />
+                        </TouchableOpacity>
+                    </View>
+
+                    {/* Search Bar - Fixed inside Header */}
+                    <View style={styles.searchContainer}>
+                        <View style={styles.searchBar}>
+                            <Search size={20} color="#64748B" style={styles.searchIcon} />
+                            <TextInput
+                                style={styles.searchInput}
+                                placeholder="Search for ideas..."
+                                placeholderTextColor="#94A3B8"
+                                value={searchTerm}
+                                onChangeText={setSearchTerm}
+                            />
                         </View>
                     </View>
                 </SafeAreaView>
@@ -143,7 +147,7 @@ const BusinessList = ({ navigation }) => {
                         onPress={handleSelectBusiness}
                     />
                 )}
-                ListHeaderComponent={renderHeader}
+                ListHeaderComponent={renderFilters}
                 ListEmptyComponent={
                     <View style={styles.emptyContainer}>
                         <Text style={styles.emptyText}>No ideas found matching your criteria.</Text>
@@ -162,14 +166,26 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#F8FAFC',
     },
-    headerBackground: {
-        height: 180,
-        width: '100%',
-        paddingHorizontal: 20,
+    stickyHeader: {
+        zIndex: 10,
+        backgroundColor: '#2563EB',
+        paddingBottom: 20,
+        borderBottomLeftRadius: 24,
+        borderBottomRightRadius: 24,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.1,
+        shadowRadius: 10,
+        elevation: 10,
     },
     headerContent: {
-        marginTop: 16,
-        paddingTop: 16,
+        marginTop: Platform.OS === 'android' ? 16 : 0,
+        paddingHorizontal: 20,
+        paddingTop: 10,
+        paddingBottom: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     headerTitle: {
         fontSize: 28,
@@ -182,25 +198,20 @@ const styles = StyleSheet.create({
         color: '#BFDBFE',
         marginTop: 4,
     },
-    flatList: {
-        flex: 1,
-        marginTop: -30,
-    },
-    listContent: {
-        paddingHorizontal: 16,
-        paddingBottom: 40,
-        paddingTop: 10,
-    },
-    headerContainer: {
-        marginBottom: 4,
+    wishlistButton: {
+        width: 44,
+        height: 44,
+        borderRadius: 22,
+        backgroundColor: 'rgba(255,255,255,0.2)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: 1,
+        borderColor: 'rgba(255,255,255,0.1)',
     },
     searchContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 24,
+        paddingHorizontal: 20,
     },
     searchBar: {
-        flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: 'white',
@@ -222,19 +233,16 @@ const styles = StyleSheet.create({
         color: '#1E293B',
         height: '100%',
     },
-    filterButton: {
-        width: 52,
-        height: 52,
-        backgroundColor: '#2563EB',
-        borderRadius: 16,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginLeft: 12,
-        shadowColor: "#2563EB",
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 8,
-        elevation: 4,
+    flatList: {
+        flex: 1,
+    },
+    listContent: {
+        paddingHorizontal: 16,
+        paddingBottom: 40,
+        paddingTop: 24,
+    },
+    filterContainer: {
+        marginBottom: 8,
     },
     filterSection: {
         marginBottom: 20,
