@@ -85,6 +85,7 @@ import AnimationLottieNavigation from '../Apps/AnimationLottie/AnimationLottieNa
 import ButtonAnimationsNavigation from '../Apps/ButtonAnimations/ButtonAnimationsNavigation';
 import PokeSwipe from '../PokeSwipe/PokeSwipe';
 import BazaarHubNavigation from '../Apps/BazaarHub/BazaarHubNavigation';
+import DreamShotsStudioNavigation from '../Apps/DreamShotsStudio/DreamShotsStudioNavigation';
 
 const AllAppNav = createStackNavigator();
 
@@ -175,6 +176,7 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="ButtonAnimations" component={ButtonAnimationsNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="PokeSwipe" component={PokeSwipe} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="BazaarHubNavigation" component={BazaarHubNavigation} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="DreamShotsStudioNavigation" component={DreamShotsStudioNavigation} options={{ headerShown: false }} />
                 </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>
