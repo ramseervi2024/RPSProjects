@@ -1,462 +1,523 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
     StyleSheet,
     Text,
     View,
     ScrollView,
     TouchableOpacity,
-    SafeAreaView
+    SafeAreaView,
+    StatusBar,
+    Animated
 } from 'react-native';
 import {
     ArrowLeft, CheckCircle, Clock, IndianRupee,
     Target, TrendingUp, AlertCircle, Briefcase, Wrench, ThumbsUp, ThumbsDown
 } from 'lucide-react-native';
 import * as Icons from 'lucide-react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 const BusinessDetails = ({ route, navigation }) => {
     const { business } = route.params;
     const IconComponent = Icons[business.iconName] || Briefcase;
+    const scrollY = useRef(new Animated.Value(0)).current;
 
     const handleBack = () => {
         navigation.goBack();
     };
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
+            <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
+
             {/* Header / Hero Section */}
             <View style={styles.header}>
-                <TouchableOpacity onPress={handleBack} style={styles.backButton}>
-                    <ArrowLeft size={24} color="#6B7280" />
-                    <Text style={styles.backText}>Back</Text>
-                </TouchableOpacity>
-                <Text style={styles.headerTitle} numberOfLines={1}>{business.name}</Text>
-            </View>
+                <LinearGradient
+                    colors={['#1E293B', '#0F172A']}
+                    style={StyleSheet.absoluteFill}
+                />
 
-            <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+                {/* Background Pattern */}
+                <View style={styles.headerPattern}>
+                    <IconComponent size={200} color="rgba(255,255,255,0.03)" />
+                </View>
 
-                {/* Overview Card */}
-                <View style={[styles.card, styles.overviewCard]}>
-                    <View style={styles.overviewHeader}>
-                        <View style={styles.overviewIconContainer}>
-                            <IconComponent size={40} color="#2563EB" />
-                        </View>
-                        <View style={styles.overviewTitleContainer}>
-                            <Text style={styles.businessName}>{business.name}</Text>
-                            <View style={styles.categoryBadge}>
-                                <Text style={styles.categoryText}>{business.category}</Text>
+                <SafeAreaView>
+                    <View style={styles.headerTop}>
+                        <TouchableOpacity onPress={handleBack} style={styles.backButton}>
+                            <View style={styles.glassButton}>
+                                <ArrowLeft size={20} color="white" />
                             </View>
-                        </View>
+                        </TouchableOpacity>
                     </View>
 
-                    <Text style={styles.overviewText}>
-                        {business.detailedOverview}
-                    </Text>
-
-                    <View style={styles.statsGrid}>
-                        <View style={[styles.statBox, styles.statBoxBlue]}>
-                            <View style={styles.statHeader}>
-                                <IndianRupee size={16} color="#1D4ED8" />
-                                <Text style={[styles.statTitle, { color: '#1D4ED8' }]}>Min Investment</Text>
+                    <View style={styles.heroContent}>
+                        <View style={styles.heroIconContainer}>
+                            <LinearGradient
+                                colors={['#3B82F6', '#2563EB']}
+                                style={styles.heroIconGradient}
+                            >
+                                <IconComponent size={40} color="white" />
+                            </LinearGradient>
+                        </View>
+                        <View style={{ flex: 1 }}>
+                            <View style={styles.categoryTag}>
+                                <Text style={styles.categoryTagText}>{business.category}</Text>
                             </View>
+                            <Text style={styles.heroTitle} numberOfLines={2}>
+                                {business.name}
+                            </Text>
+                        </View>
+                    </View>
+                </SafeAreaView>
+            </View>
+
+            <View style={styles.contentContainer}>
+                <ScrollView
+                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={styles.scrollContent}
+                >
+                    {/* Key Stats Cards */}
+                    <View style={styles.statsRow}>
+                        <View style={styles.statCard}>
+                            <View style={[styles.statIcon, { backgroundColor: '#FFF7ED' }]}>
+                                <IndianRupee size={20} color="#F97316" />
+                            </View>
+                            <Text style={styles.statLabel}>Investment</Text>
                             <Text style={styles.statValue}>{business.minInvestment}</Text>
                         </View>
-                        <View style={[styles.statBox, styles.statBoxGreen]}>
-                            <View style={styles.statHeader}>
-                                <TrendingUp size={16} color="#15803D" />
-                                <Text style={[styles.statTitle, { color: '#15803D' }]}>Monthly Income</Text>
+                        <View style={styles.statCard}>
+                            <View style={[styles.statIcon, { backgroundColor: '#F0FDF4' }]}>
+                                <TrendingUp size={20} color="#16A34A" />
                             </View>
+                            <Text style={styles.statLabel}>Monthly Income</Text>
                             <Text style={styles.statValue}>{business.monthlyIncome}</Text>
                         </View>
                     </View>
-                </View>
 
-                {/* Workflow / Process */}
-                <View style={styles.card}>
-                    <View style={styles.sectionHeader}>
-                        <Target size={20} color="#2563EB" />
-                        <Text style={styles.sectionTitle}>Workflow & Process</Text>
+                    {/* Overview */}
+                    <View style={styles.section}>
+                        <Text style={styles.overviewText}>
+                            {business.detailedOverview}
+                        </Text>
                     </View>
-                    <View style={styles.listContainer}>
-                        {business.workflowSteps.map((step, index) => (
-                            <View key={index} style={styles.workflowItem}>
-                                <View style={styles.stepNumberContainer}>
-                                    <Text style={styles.stepNumber}>{index + 1}</Text>
-                                </View>
-                                <Text style={styles.workflowText}>{step}</Text>
-                            </View>
-                        ))}
-                    </View>
-                </View>
 
-                {/* Setup Guide */}
-                <View style={styles.card}>
-                    <View style={styles.sectionHeader}>
-                        <Wrench size={20} color="#EA580C" />
-                        <Text style={styles.sectionTitle}>Setup Guide</Text>
-                    </View>
-                    <View style={styles.listContainer}>
-                        {business.setupProcess.map((step, index) => (
-                            <View key={index} style={styles.setupItem}>
-                                <CheckCircle size={18} color="#22C55E" style={{ marginTop: 2, marginRight: 10 }} />
-                                <Text style={styles.setupText}>{step}</Text>
+                    {/* Workflow */}
+                    <View style={styles.card}>
+                        <View style={styles.cardHeader}>
+                            <View style={[styles.cardIconBox, { backgroundColor: '#EFF6FF' }]}>
+                                <Target size={20} color="#2563EB" />
                             </View>
-                        ))}
-                    </View>
-                </View>
-
-                {/* Investment Breakdown */}
-                <View style={styles.card}>
-                    <View style={styles.sectionHeader}>
-                        <IndianRupee size={20} color="#F97316" />
-                        <Text style={styles.sectionTitle}>Cost Breakdown</Text>
-                    </View>
-                    <View style={styles.costContainer}>
-                        {business.investmentBreakdown.map((item, index) => (
-                            <View key={index} style={styles.costRow}>
-                                <Text style={styles.costLabel}>{item.item}</Text>
-                                <Text style={styles.costValue}>{item.cost}</Text>
-                            </View>
-                        ))}
-                        <View style={styles.costTotalRow}>
-                            <Text style={styles.costTotalLabel}>Total Est.</Text>
-                            <Text style={styles.costTotalValue}>{business.minInvestment}</Text>
+                            <Text style={styles.cardTitle}>How it works</Text>
                         </View>
-                    </View>
-                </View>
 
-                {/* Pros & Cons */}
-                <View style={styles.card}>
-                    <Text style={styles.sectionTitle}>Pros & Cons</Text>
-
-                    <View style={styles.prosConsSection}>
-                        <View style={styles.prosConsHeader}>
-                            <ThumbsUp size={18} color="#15803D" />
-                            <Text style={[styles.prosConsTitle, { color: '#15803D' }]}>Advantages</Text>
-                        </View>
-                        {business.pros.map((pro, index) => (
-                            <View key={index} style={styles.bulletItem}>
-                                <View style={[styles.bullet, { backgroundColor: '#22C55E' }]} />
-                                <Text style={styles.bulletText}>{pro}</Text>
-                            </View>
-                        ))}
-                    </View>
-
-                    <View style={[styles.prosConsSection, { marginTop: 16 }]}>
-                        <View style={styles.prosConsHeader}>
-                            <ThumbsDown size={18} color="#B91C1C" />
-                            <Text style={[styles.prosConsTitle, { color: '#B91C1C' }]}>Challenges</Text>
-                        </View>
-                        {business.cons.map((con, index) => (
-                            <View key={index} style={styles.bulletItem}>
-                                <View style={[styles.bullet, { backgroundColor: '#EF4444' }]} />
-                                <Text style={styles.bulletText}>{con}</Text>
-                            </View>
-                        ))}
-                    </View>
-                </View>
-
-                {/* Key Insights */}
-                <View style={[styles.card, { marginBottom: 30 }]}>
-                    <View style={styles.sectionHeader}>
-                        <AlertCircle size={20} color="#3B82F6" />
-                        <Text style={styles.sectionTitle}>Key Insights</Text>
-                    </View>
-
-                    <View style={styles.insightRow}>
-                        <Text style={styles.insightLabel}>BREAK EVEN TIME</Text>
-                        <View style={styles.insightValueContainer}>
-                            <Clock size={16} color="#A855F7" style={{ marginRight: 6 }} />
-                            <Text style={styles.insightValue}>{business.breakEven}</Text>
-                        </View>
-                    </View>
-
-                    <View style={[styles.insightRow, { marginTop: 16 }]}>
-                        <Text style={styles.insightLabel}>REQUIRED SKILLS</Text>
-                        <View style={styles.skillsContainer}>
-                            {business.skills.map((skill, index) => (
-                                <View key={index} style={styles.skillChip}>
-                                    <Text style={styles.skillText}>{skill}</Text>
+                        <View style={styles.timeline}>
+                            {business.workflowSteps.map((step, index) => (
+                                <View key={index} style={styles.timelineItem}>
+                                    <View style={styles.timelineLeft}>
+                                        <View style={styles.timelineCircle}>
+                                            <Text style={styles.timelineNumber}>{index + 1}</Text>
+                                        </View>
+                                        {index !== business.workflowSteps.length - 1 && (
+                                            <View style={styles.timelineLine} />
+                                        )}
+                                    </View>
+                                    <View style={styles.timelineContent}>
+                                        <Text style={styles.timelineText}>{step}</Text>
+                                    </View>
                                 </View>
                             ))}
                         </View>
                     </View>
-                </View>
 
-            </ScrollView>
-        </SafeAreaView>
+                    {/* Setup Guide */}
+                    <View style={styles.card}>
+                        <View style={styles.cardHeader}>
+                            <View style={[styles.cardIconBox, { backgroundColor: '#FEF2F2' }]}>
+                                <Wrench size={20} color="#EF4444" />
+                            </View>
+                            <Text style={styles.cardTitle}>Setup Process</Text>
+                        </View>
+                        <View style={styles.checklist}>
+                            {business.setupProcess.map((step, index) => (
+                                <View key={index} style={styles.checklistItem}>
+                                    <CheckCircle size={20} color="#22C55E" style={styles.checkIcon} />
+                                    <Text style={styles.checklistText}>{step}</Text>
+                                </View>
+                            ))}
+                        </View>
+                    </View>
+
+                    {/* Investment Breakdown */}
+                    <View style={styles.card}>
+                        <View style={styles.cardHeader}>
+                            <View style={[styles.cardIconBox, { backgroundColor: '#FFF7ED' }]}>
+                                <IndianRupee size={20} color="#F97316" />
+                            </View>
+                            <Text style={styles.cardTitle}>Cost Breakdown</Text>
+                        </View>
+
+                        <View style={styles.table}>
+                            {business.investmentBreakdown.map((item, index) => (
+                                <View key={index} style={[
+                                    styles.tableRow,
+                                    index !== business.investmentBreakdown.length - 1 && styles.tableRowBorder
+                                ]}>
+                                    <Text style={styles.tableLabel}>{item.item}</Text>
+                                    <Text style={styles.tableValue}>{item.cost}</Text>
+                                </View>
+                            ))}
+                            <View style={styles.tableTotal}>
+                                <Text style={styles.tableTotalLabel}>Total Estimated Cost</Text>
+                                <Text style={styles.tableTotalValue}>{business.minInvestment}</Text>
+                            </View>
+                        </View>
+                    </View>
+
+                    {/* Pros & Cons */}
+                    <View style={styles.row}>
+                        <View style={[styles.columnCard, { marginRight: 8 }]}>
+                            <View style={styles.columnHeader}>
+                                <ThumbsUp size={16} color="#16A34A" />
+                                <Text style={[styles.columnTitle, { color: '#16A34A' }]}>Pros</Text>
+                            </View>
+                            {business.pros.map((pro, index) => (
+                                <View key={index} style={styles.bulletItem}>
+                                    <View style={[styles.bullet, { backgroundColor: '#16A34A' }]} />
+                                    <Text style={styles.bulletText}>{pro}</Text>
+                                </View>
+                            ))}
+                        </View>
+                        <View style={[styles.columnCard, { marginLeft: 8 }]}>
+                            <View style={styles.columnHeader}>
+                                <ThumbsDown size={16} color="#DC2626" />
+                                <Text style={[styles.columnTitle, { color: '#DC2626' }]}>Cons</Text>
+                            </View>
+                            {business.cons.map((con, index) => (
+                                <View key={index} style={styles.bulletItem}>
+                                    <View style={[styles.bullet, { backgroundColor: '#DC2626' }]} />
+                                    <Text style={styles.bulletText}>{con}</Text>
+                                </View>
+                            ))}
+                        </View>
+                    </View>
+
+                    <View style={{ height: 40 }} />
+                </ScrollView>
+            </View>
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F9FAFB',
+        backgroundColor: '#F8FAFC',
     },
     header: {
-        paddingHorizontal: 16,
-        paddingVertical: 12,
-        backgroundColor: 'white',
-        borderBottomWidth: 1,
-        borderBottomColor: '#E5E7EB',
+        height: 280,
+        backgroundColor: '#1E293B',
+        position: 'relative',
+    },
+    headerPattern: {
+        position: 'absolute',
+        bottom: -40,
+        right: -40,
+        opacity: 0.5,
+        transform: [{ rotate: '-15deg' }],
+    },
+    headerTop: {
         flexDirection: 'row',
-        alignItems: 'center',
+        paddingHorizontal: 16,
+        paddingTop: 10,
     },
     backButton: {
+        marginBottom: 20,
+    },
+    glassButton: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: 'rgba(255,255,255,0.15)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: 1,
+        borderColor: 'rgba(255,255,255,0.1)',
+    },
+    heroContent: {
+        paddingHorizontal: 24,
         flexDirection: 'row',
         alignItems: 'center',
-        paddingRight: 16,
     },
-    backText: {
-        fontSize: 16,
-        color: '#6B7280',
-        fontWeight: '500',
-        marginLeft: 4,
+    heroIconContainer: {
+        marginRight: 16,
+        shadowColor: "black",
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.3,
+        shadowRadius: 10,
+        elevation: 10,
     },
-    headerTitle: {
-        fontSize: 18,
-        fontWeight: '700',
-        color: '#111827',
+    heroIconGradient: {
+        width: 72,
+        height: 72,
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: 1,
+        borderColor: 'rgba(255,255,255,0.2)',
+    },
+    heroTitle: {
+        fontSize: 24,
+        fontWeight: '800',
+        color: 'white',
+        letterSpacing: -0.5,
+        lineHeight: 30,
+    },
+    categoryTag: {
+        backgroundColor: 'rgba(255,255,255,0.1)',
+        paddingHorizontal: 10,
+        paddingVertical: 4,
+        borderRadius: 100,
+        alignSelf: 'flex-start',
+        marginBottom: 8,
+        borderWidth: 1,
+        borderColor: 'rgba(255,255,255,0.1)',
+    },
+    categoryTagText: {
+        color: '#94A3B8',
+        fontSize: 12,
+        fontWeight: '600',
+        letterSpacing: 0.5,
+    },
+    contentContainer: {
         flex: 1,
+        marginTop: -40,
+        borderTopLeftRadius: 32,
+        borderTopRightRadius: 32,
+        backgroundColor: '#F8FAFC',
+        overflow: 'hidden',
     },
     scrollContent: {
+        padding: 20,
+        paddingTop: 30,
+    },
+    statsRow: {
+        flexDirection: 'row',
+        gap: 16,
+        marginBottom: 24,
+        marginTop: -60,
+    },
+    statCard: {
+        flex: 1,
+        backgroundColor: 'white',
+        borderRadius: 20,
         padding: 16,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.05,
+        shadowRadius: 10,
+        elevation: 6,
+        alignItems: 'center',
+    },
+    statIcon: {
+        width: 40,
+        height: 40,
+        borderRadius: 12,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 10,
+    },
+    statLabel: {
+        fontSize: 12,
+        color: '#64748B',
+        fontWeight: '600',
+        marginBottom: 4,
+    },
+    statValue: {
+        fontSize: 15,
+        fontWeight: '700',
+        color: '#0F172A',
+        textAlign: 'center',
+    },
+    section: {
+        marginBottom: 24,
+    },
+    overviewText: {
+        fontSize: 16,
+        color: '#334155',
+        lineHeight: 26,
     },
     card: {
         backgroundColor: 'white',
-        borderRadius: 16,
-        padding: 20,
-        marginBottom: 16,
-        borderWidth: 1,
-        borderColor: '#F3F4F6',
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
+        borderRadius: 24,
+        padding: 24,
+        marginBottom: 20,
+        shadowColor: "#64748B",
+        shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.05,
-        shadowRadius: 2,
-        elevation: 2,
+        shadowRadius: 6,
+        elevation: 3,
+        borderWidth: 1,
+        borderColor: '#F1F5F9',
     },
-    overviewCard: {
-
-    },
-    overviewHeader: {
+    cardHeader: {
         flexDirection: 'row',
-        alignItems: 'flex-start',
-        marginBottom: 16,
-    },
-    overviewIconContainer: {
-        padding: 12,
-        backgroundColor: '#EFF6FF',
-        borderRadius: 12,
-        marginRight: 16,
-    },
-    overviewTitleContainer: {
-        flex: 1,
-    },
-    businessName: {
-        fontSize: 24,
-        fontWeight: '800',
-        color: '#111827',
-        marginBottom: 6,
-    },
-    categoryBadge: {
-        alignSelf: 'flex-start',
-        paddingHorizontal: 10,
-        paddingVertical: 4,
-        backgroundColor: '#F3F4F6',
-        borderRadius: 100,
-    },
-    categoryText: {
-        fontSize: 12,
-        fontWeight: '600',
-        color: '#4B5563',
-    },
-    overviewText: {
-        fontSize: 15,
-        color: '#374151',
-        lineHeight: 24,
+        alignItems: 'center',
         marginBottom: 20,
     },
-    statsGrid: {
-        flexDirection: 'row',
-        gap: 12,
-    },
-    statBox: {
-        flex: 1,
-        padding: 12,
-        borderRadius: 12,
-        borderWidth: 1,
-    },
-    statBoxBlue: {
-        backgroundColor: '#EFF6FF',
-        borderColor: '#DBEAFE',
-    },
-    statBoxGreen: {
-        backgroundColor: '#F0FDF4',
-        borderColor: '#DCFCE7',
-    },
-    statHeader: {
-        flexDirection: 'row',
+    cardIconBox: {
+        width: 36,
+        height: 36,
+        borderRadius: 10,
         alignItems: 'center',
-        marginBottom: 4,
+        justifyContent: 'center',
+        marginRight: 12,
     },
-    statTitle: {
-        fontSize: 12,
-        fontWeight: '700',
-        marginLeft: 6,
-    },
-    statValue: {
-        fontSize: 16,
-        fontWeight: '700',
-        color: '#111827',
-    },
-    sectionHeader: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 16,
-    },
-    sectionTitle: {
+    cardTitle: {
         fontSize: 18,
         fontWeight: '700',
-        color: '#111827',
-        marginLeft: 8,
+        color: '#0F172A',
     },
-    listContainer: {
-        gap: 12,
+    timeline: {
+        paddingLeft: 8,
     },
-    workflowItem: {
+    timelineItem: {
         flexDirection: 'row',
-        gap: 12,
+        marginBottom: 2,
     },
-    stepNumberContainer: {
+    timelineLeft: {
+        alignItems: 'center',
+        width: 30,
+        marginRight: 12,
+    },
+    timelineCircle: {
         width: 24,
         height: 24,
         borderRadius: 12,
-        backgroundColor: '#EFF6FF',
+        backgroundColor: '#2563EB',
         alignItems: 'center',
         justifyContent: 'center',
+        zIndex: 1,
     },
-    stepNumber: {
+    timelineNumber: {
+        color: 'white',
         fontSize: 12,
-        fontWeight: 'bold',
-        color: '#2563EB',
+        fontWeight: '700',
     },
-    workflowText: {
-        fontSize: 14,
-        color: '#374151',
-        lineHeight: 22,
+    timelineLine: {
+        width: 2,
         flex: 1,
+        backgroundColor: '#E2E8F0',
+        marginVertical: 4,
     },
-    setupItem: {
+    timelineContent: {
+        flex: 1,
+        paddingBottom: 20,
+    },
+    timelineText: {
+        fontSize: 15,
+        color: '#475569',
+        lineHeight: 22,
+        marginTop: 2,
+    },
+    checklist: {
+        gap: 16,
+    },
+    checklistItem: {
         flexDirection: 'row',
         alignItems: 'flex-start',
     },
-    setupText: {
-        fontSize: 14,
-        color: '#374151',
+    checkIcon: {
+        marginRight: 12,
+        marginTop: 2,
+    },
+    checklistText: {
+        fontSize: 15,
+        color: '#475569',
         lineHeight: 22,
         flex: 1,
     },
-    costContainer: {
-        gap: 8,
+    table: {
+        backgroundColor: '#F8FAFC',
+        borderRadius: 16,
+        padding: 16,
     },
-    costRow: {
+    tableRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        paddingVertical: 10,
     },
-    costLabel: {
+    tableRowBorder: {
+        borderBottomWidth: 1,
+        borderBottomColor: '#E2E8F0',
+    },
+    tableLabel: {
         fontSize: 14,
-        color: '#4B5563',
+        color: '#64748B',
+        flex: 1,
     },
-    costValue: {
+    tableValue: {
         fontSize: 14,
-        fontWeight: '500',
-        color: '#111827',
+        color: '#0F172A',
+        fontWeight: '600',
+        marginLeft: 16,
     },
-    costTotalRow: {
+    tableTotal: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 8,
-        paddingTop: 8,
-        borderTopWidth: 1,
-        borderTopColor: '#F3F4F6',
+        marginTop: 12,
+        paddingTop: 12,
+        borderTopWidth: 2,
+        borderTopColor: '#E2E8F0', // Slightly darker border for total
     },
-    costTotalLabel: {
+    tableTotalLabel: {
         fontSize: 15,
         fontWeight: '700',
-        color: '#111827',
+        color: '#0F172A',
     },
-    costTotalValue: {
+    tableTotalValue: {
         fontSize: 15,
-        fontWeight: '700',
-        color: '#111827',
+        fontWeight: '800',
+        color: '#2563EB',
     },
-    prosConsSection: {
-
+    row: {
+        flexDirection: 'row',
     },
-    prosConsHeader: {
+    columnCard: {
+        flex: 1,
+        backgroundColor: 'white',
+        borderRadius: 20,
+        padding: 16,
+        borderWidth: 1,
+        borderColor: '#F1F5F9',
+    },
+    columnHeader: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 8,
+        marginBottom: 12,
     },
-    prosConsTitle: {
-        fontSize: 15,
-        fontWeight: '600',
+    columnTitle: {
+        fontSize: 14,
+        fontWeight: '700',
         marginLeft: 8,
     },
     bulletItem: {
         flexDirection: 'row',
         alignItems: 'flex-start',
-        marginTop: 4,
+        marginBottom: 10,
     },
     bullet: {
         width: 6,
         height: 6,
         borderRadius: 3,
-        marginTop: 7,
+        marginTop: 6,
         marginRight: 8,
     },
     bulletText: {
         fontSize: 13,
-        color: '#4B5563',
-        lineHeight: 20,
+        color: '#475569',
+        lineHeight: 18,
         flex: 1,
     },
-    insightRow: {
-
-    },
-    insightLabel: {
-        fontSize: 11,
-        color: '#6B7280',
-        fontWeight: '700',
-        marginBottom: 4,
-        letterSpacing: 0.5,
-    },
-    insightValueContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    insightValue: {
-        fontSize: 15,
-        fontWeight: '500',
-        color: '#111827',
-    },
-    skillsContainer: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        gap: 8,
-    },
-    skillChip: {
-        backgroundColor: '#F3F4F6',
-        paddingHorizontal: 8,
-        paddingVertical: 4,
-        borderRadius: 6,
-    },
-    skillText: {
-        fontSize: 12,
-        color: '#4B5563',
-    }
 });
 
 export default BusinessDetails;

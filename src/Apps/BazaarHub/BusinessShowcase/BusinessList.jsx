@@ -7,11 +7,13 @@ import {
     FlatList,
     ScrollView,
     TouchableOpacity,
+    StatusBar,
     SafeAreaView
 } from 'react-native';
 import BusinessCard from './BusinessCard';
 import { businessIdeas } from './data';
-import { Search } from 'lucide-react-native';
+import { Search, SlidersHorizontal } from 'lucide-react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 const BusinessList = ({ navigation }) => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -44,53 +46,26 @@ const BusinessList = ({ navigation }) => {
 
     const renderHeader = () => (
         <View style={styles.headerContainer}>
-            <View style={styles.titleContainer}>
-                <Text style={styles.titleMain}>
-                    Explore Profitable <Text style={styles.titleHighlight}>Business Ideas</Text>
-                </Text>
-                <Text style={styles.subtitle}>
-                    Discover vetted business opportunities with detailed insights on investment, income, and execution plans.
-                </Text>
-            </View>
-
             {/* Search Bar */}
             <View style={styles.searchContainer}>
-                <Search size={20} color="#9CA3AF" style={styles.searchIcon} />
-                <TextInput
-                    style={styles.searchInput}
-                    placeholder="Search businesses..."
-                    placeholderTextColor="#9CA3AF"
-                    value={searchTerm}
-                    onChangeText={setSearchTerm}
-                />
-            </View>
-
-            {/* Budget Filter */}
-            <View style={styles.filterSection}>
-                <Text style={styles.filterLabel}>Budget:</Text>
-                <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.filterScroll}>
-                    {budgetOptions.map(option => (
-                        <TouchableOpacity
-                            key={option}
-                            onPress={() => setBudgetRange(option)}
-                            style={[
-                                styles.chip,
-                                budgetRange === option ? styles.activeChip : styles.inactiveChip
-                            ]}
-                        >
-                            <Text style={[
-                                styles.chipText,
-                                budgetRange === option ? styles.activeChipText : styles.inactiveChipText
-                            ]}>
-                                {option}
-                            </Text>
-                        </TouchableOpacity>
-                    ))}
-                </ScrollView>
+                <View style={styles.searchBar}>
+                    <Search size={20} color="#64748B" style={styles.searchIcon} />
+                    <TextInput
+                        style={styles.searchInput}
+                        placeholder="Search for ideas..."
+                        placeholderTextColor="#94A3B8"
+                        value={searchTerm}
+                        onChangeText={setSearchTerm}
+                    />
+                </View>
+                {/* <TouchableOpacity style={styles.filterButton}>
+                    <SlidersHorizontal size={20} color="white" />
+                </TouchableOpacity> */}
             </View>
 
             {/* Category Filter */}
             <View style={styles.filterSection}>
+                <Text style={styles.sectionTitle}>Categories</Text>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.filterScroll}>
                     {categories.map(cat => (
                         <TouchableOpacity
@@ -111,11 +86,54 @@ const BusinessList = ({ navigation }) => {
                     ))}
                 </ScrollView>
             </View>
+
+            {/* Budget Filter */}
+            <View style={styles.filterSection}>
+                <Text style={styles.sectionTitle}>Investment Budget</Text>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.filterScroll}>
+                    {budgetOptions.map(option => (
+                        <TouchableOpacity
+                            key={option}
+                            onPress={() => setBudgetRange(option)}
+                            style={[
+                                styles.chip,
+                                budgetRange === option ? styles.activeChip : styles.inactiveChip
+                            ]}
+                        >
+                            <Text style={[
+                                styles.chipText,
+                                budgetRange === option ? styles.activeChipText : styles.inactiveChipText
+                            ]}>
+                                {option}
+                            </Text>
+                        </TouchableOpacity>
+                    ))}
+                </ScrollView>
+            </View>
         </View>
     );
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
+            <StatusBar barStyle="light-content" backgroundColor="#2563EB" />
+
+            {/* Header Background */}
+            <View style={styles.headerBackground}>
+                <LinearGradient
+                    colors={['#2563EB', '#1D4ED8']}
+                    style={StyleSheet.absoluteFill}
+                />
+                <SafeAreaView>
+                    <View style={styles.headerContent}>
+                        <View>
+                            <Text style={styles.headerTitle}>BazaarHub</Text>
+                            <Text style={styles.headerSubtitle}>Discover your next big idea</Text>
+                        </View>
+                    </View>
+                </SafeAreaView>
+            </View>
+
+            {/* Main Content */}
             <FlatList
                 data={filteredBusinesses}
                 keyExtractor={item => item.id.toString()}
@@ -128,106 +146,137 @@ const BusinessList = ({ navigation }) => {
                 ListHeaderComponent={renderHeader}
                 ListEmptyComponent={
                     <View style={styles.emptyContainer}>
-                        <Text style={styles.emptyText}>No businesses found matching your criteria.</Text>
+                        <Text style={styles.emptyText}>No ideas found matching your criteria.</Text>
                     </View>
                 }
                 contentContainerStyle={styles.listContent}
                 showsVerticalScrollIndicator={false}
+                style={styles.flatList}
             />
-        </SafeAreaView>
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F9FAFB',
+        backgroundColor: '#F8FAFC',
     },
-    listContent: {
-        padding: 16,
-        paddingBottom: 40,
+    headerBackground: {
+        height: 180,
+        width: '100%',
+        paddingHorizontal: 20,
     },
-    headerContainer: {
-        marginBottom: 20,
+    headerContent: {
+        marginTop: 16,
+        paddingTop: 16,
     },
-    titleContainer: {
-        marginBottom: 24,
-        alignItems: 'center',
-    },
-    titleMain: {
+    headerTitle: {
         fontSize: 28,
         fontWeight: '800',
-        color: '#111827',
-        textAlign: 'center',
-        marginBottom: 8,
+        color: 'white',
+        letterSpacing: -0.5,
     },
-    titleHighlight: {
-        color: '#2563EB',
-    },
-    subtitle: {
+    headerSubtitle: {
         fontSize: 14,
-        color: '#4B5563',
-        textAlign: 'center',
-        lineHeight: 20,
-        maxWidth: 300,
+        color: '#BFDBFE',
+        marginTop: 4,
+    },
+    flatList: {
+        flex: 1,
+        marginTop: -30,
+    },
+    listContent: {
+        paddingHorizontal: 16,
+        paddingBottom: 40,
+        paddingTop: 10,
+    },
+    headerContainer: {
+        marginBottom: 4,
     },
     searchContainer: {
-        position: 'relative',
-        marginBottom: 20,
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 24,
+    },
+    searchBar: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: 'white',
+        borderRadius: 16,
+        paddingHorizontal: 16,
+        height: 52,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.05,
+        shadowRadius: 8,
+        elevation: 4,
     },
     searchIcon: {
-        position: 'absolute',
-        left: 12,
-        top: 14,
-        zIndex: 1,
+        marginRight: 10,
     },
     searchInput: {
-        backgroundColor: 'white',
-        borderWidth: 1,
-        borderColor: '#E5E7EB',
-        borderRadius: 12,
-        paddingVertical: 12,
-        paddingLeft: 44,
-        paddingRight: 16,
+        flex: 1,
         fontSize: 16,
-        color: '#111827',
+        color: '#1E293B',
+        height: '100%',
+    },
+    filterButton: {
+        width: 52,
+        height: 52,
+        backgroundColor: '#2563EB',
+        borderRadius: 16,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginLeft: 12,
+        shadowColor: "#2563EB",
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
+        elevation: 4,
     },
     filterSection: {
-        marginBottom: 16,
+        marginBottom: 20,
     },
-    filterLabel: {
+    sectionTitle: {
         fontSize: 14,
-        fontWeight: '600',
-        color: '#6B7280',
-        marginBottom: 8,
+        fontWeight: '700',
+        color: '#64748B',
+        marginBottom: 12,
+        marginLeft: 4,
+        textTransform: 'uppercase',
+        letterSpacing: 0.5,
     },
     filterScroll: {
         paddingRight: 16,
     },
     chip: {
-        paddingHorizontal: 12,
-        paddingVertical: 6,
-        borderRadius: 8,
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        borderRadius: 12,
         marginRight: 8,
+        backgroundColor: 'white',
         borderWidth: 1,
+        borderColor: '#E2E8F0',
     },
     activeChip: {
-        backgroundColor: '#16A34A',
-        borderColor: '#16A34A',
+        backgroundColor: '#DCFCE7',
+        borderColor: '#22C55E',
     },
     inactiveChip: {
         backgroundColor: 'white',
-        borderColor: '#E5E7EB',
+        borderColor: '#E2E8F0',
     },
     chipText: {
-        fontSize: 13,
-        fontWeight: '500',
+        fontSize: 14,
+        fontWeight: '600',
     },
     activeChipText: {
-        color: 'white',
+        color: '#15803D',
     },
     inactiveChipText: {
-        color: '#4B5563',
+        color: '#64748B',
     },
     categoryChip: {
         paddingHorizontal: 16,
@@ -235,6 +284,8 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         marginRight: 8,
         borderWidth: 1,
+        borderColor: '#E2E8F0',
+        backgroundColor: 'white',
     },
     activeCategoryChip: {
         backgroundColor: '#2563EB',
@@ -242,17 +293,17 @@ const styles = StyleSheet.create({
     },
     inactiveCategoryChip: {
         backgroundColor: 'white',
-        borderColor: '#E5E7EB',
+        borderColor: '#E2E8F0',
     },
     categoryChipText: {
         fontSize: 14,
-        fontWeight: '500',
+        fontWeight: '600',
     },
     activeCategoryChipText: {
         color: 'white',
     },
     inactiveCategoryChipText: {
-        color: '#4B5563',
+        color: '#64748B',
     },
     emptyContainer: {
         padding: 40,
@@ -260,7 +311,7 @@ const styles = StyleSheet.create({
     },
     emptyText: {
         fontSize: 16,
-        color: '#6B7280',
+        color: '#94A3B8',
     },
 });
 

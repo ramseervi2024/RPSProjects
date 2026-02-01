@@ -9,7 +9,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 (Start) - ₹1 Lakh+ (Scaled)",
         description: "A creative business for designers and entrepreneurs. Using 'Print on Demand' or small inventory, you sell custom-designed apparel to niche markets (e.g., coders, bikers, regional slogans). Demand is evergreen as people seek personalized expression.",
-        detailedOverview: "The business operates on a 'sell first, print later' model or small batch inventory. \n\n**Business Model:**\n1. Create Designs (Text/Graphics).\n2. Market on Instagram/Website.\n3. Receive Order.\n4. Print using Heat Press or DTG.\n5. Ship.\n\n**Pricing & Margins:**\n- Blank T-shirt cost: ₹120-₹160.\n- Printing cost (Paper+Ink): ₹20.\n- Selling Price: ₹499-₹699.\n- **Profit:** ₹300-₹400 per shirt.\n\n**Growth:** Start with heat press (low cost), scale to DTF (Direct to Film) for better quality. Expand to hoodies, caps, and mugs.",
+        detailedOverview: "The business operates on a 'sell first, print later' model or small batch inventory. \n\nBusiness Model:\n1. Create Designs (Text/Graphics).\n2. Market on Instagram/Website.\n3. Receive Order.\n4. Print using Heat Press or DTG.\n5. Ship.\n\nPricing & Margins:\n- Blank T-shirt cost: ₹120-₹160.\n- Printing cost (Paper+Ink): ₹20.\n- Selling Price: ₹499-₹699.\n- Profit: ₹300-₹400 per shirt.\n\nGrowth: Start with heat press (low cost), scale to DTF (Direct to Film) for better quality. Expand to hoodies, caps, and mugs.",
         workflowSteps: [
             "Create trending designs (Canva/Photoshop)",
             "Print design on sublimation/transfer paper",
@@ -47,7 +47,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Start a semi-automatic production unit for eco-friendly carry bags. Due to plastic bans in many Indian states, supermarkets, medical shops, and retail outlets strictly need paper bags. This is a B2B volume business.",
-        detailedOverview: "You will manufacture brown kraft paper bags used for groceries and shopping. \n\n**Business Model:**\n- High volume, low margin.\n- Sell in kgs to wholesalers or directly to big shops.\n\n**Pricing:**\n- Cost of production: ₹40-50 per kg.\n- Selling price: ₹60-70 per kg.\n- Margin: ₹10-20 per kg.\n\n**Growth:** Add printing (branding) for clients to charge premium rates.",
+        detailedOverview: "You will manufacture brown kraft paper bags used for groceries and shopping. \n\nBusiness Model:\n- High volume, low margin.\n- Sell in kgs to wholesalers or directly to big shops.\n\nPricing:\n- Cost of production: ₹40-50 per kg.\n- Selling price: ₹60-70 per kg.\n- Margin: ₹10-20 per kg.\n\nGrowth: Add printing (branding) for clients to charge premium rates.",
         workflowSteps: [
             "Load Paper Roll onto machine",
             "Machine applies glue and folds the tube",
@@ -83,7 +83,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹15,000 - ₹60,000",
         description: "A highly aesthetic, home-based business perfect for creative individuals. Scented candles are in demand for home decor, Diwali gifting, and corporate hampers. Can completely run via Instagram.",
-        detailedOverview: "This uses the 'Premiumization' model. You sell wax (cheap) as an experience (expensive).\n\n**Pricing:**\n- Raw Material Cost (Soy Wax + Fragrance + Jar): ₹80-₹100.\n- Selling Price: ₹399-₹699.\n- **Margin:** 300%+.\n\n**Strategy:** Focus on packaging, aesthetics, and ASMR reels on Instagram. Corporate gifting is a major revenue booster.",
+        detailedOverview: "This uses the 'Premiumization' model. You sell wax (cheap) as an experience (expensive).\n\nPricing:\n- Raw Material Cost (Soy Wax + Fragrance + Jar): ₹80-₹100.\n- Selling Price: ₹399-₹699.\n- Margin: 300%+.\n\nStrategy: Focus on packaging, aesthetics, and ASMR reels on Instagram. Corporate gifting is a major revenue booster.",
         workflowSteps: [
             "Melt Soy/Paraffin wax in double boiler",
             "Mix fragrance oils at exact temperature (65°C)",
@@ -120,7 +120,7 @@ export const businessIdeas = [
         investmentAmount: 150000,
         monthlyIncome: "₹40,000 - ₹2 Lakhs",
         description: "Launch a delivery-only restaurant brand on Zomato/Swiggy without paying for expensive main-road frontage. Ideal for foodies with good recipes. Focus on 'Bowls' or 'Biryani' for easy packaging.",
-        detailedOverview: "Cloud kitchens have low overheads compared to dine-in.\n\n**Economics:**\n- Food Cost: 30-35%\n- Packaging: 5%\n- Platform Commision (Zomato): 25-30%\n- Marketing: 10%\n- **Net Profit:** 20-25%\n\nYou need high volume. A single kitchen can run multiple brands (e.g., one Biryani brand, one Burger brand).",
+        detailedOverview: "Cloud kitchens have low overheads compared to dine-in.\n\nEconomics:\n- Food Cost: 30-35%\n- Packaging: 5%\n- Platform Commision (Zomato): 25-30%\n- Marketing: 10%\n- Net Profit: 20-25%\n\nYou need high volume. A single kitchen can run multiple brands (e.g., one Biryani brand, one Burger brand).",
         workflowSteps: [
             "Receive order on Zomato Dashboard",
             "Prep food (assembly line style)",
@@ -158,7 +158,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹50,000 - ₹5 Lakhs",
         description: "Help local businesses (Clinics, Gyms, Realtors) get more customers using Google/FB Ads. Demand is huge because every business needs leads but doesn't know how to run ads.",
-        detailedOverview: "Service-based arbitrage model. \n\n**Pricing:**\n- Retainer Fee: ₹15k - ₹25k per client/month.\n- Ad Budget: Paid by client directly.\n\n**Process:** You leverage your skill to generate ROI for them. If they spend ₹10k and get ₹50k business, they will pay you forever.",
+        detailedOverview: "Service-based arbitrage model. \n\nPricing:\n- Retainer Fee: ₹15k - ₹25k per client/month.\n- Ad Budget: Paid by client directly.\n\nProcess: You leverage your skill to generate ROI for them. If they spend ₹10k and get ₹50k business, they will pay you forever.",
         workflowSteps: [
             "Client Onboarding & Access to Ad Accounts",
             "Create Ad Creatives (Images/Video)",
@@ -194,7 +194,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "A modern laundromat offering Wash, Fold, and Iron services per kg. Targeted at bachelors, working couples, and students who lack time. 'Premium Laundry' is a fast-growing urban sector.",
-        detailedOverview: "A volume game with recurring weekly customers.\n\n**Pricing:**\n- Wash & Fold: ₹60-80 per kg.\n- Wash & Iron: ₹100-120 per kg.\n- Dry Cleaning: Per piece pricing (High Margin).\n\n**Operations:** You need industrial machines for speed. Offering pickup/drop is the key differentiator.",
+        detailedOverview: "A volume game with recurring weekly customers.\n\nPricing:\n- Wash & Fold: ₹60-80 per kg.\n- Wash & Iron: ₹100-120 per kg.\n- Dry Cleaning: Per piece pricing (High Margin).\n\nOperations: You need industrial machines for speed. Offering pickup/drop is the key differentiator.",
         workflowSteps: [
             "Pickup clothes from customer doorstep",
             "Tagging & Sorting (Color/White)",
@@ -231,7 +231,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Beyond a normal car wash. Detailing involves restoration, ceramic coating, and deep interior cleaning. Car enthusiasts and luxury car owners are the target. High ticket size service.",
-        detailedOverview: "Services include Paint Correction, Ceramic Coating, PPF, and Interior Spa.\n\n**Economics:**\n- Normal Wash: ₹500 (Low margin)\n- Ceramic Coating: ₹15,000 - ₹30,000 (High margin).\n- **Strategy:** Use wash as a lead magnet to sell coatings. One coating job equals profit of 50 car washes.",
+        detailedOverview: "Services include Paint Correction, Ceramic Coating, PPF, and Interior Spa.\n\nEconomics:\n- Normal Wash: ₹500 (Low margin)\n- Ceramic Coating: ₹15,000 - ₹30,000 (High margin).\n- Strategy: Use wash as a lead magnet to sell coatings. One coating job equals profit of 50 car washes.",
         workflowSteps: [
             "Foam Wash & Decontamination",
             "Paint Correction (Buffing/Polishing)",
@@ -269,7 +269,7 @@ export const businessIdeas = [
         investmentAmount: 400000,
         monthlyIncome: "₹60,000 - ₹1.2 Lakhs",
         description: "Start a branded tea cafe (e.g., Tea Post, MBA Chaiwala, Chai Sutta Bar style). It attracts youth and families. Standardized taste and brand value bring walk-ins automatically.",
-        detailedOverview: "A plug-and-play model. \n\n**Model:**\n- Franchise Fee: ₹2L - ₹5L (varies).\n- Setup Cost: ₹2L - ₹3L.\n- Selling Price: ₹15-₹20 (Tea), ₹80 (Snacks).\n- **Volume:** Target is 300-500 cups/day.\n- Snacks (Bun Maska/Fries) provide the real profit margin.",
+        detailedOverview: "A plug-and-play model. \n\nModel:\n- Franchise Fee: ₹2L - ₹5L (varies).\n- Setup Cost: ₹2L - ₹3L.\n- Selling Price: ₹15-₹20 (Tea), ₹80 (Snacks).\n- Volume: Target is 300-500 cups/day.\n- Snacks (Bun Maska/Fries) provide the real profit margin.",
         workflowSteps: [
             "Open shop & heat boiler/milk",
             "Customer Order",
@@ -306,7 +306,7 @@ export const businessIdeas = [
         investmentAmount: 30000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Grow nutrient-rich microgreens (broccoli, radish, sunflower) in trays. Can be done indoors/balcony vertically. High demand in 5-star hotels, cafes, and health-conscious households.",
-        detailedOverview: "Urban farming model.\n\n**Metrics:**\n- Cycle: 7-10 days (Super fast).\n- Selling Price: ₹150-₹200 per 100g.\n- Space: 100 sqft can yield 5-10kg/week.\n\n**Customers:** Chefs (B2B) and subscription boxes for homes (B2C).",
+        detailedOverview: "Urban farming model.\n\nMetrics:\n- Cycle: 7-10 days (Super fast).\n- Selling Price: ₹150-₹200 per 100g.\n- Space: 100 sqft can yield 5-10kg/week.\n\nCustomers: Chefs (B2B) and subscription boxes for homes (B2C).",
         workflowSteps: [
             "Soak seeds overnight",
             "Spread on soil/cocopeat trays",
@@ -343,7 +343,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "Variable (Profit per piece)",
         description: "Buy old, solid wood furniture from scrap/OLX, repair & paint it, and sell as 'Vintage/Boho' decor. High profit creative side hustle.",
-        detailedOverview: "Arbitrage of value. \n\n**Math:**\n- Buy old chair: ₹500.\n- Sandbox/Paint/Fabric: ₹500.\n- Sell Price: ₹3,500.\n- **Profit:** ₹2,500.\n\nFocus on solid wood (Teak/Sheesham) which has high resale value relative to modern plyboard furniture.",
+        detailedOverview: "Arbitrage of value. \n\nMath:\n- Buy old chair: ₹500.\n- Sandbox/Paint/Fabric: ₹500.\n- Sell Price: ₹3,500.\n- Profit: ₹2,500.\n\nFocus on solid wood (Teak/Sheesham) which has high resale value relative to modern plyboard furniture.",
         workflowSteps: [
             "Scout OLX/Scrap dealers for solid wood items",
             "Strip old paint/varnish",
@@ -378,7 +378,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹1 Lakh - ₹3 Lakhs",
         description: "Buy and sell pre-owned cars. The used car market in India is bigger than the new car market. Profit comes from the gap between buying price and selling price.",
-        detailedOverview: "Park & Sell Model. \n\n**Math:**\n- Buy Swift 2016: ₹3.5L.\n- Refurbish (Tyres/Paint): ₹15k.\n- Sell Price: ₹4.2L.\n- **Net Profit:** ₹55k per car.\n\nSelling 4 cars a month gives ₹2L+ profit.",
+        detailedOverview: "Park & Sell Model. \n\nMath:\n- Buy Swift 2016: ₹3.5L.\n- Refurbish (Tyres/Paint): ₹15k.\n- Sell Price: ₹4.2L.\n- Net Profit: ₹55k per car.\n\nSelling 4 cars a month gives ₹2L+ profit.",
         workflowSteps: [
             "Source car (Direct owner/Auctions)",
             "Inspection & Valuation",
@@ -414,7 +414,7 @@ export const businessIdeas = [
         investmentAmount: 800000,
         monthlyIncome: "₹60,000 - ₹2 Lakhs",
         description: "Essential service business. Selling medicines, supplements, and baby products. Recession proof.",
-        detailedOverview: "Standard Retail Model.\n\n**Margins:**\n- Branded Meds: 16-20%.\n- Generics: 50-70%.\n- Surgical/Supplements: 30-40%.\n\nSuccess depends on location (near doctors/hospitals).",
+        detailedOverview: "Standard Retail Model.\n\nMargins:\n- Branded Meds: 16-20%.\n- Generics: 50-70%.\n- Surgical/Supplements: 30-40%.\n\nSuccess depends on location (near doctors/hospitals).",
         workflowSteps: [
             "Stock Analysis",
             "Customer Walk-in",
@@ -450,7 +450,7 @@ export const businessIdeas = [
         investmentAmount: 700000,
         monthlyIncome: "₹50,000 - ₹1 Lakh",
         description: "Manufacture paper cups used for tea/coffee/juice. Plastic ban enforcement makes this a high-potential business. Product is used 24x7 in offices, trains, and functions.",
-        detailedOverview: "High volume manufacturing business.\n\n**Economics:**\n- Production Cost (65ml cup): ₹0.22 - ₹0.25.\n- Sell Price to Wholesaler: ₹0.28 - ₹0.30.\n- Margin: 3-5 paisa per cup.\n- Volume: A single machine produces 30-40k cups/day.\n- **Profit:** ₹1000-₹1500 per day per machine.",
+        detailedOverview: "High volume manufacturing business.\n\nEconomics:\n- Production Cost (65ml cup): ₹0.22 - ₹0.25.\n- Sell Price to Wholesaler: ₹0.28 - ₹0.30.\n- Margin: 3-5 paisa per cup.\n- Volume: A single machine produces 30-40k cups/day.\n- Profit: ₹1000-₹1500 per day per machine.",
         workflowSteps: [
             "Load PE Coated Paper Roll",
             "Printing & Cutting (if not pre-cut)",
@@ -485,7 +485,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Produce high-protein Soya Paneer (Tofu). Cheaper and healthier alternative to dairy paneer. Rising vegan & health market in India makes this attractive.",
-        detailedOverview: "Process involves extracting milk from soya bean and coagulating it.\n\n**Math:**\n- 1kg Soya Bean (₹50) yields -> 2kg Tofu.\n- Production cost: ₹40/kg.\n- Selling Price: ₹150-₹200/kg.\n- **Margin:** High.",
+        detailedOverview: "Process involves extracting milk from soya bean and coagulating it.\n\nMath:\n- 1kg Soya Bean (₹50) yields -> 2kg Tofu.\n- Production cost: ₹40/kg.\n- Selling Price: ₹150-₹200/kg.\n- Margin: High.",
         workflowSteps: [
             "Soak Soya Beans (6-8 hours)",
             "Grinding & Milk Extraction",
@@ -522,7 +522,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹25,000 - ₹1 Lakh",
         description: "Home-based business grinding fresh spices (Chilli, Turmeric, Coriander). 'Homemade' & 'Adulteration-free' tag sells at premium price compared to big brands.",
-        detailedOverview: "Grinding and packing pure spices.\n\n**Pricing:**\n- Raw Turmeric: ₹80/kg.\n- Processing loss: 5%.\n- Packaged Selling Price: ₹250/kg.\n- Gap is massive due to purity assurance.",
+        detailedOverview: "Grinding and packing pure spices.\n\nPricing:\n- Raw Turmeric: ₹80/kg.\n- Processing loss: 5%.\n- Packaged Selling Price: ₹250/kg.\n- Gap is massive due to purity assurance.",
         workflowSteps: [
             "Sourcing high quality raw spices",
             "Cleaning & Sun Drying",
@@ -559,7 +559,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "Variable (Seasonal Spikes)",
         description: "Provide customized gift hampers (Diaries, Pens, Tech, Sweets) to companies for employees/clients. Huge demand during Diwali, New Year, and On-boarding.",
-        detailedOverview: "B2B Trading model.\n\n**Workflow:**\n- Client asks for 100 Welcome Kits -> Budget ₹1000 each.\n- You source items for ₹600.\n- Packaging + Logo Print: ₹100.\n- Delivery: ₹50.\n- **Profit:** ₹250 per kit * 100 = ₹25,000 in one order.",
+        detailedOverview: "B2B Trading model.\n\nWorkflow:\n- Client asks for 100 Welcome Kits -> Budget ₹1000 each.\n- You source items for ₹600.\n- Packaging + Logo Print: ₹100.\n- Delivery: ₹50.\n- Profit: ₹250 per kit * 100 = ₹25,000 in one order.",
         workflowSteps: [
             "Client Inquiry & Budgeting",
             "Sourcing samples from wholesalers",
@@ -595,7 +595,7 @@ export const businessIdeas = [
         investmentAmount: 5000,
         monthlyIncome: "₹15,000 - ₹40,000",
         description: "Offer services to repair, patch, embroider, or paint old denim. GenZ loves 'custom' and 'upcycled' fashion. Service-based creative gig.",
-        detailedOverview: "Value addition to old clothes.\n\n**Pricing:**\n- Patchwork repair: ₹200-300.\n- Custom Painting: ₹1000-1500.\n- Embroidery: ₹500.\n\n**Cost:** Threads/Paint < ₹50 per piece.",
+        detailedOverview: "Value addition to old clothes.\n\nPricing:\n- Patchwork repair: ₹200-300.\n- Custom Painting: ₹1000-1500.\n- Embroidery: ₹500.\n\nCost: Threads/Paint < ₹50 per piece.",
         workflowSteps: [
             "Receive Item & Design Consult",
             "Cleaning/Prep",
@@ -629,7 +629,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹25,000 - ₹60,000",
         description: "The classic neighborhood grocery store. Always in demand. Stocks daily essentials like milk, bread, rice, and snacks.",
-        detailedOverview: "High turnover, low margin model.\n\n**Margins:**\n- FMCG (Soaps/Paste): 8-12%.\n- Loose Grocery (Rice/Dal): 15-25%.\n- Cold Drinks/IceCream: 15-20%.\n\nKey is rotation. Faster you sell, faster you reinvest.",
+        detailedOverview: "High turnover, low margin model.\n\nMargins:\n- FMCG (Soaps/Paste): 8-12%.\n- Loose Grocery (Rice/Dal): 15-25%.\n- Cold Drinks/IceCream: 15-20%.\n\nKey is rotation. Faster you sell, faster you reinvest.",
         workflowSteps: [
             "Morning Opening & Milk/News Sales",
             "Restocking shelves",
@@ -666,7 +666,7 @@ export const businessIdeas = [
         investmentAmount: 150000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Selling covers, screen guards, chargers, and headphones. High impulse purchase category with massive margins.",
-        detailedOverview: "Trading cheap imports.\n\n**Math:**\n- Screen Guard Cost: ₹15 -> Sell: ₹100.\n- Fancy Cover Cost: ₹50 -> Sell: ₹250.\n- Cable Cost: ₹30 -> Sell: ₹150.\n\nProduct life is short (trends change), so dumping stock is necessary.",
+        detailedOverview: "Trading cheap imports.\n\nMath:\n- Screen Guard Cost: ₹15 -> Sell: ₹100.\n- Fancy Cover Cost: ₹50 -> Sell: ₹250.\n- Cable Cost: ₹30 -> Sell: ₹150.\n\nProduct life is short (trends change), so dumping stock is necessary.",
         workflowSteps: [
             "Display setup (Visuals matter)",
             "Applying Screen Guard (Service)",
@@ -701,7 +701,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹20,000 - ₹1 Lakh",
         description: "Designing logos, social media posts, and brochures for brands. Every business needs digital presence now.",
-        detailedOverview: "Service business. Time = Money.\n\n**Rates:**\n- Logo: ₹2k - ₹10k.\n- Social Media Post: ₹300 - ₹500.\n- Flyer: ₹1000.\n\nRetainer model (₹15k/month for 15 posts) is best for stability.",
+        detailedOverview: "Service business. Time = Money.\n\nRates:\n- Logo: ₹2k - ₹10k.\n- Social Media Post: ₹300 - ₹500.\n- Flyer: ₹1000.\n\nRetainer model (₹15k/month for 15 posts) is best for stability.",
         workflowSteps: [
             "Brief from client",
             "Drafting concepts",
@@ -735,7 +735,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Help companies hire staff (Telecallers, Devs, Sales). You earn a commission when a candidate joins.",
-        detailedOverview: "Headhunting model.\n\n**Revenue:**\n- Fee is usually 8.33% of candidate's annual CTC.\n- Example: Placing a Software Engineer at 6 LPA = ₹50,000 Commission.\n- Even placing entry level staff pays ₹5k-10k per head.",
+        detailedOverview: "Headhunting model.\n\nRevenue:\n- Fee is usually 8.33% of candidate's annual CTC.\n- Example: Placing a Software Engineer at 6 LPA = ₹50,000 Commission.\n- Even placing entry level staff pays ₹5k-10k per head.",
         workflowSteps: [
             "Get Job Description (JD) from HR",
             "Search Naukri/LinkedIn",
@@ -770,7 +770,7 @@ export const businessIdeas = [
         investmentAmount: 30000,
         monthlyIncome: "₹15,000 - ₹40,000",
         description: "Eyebrows, Waxing, Facials for neighborhood ladies. Very high trust business. Can be started in a spare marketing room.",
-        detailedOverview: "Service model.\n\n**Costs per service:**\n- Facial Kit cost: ₹100 -> Charge: ₹800.\n- Wax cost: ₹20 -> Charge: ₹200.\n- **Margin:** 80-90% (Money is for your time/skill).",
+        detailedOverview: "Service model.\n\nCosts per service:\n- Facial Kit cost: ₹100 -> Charge: ₹800.\n- Wax cost: ₹20 -> Charge: ₹200.\n- Margin: 80-90% (Money is for your time/skill).",
         workflowSteps: [
             "Appointment Booking",
             "Consultation",
@@ -806,7 +806,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹20,000 - ₹80,000",
         description: "Teach Yoga online or offline. Health awareness is peak. People pay for 'Weight Loss', 'PCOS', or 'Mental Peace' classes.",
-        detailedOverview: "Subscription model.\n\n**Pricing:**\n- Group Class: ₹1500-2000/month/person.\n- Personal Training: ₹800-1000 per session.\n- Online Batch (Zoom): ₹1000/person (Scale to 50 people = ₹50k).",
+        detailedOverview: "Subscription model.\n\nPricing:\n- Group Class: ₹1500-2000/month/person.\n- Personal Training: ₹800-1000 per session.\n- Online Batch (Zoom): ₹1000/person (Scale to 50 people = ₹50k).",
         workflowSteps: [
             "Class Planning",
             "Live Session Demo",
@@ -841,7 +841,7 @@ export const businessIdeas = [
         investmentAmount: 150000,
         monthlyIncome: "₹30,000 - ₹70,000",
         description: "Standard foam wash center. Every car needs a wash every 2 weeks. Simple operations.",
-        detailedOverview: "Volume business.\n\n**Math:**\n- Wash Price: ₹250 (Hatchback) / ₹350 (SUV).\n- Material Cost: ₹30 (Shampoo/Elec/Water).\n- Labor: ₹50.\n- **Profit:** ₹150-200 per car.\n- Target: 10-15 cars/day.",
+        detailedOverview: "Volume business.\n\nMath:\n- Wash Price: ₹250 (Hatchback) / ₹350 (SUV).\n- Material Cost: ₹30 (Shampoo/Elec/Water).\n- Labor: ₹50.\n- Profit: ₹150-200 per car.\n- Target: 10-15 cars/day.",
         workflowSteps: [
             "Vacuum Interior",
             "Underbody Wash",
@@ -878,7 +878,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹30,000 - ₹2 Lakhs",
         description: "Design homes and offices. If you have an eye for decor, you can charge for design only (3D views) or Turnkey execution.",
-        detailedOverview: "Project based.\n\n**Fees:**\n- Design Only: ₹40-60 per sqft. (2BHK = ₹40-50k fee).\n- Turnkey: 10-15% of total project cost (Project cost ₹10L -> You earn ₹1L).\n\nRequires dealing with carpenters/painters.",
+        detailedOverview: "Project based.\n\nFees:\n- Design Only: ₹40-60 per sqft. (2BHK = ₹40-50k fee).\n- Turnkey: 10-15% of total project cost (Project cost ₹10L -> You earn ₹1L).\n\nRequires dealing with carpenters/painters.",
         workflowSteps: [
             "Site Measurement",
             "Layout Planning (AutoCAD)",
@@ -912,7 +912,7 @@ export const businessIdeas = [
         investmentAmount: 400000,
         monthlyIncome: "₹60,000 - ₹1.2 Lakhs",
         description: "A mobile kitchen selling one specialty (e.g., Momos, Tacos, Dosas). Lower rent than shop, flexibility to change location.",
-        detailedOverview: "QSR Model.\n\n**Math:**\n- Avg Ticket: ₹150.\n- Food Cost: 35%.\n- Fuel/Permits: 10%.\n- **Net Margin:** 30-40%.\n- Sales needed: ₹5000/day for good profit.",
+        detailedOverview: "QSR Model.\n\nMath:\n- Avg Ticket: ₹150.\n- Food Cost: 35%.\n- Fuel/Permits: 10%.\n- Net Margin: 30-40%.\n- Sales needed: ₹5000/day for good profit.",
         workflowSteps: [
             "Prep at home base",
             "Drive to location (Evening)",
@@ -947,7 +947,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Don't just book tickets. Create experiences (e.g., 'All Girls Bali Trip' or 'Senior Citizen Pilgrimage'). Niche agents survive, general ones die.",
-        detailedOverview: "Commission + Mark-up.\n\n**Revenue:**\n- Mark up net rates from hotels by 10-15%.\n- Flat planning fee.\n- Group tours offer highest margin (bulk bargaining).",
+        detailedOverview: "Commission + Mark-up.\n\nRevenue:\n- Mark up net rates from hotels by 10-15%.\n- Flat planning fee.\n- Group tours offer highest margin (bulk bargaining).",
         workflowSteps: [
             "Itinerary Design",
             "Vendor Negotiation (Hotels/Cabs)",
@@ -982,7 +982,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹15,000 - ₹40,000",
         description: "Walk dogs for busy owners or keep pets at your home when owners travel. Urban pet ownership is skyrocketing.",
-        detailedOverview: "Service gig.\n\n**Rates:**\n- Dog Walking: ₹3000-5000/month per dog (20 mins/day).\n- Boarding: ₹500-1000/night per dog.\n- Zero cost, pure profit.",
+        detailedOverview: "Service gig.\n\nRates:\n- Dog Walking: ₹3000-5000/month per dog (20 mins/day).\n- Boarding: ₹500-1000/night per dog.\n- Zero cost, pure profit.",
         workflowSteps: [
             "Pickup Dog",
             "Walk/Play (30 mins)",
@@ -1015,7 +1015,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹20,000 - ₹2 Lakhs",
         description: "Academic tuition for School/College streams. Education is the highest priority spend for Indian parents. Math/Science tutors are gold.",
-        detailedOverview: "Service.\n\n**Math:**\n- Batch of 10 students.\n- Fee: ₹2000/month each.\n- **Income:** ₹20,000 for 1 hour/day work.\n- Scale with multiple batches/teachers.",
+        detailedOverview: "Service.\n\nMath:\n- Batch of 10 students.\n- Fee: ₹2000/month each.\n- Income: ₹20,000 for 1 hour/day work.\n- Scale with multiple batches/teachers.",
         workflowSteps: [
             "Prep Lesson",
             "Teaching",
@@ -1050,7 +1050,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "Variable (Event based)",
         description: "Decor for Birthdays, Haldi, Baby Showers. People want 'Instagrammable' backdrops for every small function.",
-        detailedOverview: "Rental/Service Model.\n\n**Economics:**\n- Charge: ₹8,000 for a Balloon/Backdrop setup.\n- Cost: ₹2,000 (Balloons/Transport/Labor).\n- Asset: Props are reusable 50 times.",
+        detailedOverview: "Rental/Service Model.\n\nEconomics:\n- Charge: ₹8,000 for a Balloon/Backdrop setup.\n- Cost: ₹2,000 (Balloons/Transport/Labor).\n- Asset: Props are reusable 50 times.",
         workflowSteps: [
             "Theme discussion",
             "Procure/Pack props",
@@ -1086,7 +1086,7 @@ export const businessIdeas = [
         investmentAmount: 15000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Grow Oyster or Button mushrooms. Can be done in a dark room. High protein food with growing demand.",
-        detailedOverview: "Biological process.\n\n**Oyster Mushroom:**\n- Cost per bag: ₹30.\n- Yield: 1.5 - 2kg.\n- Sell Price: ₹200/kg.\n- Cycle: 25-30 days.\n- VERY high ROI if contamination is managed.",
+        detailedOverview: "Biological process.\n\nOyster Mushroom:\n- Cost per bag: ₹30.\n- Yield: 1.5 - 2kg.\n- Sell Price: ₹200/kg.\n- Cycle: 25-30 days.\n- VERY high ROI if contamination is managed.",
         workflowSteps: [
             "Pasteurization of Straw",
             "Bag filling with Spawn (Seeds)",
@@ -1123,7 +1123,7 @@ export const businessIdeas = [
         investmentAmount: 1000000,
         monthlyIncome: "₹1 Lakh - ₹3 Lakhs",
         description: "Utilize terrace space for a vibe-centric cafe. Open air, fairy lights, music. Ideal for evening crowds.",
-        detailedOverview: "Experience economy.\n\n**Metrics:**\n- Rent: Usually lower for terraces.\n- Menu: Pizza/Pasta/Mocktails.\n- Margins: 60-70% on beverages.\n- Vibe sells more than food.",
+        detailedOverview: "Experience economy.\n\nMetrics:\n- Rent: Usually lower for terraces.\n- Menu: Pizza/Pasta/Mocktails.\n- Margins: 60-70% on beverages.\n- Vibe sells more than food.",
         workflowSteps: [
             "Procurement",
             "Prep",
@@ -1159,7 +1159,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Install rooftop solar across residential and commercial buildings. Govt subsidy (PM Suryaghar) driving massive demand.",
-        detailedOverview: "Engineering service.\n\n**Math:**\n- 3kW System Cost: ₹1.8 Lakhs.\n- Margin: 10-15% -> ₹18k-25k per home.\n- Subsidy handling is part of the service.",
+        detailedOverview: "Engineering service.\n\nMath:\n- 3kW System Cost: ₹1.8 Lakhs.\n- Margin: 10-15% -> ₹18k-25k per home.\n- Subsidy handling is part of the service.",
         workflowSteps: [
             "Site Survey (Shadow analysis)",
             "Structure Fabrication",
@@ -1194,7 +1194,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Cockroach, Termite, and Bed bug treatment for homes and restaurants. Recurring need annually.",
-        detailedOverview: "Chemical service.\n\n**Rates:**\n- 2BHK Cockroach: ₹1200.\n- Termite (Drill & Fill): ₹5000+.\n- **Cost:** Chemical cost is <10% of ticket price. Rest is labor.",
+        detailedOverview: "Chemical service.\n\nRates:\n- 2BHK Cockroach: ₹1200.\n- Termite (Drill & Fill): ₹5000+.\n- Cost: Chemical cost is <10% of ticket price. Rest is labor.",
         workflowSteps: [
             "Inspection",
             "Gel Application (Kitchen)",
@@ -1230,7 +1230,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Install cameras, biometric, and video door phones for shops and homes. Security is a top priority now.",
-        detailedOverview: "Hardware + Service.\n\n**Math:**\n- 4 Camera Setup Cost: ₹12,000.\n- Sell Price: ₹18,000.\n- Installation Labor: ₹2,000.\n- **Profit:** ₹8,000 per site.",
+        detailedOverview: "Hardware + Service.\n\nMath:\n- 4 Camera Setup Cost: ₹12,000.\n- Sell Price: ₹18,000.\n- Installation Labor: ₹2,000.\n- Profit: ₹8,000 per site.",
         workflowSteps: [
             "Site Plan",
             "Cable Laying",
@@ -1266,7 +1266,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Fixing broken screens, charging ports, and water damage. High skill, high reward.",
-        detailedOverview: "Service arbitrage.\n\n**Math:**\n- Combo Screen Cost: ₹800.\n- Customer Price: ₹2000.\n- Time: 30 mins.\n- **Profit:** ₹1200/hr.",
+        detailedOverview: "Service arbitrage.\n\nMath:\n- Combo Screen Cost: ₹800.\n- Customer Price: ₹2000.\n- Time: 30 mins.\n- Profit: ₹1200/hr.",
         workflowSteps: [
             "Diagnosis",
             "Opening device (Heat gun)",
@@ -1301,7 +1301,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Servicing bikes and scooters. India has the largest 2-wheeler market. Official centers are expensive/slow, creating demand for quality local garages.",
-        detailedOverview: "Labor + Spares.\n\n**Revenue:**\n- Labor Charge: ₹350.\n- Oil Change Margin: ₹50.\n- Spares Margin: 20%.\n- Target: 10 bikes/day.",
+        detailedOverview: "Labor + Spares.\n\nRevenue:\n- Labor Charge: ₹350.\n- Oil Change Margin: ₹50.\n- Spares Margin: 20%.\n- Target: 10 bikes/day.",
         workflowSteps: [
             "Job Card Creation",
             "Washing",
@@ -1336,7 +1336,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹25,000 - ₹70,000",
         description: "Custom stitching for ladies (Blouses, Kurtis, Lehengas). Fit is everything. Good tailors are worshippers.",
-        detailedOverview: "Service.\n\n**Pricing:**\n- Designer Blouse Stitching: ₹800 - ₹2000.\n- Cost: Thread/Lining < ₹100.\n- **Margin:** Purely for skill and time.",
+        detailedOverview: "Service.\n\nPricing:\n- Designer Blouse Stitching: ₹800 - ₹2000.\n- Cost: Thread/Lining < ₹100.\n- Margin: Purely for skill and time.",
         workflowSteps: [
             "Measurements",
             "Cutting Fabric",
@@ -1372,7 +1372,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹40,000 - ₹1.5 Lakhs",
         description: "Teaching Bollywood, HipHop, or Zumba. Kids need hobbies, adults need fitness.",
-        detailedOverview: "Batch model.\n\n**Math:**\n- Kids Batch (Evening): x20 students @ ₹1500 = ₹30k.\n- Zumba (Morning): x20 ladies @ ₹2000 = ₹40k.\n- Wedding Choreography: ₹20k per couple (Bonus).",
+        detailedOverview: "Batch model.\n\nMath:\n- Kids Batch (Evening): x20 students @ ₹1500 = ₹30k.\n- Zumba (Morning): x20 ladies @ ₹2000 = ₹40k.\n- Wedding Choreography: ₹20k per couple (Bonus).",
         workflowSteps: [
             "Warmup",
             "Choreography teaching",
@@ -1408,7 +1408,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Teach Guitar, Keyboard, or Vocals. Parents want kids to learn instruments. 1-on-1 or small groups.",
-        detailedOverview: "Service.\n\n**Fees:**\n- ₹2000/month (1 class/week).\n- 50 students = ₹1 Lakh Revenue.\n- Rent/Electricity < ₹20k.",
+        detailedOverview: "Service.\n\nFees:\n- ₹2000/month (1 class/week).\n- 50 students = ₹1 Lakh Revenue.\n- Rent/Electricity < ₹20k.",
         workflowSteps: [
             "Theory (Notes)",
             "Practical Play",
@@ -1442,7 +1442,7 @@ export const businessIdeas = [
         investmentAmount: 350000,
         monthlyIncome: "₹50,000 - ₹1 Lakh",
         description: "Teach people how to drive cars. Every 18 year old is a customer.",
-        detailedOverview: "Training + Licensing.\n\n**Package:**\n- Learning (15 days): ₹3500.\n- License Assist: ₹1500.\n- **Cost:** Fuel is major (CNG reduces this). 15 days * 5km * ₹5/km = ₹375 fuel cost.",
+        detailedOverview: "Training + Licensing.\n\nPackage:\n- Learning (15 days): ₹3500.\n- License Assist: ₹1500.\n- Cost: Fuel is major (CNG reduces this). 15 days * 5km * ₹5/km = ₹375 fuel cost.",
         workflowSteps: [
             "Simulator Training (Optional)",
             "Road Driving (Dual control)",
@@ -1477,7 +1477,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹25,000 - ₹60,000",
         description: "Home cooked meals for students/bachelors. 'Ghar ka khana' is the USP.",
-        detailedOverview: "Subscription.\n\n**Math:**\n- Meal Price: ₹80.\n- Food Cost: ₹40.\n- **Margin:** ₹40.\n- 50 dabbas/day = ₹2000 profit/day.",
+        detailedOverview: "Subscription.\n\nMath:\n- Meal Price: ₹80.\n- Food Cost: ₹40.\n- Margin: ₹40.\n- 50 dabbas/day = ₹2000 profit/day.",
         workflowSteps: [
             "Morning Market run",
             "Cooking (Bulk)",
@@ -1512,7 +1512,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹40,000 - ₹1.5 Lakhs",
         description: "Jet cleaning and gas filling for Air Conditioners. Summer months (Mar-Jun) are gold mines.",
-        detailedOverview: "Service.\n\n**Rates:**\n- Service: ₹500.\n- Gas Refill: ₹2500 (Cost ₹800).\n- PCB Repair: ₹1500 (Outsourced).\n\nPeak season earnings cover the whole year.",
+        detailedOverview: "Service.\n\nRates:\n- Service: ₹500.\n- Gas Refill: ₹2500 (Cost ₹800).\n- PCB Repair: ₹1500 (Outsourced).\n\nPeak season earnings cover the whole year.",
         workflowSteps: [
             "Diagnosis",
             "Jet Pump Cleaning",
@@ -1547,7 +1547,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Making custom sofas, beds, and wardrobes. People prefer custom plywood work over ready-made particle board.",
-        detailedOverview: "Contract Manufacturing.\n\n**Math:**\n- Wardrobe Cost (Material): ₹25,000.\n- Labor: ₹10,000.\n- Sell Price: ₹50,000.\n- **Profit:** ₹15,000.",
+        detailedOverview: "Contract Manufacturing.\n\nMath:\n- Wardrobe Cost (Material): ₹25,000.\n- Labor: ₹10,000.\n- Sell Price: ₹50,000.\n- Profit: ₹15,000.",
         workflowSteps: [
             "Design finalisation",
             "Cutting Ply/Laminate",
@@ -1583,7 +1583,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Selling switches, wires, bulbs, and fans. Construction never stops, neither does electrical demand.",
-        detailedOverview: "Retail.\n\n**Margins:**\n- Wires: 3-5% (Volume).\n- LED Bulbs: 20-30%.\n- Fancy Lights: 50%+.\n\nElectricians are your real customers, not house owners.",
+        detailedOverview: "Retail.\n\nMargins:\n- Wires: 3-5% (Volume).\n- LED Bulbs: 20-30%.\n- Fancy Lights: 50%+.\n\nElectricians are your real customers, not house owners.",
         workflowSteps: [
             "Counter Sales",
             "Inventory Check",
@@ -1617,7 +1617,7 @@ export const businessIdeas = [
         investmentAmount: 800000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Selling paints (Asian/Berger), plumbing, and tools. Whenever a house is painted or repaired, you make money.",
-        detailedOverview: "Retail + Machine.\n\n**Model:**\n- Paint Tinting Machine is provided by company (Security Deposit).\n- You mix colors on demand.\n- **Margin:** 10-20% on paint, 40% on hardware (nails/handles).",
+        detailedOverview: "Retail + Machine.\n\nModel:\n- Paint Tinting Machine is provided by company (Security Deposit).\n- You mix colors on demand.\n- Margin: 10-20% on paint, 40% on hardware (nails/handles).",
         workflowSteps: [
             "Color Selection (Shade card)",
             "Mixing in machine",
@@ -1653,7 +1653,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹25,000 - ₹60,000",
         description: "Photocopy, Printout, Lamination, and Spiral Binding. Best near colleges, courts, or government offices.",
-        detailedOverview: "Volume Micro-transaction.\n\n**Math:**\n- B&W Print Cost: ₹0.50 -> Sell: ₹2-5.\n- Color Print Cost: ₹3 -> Sell: ₹10-20.\n- Binding: Cost ₹10 -> Sell ₹50.\n- Profit lies in binding and color prints.",
+        detailedOverview: "Volume Micro-transaction.\n\nMath:\n- B&W Print Cost: ₹0.50 -> Sell: ₹2-5.\n- Color Print Cost: ₹3 -> Sell: ₹10-20.\n- Binding: Cost ₹10 -> Sell ₹50.\n- Profit lies in binding and color prints.",
         workflowSteps: [
             "File Receipt (WhatsApp/Email)",
             "Formatting check",
@@ -1689,7 +1689,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹30,000 - ₹70,000",
         description: "Selling toys, mugs, frames, and decor. High impulse buying. Margins are 50-100%.",
-        detailedOverview: "Retail.\n\n**Strategy:**\n- Stock generic China imports + branded Archies type items.\n- Gift wrapping skill is the USP.\n- High margin on toys and artificial flowers.",
+        detailedOverview: "Retail.\n\nStrategy:\n- Stock generic China imports + branded Archies type items.\n- Gift wrapping skill is the USP.\n- High margin on toys and artificial flowers.",
         workflowSteps: [
             "Sourcing",
             "Displaying (Eye level)",
@@ -1724,7 +1724,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹60,000",
         description: "Selling helmets, locks, seat covers, and lights. Traffic police fines drive helmet sales.",
-        detailedOverview: "Niche Retail.\n\n**Math:**\n- Helmet Cost: ₹400 -> Sell: ₹800.\n- Seat Cover: Cost ₹100 -> Sell ₹350.\n- **Margin:** 50-100%.\n- Location: Near bike showroom or RTO.",
+        detailedOverview: "Niche Retail.\n\nMath:\n- Helmet Cost: ₹400 -> Sell: ₹800.\n- Seat Cover: Cost ₹100 -> Sell ₹350.\n- Margin: 50-100%.\n- Location: Near bike showroom or RTO.",
         workflowSteps: [
             "Fitting Check",
             "Sale",
@@ -1756,7 +1756,7 @@ export const businessIdeas = [
         investmentAmount: 400000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Selling Kids cycles and Gear cycles. Repair is a strong secondary income.",
-        detailedOverview: "Retail + Service.\n\n**Margins:**\n- Cycle Sales: 10-15%.\n- Spares/Service: 50-80%.\n- Kids grow up, need new cycles. Recurring customer base.",
+        detailedOverview: "Retail + Service.\n\nMargins:\n- Cycle Sales: 10-15%.\n- Spares/Service: 50-80%.\n- Kids grow up, need new cycles. Recurring customer base.",
         workflowSteps: [
             "Assembly (Cycles come in box)",
             "Display",
@@ -1791,7 +1791,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Budget footwear for men, women, kids. Slippers and school shoes are volume drivers.",
-        detailedOverview: "Retail.\n\n**Margins:**\n- Branded (Sparx/Bata): 15-20%.\n- Local (Agra/Delhi): 40-60%.\n- Success lies in variety and size availability.",
+        detailedOverview: "Retail.\n\nMargins:\n- Branded (Sparx/Bata): 15-20%.\n- Local (Agra/Delhi): 40-60%.\n- Success lies in variety and size availability.",
         workflowSteps: [
             "Stock Management",
             "Customer Trial",
@@ -1825,7 +1825,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Premium vegetables free from pesticides. Targeted at upper-middle class. 2x price of normal market.",
-        detailedOverview: "Niche Retail.\n\n**Math:**\n- Normal Tomato: ₹40/kg.\n- Organic Tomato: ₹80/kg.\n- Margin: 30-40%.\n- Low volume, high value.",
+        detailedOverview: "Niche Retail.\n\nMath:\n- Normal Tomato: ₹40/kg.\n- Organic Tomato: ₹80/kg.\n- Margin: 30-40%.\n- Low volume, high value.",
         workflowSteps: [
             "Daily sourcing (Farmers/Cluster)",
             "Sorting/Cleaning",
@@ -1861,7 +1861,7 @@ export const businessIdeas = [
         investmentAmount: 5000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Writing blogs, website copy, and LinkedIn posts for businesses. AI helps, but brands need human strategy.",
-        detailedOverview: "Service Agency.\n\n**Rates:**\n- Blog (1000 words): ₹1500 - ₹3000.\n- Web Copy: ₹5000/page.\n- **Team:** Hire interns, edit their work, deliver to client.",
+        detailedOverview: "Service Agency.\n\nRates:\n- Blog (1000 words): ₹1500 - ₹3000.\n- Web Copy: ₹5000/page.\n- Team: Hire interns, edit their work, deliver to client.",
         workflowSteps: [
             "Client Brief",
             "Topic Research/SEO",
@@ -1896,7 +1896,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Managing Instagram/Facebook for small businesses. Cafes, Gyms, and Salons need daily reels and posts.",
-        detailedOverview: "Retainer Service.\n\n**Package:**\n- 12 Reels + 12 Posts / month.\n- Fee: ₹15,000 - ₹25,000 per client.\n- 5 Clients = ₹1 Lakh Income.\n- Expenses: Canva Pro + Editor salary.",
+        detailedOverview: "Retainer Service.\n\nPackage:\n- 12 Reels + 12 Posts / month.\n- Fee: ₹15,000 - ₹25,000 per client.\n- 5 Clients = ₹1 Lakh Income.\n- Expenses: Canva Pro + Editor salary.",
         workflowSteps: [
             "Content Calendar",
             "Shoot (Visit site)",
@@ -1931,7 +1931,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹1.5 Lakhs",
         description: "Edit YouTube videos and Reels for creators. The Creator Economy is booming and everyone needs editors.",
-        detailedOverview: "Service.\n\n**Rates:**\n- Reel (1 min): ₹500 - ₹2000.\n- YouTube (10 min): ₹2000 - ₹8000.\n- Wedding Edit: ₹20,000+.\n- USP: Fast turnaround.",
+        detailedOverview: "Service.\n\nRates:\n- Reel (1 min): ₹500 - ₹2000.\n- YouTube (10 min): ₹2000 - ₹8000.\n- Wedding Edit: ₹20,000+.\n- USP: Fast turnaround.",
         workflowSteps: [
             "Footage Transfer (Drive)",
             "Rough Cut",
@@ -1966,7 +1966,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Record voiceovers for ads, audiobooks, and YouTube channels. Regional languages (Hindi/Tamil/Telugu) are high demand.",
-        detailedOverview: "Audio Service.\n\n**Rates:**\n- 1 min audio: ₹500 - ₹1000.\n- Audiobook: ₹5000 per hour of finished audio.\n- Setup needs silence.",
+        detailedOverview: "Audio Service.\n\nRates:\n- 1 min audio: ₹500 - ₹1000.\n- Audiobook: ₹5000 per hour of finished audio.\n- Setup needs silence.",
         workflowSteps: [
             "Script Analysis",
             "Recording",
@@ -2002,7 +2002,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "Variable",
         description: "Swing trading or Intraday. Buying shares/options to sell at profit. Requires intense study, NOT gambling.",
-        detailedOverview: "Financial Speculation.\n\n**Reality:**\n- 90% lose money.\n- 10% make consistent returns (2-5% per month).\n- Capital: ₹1L -> 5% = ₹5000. Need large capital for large income.",
+        detailedOverview: "Financial Speculation.\n\nReality:\n- 90% lose money.\n- 10% make consistent returns (2-5% per month).\n- Capital: ₹1L -> 5% = ₹5000. Need large capital for large income.",
         workflowSteps: [
             "Pre-market Analysis",
             "Entry Strategy",
@@ -2037,7 +2037,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Help people manage tax, insurance, and investments. People have money but no time/knowledge to manage it.",
-        detailedOverview: "Advisory.\n\n**Revenue:**\n- Tax Filing (ITR): ₹500 - ₹2000 per file.\n- Mutual Fund Dist: 1% commission.\n- Insurance: 15-30% commission.\n- Consultation Fee: ₹1000/hr.",
+        detailedOverview: "Advisory.\n\nRevenue:\n- Tax Filing (ITR): ₹500 - ₹2000 per file.\n- Mutual Fund Dist: 1% commission.\n- Insurance: 15-30% commission.\n- Consultation Fee: ₹1000/hr.",
         workflowSteps: [
             "Client Discovery",
             "Portfolio Review",
@@ -2071,7 +2071,7 @@ export const businessIdeas = [
         investmentAmount: 5000,
         monthlyIncome: "₹20,000 - ₹1 Lakh",
         description: "Selling Life, Health, and Car insurance. Everyone needs it. High commissions on first year premiums.",
-        detailedOverview: "Sales Commission.\n\n**Math:**\n- Health Policy Premium: ₹20,000.\n- Commission (15%): ₹3,000.\n- Sell 10 policies/month = ₹30,000.\n- Renewal income is passive.",
+        detailedOverview: "Sales Commission.\n\nMath:\n- Health Policy Premium: ₹20,000.\n- Commission (15%): ₹3,000.\n- Sell 10 policies/month = ₹30,000.\n- Renewal income is passive.",
         workflowSteps: [
             "Lead Generation",
             "Needs Analysis",
@@ -2105,7 +2105,7 @@ export const businessIdeas = [
         investmentAmount: 150000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Shoot luxury flats/villas for property portals. Builders need high-end visuals to sell expensive homes.",
-        detailedOverview: "Niche Photography.\n\n**Rates:**\n- 2BHK Shoot: ₹3000.\n- Drone Video: ₹5000-₹10,000 per session.\n- 360 Virtual Tour: ₹5000.",
+        detailedOverview: "Niche Photography.\n\nRates:\n- 2BHK Shoot: ₹3000.\n- Drone Video: ₹5000-₹10,000 per session.\n- 360 Virtual Tour: ₹5000.",
         workflowSteps: [
             "Staging (Cleaning)",
             "Shooting (Wide angle)",
@@ -2141,7 +2141,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Delivery-only restaurant. No dining space needed. Sell via Swiggy/Zomato.",
-        detailedOverview: "Food Tech.\n\n**Economics:**\n- Rent: Low (Back alley allowed).\n- Aggregator Commission: 25-30%.\n- Food Cost: 30%.\n- **Net Margin:** 15-20%.\n- Volume is key.",
+        detailedOverview: "Food Tech.\n\nEconomics:\n- Rent: Low (Back alley allowed).\n- Aggregator Commission: 25-30%.\n- Food Cost: 30%.\n- Net Margin: 15-20%.\n- Volume is key.",
         workflowSteps: [
             "Order Receive (Tablet)",
             "Prep & Cook",
@@ -2177,7 +2177,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹15,000 - ₹50,000",
         description: "Baking custom cakes, brownies, and bread from home. High demand for 'preservative-free' and 'custom design'.",
-        detailedOverview: "Culinary Art.\n\n**Math:**\n- 1kg Cake Cost: ₹300.\n- Sell Price: ₹1200.\n- **Margin:** 75%.\n- Design skill determines the price.",
+        detailedOverview: "Culinary Art.\n\nMath:\n- 1kg Cake Cost: ₹300.\n- Sell Price: ₹1200.\n- Margin: 75%.\n- Design skill determines the price.",
         workflowSteps: [
             "Order & Design discussion",
             "Baking Base",
@@ -2213,7 +2213,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Making Frozen Peas, Fries, or Momos. Supply to cafes and supermarkets. Shelf life increases to 6-12 months.",
-        detailedOverview: "Processing.\n\n**Model:**\n- Buy fresh peas in winter @ ₹20/kg.\n- Process (Blanch + Freeze).\n- Sell in summer @ ₹100/kg.\n- **Storage:** Cold storage rental is key.",
+        detailedOverview: "Processing.\n\nModel:\n- Buy fresh peas in winter @ ₹20/kg.\n- Process (Blanch + Freeze).\n- Sell in summer @ ₹100/kg.\n- Storage: Cold storage rental is key.",
         workflowSteps: [
             "Washing & Cleaning",
             "Blanching (Hot water)",
@@ -2249,7 +2249,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Eco-friendly bags for shops. Plastic ban makes this essential. Semi-automatic machines available.",
-        detailedOverview: "Small Scale Industry.\n\n**Math:**\n- Cost per bag: ₹3.\n- Sell Price: ₹3.50.\n- Margin: ₹0.50.\n- Volume: 5000 bags/day = ₹2500 profit.",
+        detailedOverview: "Small Scale Industry.\n\nMath:\n- Cost per bag: ₹3.\n- Sell Price: ₹3.50.\n- Margin: ₹0.50.\n- Volume: 5000 bags/day = ₹2500 profit.",
         workflowSteps: [
             "Roll feeding",
             "Printing (Optional)",
@@ -2284,7 +2284,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹15,000 - ₹40,000",
         description: "Scented soy wax candles for home decor. Huge margin in 'Luxury' segment.",
-        detailedOverview: "Craft.\n\n**Math:**\n- Wax + Fragrance Cost: ₹50.\n- Jar Cost: ₹30.\n- Sell Price: ₹399.\n- **Margin:** 300%+.",
+        detailedOverview: "Craft.\n\nMath:\n- Wax + Fragrance Cost: ₹50.\n- Jar Cost: ₹30.\n- Sell Price: ₹399.\n- Margin: 300%+.",
         workflowSteps: [
             "Melting Wax",
             "Adding Fragrance Oil (at correct temp)",
@@ -2319,7 +2319,7 @@ export const businessIdeas = [
         investmentAmount: 15000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Chemical free, organic soaps (Goat milk, Charcoal). Skin-conscious market is growing.",
-        detailedOverview: "Cosmetic Mfg.\n\n**Math:**\n- Raw Material: ₹40/bar.\n- Packaging: ₹10.\n- Sell Price: ₹150-₹250.\n- People pay for 'Organic' label.",
+        detailedOverview: "Cosmetic Mfg.\n\nMath:\n- Raw Material: ₹40/bar.\n- Packaging: ₹10.\n- Sell Price: ₹150-₹250.\n- People pay for 'Organic' label.",
         workflowSteps: [
             "Melt & Pour (Beginner) or Cold Process (Pro)",
             "Adding Essential Oils",
@@ -2354,7 +2354,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Every Indian home uses this daily. Automated machines available for mass production.",
-        detailedOverview: "Mass Mfg.\n\n**Model:**\n- Buy premix powder + bamboo sticks.\n- Machine rolls them.\n- Dip in perfume.\n- Pack.\n- **Margin:** Low per packet, high volume.",
+        detailedOverview: "Mass Mfg.\n\nModel:\n- Buy premix powder + bamboo sticks.\n- Machine rolls them.\n- Dip in perfume.\n- Pack.\n- Margin: Low per packet, high volume.",
         workflowSteps: [
             "Mixing Powder",
             "Machine Rolling",
@@ -2389,7 +2389,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹30,000 - ₹60,000",
         description: "Camphor (Kapoor) is used in Pooja. It sublimates (vanishes), so repeat purchase is 100%.",
-        detailedOverview: "Compression Mfg.\n\n**Process:**\n- Camphor Powder input.\n- Machine presses it into tablets.\n- Pack in small boxes.\n- **Profit:** ₹50-100 per kg.",
+        detailedOverview: "Compression Mfg.\n\nProcess:\n- Camphor Powder input.\n- Machine presses it into tablets.\n- Pack in small boxes.\n- Profit: ₹50-100 per kg.",
         workflowSteps: [
             "Powder Loading",
             "Compression (Machine)",
@@ -2422,7 +2422,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹15,000 - ₹30,000",
         description: "School chalks (White & Color). Still widely used in rural/govt schools. Very low investment.",
-        detailedOverview: "Molding Process.\n\n**Recipe:** Plaster of Paris (PoP) + Water + Lubricant.\n- Mix -> Pour in Mold -> Dry -> Pack.\n- Very low tech.",
+        detailedOverview: "Molding Process.\n\nRecipe: Plaster of Paris (PoP) + Water + Lubricant.\n- Mix -> Pour in Mold -> Dry -> Pack.\n- Very low tech.",
         workflowSteps: [
             "Mixing Slurry",
             "Pouring in metal mold",
@@ -2456,7 +2456,7 @@ export const businessIdeas = [
         investmentAmount: 800000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Making school notebooks/registers. Huge demand in May-June.",
-        detailedOverview: "Industrial Mfg.\n\n**Machinery:**\n- Paper Folding.\n- Stitching/Pinning.\n- Cutting.\n- **Economics:** Low margin per copy, but schools buy 10,000 at a time.",
+        detailedOverview: "Industrial Mfg.\n\nMachinery:\n- Paper Folding.\n- Stitching/Pinning.\n- Cutting.\n- Economics: Low margin per copy, but schools buy 10,000 at a time.",
         workflowSteps: [
             "Paper Folding",
             "Cover Pasting",
@@ -2492,7 +2492,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Printing ID cards for schools and offices. Lanyards (Ribbons) are also custom printed.",
-        detailedOverview: "Printing.\n\n**Math:**\n- PVC Card Cost: ₹2.\n- Print Cost: ₹3.\n- Sell Price: ₹30-50.\n- **Margin:** Huge on small volume. Lower on bulk.",
+        detailedOverview: "Printing.\n\nMath:\n- PVC Card Cost: ₹2.\n- Print Cost: ₹3.\n- Sell Price: ₹30-50.\n- Margin: Huge on small volume. Lower on bulk.",
         workflowSteps: [
             "Design Support",
             "Data Merge (Excel to Print)",
@@ -2527,7 +2527,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Custom tees for college fests, corporate events, and startups. Sublimation or Vinyl.",
-        detailedOverview: "Print on Demand.\n\n**Math:**\n- Blank Tshirt: ₹120.\n- Vinly/Ink: ₹30.\n- Sell Price: ₹350 - ₹500.\n- **Profit:** ₹200+ per shirt.",
+        detailedOverview: "Print on Demand.\n\nMath:\n- Blank Tshirt: ₹120.\n- Vinly/Ink: ₹30.\n- Sell Price: ₹350 - ₹500.\n- Profit: ₹200+ per shirt.",
         workflowSteps: [
             "Design Prep",
             "Cutting Vinyl / Printing Paper",
@@ -2563,7 +2563,7 @@ export const businessIdeas = [
         investmentAmount: 5000,
         monthlyIncome: "₹15,000 - ₹30,000",
         description: "Resin Art or Metal Stamping. Personalized keychains for bike lovers and couples.",
-        detailedOverview: "Craft.\n\n**Math:**\n- Resin + Hardener Cost: ₹500/kg.\n- Makes 50 keychains.\n- Cost per unit: ₹20.\n- Sell Price: ₹150.\n- **Margin:** 500%+.",
+        detailedOverview: "Craft.\n\nMath:\n- Resin + Hardener Cost: ₹500/kg.\n- Makes 50 keychains.\n- Cost per unit: ₹20.\n- Sell Price: ₹150.\n- Margin: 500%+.",
         workflowSteps: [
             "Mixing Resin & Hardener",
             "Adding Glitter/Photo",
@@ -2597,7 +2597,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹50,000 - ₹1 Lakh",
         description: "LED Neon signs for Cafes, Bedrooms, and YouTubers ('Good Vibes Only'). Massive trend.",
-        detailedOverview: "Custom Lighting.\n\n**Math:**\n- 5 meter LED Neon Flex: ₹1500.\n- Acrylic Sheet: ₹1000.\n- Adapter: ₹200.\n- Sell Price: ₹5000 - ₹8000.",
+        detailedOverview: "Custom Lighting.\n\nMath:\n- 5 meter LED Neon Flex: ₹1500.\n- Acrylic Sheet: ₹1000.\n- Adapter: ₹200.\n- Sell Price: ₹5000 - ₹8000.",
         workflowSteps: [
             "Design Vector (CorelDraw)",
             "Acrylic Cutting (Laser/Hand)",
@@ -2632,7 +2632,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Every office needs stamps. Polymer stamps are made instantly. High B2B potential.",
-        detailedOverview: "Office Supply.\n\n**Margin:**\n- Material Cost: ₹30.\n- Sell Price: ₹250.\n- Pre-inked stamps sell for ₹400.",
+        detailedOverview: "Office Supply.\n\nMargin:\n- Material Cost: ₹30.\n- Sell Price: ₹250.\n- Pre-inked stamps sell for ₹400.",
         workflowSteps: [
             "Typesetting (PC)",
             "Negative Printing",
@@ -2666,7 +2666,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Awards for Schools, Corporate R&R, and Sports. Assembling readymade parts.",
-        detailedOverview: "Assembly.\n\n**Process:**\n- Buy Bases, Pillars, and Cups (Plastic/Metal/Wood).\n- Print Label (Sublimation).\n- Assemble with screw.\n- **Margin:** 2x-3x.",
+        detailedOverview: "Assembly.\n\nProcess:\n- Buy Bases, Pillars, and Cups (Plastic/Metal/Wood).\n- Print Label (Sublimation).\n- Assemble with screw.\n- Margin: 2x-3x.",
         workflowSteps: [
             "Client Requirement",
             "Sourcing Parts",
@@ -2701,7 +2701,7 @@ export const businessIdeas = [
         investmentAmount: 30000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Printing prototypes, engineering projects, and custom figurines. The future of manufacturing.",
-        detailedOverview: "Tech Mfg.\n\n**Math:**\n- Filament (PLA) Cost: ₹1000/kg.\n- Print can sell for ₹5000/kg equivalent.\n- Time is the main cost.",
+        detailedOverview: "Tech Mfg.\n\nMath:\n- Filament (PLA) Cost: ₹1000/kg.\n- Print can sell for ₹5000/kg equivalent.\n- Time is the main cost.",
         workflowSteps: [
             "3D Model (STL file)",
             "Slicing (G-code)",
@@ -2735,7 +2735,7 @@ export const businessIdeas = [
         investmentAmount: 400000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Engraving on Wood, Leather, and Acrylic. Personalized gifts and signage.",
-        detailedOverview: "Customization.\n\n**Applications:**\n- Wooden Photos (Engraved).\n- Leather Wallets (Name).\n- Acrylic Signage.\n- **Rate:** ₹5 per minute of machine time.",
+        detailedOverview: "Customization.\n\nApplications:\n- Wooden Photos (Engraved).\n- Leather Wallets (Name).\n- Acrylic Signage.\n- Rate: ₹5 per minute of machine time.",
         workflowSteps: [
             "Design",
             "Material Loading",
@@ -2769,7 +2769,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹10,000 - ₹30,000",
         description: "Badges for elections, school houses, and events. Cheapest promotional item.",
-        detailedOverview: "Low cost promo.\n\n**Math:**\n- Raw Material: ₹3.\n- Print: ₹1.\n- Sell Price: ₹15-20.\n- **Margin:** High volume, low ticket.",
+        detailedOverview: "Low cost promo.\n\nMath:\n- Raw Material: ₹3.\n- Print: ₹1.\n- Sell Price: ₹15-20.\n- Margin: High volume, low ticket.",
         workflowSteps: [
             "Print Circle Design",
             "Cut Circle",
@@ -2801,7 +2801,7 @@ export const businessIdeas = [
         investmentAmount: 25000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Personalized coffee mugs and plates. Classic corporate gift.",
-        detailedOverview: "Sublimation.\n\n**Math:**\n- Blank Mug: ₹50.\n- Print: ₹5.\n- Sell Price: ₹250.\n- **Margin:** 4x.",
+        detailedOverview: "Sublimation.\n\nMath:\n- Blank Mug: ₹50.\n- Print: ₹5.\n- Sell Price: ₹250.\n- Margin: 4x.",
         workflowSteps: [
             "Design",
             "Mirror Print (Sublimation paper)",
@@ -2834,7 +2834,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Fresh Turmeric, Chilli, and Coriander powder. Adulteration in big brands drives local demand.",
-        detailedOverview: "Food Processing.\n\n**USP:** Grinding in front of customer (Chakki) or 'Farm Fresh'.\n- **Margin:** 30-40%.\n- Pure spices command premium price.",
+        detailedOverview: "Food Processing.\n\nUSP: Grinding in front of customer (Chakki) or 'Farm Fresh'.\n- Margin: 30-40%.\n- Pure spices command premium price.",
         workflowSteps: [
             "Sourcing Dry Spices (Begusarai/Guntur)",
             "Cleaning/Drying",
@@ -2869,7 +2869,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹20,000 - ₹1 Lakh",
         description: "Traditional Indian side dishes. Mahila Gruh Udyog success story.",
-        detailedOverview: "Food.\n\n**Pickle:** Mango/Lemon. Seasonal production, year round sale.\n**Papad:** Urad dal base. Labor intensive (Rolling).",
+        detailedOverview: "Food.\n\nPickle: Mango/Lemon. Seasonal production, year round sale.\nPapad: Urad dal base. Labor intensive (Rolling).",
         workflowSteps: [
             "Dough kneading / Fruit cutting",
             "Spicing",
@@ -2904,7 +2904,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Millet Cookies, Noodles, and Ready-to-eat mix. 'International Year of Millets' boosted this.",
-        detailedOverview: "Health Food.\n\n**Idea:** Replace Maida with Ragi/Jowar.\n- Parents want healthy snacks for kids.\n- Margin is higher than normal biscuits.",
+        detailedOverview: "Health Food.\n\nIdea: Replace Maida with Ragi/Jowar.\n- Parents want healthy snacks for kids.\n- Margin is higher than normal biscuits.",
         workflowSteps: [
             "Flour Milling",
             "Mixing (Butter/Jaggery)",
@@ -2938,7 +2938,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Growing plants without soil in nutrient water. Exotic veggies (Lettuce, Basil, Kale) sell at premium.",
-        detailedOverview: "Agri-Tech.\n\n**Math:**\n- 500 plants setup.\n- 50kg yield/month.\n- Sell Price: ₹300/kg (Exotic).\n- Revenue: ₹15,000. Need huge scale for big money.",
+        detailedOverview: "Agri-Tech.\n\nMath:\n- 500 plants setup.\n- 50kg yield/month.\n- Sell Price: ₹300/kg (Exotic).\n- Revenue: ₹15,000. Need huge scale for big money.",
         workflowSteps: [
             "Seeding in Cocopeat",
             "Transplant to NFT pipes",
@@ -2972,7 +2972,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Oyster or Button mushrooms. Can be grown indoors in AC/Climate controlled rooms.",
-        detailedOverview: "Agri.\n\n**Button Mushroom:** High demand, needs compost + AC.\n**Oyster:** Low demand, easy to grow on straw.\n- **Cycle:** 2-3 months.",
+        detailedOverview: "Agri.\n\nButton Mushroom: High demand, needs compost + AC.\nOyster: Low demand, easy to grow on straw.\n- Cycle: 2-3 months.",
         workflowSteps: [
             "Compost Prep/Straw sterilization",
             "Spawning (Seeding)",
@@ -3007,7 +3007,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹20,000 - ₹1 Lakh",
         description: "Using earthworms to convert cow dung into gold (Manure). Farmers and home gardeners buy this.",
-        detailedOverview: "Waste Management.\n\n**Process:**\n- Cow Dung + Dry Leaves.\n- Add Earthworms (Eisenia fetida).\n- Wait 45 days.\n- **Sell:** ₹10-20/kg.",
+        detailedOverview: "Waste Management.\n\nProcess:\n- Cow Dung + Dry Leaves.\n- Add Earthworms (Eisenia fetida).\n- Wait 45 days.\n- Sell: ₹10-20/kg.",
         workflowSteps: [
             "Bed Preparation",
             "Waste Loading",
@@ -3041,7 +3041,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "High density fish farming in tanks using Biofloc bacteria. Consumes less water than ponds.",
-        detailedOverview: "Aquaculture.\n\n**Math:**\n- 1 Tank (10k Liter): Holds 500kg Fish.\n- Feed Cost: ₹30,000.\n- Sell: ₹80,000.\n- Profit: ₹40,000 per tank per cycle (6 months).",
+        detailedOverview: "Aquaculture.\n\nMath:\n- 1 Tank (10k Liter): Holds 500kg Fish.\n- Feed Cost: ₹30,000.\n- Sell: ₹80,000.\n- Profit: ₹40,000 per tank per cycle (6 months).",
         workflowSteps: [
             "Tank Setup (Tarpaulin)",
             "Water Prep (Probiotics)",
@@ -3077,7 +3077,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Premium black chicken meat/eggs. Medicinal value high protein. Sold at 3x price of broiler.",
-        detailedOverview: "Livestock.\n\n**Rate:**\n- Broiler: ₹100/kg.\n- Kadaknath: ₹500/kg.\n- Slower growth but high value.",
+        detailedOverview: "Livestock.\n\nRate:\n- Broiler: ₹100/kg.\n- Kadaknath: ₹500/kg.\n- Slower growth but high value.",
         workflowSteps: [
             "Shed Construction",
             "Chick purchase",
@@ -3111,7 +3111,7 @@ export const businessIdeas = [
         investmentAmount: 400000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Buying 4-5 Cows/Buffaloes. Selling milk directly to homes. 'Farm Fresh Milk' is a big USP.",
-        detailedOverview: "Livestock.\n\n**Math:**\n- 1 Cow gives 10L/day.\n- 5 Cows = 50L.\n- Sell @ ₹60/L = ₹3000/day revenue.\n- Feed Cost: 60%.\n- **Profit:** ₹1000/day.",
+        detailedOverview: "Livestock.\n\nMath:\n- 1 Cow gives 10L/day.\n- 5 Cows = 50L.\n- Sell @ ₹60/L = ₹3000/day revenue.\n- Feed Cost: 60%.\n- Profit: ₹1000/day.",
         workflowSteps: [
             "Milking (4 AM)",
             "Delivery",
@@ -3145,7 +3145,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Bath, Haircut, and Nail clipping for dogs/cats. Pet parents spend lavishly.",
-        detailedOverview: "Pet Care.\n\n**Rates:**\n- Full Grooming: ₹1500 - ₹2500.\n- Bath: ₹800.\n- **Mobile Van:** Charge premium for doorstep service.",
+        detailedOverview: "Pet Care.\n\nRates:\n- Full Grooming: ₹1500 - ₹2500.\n- Bath: ₹800.\n- Mobile Van: Charge premium for doorstep service.",
         workflowSteps: [
             "Appointment",
             "Brushing",
@@ -3180,7 +3180,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Cleaning and setting up aquariums for offices/homes. Rich people buy tanks but can't clean them.",
-        detailedOverview: "AMC Service.\n\n**Rate:**\n- One time clean: ₹1000.\n- Monthly AMC (4 visits): ₹3000.\n- 20 clients = ₹60,000 revenue for cleaning.",
+        detailedOverview: "AMC Service.\n\nRate:\n- One time clean: ₹1000.\n- Monthly AMC (4 visits): ₹3000.\n- 20 clients = ₹60,000 revenue for cleaning.",
         workflowSteps: [
             "Water Change (30%)",
             "Glass Cleaning",
@@ -3214,7 +3214,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Selling indoor/outdoor plants, pots, and soil. Urban gardening is a huge stress buster.",
-        detailedOverview: "Green Retail.\n\n**Margins:**\n- Plants: 30-50%.\n- Ceramic Pots: 100%.\n- Soil Mix: 200%.\n- Return gifts (Succulents) is bulk business.",
+        detailedOverview: "Green Retail.\n\nMargins:\n- Plants: 30-50%.\n- Ceramic Pots: 100%.\n- Soil Mix: 200%.\n- Return gifts (Succulents) is bulk business.",
         workflowSteps: [
             "Sourcing (Pune/Rajahmundry)",
             "Re-potting",
@@ -3248,7 +3248,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Setting up organic vegetable gardens on rooftops. Urban people crave chemical-free food.",
-        detailedOverview: "Green Service.\n\n**Service:**\n- Site Visit & Planning.\n- Install grow bags, soil mix (Cocopeat + Vermicompost).\n- Plant seedlings.\n- Bi-weekly maintenance visit.",
+        detailedOverview: "Green Service.\n\nService:\n- Site Visit & Planning.\n- Install grow bags, soil mix (Cocopeat + Vermicompost).\n- Plant seedlings.\n- Bi-weekly maintenance visit.",
         workflowSteps: [
             "Client Consultation",
             "Material Procurement",
@@ -3281,7 +3281,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Teaching Yoga at home, parks, or online. Health consciousness is at an all time high.",
-        detailedOverview: "Wellness.\n\n**Rates:**\n- Group Class: ₹1500/student/month.\n- Personal Training: ₹500 - ₹1000 per class.\n- **Online:** Zoom batches reduce travel time.",
+        detailedOverview: "Wellness.\n\nRates:\n- Group Class: ₹1500/student/month.\n- Personal Training: ₹500 - ₹1000 per class.\n- Online: Zoom batches reduce travel time.",
         workflowSteps: [
             "Certification (RYT 200)",
             "Demo Classes",
@@ -3315,7 +3315,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Visiting clients' homes or gyms to provide personal training. Weight loss & muscle gain goals.",
-        detailedOverview: "Fitness.\n\n**Model:**\n- Freelance at client's home.\n- Freelance at a Gym (Pay rent to gym).\n- **Rate:** ₹5000 - ₹15,000 per client per month.",
+        detailedOverview: "Fitness.\n\nModel:\n- Freelance at client's home.\n- Freelance at a Gym (Pay rent to gym).\n- Rate: ₹5000 - ₹15,000 per client per month.",
         workflowSteps: [
             "Client Assessment",
             "Workout Plan Design",
@@ -3348,7 +3348,7 @@ export const businessIdeas = [
         investmentAmount: 5000,
         monthlyIncome: "₹20,000 - ₹1 Lakh",
         description: "Online diet consultation for Weight Loss, PCOD, and Diabetes reversal.",
-        detailedOverview: "Health.\n\n**Model:**\n- Monthly Plan: ₹2000 - ₹5000.\n- No physical meeting needed.\n- Weekly calls + WhatsApp support.",
+        detailedOverview: "Health.\n\nModel:\n- Monthly Plan: ₹2000 - ₹5000.\n- No physical meeting needed.\n- Weekly calls + WhatsApp support.",
         workflowSteps: [
             "History Taking",
             "Meal Planning",
@@ -3380,7 +3380,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Clinic for pain relief, post-surgery rehab, and sports injuries. Requires BPT degree.",
-        detailedOverview: "Medical.\n\n**Revenue:**\n- Session fee: ₹500 - ₹1000.\n- Machines (IFT, Ultrasound) provide relief.",
+        detailedOverview: "Medical.\n\nRevenue:\n- Session fee: ₹500 - ₹1000.\n- Machines (IFT, Ultrasound) provide relief.",
         workflowSteps: [
             "Diagnosis",
             "Manual Therapy",
@@ -3413,7 +3413,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Providing attendees/nurses for elderly people at home. Children abroad pay well for parents' care.",
-        detailedOverview: "Manpower Agency.\n\n**Model:**\n- Charge client: ₹20,000/month.\n- Pay staff: ₹15,000/month.\n- **Margin:** ₹5000 commission/staff.",
+        detailedOverview: "Manpower Agency.\n\nModel:\n- Charge client: ₹20,000/month.\n- Pay staff: ₹15,000/month.\n- Margin: ₹5000 commission/staff.",
         workflowSteps: [
             "Sourcing Staff",
             "Verification (Police)",
@@ -3446,7 +3446,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Agency providing trustworthy nannies for working parents. Safety is the USP.",
-        detailedOverview: "Manpower.\n\n**Model:**\n- Commission: One month salary (₹15k) per placement.\n- Or Monthly commission model.",
+        detailedOverview: "Manpower.\n\nModel:\n- Commission: One month salary (₹15k) per placement.\n- Or Monthly commission model.",
         workflowSteps: [
             "Sourcing Nannies",
             "Background Check (Crucial)",
@@ -3479,7 +3479,7 @@ export const businessIdeas = [
         investmentAmount: 30000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Full home deep cleaning (Diwali, Move-in/out). Machines clean better than maid.",
-        detailedOverview: "Cleaning.\n\n**Rates:**\n- 2BHK Deep Clean: ₹4000 - ₹6000.\n- Cost (Chems+Labor): ₹2000.\n- **Profit:** ₹2000+ per job.",
+        detailedOverview: "Cleaning.\n\nRates:\n- 2BHK Deep Clean: ₹4000 - ₹6000.\n- Cost (Chems+Labor): ₹2000.\n- Profit: ₹2000+ per job.",
         workflowSteps: [
             "Booking",
             "Team Arrival (3 pax)",
@@ -3513,7 +3513,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Foam wash, Ceramic coating, and Interior cleaning. People love their cars.",
-        detailedOverview: "Auto Care.\n\n**Revenue:**\n- Wash: ₹300-500.\n- Detailing/Coating: ₹10,000+.\n- Detailing has huge margins.",
+        detailedOverview: "Auto Care.\n\nRevenue:\n- Wash: ₹300-500.\n- Detailing/Coating: ₹10,000+.\n- Detailing has huge margins.",
         workflowSteps: [
             "Pre-wash",
             "Foam application",
@@ -3549,7 +3549,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹40,000 - ₹80,000",
         description: "Wash & Fold or Steam Ironing service. Bachelors and students need this.",
-        detailedOverview: "Hygiene.\n\n**Rate:**\n- ₹60-80 per kg (Wash & Fold).\n- Steam Iron: ₹10/piece.\n- **Volume:** 50kg/day = ₹3500 revenue.",
+        detailedOverview: "Hygiene.\n\nRate:\n- ₹60-80 per kg (Wash & Fold).\n- Steam Iron: ₹10/piece.\n- Volume: 50kg/day = ₹3500 revenue.",
         workflowSteps: [
             "Collection/Tagging",
             "Washing",
@@ -3584,7 +3584,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹70,000",
         description: "Sneaker cleaning and restoration. Sneakerheads pay ₹500-1000 to clean Jordans.",
-        detailedOverview: "Niche Cleaning.\n\n**Process:**\n- Manual cleaning with special brushes.\n- Sole whitening.\n- **Margin:** 90% (Labor intensive).",
+        detailedOverview: "Niche Cleaning.\n\nProcess:\n- Manual cleaning with special brushes.\n- Sole whitening.\n- Margin: 90% (Labor intensive).",
         workflowSteps: [
             "Inspection",
             "Dry brush",
@@ -3618,7 +3618,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹30,000 - ₹60,000",
         description: "On-site cleaning of fabric sofas using injection-extraction machines.",
-        detailedOverview: "Cleaning.\n\n**Rate:**\n- 5 Seater Sofa: ₹1500.\n- Time: 2 Hours.\n- Chemical Cost: ₹100.",
+        detailedOverview: "Cleaning.\n\nRate:\n- 5 Seater Sofa: ₹1500.\n- Time: 2 Hours.\n- Chemical Cost: ₹100.",
         workflowSteps: [
             "Dry Vacuum",
             "Shampoo Spray",
@@ -3652,7 +3652,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Planning Birthdays, Anniversaries, and small gatherings. Organizing vendors.",
-        detailedOverview: "Management.\n\n**Role:** Single point of contact.\n- Client budget: ₹50k.\n- You hire Decor, Caterer, DJ for ₹40k.\n- **Profit:** ₹10k.",
+        detailedOverview: "Management.\n\nRole: Single point of contact.\n- Client budget: ₹50k.\n- You hire Decor, Caterer, DJ for ₹40k.\n- Profit: ₹10k.",
         workflowSteps: [
             "Client Brief",
             "Vendor Quotations",
@@ -3684,7 +3684,7 @@ export const businessIdeas = [
         investmentAmount: 5000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Decorating homes for birthdays/welcome baby. High margin on balloons.",
-        detailedOverview: "Decor.\n\n**Math:**\n- Balloon Packet (100pcs): ₹150.\n- Decor Charge: ₹2000 - ₹5000.\n- Chrome/Pastel balloons charge more.",
+        detailedOverview: "Decor.\n\nMath:\n- Balloon Packet (100pcs): ₹150.\n- Decor Charge: ₹2000 - ₹5000.\n- Chrome/Pastel balloons charge more.",
         workflowSteps: [
             "Design selection",
             "Blowing (Electric pump)",
@@ -3718,7 +3718,7 @@ export const businessIdeas = [
         investmentAmount: 150000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Playing music at Weddings, Parties, and Clubs. Music makes the party.",
-        detailedOverview: "Entertainment.\n\n**Rates:**\n- Wedding Gig: ₹15,000 - ₹30,000.\n- Club Resident: ₹20,000/month.\n- Gear can be rented too.",
+        detailedOverview: "Entertainment.\n\nRates:\n- Wedding Gig: ₹15,000 - ₹30,000.\n- Club Resident: ₹20,000/month.\n- Gear can be rented too.",
         workflowSteps: [
             "Playlist Prep",
             "Setup Sound/Console",
@@ -3752,7 +3752,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Booking flights, hotels, and packages. People want curated experiences.",
-        detailedOverview: "Tourism.\n\n**Commission:**\n- Hotels: 10-20%.\n- Packages: 10-15%.\n- Flights: Low margin (Volume game).\n- Speciality: Honeymoon packages.",
+        detailedOverview: "Tourism.\n\nCommission:\n- Hotels: 10-20%.\n- Packages: 10-15%.\n- Flights: Low margin (Volume game).\n- Speciality: Honeymoon packages.",
         workflowSteps: [
             "Client Requirement",
             "Itinerary Design",
@@ -3786,7 +3786,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Helping students/tourists get Visas. Paperwork is complex for common people.",
-        detailedOverview: "Consultancy.\n\n**Fee:** ₹2000 - ₹5000 per application (Service charge).\n- Govt fees are extra.",
+        detailedOverview: "Consultancy.\n\nFee: ₹2000 - ₹5000 per application (Service charge).\n- Govt fees are extra.",
         workflowSteps: [
             "Profile Assessment",
             "Documentation Checklist",
@@ -3819,7 +3819,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹1 Lakh - ₹3 Lakhs",
         description: "Buying and selling second hand cars. High ticket, high profit.",
-        detailedOverview: "Trading.\n\n**Math:**\n- Buy Swift 2015: ₹2.5L.\n- Refurbish: ₹10k.\n- Sell: ₹3.0L.\n- **Profit:** ₹40k per car.",
+        detailedOverview: "Trading.\n\nMath:\n- Buy Swift 2015: ₹2.5L.\n- Refurbish: ₹10k.\n- Sell: ₹3.0L.\n- Profit: ₹40k per car.",
         workflowSteps: [
             "Sourcing (OLX/Direct)",
             "Inspection/Valuation",
@@ -3853,7 +3853,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹50,000 - ₹5 Lakhs",
         description: "Real Estate Agent. Connecting buyers and sellers for rent/sale.",
-        detailedOverview: "Brokerage.\n\n**Commission:**\n- Rent: 1 month rent.\n- Sale: 1% to 2% of deal value.\n- One big deal changes life.",
+        detailedOverview: "Brokerage.\n\nCommission:\n- Rent: 1 month rent.\n- Sale: 1% to 2% of deal value.\n- One big deal changes life.",
         workflowSteps: [
             "Inventory Acquisition (To-Let boards)",
             "Lead Generation",
@@ -3887,7 +3887,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹50,000 - ₹1 Lakh",
         description: "Hiring staff for companies. BPO/Entry level hiring is volume business.",
-        detailedOverview: "HR Service.\n\n**Commercials:**\n- 8.33% of annual CTC.\n- Or flat fee (₹5k - ₹10k per candidate).\n- 10 placements = ₹1 Lakh.",
+        detailedOverview: "HR Service.\n\nCommercials:\n- 8.33% of annual CTC.\n- Or flat fee (₹5k - ₹10k per candidate).\n- 10 placements = ₹1 Lakh.",
         workflowSteps: [
             "Client Agreement",
             "Job Posting (Naukri/LinkedIn)",
@@ -3920,7 +3920,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Building Android/iOS apps for businesses. Every shop wants to be 'Online'.",
-        detailedOverview: "Tech Services.\n\n**Market:**\n- Grocery stores needing delivery apps.\n- Gyms needing tracking apps.\n- **Rate:** ₹50,000 - ₹2 Lakhs per project.",
+        detailedOverview: "Tech Services.\n\nMarket:\n- Grocery stores needing delivery apps.\n- Gyms needing tracking apps.\n- Rate: ₹50,000 - ₹2 Lakhs per project.",
         workflowSteps: [
             "Client Requirement Analysis",
             "UI/UX Design (Figma)",
@@ -3954,7 +3954,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹20,000 - ₹1 Lakh",
         description: "Selling products without holding inventory. You act as the middleman.",
-        detailedOverview: "E-Commerce.\n\n**Model:**\n- Find supplier (Indiamart/AliExpress).\n- List on Shopify website.\n- Customer orders > You order from supplier > Supplier ships.",
+        detailedOverview: "E-Commerce.\n\nModel:\n- Find supplier (Indiamart/AliExpress).\n- List on Shopify website.\n- Customer orders > You order from supplier > Supplier ships.",
         workflowSteps: [
             "Niche Selection (e.g., Pet accessories)",
             "Store Setup (Shopify)",
@@ -3988,7 +3988,7 @@ export const businessIdeas = [
         investmentAmount: 5000,
         monthlyIncome: "₹10,000 - ₹1 Lakh",
         description: "Promoting other people's products and earning commission. Bloggers/YouTubers do this.",
-        detailedOverview: "Marketing.\n\n**Math:**\n- Amazon Affiliate: 1-10% commission.\n- Software (SaaS): 20-50% commission.\n- Sell ₹5000 software -> Earn ₹2500.",
+        detailedOverview: "Marketing.\n\nMath:\n- Amazon Affiliate: 1-10% commission.\n- Software (SaaS): 20-50% commission.\n- Sell ₹5000 software -> Earn ₹2500.",
         workflowSteps: [
             "Pick Niche (Tech/Beauty)",
             "Create Content (Blog/Video)",
@@ -4021,7 +4021,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Partner with big brokers (Zerodha/Angel). Earn commission on client trades.",
-        detailedOverview: "Finance.\n\n**Revenue:**\n- 30-50% sharing of brokerage generated.\n- Client account opening incentive.\n- **Network:** Need active traders.",
+        detailedOverview: "Finance.\n\nRevenue:\n- 30-50% sharing of brokerage generated.\n- Client account opening incentive.\n- Network: Need active traders.",
         workflowSteps: [
             "Exam (NISM Series VIII)",
             "Registration with Main Broker",
@@ -4054,7 +4054,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Aerial shots for Weddings, Real Estate, and Surveying. High demand for cinematic shots.",
-        detailedOverview: "Photography.\n\n**Rates:**\n- Wedding: ₹15,000/day.\n- Real Estate survey: ₹5,000/acre.\n- **Gear:** DJI Mini/Air series.",
+        detailedOverview: "Photography.\n\nRates:\n- Wedding: ₹15,000/day.\n- Real Estate survey: ₹5,000/acre.\n- Gear: DJI Mini/Air series.",
         workflowSteps: [
             "Licensing (DGCA Remote Pilot)",
             "Practice Flying",
@@ -4088,7 +4088,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹30,000 - ₹60,000",
         description: "Installing Alexa, Smart Bulbs, and Automated Curtains. Homes are getting smarter.",
-        detailedOverview: "Tech Trades.\n\n**Task:**\n- Configure WiFi switches.\n- Setup Voice assistants.\n- Create 'Scenes' (Movie mode).\n- **Margin:** Service fee + Margin on devices.",
+        detailedOverview: "Tech Trades.\n\nTask:\n- Configure WiFi switches.\n- Setup Voice assistants.\n- Create 'Scenes' (Movie mode).\n- Margin: Service fee + Margin on devices.",
         workflowSteps: [
             "Site Survey",
             "Product Suggestion",
@@ -4121,7 +4121,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Buying corporate used laptops, upgrading SSD/RAM, and selling to students.",
-        detailedOverview: "Trading/Tech.\n\n**Math:**\n- Buy ThinkPad (Lot price): ₹10k.\n- SSD+RAM Upgrade: ₹3k.\n- Sell Price: ₹20k.\n- **Profit:** ₹7k/unit.",
+        detailedOverview: "Trading/Tech.\n\nMath:\n- Buy ThinkPad (Lot price): ₹10k.\n- SSD+RAM Upgrade: ₹3k.\n- Sell Price: ₹20k.\n- Profit: ₹7k/unit.",
         workflowSteps: [
             "Bulk Sourcing (e-waste auctions)",
             "Testing/Grading",
@@ -4155,7 +4155,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Collecting old electronics to extract Gold, Copper, and Silver. Urban mining.",
-        detailedOverview: "Scrap.\n\n**Process:**\n- Collection Centre -> Dismantling -> Segregation -> Sending to Refinery.\n- **Money:** Circuit boards contain gold.",
+        detailedOverview: "Scrap.\n\nProcess:\n- Collection Centre -> Dismantling -> Segregation -> Sending to Refinery.\n- Money: Circuit boards contain gold.",
         workflowSteps: [
             "Collection (Doorstep)",
             "Weighing & Paying",
@@ -4189,7 +4189,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Recovering photos/files from crashed Hard Drives and SD Cards. People pay anything for memories.",
-        detailedOverview: "Tech Specialist.\n\n**Rate:**\n- Logical Recovery: ₹2000.\n- Physical Recovery (Head replacement): ₹15,000+.\n- **Software:** EaseUS, R-Studio, DiskDrill.",
+        detailedOverview: "Tech Specialist.\n\nRate:\n- Logical Recovery: ₹2000.\n- Physical Recovery (Head replacement): ₹15,000+.\n- Software: EaseUS, R-Studio, DiskDrill.",
         workflowSteps: [
             "Diagnosis",
             "Cloning Drive",
@@ -4223,7 +4223,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Testing small business websites for vulnerabilities. 'Bug Bounty' style consulting.",
-        detailedOverview: "Tech Consulting.\n\n**Service:**\n- VAPT (Vulnerability Assessment).\n- Phishing simulation for employees.\n- **Fee:** ₹20k - ₹50k per audit.",
+        detailedOverview: "Tech Consulting.\n\nService:\n- VAPT (Vulnerability Assessment).\n- Phishing simulation for employees.\n- Fee: ₹20k - ₹50k per audit.",
         workflowSteps: [
             "Scope Agreement",
             "Reconnaissance",
@@ -4257,7 +4257,7 @@ export const businessIdeas = [
         investmentAmount: 5000,
         monthlyIncome: "₹40,000 - ₹2 Lakhs",
         description: "Connecting Brands with Instagram Influencers. Managing campaigns.",
-        detailedOverview: "Marketing.\n\n**Model:**\n- Brand pays ₹1 Lakh.\n- You pay influencers ₹70k.\n- **Margin:** ₹30k (Management Fee).",
+        detailedOverview: "Marketing.\n\nModel:\n- Brand pays ₹1 Lakh.\n- You pay influencers ₹70k.\n- Margin: ₹30k (Management Fee).",
         workflowSteps: [
             "Client Brief",
             "Shortlist Influencers",
@@ -4290,7 +4290,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Setting up studio for creators or editing their audio/video. Podcasts are booming.",
-        detailedOverview: "Media.\n\n**Service:**\n- Audio Editing (Noise reduction).\n- Video cutting (Reels).\n- Studio Rental: ₹1000/hr.",
+        detailedOverview: "Media.\n\nService:\n- Audio Editing (Noise reduction).\n- Video cutting (Reels).\n- Studio Rental: ₹1000/hr.",
         workflowSteps: [
             "Recording",
             "Audio Engineering",
@@ -4324,7 +4324,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Editing for YouTubers. Retention editing is the most valuable skill today.",
-        detailedOverview: "Service.\n\n**Rate:**\n- Reel: ₹500 - ₹2000.\n- YouTube Video: ₹3000 - ₹10,000.\n- **Volume:** YouTubers post weekly.",
+        detailedOverview: "Service.\n\nRate:\n- Reel: ₹500 - ₹2000.\n- YouTube Video: ₹3000 - ₹10,000.\n- Volume: YouTubers post weekly.",
         workflowSteps: [
             "Raw Footage Transfer",
             "Cut & Trim",
@@ -4357,7 +4357,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹10,000 - ₹50,000",
         description: "Writing and selling PDFs/Kindle books. Passive income asset.",
-        detailedOverview: "Content Product.\n\n**Topic:** 'How to lose weight', 'Coding interview prep'.\n- Price: ₹99 - ₹499.\n- Sell on Instamojo/Gumroad.",
+        detailedOverview: "Content Product.\n\nTopic: 'How to lose weight', 'Coding interview prep'.\n- Price: ₹99 - ₹499.\n- Sell on Instamojo/Gumroad.",
         workflowSteps: [
             "Topic Research",
             "Drafting",
@@ -4389,7 +4389,7 @@ export const businessIdeas = [
         investmentAmount: 5000,
         monthlyIncome: "₹50,000 - ₹5 Lakhs",
         description: "Selling video courses. The 'Ed-Tech' boom allows individual teachers to earn millions.",
-        detailedOverview: "Digital Product.\n\n**Math:**\n- Course Price: ₹2000.\n- Students: 100/month.\n- Revenue: ₹2 Lakhs.\n- Platform: Udemy/Teachable.",
+        detailedOverview: "Digital Product.\n\nMath:\n- Course Price: ₹2000.\n- Students: 100/month.\n- Revenue: ₹2 Lakhs.\n- Platform: Udemy/Teachable.",
         workflowSteps: [
             "Curriculum Design",
             "Recording",
@@ -4422,7 +4422,7 @@ export const businessIdeas = [
         investmentAmount: 5000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Providing remote admin support to US/UK clients. Scheduling, Email, Data Entry.",
-        detailedOverview: "BPO/Service.\n\n**Rate:** $5 - $10 per hour.\n- Agency: Hire locals @ ₹15k/mo, charge client $800/mo.",
+        detailedOverview: "BPO/Service.\n\nRate: $5 - $10 per hour.\n- Agency: Hire locals @ ₹15k/mo, charge client $800/mo.",
         workflowSteps: [
             "Client Training",
             "Task Allocation",
@@ -4455,7 +4455,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Translating documents/media. Regional content (Hindi/Tamil/Telugu) is huge now.",
-        detailedOverview: "Lang Service.\n\n**Rate:** ₹1 - ₹3 per word.\n- Subtitles: ₹50/minute.\n- **Clients:** OTT platforms, Youtubers, Legal firms.",
+        detailedOverview: "Lang Service.\n\nRate: ₹1 - ₹3 per word.\n- Subtitles: ₹50/minute.\n- Clients: OTT platforms, Youtubers, Legal firms.",
         workflowSteps: [
             "Receive File",
             "Translation",
@@ -4487,7 +4487,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Writing ATS-friendly resumes for job seekers. Graduates need this desperately.",
-        detailedOverview: "HR Service.\n\n**Fee:** ₹1000 - ₹5000 per resume.\n- Addon: LinkedIn Profile Optimization.\n- **Tool:** Canva/Word.",
+        detailedOverview: "HR Service.\n\nFee: ₹1000 - ₹5000 per resume.\n- Addon: LinkedIn Profile Optimization.\n- Tool: Canva/Word.",
         workflowSteps: [
             "Candidate Interview",
             "Gap Analysis",
@@ -4519,7 +4519,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Designing Logos, Social Media Posts, and Brochures. Visuals sell.",
-        detailedOverview: "Creative.\n\n**Rates:**\n- Logo: ₹2000 - ₹10,000.\n- Social Post: ₹500.\n- Retainer: ₹15k/month for 15 posts.",
+        detailedOverview: "Creative.\n\nRates:\n- Logo: ₹2000 - ₹10,000.\n- Social Post: ₹500.\n- Retainer: ₹15k/month for 15 posts.",
         workflowSteps: [
             "Brief",
             "Moodboard",
@@ -4552,7 +4552,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹20,000 - ₹1 Lakh",
         description: "Buying underperforming websites, fixing them, and selling for profit.",
-        detailedOverview: "Digital Real Estate.\n\n**Math:**\n- Buy site earning $50/mo for $1500.\n- Improve SEO -> Earn $150/mo.\n- Sell for $4500.\n- **Profit:** $3000.",
+        detailedOverview: "Digital Real Estate.\n\nMath:\n- Buy site earning $50/mo for $1500.\n- Improve SEO -> Earn $150/mo.\n- Sell for $4500.\n- Profit: $3000.",
         workflowSteps: [
             "Audit (Flippa/EmpireFlippers)",
             "Acquisition",
@@ -4585,7 +4585,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Guiding students on stream selection and college admission. Parents are anxious about future.",
-        detailedOverview: "Consulting.\n\n**Fee:** ₹2000 - ₹5000 per session.\n- Psychometric Tests: charge extra.\n- College form filling assistance.",
+        detailedOverview: "Consulting.\n\nFee: ₹2000 - ₹5000 per session.\n- Psychometric Tests: charge extra.\n- College form filling assistance.",
         workflowSteps: [
             "Student Interview",
             "Aptitude Testing",
@@ -4618,7 +4618,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Teaching people how to dress, talk, and behave. Executives want to look 'Premium'.",
-        detailedOverview: "Grooming.\n\n**Modules:**\n- Wardrobe analysis.\n- Body language.\n- Dining etiquette.\n- **Rate:** ₹5000/hr.",
+        detailedOverview: "Grooming.\n\nModules:\n- Wardrobe analysis.\n- Body language.\n- Dining etiquette.\n- Rate: ₹5000/hr.",
         workflowSteps: [
             "Client Assessment",
             "Closet Audit",
@@ -4651,7 +4651,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹50,000 - ₹3 Lakhs",
         description: "Training employees on Sales, Excel, or Leadership. Companies have 'L&D' budgets.",
-        detailedOverview: "B2B Educational.\n\n**Fees:** ₹15,000 - ₹50,000 per day.\n- Retainer models for ongoing training.",
+        detailedOverview: "B2B Educational.\n\nFees: ₹15,000 - ₹50,000 per day.\n- Retainer models for ongoing training.",
         workflowSteps: [
             "Needs Analysis",
             "Module Design",
@@ -4683,7 +4683,7 @@ export const businessIdeas = [
         investmentAmount: 400000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Teaching people to drive cars. A rite of passage for every 18 year old.",
-        detailedOverview: "Training.\n\n**Fees:** ₹5000 - ₹8000 (learning + license).\n- 15 days course (30 mins/day).\n- Fuel cost is major expense.",
+        detailedOverview: "Training.\n\nFees: ₹5000 - ₹8000 (learning + license).\n- 15 days course (30 mins/day).\n- Fuel cost is major expense.",
         workflowSteps: [
             "Learner License application",
             "Simulator Training (Optional)",
@@ -4717,7 +4717,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Teaching exotic cuisines (Baking, Thai, Italian) from home.",
-        detailedOverview: "Education.\n\n**Fees:** ₹1500 - ₹3000 per workshop (3 hours).\n- Ingredients included.\n- Students take food home.",
+        detailedOverview: "Education.\n\nFees: ₹1500 - ₹3000 per workshop (3 hours).\n- Ingredients included.\n- Students take food home.",
         workflowSteps: [
             "Menu Planning",
             "Grocery Shopping",
@@ -4750,7 +4750,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Teaching Guitar, Keyboard, or Vocals. Parents want kids to have hobbies.",
-        detailedOverview: "Education.\n\n**Fees:** ₹1500 - ₹2500 per month (8 classes).\n- Group classes (4-5 students) increase margin.",
+        detailedOverview: "Education.\n\nFees: ₹1500 - ₹2500 per month (8 classes).\n- Group classes (4-5 students) increase margin.",
         workflowSteps: [
             "Level Assessment",
             "Theory/Notations",
@@ -4783,7 +4783,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹40,000 - ₹1.5 Lakhs",
         description: "Zumba, Hip-Hop, or Classical dance classes. Fitness + Fun.",
-        detailedOverview: "Fitness/Art.\n\n**Fees:** ₹1500 - ₹3000/month.\n- Floor rental is biggest cost.\n- Annual shows perform well.",
+        detailedOverview: "Fitness/Art.\n\nFees: ₹1500 - ₹3000/month.\n- Floor rental is biggest cost.\n- Annual shows perform well.",
         workflowSteps: [
             "Warm up",
             "Choreography teaching",
@@ -4817,7 +4817,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Weekend workshops for painting, resin art, or pottery. Stress relief for adults.",
-        detailedOverview: "Experience.\n\n**Ticket:** ₹1500 - ₹3000 per head (includes material).\n- Partner with cafes (They get crowd, you get space).",
+        detailedOverview: "Experience.\n\nTicket: ₹1500 - ₹3000 per head (includes material).\n- Partner with cafes (They get crowd, you get space).",
         workflowSteps: [
             "Theme Selection",
             "Material Prep",
@@ -4850,7 +4850,7 @@ export const businessIdeas = [
         investmentAmount: 2000,
         monthlyIncome: "₹10,000 - ₹40,000",
         description: "Teaching beautiful handwriting. Improving kids' handwriting marks.",
-        detailedOverview: "Education.\n\n**Fees:** ₹1000 - ₹2000/month.\n- Cursive / Brush lettering.\n- Sell kits (Pen+Paper) for profit.",
+        detailedOverview: "Education.\n\nFees: ₹1000 - ₹2000/month.\n- Cursive / Brush lettering.\n- Sell kits (Pen+Paper) for profit.",
         workflowSteps: [
             "Stroke practice",
             "Alphabet formation",
@@ -4882,7 +4882,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Bathing, hair cutting, and nail clipping for dogs/cats. Pet parents spend lavishly.",
-        detailedOverview: "Pet Care.\n\n**Rates:**\n- Full Groom (Shih Tzu): ₹1500 - ₹2500.\n- Bath: ₹800.\n- **Margin:** 70% (Shampoo cost is low, labor is high).",
+        detailedOverview: "Pet Care.\n\nRates:\n- Full Groom (Shih Tzu): ₹1500 - ₹2500.\n- Bath: ₹800.\n- Margin: 70% (Shampoo cost is low, labor is high).",
         workflowSteps: [
             "Check-in (Check for ticks)",
             "Bathing",
@@ -4916,7 +4916,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹15,000 - ₹40,000",
         description: "Walking dogs for busy owners. Morning and evening slots.",
-        detailedOverview: "Pet Care.\n\n**Rates:** ₹3000 - ₹5000 per dog per month (2 walks/day).\n- 1 walker can handle 4-5 dogs (separately or groups).",
+        detailedOverview: "Pet Care.\n\nRates: ₹3000 - ₹5000 per dog per month (2 walks/day).\n- 1 walker can handle 4-5 dogs (separately or groups).",
         workflowSteps: [
             "Key collection",
             "Leashing",
@@ -4948,7 +4948,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Cleaning and maintaining fish tanks in offices/homes. Fish die without care.",
-        detailedOverview: "AMC Service.\n\n**Rate:** ₹500 - ₹1000 per visit.\n- AMC: ₹3000/month (Weekly visit).\n- Upsell: Fish food, new filters.",
+        detailedOverview: "AMC Service.\n\nRate: ₹500 - ₹1000 per visit.\n- AMC: ₹3000/month (Weekly visit).\n- Upsell: Fish food, new filters.",
         workflowSteps: [
             "Water testing",
             "Algae scrubbing",
@@ -4981,7 +4981,7 @@ export const businessIdeas = [
         investmentAmount: 30000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Removing Cockroaches, Termites, and Bedbugs. Mandatory for restaurants/homes.",
-        detailedOverview: "Hygiene.\n\n**Rates:**\n- 2BHK Geneal: ₹1000.\n- Termite treatment: ₹5000+.\n- **Chemical Cost:** 10%.",
+        detailedOverview: "Hygiene.\n\nRates:\n- 2BHK Geneal: ₹1000.\n- Termite treatment: ₹5000+.\n- Chemical Cost: 10%.",
         workflowSteps: [
             "Inspection",
             "Gel Application (Kitchen)",
@@ -5015,7 +5015,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹50,000 - ₹3 Lakhs",
         description: "Providing guards to apartments and ATMs. Manpower volume business.",
-        detailedOverview: "Manpower.\n\n**Model:**\n- Client pays ₹20k/guard.\n- You pay ₹15k.\n- **Profit:** ₹5k x 100 guards = ₹5 Lakhs.",
+        detailedOverview: "Manpower.\n\nModel:\n- Client pays ₹20k/guard.\n- You pay ₹15k.\n- Profit: ₹5k x 100 guards = ₹5 Lakhs.",
         workflowSteps: [
             "Recruiting (Rural areas)",
             "Uniform/Training",
@@ -5049,7 +5049,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹40,000 - ₹2 Lakhs",
         description: "Helping people shift houses. Packing, Loading, Moving, Unloading.",
-        detailedOverview: "Logistics.\n\n**Rate:**\n- Local Shift (2BHK): ₹5000 - ₹10,000.\n- Intercity: ₹20,000+.\n- You hire truck on demand.",
+        detailedOverview: "Logistics.\n\nRate:\n- Local Shift (2BHK): ₹5000 - ₹10,000.\n- Intercity: ₹20,000+.\n- You hire truck on demand.",
         workflowSteps: [
             "Survey/Quote",
             "Packing (Bubble wrap/Cartons)",
@@ -5082,7 +5082,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Renting Scooters/Bikes to tourists or commuters. High demand in tourist hubs.",
-        detailedOverview: "Rental.\n\n**Rate:**\n- Activa: ₹500/day.\n- Bullet: ₹1200/day.\n- ROI is fast if utilization is high.",
+        detailedOverview: "Rental.\n\nRate:\n- Activa: ₹500/day.\n- Bullet: ₹1200/day.\n- ROI is fast if utilization is high.",
         workflowSteps: [
             "Booking",
             "KYC/Deposit",
@@ -5116,7 +5116,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Renting costumes for School Annual days, Fancy dress, and Weddings.",
-        detailedOverview: "Rental.\n\n**Model:**\n- Buy costume for ₹1000.\n- Rent for ₹300/day.\n- Break even in 4 rentals.",
+        detailedOverview: "Rental.\n\nModel:\n- Buy costume for ₹1000.\n- Rent for ₹300/day.\n- Break even in 4 rentals.",
         workflowSteps: [
             "Sourcing",
             "Dry Cleaning",
@@ -5149,7 +5149,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Renting Diesel Generators for Weddings and Events. Power backup is essential.",
-        detailedOverview: "Rental.\n\n**Rates:**\n- 65 KVA DG: ₹5000 - ₹10,000 per shift + Diesel.\n- **Asset Life:** 10+ Years.",
+        detailedOverview: "Rental.\n\nRates:\n- 65 KVA DG: ₹5000 - ₹10,000 per shift + Diesel.\n- Asset Life: 10+ Years.",
         workflowSteps: [
             "Order booking",
             "Transport to site",
@@ -5183,7 +5183,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Renting out DSLRs, Lenses, and Lights to photographers. Gear is expensive.",
-        detailedOverview: "Rental.\n\n**Rates:**\n- Sony A7III: ₹1500/day.\n- G-Master Lens: ₹1000/day.\n- **Security:** KYC + Bland cheques.",
+        detailedOverview: "Rental.\n\nRates:\n- Sony A7III: ₹1500/day.\n- G-Master Lens: ₹1000/day.\n- Security: KYC + Bland cheques.",
         workflowSteps: [
             "Booking",
             "Verification",
@@ -5216,7 +5216,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Renting steel scaffolding/shuttering to construction sites.",
-        detailedOverview: "Construction Rental.\n\n**Rate:** Charged per plate/pipe per day (e.g., ₹5/day).\n- Volume business.\n- Construction never stops.",
+        detailedOverview: "Construction Rental.\n\nRate: Charged per plate/pipe per day (e.g., ₹5/day).\n- Volume business.\n- Construction never stops.",
         workflowSteps: [
             "Purchase",
             "Leasing to contractor",
@@ -5248,7 +5248,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Growing chemical-free vegetables. High demand in cities for 'Organic'.",
-        detailedOverview: "Agriculture.\n\n**Produce:** Exotic veggies (Broccoli, Lettuce) yield higher margin.\n- Direct to consumer (D2C) via WhatsApp groups.",
+        detailedOverview: "Agriculture.\n\nProduce: Exotic veggies (Broccoli, Lettuce) yield higher margin.\n- Direct to consumer (D2C) via WhatsApp groups.",
         workflowSteps: [
             "Soil Preparation",
             "Seed Sowing",
@@ -5282,7 +5282,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹40,000 - ₹1.5 Lakhs",
         description: "Selling Milk, Curd, and Ghee. A2 Milk is the new trend.",
-        detailedOverview: "Agriculture.\n\n**Yield:** 10 Cows = 100-150 Liters/day.\n- Sell at ₹60-80/liter.\n- Value addition (Paneer/Khoa) doubles profit.",
+        detailedOverview: "Agriculture.\n\nYield: 10 Cows = 100-150 Liters/day.\n- Sell at ₹60-80/liter.\n- Value addition (Paneer/Khoa) doubles profit.",
         workflowSteps: [
             "Feeding (Green Fodder)",
             "Milking (Machine/Hand)",
@@ -5316,7 +5316,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Rearing chickens for Eggs (Layer) or Meat (Broiler). Quick turnover.",
-        detailedOverview: "Agriculture.\n\n**Cycle:** Broilers grow in 45 days.\n- Contract farming (Suguna/Venky's) reduces risk.\n- Rate depends on market.",
+        detailedOverview: "Agriculture.\n\nCycle: Broilers grow in 45 days.\n- Contract farming (Suguna/Venky's) reduces risk.\n- Rate depends on market.",
         workflowSteps: [
             "Chicks arrival",
             "Brooding (Heating)",
@@ -5349,7 +5349,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Growing Oyster or Button mushrooms indoors. High protein, high value.",
-        detailedOverview: "Agriculture.\n\n**Space:** 10x10 room is enough.\n- **Rate:** ₹200/kg.\n- Button mushroom requires AC (expensive). Oyster is easy.",
+        detailedOverview: "Agriculture.\n\nSpace: 10x10 room is enough.\n- Rate: ₹200/kg.\n- Button mushroom requires AC (expensive). Oyster is easy.",
         workflowSteps: [
             "Substrate prep (Straw)",
             "Spawning (Seeding)",
@@ -5383,7 +5383,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹20,000 - ₹80,000",
         description: "Apiculture for Honey, Wax, and Royal Jelly. Farmers friends.",
-        detailedOverview: "Agriculture.\n\n**Product:** Raw Honey sells for ₹500/kg.\n- Keep boxes in mustard/litchi fields.",
+        detailedOverview: "Agriculture.\n\nProduct: Raw Honey sells for ₹500/kg.\n- Keep boxes in mustard/litchi fields.",
         workflowSteps: [
             "Box placement",
             "Colony inspection",
@@ -5416,7 +5416,7 @@ export const businessIdeas = [
         investmentAmount: 150000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Intensive fish farming in tanks using Biofloc technology. High density.",
-        detailedOverview: "Agriculture.\n\n**Density:** 500kg fish in 10,000 liter tank.\n- Probiotics consume waste.\n- Species: Tilapia, Singhi, Pangasius.",
+        detailedOverview: "Agriculture.\n\nDensity: 500kg fish in 10,000 liter tank.\n- Probiotics consume waste.\n- Species: Tilapia, Singhi, Pangasius.",
         workflowSteps: [
             "Tank Setup",
             "Water Preparation (Probiotics)",
@@ -5450,7 +5450,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Soil-less farming. Growing leafy greens in PVC pipes with nutrient water.",
-        detailedOverview: "Agritech.\n\n**Produce:** Lettuce, Basil, Rocket Leaves.\n- Sold to 5-star hotels/Subway/McD.\n- **Rate:** ₹300 - ₹800/kg.",
+        detailedOverview: "Agritech.\n\nProduce: Lettuce, Basil, Rocket Leaves.\n- Sold to 5-star hotels/Subway/McD.\n- Rate: ₹300 - ₹800/kg.",
         workflowSteps: [
             "Nursery",
             "Transplant to NFT channels",
@@ -5483,7 +5483,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹15,000 - ₹50,000",
         description: "Converting cow dung into organic fertilizer using earthworms.",
-        detailedOverview: "Agriculture.\n\n**Rate:** ₹10 - ₹20/kg.\n- Input: Cow dung (Free or cheap).\n- Demand: Organic farmers, Home gardens.",
+        detailedOverview: "Agriculture.\n\nRate: ₹10 - ₹20/kg.\n- Input: Cow dung (Free or cheap).\n- Demand: Organic farmers, Home gardens.",
         workflowSteps: [
             "Bed Preparation",
             "Adding Dung & Waste",
@@ -5516,7 +5516,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Selling decorative plants, pots, and saplings. Urban gardening boom.",
-        detailedOverview: "Retail/Agri.\n\n**Margin:** 50-200%.\n- Purchase saplings from Kadiyam/Pune.\n- Resell in city.",
+        detailedOverview: "Retail/Agri.\n\nMargin: 50-200%.\n- Purchase saplings from Kadiyam/Pune.\n- Resell in city.",
         workflowSteps: [
             "Procurement",
             "Repotting",
@@ -5549,7 +5549,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Rearing goats for meat (Mutton). The ATM of poor farmers.",
-        detailedOverview: "Agriculture.\n\n**Market:** Infinite demand for mutton.\n- Breeds: Sirohi, Barbari, Black Bengal.\n- Sale weight: 30kg in 1 year.",
+        detailedOverview: "Agriculture.\n\nMarket: Infinite demand for mutton.\n- Breeds: Sirohi, Barbari, Black Bengal.\n- Sale weight: 30kg in 1 year.",
         workflowSteps: [
             "Grazing/Stall feeding",
             "De-worming",
@@ -5582,7 +5582,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Making disposable plates/cups. Used in every street shop and party.",
-        detailedOverview: "Small Scale Ind.\n\n**Margin:** ₹2 - ₹5 per kg of paper converted.\n- Automatic machines available.",
+        detailedOverview: "Small Scale Ind.\n\nMargin: ₹2 - ₹5 per kg of paper converted.\n- Automatic machines available.",
         workflowSteps: [
             "Roll loading",
             "Die cutting/Pressing",
@@ -5615,7 +5615,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹10,000 - ₹30,000",
         description: "Making scented/decorative candles. Gift items.",
-        detailedOverview: "Home Industry.\n\n**Margin:** 50%.\n- Scented Jar Candles sell for ₹300-500.\n- Cost: ₹100.",
+        detailedOverview: "Home Industry.\n\nMargin: 50%.\n- Scented Jar Candles sell for ₹300-500.\n- Cost: ₹100.",
         workflowSteps: [
             "Wax Melting",
             "Adding Fragrance/Color",
@@ -5648,7 +5648,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Handmade organic soaps. Goat milk, charcoal, etc.",
-        detailedOverview: "FMCG.\n\n**USPs:** Paraben free, Sulphate free.\n- **Price:** ₹150 - ₹250 per bar.\n- Cost: ₹40.",
+        detailedOverview: "FMCG.\n\nUSPs: Paraben free, Sulphate free.\n- Price: ₹150 - ₹250 per bar.\n- Cost: ₹40.",
         workflowSteps: [
             "Melt and Pour (Base)",
             "Add essential oils",
@@ -5682,7 +5682,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹15,000 - ₹40,000",
         description: "Making Agarbatti/Dhoop. Used in every Indian home daily.",
-        detailedOverview: "FMCG.\n\n**Process:** Dipping un-scented sticks in perfume.\n- Packaging is the main differentiator.",
+        detailedOverview: "FMCG.\n\nProcess: Dipping un-scented sticks in perfume.\n- Packaging is the main differentiator.",
         workflowSteps: [
             "Buying Raw Sticks",
             "Perfume Dipping",
@@ -5716,7 +5716,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Grinding Turmeric, Chili, Coriander. Pure spices have high demand.",
-        detailedOverview: "Food Processing.\n\n**Problem:** Adulteration in big brands.\n- **Solution:** Freshly ground in front of customer or FSSAI certified pouch.",
+        detailedOverview: "Food Processing.\n\nProblem: Adulteration in big brands.\n- Solution: Freshly ground in front of customer or FSSAI certified pouch.",
         workflowSteps: [
             "Cleaning/Drying",
             "Grinding (Pulverizer)",
@@ -5750,7 +5750,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹40,000 - ₹1.5 Lakhs",
         description: "Wood pressed (Ghani) Groundnut, Coconut, crop oil. Health conscious trend.",
-        detailedOverview: "Food Processing.\n\n**Rate:** ₹300-400/liter (vs ₹150 refined).\n- Yield: 40-45% (Groundnut).\n- Cake residue is sold as cattle feed.",
+        detailedOverview: "Food Processing.\n\nRate: ₹300-400/liter (vs ₹150 refined).\n- Yield: 40-45% (Groundnut).\n- Cake residue is sold as cattle feed.",
         workflowSteps: [
             "Seed Cleaning",
             "Crushing (Wood Rotary)",
@@ -5783,7 +5783,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Atta Chakki. Grinding wheat, jowar, bajra. Service or Sales model.",
-        detailedOverview: "Food Service.\n\n**Rate:** ₹5 - ₹8 per kg grinding charge.\n- Sales: Buy wheat, grind, sell Fresh Atta.",
+        detailedOverview: "Food Service.\n\nRate: ₹5 - ₹8 per kg grinding charge.\n- Sales: Buy wheat, grind, sell Fresh Atta.",
         workflowSteps: [
             "Cleaning",
             "Grinding",
@@ -5816,7 +5816,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Making Bread, Rusks, Biscuits, and Cakes. Wholesale to tea shops.",
-        detailedOverview: "Food Mfg.\n\n**Products:** Cream buns, Salt biscuits, Puffs.\n- Supply to 50 tea stalls daily.",
+        detailedOverview: "Food Mfg.\n\nProducts: Cream buns, Salt biscuits, Puffs.\n- Supply to 50 tea stalls daily.",
         workflowSteps: [
             "Mixing",
             "Fermentation/Proofing",
@@ -5850,7 +5850,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Making Bhujia, Sev, Mixture, Chips. Chai-time snacks.",
-        detailedOverview: "Food Mfg.\n\n**Margin:** 20-30%.\n- Taste is king.\n- Packaging determines price point.",
+        detailedOverview: "Food Mfg.\n\nMargin: 20-30%.\n- Taste is king.\n- Packaging determines price point.",
         workflowSteps: [
             "Dough kneading",
             "Extrusion (Sev maker)",
@@ -5884,7 +5884,7 @@ export const businessIdeas = [
         investmentAmount: 1000000,
         monthlyIncome: "₹50,000 - ₹3 Lakhs",
         description: "Making Corrugated Boxes (Cartons) for e-commerce/factories.",
-        detailedOverview: "B2B Mfg.\n\n**Market:** Every Amazon seller needs boxes.\n- Process: Buy Kraft paper -> Corrugate -> Cut -> Stitch.",
+        detailedOverview: "B2B Mfg.\n\nMarket: Every Amazon seller needs boxes.\n- Process: Buy Kraft paper -> Corrugate -> Cut -> Stitch.",
         workflowSteps: [
             "Corrugation",
             "Sheet Pasting",
@@ -5917,7 +5917,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Fixing leaks, installing taps. Every house needs one.",
-        detailedOverview: "Skilled Trade.\n\n**Rate:** ₹300 visit charge.\n- Bathroom fitting: ₹2000.\n- Motor repair: ₹500.\n- Works on referrals.",
+        detailedOverview: "Skilled Trade.\n\nRate: ₹300 visit charge.\n- Bathroom fitting: ₹2000.\n- Motor repair: ₹500.\n- Works on referrals.",
         workflowSteps: [
             "Client Call",
             "Diagnosis",
@@ -5950,7 +5950,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹25,000 - ₹60,000",
         description: "Wiring, Fan repair, Switchboard installation. Dangerous but profitable.",
-        detailedOverview: "Skilled Trade.\n\n**Rate:** ₹300-500 visit.\n- House wiring (Contract): ₹20,000+.\n- Inverter connection: ₹1000.",
+        detailedOverview: "Skilled Trade.\n\nRate: ₹300-500 visit.\n- House wiring (Contract): ₹20,000+.\n- Inverter connection: ₹1000.",
         workflowSteps: [
             "Fault finding (Series lamp)",
             "Isolating circuit",
@@ -5983,7 +5983,7 @@ export const businessIdeas = [
         investmentAmount: 30000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Furniture repair and making. Wardrobes, Kitchen cabinets.",
-        detailedOverview: "Skilled Trade.\n\n**Contract:** ₹500/sqft for cupboards.\n- Repairs: Door jam, Handle change (Quick cash).",
+        detailedOverview: "Skilled Trade.\n\nContract: ₹500/sqft for cupboards.\n- Repairs: Door jam, Handle change (Quick cash).",
         workflowSteps: [
             "Measurement",
             "Ply cutting",
@@ -6016,7 +6016,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹30,000 - ₹1.5 Lakhs",
         description: "Servicing Air Conditioners. Peak income in Summer.",
-        detailedOverview: "Skilled Trade.\n\n**Rate:**\n- Service: ₹500.\n- Gas Filling: ₹2500 (High margin).\n- Installation: ₹1500.",
+        detailedOverview: "Skilled Trade.\n\nRate:\n- Service: ₹500.\n- Gas Filling: ₹2500 (High margin).\n- Installation: ₹1500.",
         workflowSteps: [
             "Filter cleaning",
             "Jet spray wash",
@@ -6051,7 +6051,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Repairing Water Purifiers. Changing filters/membranes.",
-        detailedOverview: "Skilled Trade.\n\n**Income:**\n- Membrane change: Buy ₹300, Sell ₹1200.\n- Filter change: Buy ₹100, Sell ₹500.",
+        detailedOverview: "Skilled Trade.\n\nIncome:\n- Membrane change: Buy ₹300, Sell ₹1200.\n- Filter change: Buy ₹100, Sell ₹500.",
         workflowSteps: [
             "TDS Check",
             "Filter replacement",
@@ -6084,7 +6084,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Screen replacement, Battery change, Software issues.",
-        detailedOverview: "Tech Repair.\n\n**Margin:**\n- Screen: Buy ₹800, Bill ₹2000.\n- Accessories (Covers/Guards): 500% margin.",
+        detailedOverview: "Tech Repair.\n\nMargin:\n- Screen: Buy ₹800, Bill ₹2000.\n- Accessories (Covers/Guards): 500% margin.",
         workflowSteps: [
             "Diagnosis",
             "Estimate approval",
@@ -6118,7 +6118,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Windows installation, SSD upgrade, Hinge repair.",
-        detailedOverview: "Tech Repair.\n\n**Jobs:**\n- OS Install: ₹500.\n- SSD Upgrade: Profit ₹1000.\n- Screen replace: Profit ₹2000.",
+        detailedOverview: "Tech Repair.\n\nJobs:\n- OS Install: ₹500.\n- SSD Upgrade: Profit ₹1000.\n- Screen replace: Profit ₹2000.",
         workflowSteps: [
             "Backup Data",
             "Diagnosis",
@@ -6151,7 +6151,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Duplicate keys for bikes, cars, and houses. Computerised machine.",
-        detailedOverview: "Skilled Trade.\n\n**Rate:** ₹100 - ₹500 per key.\n- Car sensor keys: ₹2000+.\n- Emergency unlock: ₹500.",
+        detailedOverview: "Skilled Trade.\n\nRate: ₹100 - ₹500 per key.\n- Car sensor keys: ₹2000+.\n- Emergency unlock: ₹500.",
         workflowSteps: [
             "Key Profile Match",
             "Cutting on Machine",
@@ -6184,7 +6184,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Cleaning and repairing expensive Sneakers/Leather shoes.",
-        detailedOverview: "Niche Service.\n\n**Rate:** ₹300 - ₹500 per pair.\n- Sneakerheads spend big on Jordans/Yeezys.",
+        detailedOverview: "Niche Service.\n\nRate: ₹300 - ₹500 per pair.\n- Sneakerheads spend big on Jordans/Yeezys.",
         workflowSteps: [
             "Pickup",
             "Inspection",
@@ -6217,7 +6217,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹40,000 - ₹1.5 Lakhs",
         description: "Cleaning Suits, Lehengas, and Blankets. Petrol wash.",
-        detailedOverview: "Service.\n\n**Rate:** Suit ₹300, Blanket ₹400.\n- Outsourcing model: Collection center (Low invest).\n- Plant model: Machine (High invest).",
+        detailedOverview: "Service.\n\nRate: Suit ₹300, Blanket ₹400.\n- Outsourcing model: Collection center (Low invest).\n- Plant model: Machine (High invest).",
         workflowSteps: [
             "Tagging",
             "Spotting (Stain removal)",
@@ -6250,7 +6250,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Ladies tailoring and fashion design. Blouse, Kurti, Lehengas.",
-        detailedOverview: "Fashion.\n\n**Rate:** Blouse stitching ₹500 - ₹2000.\n- Fabric sales add margin.\n- Custom fit is the USP.",
+        detailedOverview: "Fashion.\n\nRate: Blouse stitching ₹500 - ₹2000.\n- Fabric sales add margin.\n- Custom fit is the USP.",
         workflowSteps: [
             "Measurement",
             "Pattern cutting",
@@ -6284,7 +6284,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Making Gates, Grills, and structural repairs. Metal fabrication.",
-        detailedOverview: "Fabrication.\n\n**Rate:** ₹80 - ₹120 per kg of iron.\n- Profit: ₹10-20 per kg.\n- Repair jobs: High margin.",
+        detailedOverview: "Fabrication.\n\nRate: ₹80 - ₹120 per kg of iron.\n- Profit: ₹10-20 per kg.\n- Repair jobs: High margin.",
         workflowSteps: [
             "Measurement",
             "Metal cutting",
@@ -6318,7 +6318,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹15,000 - ₹40,000",
         description: "Fixing flat tyres. Tubeless tyre repairs. Nitrogen filling.",
-        detailedOverview: "Auto Service.\n\n**Rate:** Puncture ₹100.\n- Mushroom patch: ₹250.\n- Second hand tyre sales.",
+        detailedOverview: "Auto Service.\n\nRate: Puncture ₹100.\n- Mushroom patch: ₹250.\n- Second hand tyre sales.",
         workflowSteps: [
             "Jack up",
             "Leak detection",
@@ -6351,7 +6351,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Foam wash, Interior cleaning, Tebflon coating.",
-        detailedOverview: "Auto Service.\n\n**Rate:**\n- Body wash: ₹300.\n- Full interior: ₹1500.\n- Ceramic coating: ₹10,000+.",
+        detailedOverview: "Auto Service.\n\nRate:\n- Body wash: ₹300.\n- Full interior: ₹1500.\n- Ceramic coating: ₹10,000+.",
         workflowSteps: [
             "Pressure rinse",
             "Foaming",
@@ -6385,7 +6385,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Servicing Two-wheelers. Oil change, Brake setting.",
-        detailedOverview: "Auto Service.\n\n**Rate:** Service charge ₹300 + Parts.\n- Oil margin: ₹50.\n- Spares margin: 20-30%.",
+        detailedOverview: "Auto Service.\n\nRate: Service charge ₹300 + Parts.\n- Oil margin: ₹50.\n- Spares margin: 20-30%.",
         workflowSteps: [
             "Job card",
             "Washing",
@@ -6418,7 +6418,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Installing Rooftop Solar Panels. Government subsidy is driving demand.",
-        detailedOverview: "Green Tech.\n\n**Rate:** ₹3 - ₹5 per watt installation charge.\n- Project: 3kW Plant = ₹1.5 Lakhs (Margin ₹20k).",
+        detailedOverview: "Green Tech.\n\nRate: ₹3 - ₹5 per watt installation charge.\n- Project: 3kW Plant = ₹1.5 Lakhs (Margin ₹20k).",
         workflowSteps: [
             "Site Survey (Shadow analysis)",
             "Structure fabrication",
@@ -6451,7 +6451,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Installing Security Cameras in shops/homes. Wiring and DVR setup.",
-        detailedOverview: "Security.\n\n**Margin:**\n- Camera: ₹200-400 profit.\n- Cable: ₹5/meter.\n- Installation: ₹300/camera.",
+        detailedOverview: "Security.\n\nMargin:\n- Camera: ₹200-400 profit.\n- Cable: ₹5/meter.\n- Installation: ₹300/camera.",
         workflowSteps: [
             "Site plan",
             "Cable laying",
@@ -6484,7 +6484,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Selling and Servicing Inverters/Batteries. Power cuts = Profit.",
-        detailedOverview: "Retail/Service.\n\n**Margin:**\n- Battery: ₹1500 - ₹3000 per unit.\n- Scrap battery buyback is profitable.",
+        detailedOverview: "Retail/Service.\n\nMargin:\n- Battery: ₹1500 - ₹3000 per unit.\n- Scrap battery buyback is profitable.",
         workflowSteps: [
             "Load calculation",
             "Sale",
@@ -6517,7 +6517,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹40,000 - ₹1.5 Lakhs",
         description: "Making Office partitions, Shop fronts, and Windows.",
-        detailedOverview: "Fabrication.\n\n**Rate:** ₹150-300 per sqft.\n- Material cost: 60%.\n- Labor: 20%.\n- Profit: 20%.",
+        detailedOverview: "Fabrication.\n\nRate: ₹150-300 per sqft.\n- Material cost: 60%.\n- Labor: 20%.\n- Profit: 20%.",
         workflowSteps: [
             "Measurement",
             "Material cutting",
@@ -6550,7 +6550,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹40,000 - ₹1.5 Lakhs",
         description: "POP/Gypsum ceiling design. Essential for modern homes/offices.",
-        detailedOverview: "Interior.\n\n**Rate:** ₹80 - ₹120 per sqft.\n- Material (Gypsum channel/board) is cheap.\n- Labor is expensive.",
+        detailedOverview: "Interior.\n\nRate: ₹80 - ₹120 per sqft.\n- Material (Gypsum channel/board) is cheap.\n- Labor is expensive.",
         workflowSteps: [
             "Level marking",
             "Channel fixation",
@@ -6583,7 +6583,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Renting DSLR/Mirrorless cameras and lenses to photographers.",
-        detailedOverview: "Rental.\n\n**Rate:**\n- Sony A7M4 Body: ₹2000/day.\n- G-Master Lens: ₹1000/day.\n- Weekend multipliers apply.",
+        detailedOverview: "Rental.\n\nRate:\n- Sony A7M4 Body: ₹2000/day.\n- G-Master Lens: ₹1000/day.\n- Weekend multipliers apply.",
         workflowSteps: [
             "ID Verification (KYC)",
             "Advance Payment",
@@ -6617,7 +6617,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹25,000 - ₹1 Lakh",
         description: "Renting Bridal Lehengas, Sherwanis, and Party wear.",
-        detailedOverview: "Rental.\n\n**Rate:**\n- Bridal Lehenga: Buy ₹20k, Rent ₹5k (per day).\n- Jewellery rental is a great upsell.",
+        detailedOverview: "Rental.\n\nRate:\n- Bridal Lehenga: Buy ₹20k, Rent ₹5k (per day).\n- Jewellery rental is a great upsell.",
         workflowSteps: [
             "Trial",
             "Booking & Deposit",
@@ -6651,7 +6651,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Diesel Generators (DG Sets) for events, construction, and power backup.",
-        detailedOverview: "Rental.\n\n**Rate:**\n- 62kVA DG: ₹3000/shift + Diesel.\n- Monthly hire to factories: ₹25,000 fixed.",
+        detailedOverview: "Rental.\n\nRate:\n- 62kVA DG: ₹3000/shift + Diesel.\n- Monthly hire to factories: ₹25,000 fixed.",
         workflowSteps: [
             "Requirement Analysis",
             "Transport & Installation",
@@ -6684,7 +6684,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹5 Lakhs",
         description: "Supplying Tables, Chairs, Pandal for weddings and functions.",
-        detailedOverview: "Rental/Service.\n\n**Order:** Small function ₹10k - ₹50k.\n- Wedding: ₹2 Lakhs+.\n- Inventory business.",
+        detailedOverview: "Rental/Service.\n\nOrder: Small function ₹10k - ₹50k.\n- Wedding: ₹2 Lakhs+.\n- Inventory business.",
         workflowSteps: [
             "Booking",
             "Labor Loading",
@@ -6718,7 +6718,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Renting Iron shuttering, Props, and Centering plates for construction.",
-        detailedOverview: "Rental.\n\n**Rate:** Charged per piece/per day.\n- 1 Plate: ₹5/day.\n- Bamboo/Pipes also rented.",
+        detailedOverview: "Rental.\n\nRate: Charged per piece/per day.\n- 1 Plate: ₹5/day.\n- Bamboo/Pipes also rented.",
         workflowSteps: [
             "Order from Contractor",
             "Counting & Dispatch",
@@ -6751,7 +6751,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "PS5, VR, and PC Gaming Cafe. Hourly charges.",
-        detailedOverview: "Entertainment.\n\n**Rate:** ₹100 - ₹200 per hour.\n- VR Gaming: ₹300/hour.\n- Snacks/Drinks: Extra margin.",
+        detailedOverview: "Entertainment.\n\nRate: ₹100 - ₹200 per hour.\n- VR Gaming: ₹300/hour.\n- Snacks/Drinks: Extra margin.",
         workflowSteps: [
             "Check-in",
             "Console Allocation",
@@ -6785,7 +6785,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹15,000 - ₹30,000",
         description: "Renting cycles near Parks, Beaches, or Tourist spots.",
-        detailedOverview: "Rental.\n\n**Rate:** ₹50 - ₹100 per hour.\n- Deposit: ID Proof + ₹500.",
+        detailedOverview: "Rental.\n\nRate: ₹50 - ₹100 per hour.\n- Deposit: ID Proof + ₹500.",
         workflowSteps: [
             "ID Deposit",
             "Cycle Selection",
@@ -6818,7 +6818,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Renting Beds, Sofas, Appliances to bachelors/expats.",
-        detailedOverview: "Rental.\n\n**Package:** 1 BHK Full Setup = ₹3000/month.\n- Long term contracts (6-11 months).",
+        detailedOverview: "Rental.\n\nPackage: 1 BHK Full Setup = ₹3000/month.\n- Long term contracts (6-11 months).",
         workflowSteps: [
             "Online Order",
             "KYC/Deposit",
@@ -6852,7 +6852,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹15,000 - ₹40,000",
         description: "Manufacturing Incense Sticks. Huge demand in religious India.",
-        detailedOverview: "Small Mfg.\n\n**Margin:** ₹10 - ₹15 per kg.\n- Manual Machine: ₹15,000.\n- Automatic: ₹75,000.",
+        detailedOverview: "Small Mfg.\n\nMargin: ₹10 - ₹15 per kg.\n- Manual Machine: ₹15,000.\n- Automatic: ₹75,000.",
         workflowSteps: [
             "Mixing Masala",
             "Dipping Sticks",
@@ -6885,7 +6885,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹10,000 - ₹50,000",
         description: "Designer, Scented, and Decorative candles.",
-        detailedOverview: "Arts/Mfg.\n\n**Profit:** 50% - 100% on designer candles.\n- Scented candles sell for ₹500+.",
+        detailedOverview: "Arts/Mfg.\n\nProfit: 50% - 100% on designer candles.\n- Scented candles sell for ₹500+.",
         workflowSteps: [
             "Melting Wax",
             "Adding Scent/Color",
@@ -6918,7 +6918,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Disposable plates and bowls for parties/street food.",
-        detailedOverview: "Small Mfg.\n\n**Margin:** ₹5 - ₹10 per kg of paper.\n- Automatic machine works with hydraulic pressure.",
+        detailedOverview: "Small Mfg.\n\nMargin: ₹5 - ₹10 per kg of paper.\n- Automatic machine works with hydraulic pressure.",
         workflowSteps: [
             "Roll Loading",
             "Die Cutting/Pressing",
@@ -6952,7 +6952,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹25,000 - ₹60,000",
         description: "Making Kapoor tablets for pooja. High consumption.",
-        detailedOverview: "Small Mfg.\n\n**Process:** Camphor powder -> Tablet Press -> Packing.\n- Margin: ₹20-30/kg.",
+        detailedOverview: "Small Mfg.\n\nProcess: Camphor powder -> Tablet Press -> Packing.\n- Margin: ₹20-30/kg.",
         workflowSteps: [
             "Powder Feeding",
             "Compression",
@@ -6985,7 +6985,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹10,000 - ₹30,000",
         description: "Dustless chalk for schools. Simple mold based process.",
-        detailedOverview: "Small Mfg.\n\n**Market:** Schools, Tuition centers.\n- Very low investment entry.",
+        detailedOverview: "Small Mfg.\n\nMarket: Schools, Tuition centers.\n- Very low investment entry.",
         workflowSteps: [
             "Plaster of Paris Mixing",
             "Pouring in Mold",
@@ -7018,7 +7018,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹25,000 - ₹60,000",
         description: "Flour Mill. Grinding Wheat, Spices, and Grains.",
-        detailedOverview: "Service/Retail.\n\n**Rate:** ₹5-8 per kg grinding charge.\n- Retail: Sell fresh Atta at premium.",
+        detailedOverview: "Service/Retail.\n\nRate: ₹5-8 per kg grinding charge.\n- Retail: Sell fresh Atta at premium.",
         workflowSteps: [
             "Cleaning Grain",
             "Grinding",
@@ -7051,7 +7051,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Wooden Ghani (Kachhi Ghani) Oil extraction. Health conscious market.",
-        detailedOverview: "Mfg/Retail.\n\n**Margin:** High.\n- Peanut Oil: Sell ₹350/L.\n- Yield: 40-50%.",
+        detailedOverview: "Mfg/Retail.\n\nMargin: High.\n- Peanut Oil: Sell ₹350/L.\n- Yield: 40-50%.",
         workflowSteps: [
             "Seed Cleaning",
             "Wooden Press Extraction",
@@ -7084,7 +7084,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Growing Oyster/Button mushrooms in controlled environment.",
-        detailedOverview: "Agri.\n\n**Yield:** 1kg spawn -> 10kg mushrooms.\n- Oyster: Easy (25 days).\n- Button: High demand (AC needed).",
+        detailedOverview: "Agri.\n\nYield: 1kg spawn -> 10kg mushrooms.\n- Oyster: Easy (25 days).\n- Button: High demand (AC needed).",
         workflowSteps: [
             "Substrate prep (Straw)",
             "Sterilization",
@@ -7118,7 +7118,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Soil-less farming. Growing exotic veggies (Lettuce, Basil) in water.",
-        detailedOverview: "Agri-Tech.\n\n**Product:** Residue-free greens.\n- Sell to: 5 Star hotels, Gourmet stores.",
+        detailedOverview: "Agri-Tech.\n\nProduct: Residue-free greens.\n- Sell to: 5 Star hotels, Gourmet stores.",
         workflowSteps: [
             "Seedling Germination",
             "Transplant to NFT pipes",
@@ -7151,7 +7151,7 @@ export const businessIdeas = [
         investmentAmount: 150000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "High density fish farming in tanks using bacteria tech.",
-        detailedOverview: "Aquaculture.\n\n**Tank:** 10,000 Liters.\n- Fish: Tilapia/Singhi.\n- Biofloc consumes waste.",
+        detailedOverview: "Aquaculture.\n\nTank: 10,000 Liters.\n- Fish: Tilapia/Singhi.\n- Biofloc consumes waste.",
         workflowSteps: [
             "Tank Setup",
             "Water Preparation (Probiotics)",
@@ -7185,7 +7185,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Rearing goats for meat/milk. 'ATM of the poor'.",
-        detailedOverview: "Livestock.\n\n**Breeds:** Sirohi, Barbari, Black Bengal.\n- Eid market: Double price.",
+        detailedOverview: "Livestock.\n\nBreeds: Sirohi, Barbari, Black Bengal.\n- Eid market: Double price.",
         workflowSteps: [
             "Shed Construction (Raised)",
             "Buying Stock (10+1)",
@@ -7218,7 +7218,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Broiler (Meat) or Layer (Egg) farming. Contract farming.",
-        detailedOverview: "Livestock.\n\n**Contract:** Company provides chick/feed, you provide space/labor.\n- Rate: ₹5-10 per kg growing charge.",
+        detailedOverview: "Livestock.\n\nContract: Company provides chick/feed, you provide space/labor.\n- Rate: ₹5-10 per kg growing charge.",
         workflowSteps: [
             "Shed Cleaning",
             "Chick Arrival",
@@ -7251,7 +7251,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Delivery-only restaurant focusing on high-margin Biryani.",
-        detailedOverview: "Food Tech.\n\n**Order Value:** ₹300 - ₹800.\n- No dining space needed.\n- High dependency on Swiggy/Zomato.",
+        detailedOverview: "Food Tech.\n\nOrder Value: ₹300 - ₹800.\n- No dining space needed.\n- High dependency on Swiggy/Zomato.",
         workflowSteps: [
             "Menu Engineering",
             "Kitchen Setup",
@@ -7285,7 +7285,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹60,000 - ₹2 Lakhs",
         description: "Gourmet or Mass-market Pizza delivery brand.",
-        detailedOverview: "Food Tech.\n\n**Margin:** High (Pizza has low food cost).\n- Dough & Cheese mastery is key.",
+        detailedOverview: "Food Tech.\n\nMargin: High (Pizza has low food cost).\n- Dough & Cheese mastery is key.",
         workflowSteps: [
             "Dough Prep",
             "Topping Setup",
@@ -7319,7 +7319,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Subscription-based salads for office goers and fitness freaks.",
-        detailedOverview: "Health Food.\n\n**Model:** Monthly subscription (20 meals).\n- Price: ₹3000 - ₹6000/month.",
+        detailedOverview: "Health Food.\n\nModel: Monthly subscription (20 meals).\n- Price: ₹3000 - ₹6000/month.",
         workflowSteps: [
             "Sourcing Fresh Veggies",
             "Washing/Cutting",
@@ -7353,7 +7353,7 @@ export const businessIdeas = [
         investmentAmount: 400000,
         monthlyIncome: "₹40,000 - ₹1.5 Lakhs",
         description: "Cold-pressed juices, Smoothies, and Shakes kiosk.",
-        detailedOverview: "Beverage.\n\n**USP:** No added sugar/Ice.\n- Margin: 60%.\n- Location: Malls or High streets.",
+        detailedOverview: "Beverage.\n\nUSP: No added sugar/Ice.\n- Margin: 60%.\n- Location: Malls or High streets.",
         workflowSteps: [
             "Fruit Selection",
             "Washing/Peeling",
@@ -7387,7 +7387,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Specialized Momos stall (Steamed, Fried, Tandoori).",
-        detailedOverview: "QSR/Street Food.\n\n**Volume:** Sell 50+ plates daily.\n- Variety: Wheat, Paneer, Schezwan.",
+        detailedOverview: "QSR/Street Food.\n\nVolume: Sell 50+ plates daily.\n- Variety: Wheat, Paneer, Schezwan.",
         workflowSteps: [
             "Central Kitchen Prep",
             "Transport to Stall",
@@ -7421,7 +7421,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Belgian Waffles on a stick. Dessert station.",
-        detailedOverview: "Dessert.\n\n**Format:** Tiny kiosk (50 sqft).\n- Product: Waffle sandwich, Pancakes.\n- Smell attracts customers.",
+        detailedOverview: "Dessert.\n\nFormat: Tiny kiosk (50 sqft).\n- Product: Waffle sandwich, Pancakes.\n- Smell attracts customers.",
         workflowSteps: [
             "Batter Pouring",
             "Baking (Iron)",
@@ -7455,7 +7455,7 @@ export const businessIdeas = [
         investmentAmount: 250000,
         monthlyIncome: "₹30,000 - ₹70,000",
         description: "Live Tawa Ice Cream (Stir-fried). Theatrics included.",
-        detailedOverview: "Dessert.\n\n**Highlight:** Making it live is the show.\n- Flavors: Oreo, Fruit, Pan.",
+        detailedOverview: "Dessert.\n\nHighlight: Making it live is the show.\n- Flavors: Oreo, Fruit, Pan.",
         workflowSteps: [
             "Pouring Liquid Base",
             "Chopping Fruits/Add-ons",
@@ -7489,7 +7489,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "The 'Vegetarian Meat'. Tandoori Soya Chaap delicacies.",
-        detailedOverview: "QSR/Street Food.\n\n**Market:** North India vegetarian protein.\n- Items: Malai Chaap, Masala Chaap, Rolls.",
+        detailedOverview: "QSR/Street Food.\n\nMarket: North India vegetarian protein.\n- Items: Malai Chaap, Masala Chaap, Rolls.",
         workflowSteps: [
             "Thawing Chaap",
             "Marination",
@@ -7523,7 +7523,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Standing Darshini style Idli/Dosa joint. Quick service.",
-        detailedOverview: "Restaurant.\n\n**Volume:** High turnover.\n- Menu: Idli, Vada, Dosa, Coffee.\n- Price: Affordable.",
+        detailedOverview: "Restaurant.\n\nVolume: High turnover.\n- Menu: Idli, Vada, Dosa, Coffee.\n- Price: Affordable.",
         workflowSteps: [
             "Batter Fermentation",
             "Chutney/Sambar Prep (Early Morning)",
@@ -7557,7 +7557,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Branded Vada Pav outlet (e.g., Goli style).",
-        detailedOverview: "QSR.\n\n**Product:** Fried potato patty slider.\n- Innovations: Cheese Vada Pav, Schezwan Vada Pav.",
+        detailedOverview: "QSR.\n\nProduct: Fried potato patty slider.\n- Innovations: Cheese Vada Pav, Schezwan Vada Pav.",
         workflowSteps: [
             "Frying Patty",
             "Bun Toasting",
@@ -7591,7 +7591,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹10,000 - ₹40,000",
         description: "Traditional Achar business. Selling via WhatsApp/Instagram.",
-        detailedOverview: "Home Business.\n\n**USP:** No preservatives, Grandma's recipe.\n- Varieties: Mango, Lemon, Chilli, Chicken Pickle.",
+        detailedOverview: "Home Business.\n\nUSP: No preservatives, Grandma's recipe.\n- Varieties: Mango, Lemon, Chilli, Chicken Pickle.",
         workflowSteps: [
             "Sourcing Raw Mangoes (Seasonal)",
             "Cutting/Drying",
@@ -7624,7 +7624,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹15,000 - ₹40,000",
         description: "Buying whole spices, cleaning, and packing in small pouches.",
-        detailedOverview: "Trading/Pkg.\n\n**Market:** Every household.\n- Buy 50kg sacks -> Sell 50g pouches.",
+        detailedOverview: "Trading/Pkg.\n\nMarket: Every household.\n- Buy 50kg sacks -> Sell 50g pouches.",
         workflowSteps: [
             "Bulk Purchase (Khari Baoli)",
             "Cleaning/Grading",
@@ -7658,7 +7658,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Healthy, diet-conscious home cooked meals for professionals.",
-        detailedOverview: "Service.\n\n**Differentiation:** Not oily/spicy. Salad included.\n- Price: ₹120 - ₹150 per meal.",
+        detailedOverview: "Service.\n\nDifferentiation: Not oily/spicy. Salad included.\n- Price: ₹120 - ₹150 per meal.",
         workflowSteps: [
             "Menu Planning (Weekly)",
             "Grocery Shopping",
@@ -7692,7 +7692,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Supply lunch/snacks to small offices or events.",
-        detailedOverview: "B2B Service.\n\n**Scale:** Bulk orders (min 20 pax).\n- Buffet setup or Box meals.",
+        detailedOverview: "B2B Service.\n\nScale: Bulk orders (min 20 pax).\n- Buffet setup or Box meals.",
         workflowSteps: [
             "Contract Signing",
             "Bulk Cooking",
@@ -7725,7 +7725,7 @@ export const businessIdeas = [
         investmentAmount: 800000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Mobile kitchen selling specialized fast food.",
-        detailedOverview: "Food.\n\n**Mobility:** Can move to events/colleges.\n- Theme: Chinese, Mexican, or BBQ.",
+        detailedOverview: "Food.\n\nMobility: Can move to events/colleges.\n- Theme: Chinese, Mexican, or BBQ.",
         workflowSteps: [
             "Prep at Base Kitchen",
             "Drive to Location",
@@ -7759,7 +7759,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Selling fresh tender coconut or bottled coconut water.",
-        detailedOverview: "Retail/Kiosk.\n\n**Margin:** Buy ₹25 -> Sell ₹60.\n- Bottle: Premium hygiene version.",
+        detailedOverview: "Retail/Kiosk.\n\nMargin: Buy ₹25 -> Sell ₹60.\n- Bottle: Premium hygiene version.",
         workflowSteps: [
             "Sourcing (Daily Arrival)",
             "Chilling (If bottled)",
@@ -7793,7 +7793,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Making and packing cooking paste. Huge restaurant demand.",
-        detailedOverview: "Small Mfg.\n\n**Target:** B2B (Hotels) & Retail.\n- Shelf life optimization is key.",
+        detailedOverview: "Small Mfg.\n\nTarget: B2B (Hotels) & Retail.\n- Shelf life optimization is key.",
         workflowSteps: [
             "Peeling System",
             "Washing",
@@ -7826,7 +7826,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹15,000 - ₹40,000",
         description: "Traditional or Machine made Papad/Fryums.",
-        detailedOverview: "Small Mfg.\n\n**Women's Coop:** Often done as a collective.\n- Dried in sun or dryer.",
+        detailedOverview: "Small Mfg.\n\nWomen's Coop: Often done as a collective.\n- Dried in sun or dryer.",
         workflowSteps: [
             "Dough Kneading",
             "Rolling (Machine/Hand)",
@@ -7860,7 +7860,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Buying fresh peas in winter, processing, and freezing for summer.",
-        detailedOverview: "Food Processing.\n\n**Arbitrage:** Buy ₹20/kg -> Sell ₹100/kg (Off season).\n- Needs Cold Storage.",
+        detailedOverview: "Food Processing.\n\nArbitrage: Buy ₹20/kg -> Sell ₹100/kg (Off season).\n- Needs Cold Storage.",
         workflowSteps: [
             "Sourcing (Winter)",
             "Shelling (Peeling)",
@@ -7894,7 +7894,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Premium Paan parlor (Fire Paan, Chocolate Paan). Tobacco-free focus.",
-        detailedOverview: "Retail.\n\n**Vibe:** Family friendly.\n- Rate: ₹50 - ₹100 per paan.\n- Also sell Mocktails/Hookah flavors.",
+        detailedOverview: "Retail.\n\nVibe: Family friendly.\n- Rate: ₹50 - ₹100 per paan.\n- Also sell Mocktails/Hookah flavors.",
         workflowSteps: [
             "Leaf Cleaning",
             "Ingredient Prep",
@@ -7927,7 +7927,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "One stop shop for Pet Food, Accessories, and Grooming.",
-        detailedOverview: "Retail/Service.\n\n**Market:** Huge post-covid growth.\n- Margins: Food (15%), Accessories (50%).",
+        detailedOverview: "Retail/Service.\n\nMarket: Huge post-covid growth.\n- Margins: Food (15%), Accessories (50%).",
         workflowSteps: [
             "Stocking Premium Food",
             "Displaying Toys/Leashes",
@@ -7961,7 +7961,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Selling ornamental fish, tanks, and maintenance services.",
-        detailedOverview: "Retail.\n\n**Services:** Tank Setup (₹5k - ₹50k).\n- Fish margin: 100-200%.\n- Recurring: Fish food/Cleaning.",
+        detailedOverview: "Retail.\n\nServices: Tank Setup (₹5k - ₹50k).\n- Fish margin: 100-200%.\n- Recurring: Fish food/Cleaning.",
         workflowSteps: [
             "Fish Acclimatization",
             "Tank Display Maintenance",
@@ -7995,7 +7995,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Urban gardening store. Indoor plants, pots, and seeds.",
-        detailedOverview: "Retail/Agri.\n\n**Trend:** Home decor with Snake plants/Monsteras.\n- Pots margin: 40-50%.",
+        detailedOverview: "Retail/Agri.\n\nTrend: Home decor with Snake plants/Monsteras.\n- Pots margin: 40-50%.",
         workflowSteps: [
             "Watering/Pruning",
             "Propagating Saplings",
@@ -8029,7 +8029,7 @@ export const businessIdeas = [
         investmentAmount: 1000000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Selling Cricket bats, Badminton gear, Jerseys, and Trophies.",
-        detailedOverview: "Retail.\n\n**Category:** Equipment + Wearables.\n- Bat repair/Stringing service adds footfall.",
+        detailedOverview: "Retail.\n\nCategory: Equipment + Wearables.\n- Bat repair/Stringing service adds footfall.",
         workflowSteps: [
             "Inventory Mgmt",
             "Customer Trial",
@@ -8063,7 +8063,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Certified Organic Grocery. Pulses, Ghee, Millets.",
-        detailedOverview: "Retail.\n\n**Premium:** Markup 30-50% vs regular grocery.\n- Trust is the product.",
+        detailedOverview: "Retail.\n\nPremium: Markup 30-50% vs regular grocery.\n- Trust is the product.",
         workflowSteps: [
             "Farmer Direct Sourcing",
             "Quality Check",
@@ -8097,7 +8097,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Discount variety store. 'Anything for ₹99'.",
-        detailedOverview: "Retail.\n\n**Volume Game:** Low margin per item, high basket size.\n- Items: Plastics, Gifts, Kitchen tools.",
+        detailedOverview: "Retail.\n\nVolume Game: Low margin per item, high basket size.\n- Items: Plastics, Gifts, Kitchen tools.",
         workflowSteps: [
             "Bulk Sourcing (Delhi/China)",
             "Bin Display",
@@ -8131,7 +8131,7 @@ export const businessIdeas = [
         investmentAmount: 1500000,
         monthlyIncome: "₹1 Lakh - ₹3 Lakhs",
         description: "Sub-dealership for Electric Vehicles (Okinawa, Hero, etc.).",
-        detailedOverview: "Auto Retail.\n\n**Revenue:** Sales margin + Service + Spares.\n- Future proof business.",
+        detailedOverview: "Auto Retail.\n\nRevenue: Sales margin + Service + Spares.\n- Future proof business.",
         workflowSteps: [
             "Lead Generation",
             "Test Drives",
@@ -8165,7 +8165,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹25,000 - ₹60,000",
         description: "Helmets, Gloves, Jackets, and Industrial safety gear.",
-        detailedOverview: "Retail.\n\n**Driver:** Traffic rules enforcement.\n- Industrial: Safety shoes, Vests.",
+        detailedOverview: "Retail.\n\nDriver: Traffic rules enforcement.\n- Industrial: Safety shoes, Vests.",
         workflowSteps: [
             "Sizing/Fitting",
             "Suggesting Brands",
@@ -8198,7 +8198,7 @@ export const businessIdeas = [
         investmentAmount: 1000000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Seat covers, Audio systems, Mats, and Modification.",
-        detailedOverview: "Auto Retail.\n\n**High Margin:** 50% on labor/accessories.\n- Android screens are hot sellers.",
+        detailedOverview: "Auto Retail.\n\nHigh Margin: 50% on labor/accessories.\n- Android screens are hot sellers.",
         workflowSteps: [
             "Vehicle Inspection",
             "Product Demo",
@@ -8232,7 +8232,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Two-wheeler spares. Oil, Tires, Brakes, Chains.",
-        detailedOverview: "Retail.\n\n**Customers:** Mechanics and DIY users.\n- Genuine vs Compatible parts mix.",
+        detailedOverview: "Retail.\n\nCustomers: Mechanics and DIY users.\n- Genuine vs Compatible parts mix.",
         workflowSteps: [
             "Counter Sales",
             "Parts Retrieval",
@@ -8265,7 +8265,7 @@ export const businessIdeas = [
         investmentAmount: 800000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Paints, Tools, Plumbing, and Construction material.",
-        detailedOverview: "Retail.\n\n**Mix:** Paints (Low margin, High vol) + Fittings (High margin).\n- Paint tinting machine is essential.",
+        detailedOverview: "Retail.\n\nMix: Paints (Low margin, High vol) + Fittings (High margin).\n- Paint tinting machine is essential.",
         workflowSteps: [
             "Counter Consultation",
             "Paint Mixing",
@@ -8299,7 +8299,7 @@ export const businessIdeas = [
         investmentAmount: 1500000,
         monthlyIncome: "₹1 Lakh - ₹3 Lakhs",
         description: "Bathroom fittings, Floor tiles, and Sinks showroom.",
-        detailedOverview: "Retail.\n\n**Visual:** Customers need to see/touch.\n- Shipping directly from company to site.",
+        detailedOverview: "Retail.\n\nVisual: Customers need to see/touch.\n- Shipping directly from company to site.",
         workflowSteps: [
             "Showroom Walkthrough",
             "Design Consultation",
@@ -8333,7 +8333,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Lights, Fans, Switches, and Wires.",
-        detailedOverview: "Retail.\n\n**LED:** High margin in fancy lights.\n- Regular items: Switches/Wires (Volume).",
+        detailedOverview: "Retail.\n\nLED: High margin in fancy lights.\n- Regular items: Switches/Wires (Volume).",
         workflowSteps: [
             "Testing Bulbs",
             "Cutting Wire lengths",
@@ -8367,7 +8367,7 @@ export const businessIdeas = [
         investmentAmount: 600000,
         monthlyIncome: "₹30,000 - ₹70,000",
         description: "Utensils, Cookers, Mixies, and Dinner sets.",
-        detailedOverview: "Retail.\n\n**Steel:** Sold by weight.\n- Appliances: Sold on MRP discount.\n- Festival/Wedding gifting hub.",
+        detailedOverview: "Retail.\n\nSteel: Sold by weight.\n- Appliances: Sold on MRP discount.\n- Festival/Wedding gifting hub.",
         workflowSteps: [
             "Display Mgmt",
             "Demo of Appliances",
@@ -8400,7 +8400,7 @@ export const businessIdeas = [
         investmentAmount: 400000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "STEM toys, Puzzles, Board games. Parenting focus.",
-        detailedOverview: "Retail.\n\n**Niche:** Not cheap plastic toys.\n- Focus: Montessori, Lego, Science kits.",
+        detailedOverview: "Retail.\n\nNiche: Not cheap plastic toys.\n- Focus: Montessori, Lego, Science kits.",
         workflowSteps: [
             "Demo to Kids",
             "Explaining Benefits to Parents",
@@ -8434,7 +8434,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹25,000 - ₹60,000",
         description: "Cards, Mugs, Soft toys, Customized gifts.",
-        detailedOverview: "Retail.\n\n**Customization:** Printing mugs/pillows doubles the value.\n- Archies style store.",
+        detailedOverview: "Retail.\n\nCustomization: Printing mugs/pillows doubles the value.\n- Archies style store.",
         workflowSteps: [
             "Design Selection",
             "Printing (Sublimation)",
@@ -8468,7 +8468,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Covers, Screen Guards, Chargers, Earbuds.",
-        detailedOverview: "Retail.\n\n**Margin:** Insene (500%).\n- Guard: Buy ₹10 -> Sell ₹100.\n- Cover: Buy ₹30 -> Sell ₹200.",
+        detailedOverview: "Retail.\n\nMargin: Insene (500%).\n- Guard: Buy ₹10 -> Sell ₹100.\n- Cover: Buy ₹30 -> Sell ₹200.",
         workflowSteps: [
             "Applying Screen Guard",
             "Showcasing Covers",
@@ -8502,7 +8502,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Buying old corporate laptops, upgrading, and selling.",
-        detailedOverview: "Retail/Trading.\n\n**Value Add:** Cleaning + SSD + RAM Upgrade.\n- Buy Thinkpad ₹10k -> Sell ₹20k.",
+        detailedOverview: "Retail/Trading.\n\nValue Add: Cleaning + SSD + RAM Upgrade.\n- Buy Thinkpad ₹10k -> Sell ₹20k.",
         workflowSteps: [
             "Procurement (Bulk)",
             "Testing/Cleaning",
@@ -8536,7 +8536,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Sales and Installation of Cameras, Biometrics, and Alarms.",
-        detailedOverview: "Service/Retail.\n\n**Revenue:** Hardware margin + Installation charges.\n- AMC for societies.",
+        detailedOverview: "Service/Retail.\n\nRevenue: Hardware margin + Installation charges.\n- AMC for societies.",
         workflowSteps: [
             "Site Survey",
             "Quotation",
@@ -8569,7 +8569,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Rooftop Solar installation agency.",
-        detailedOverview: "EPC/Retail.\n\n**Ticket Size:** ₹1.5 Lakhs (3kW).\n- Subsidy handling is key service.",
+        detailedOverview: "EPC/Retail.\n\nTicket Size: ₹1.5 Lakhs (3kW).\n- Subsidy handling is key service.",
         workflowSteps: [
             "Roof Inspection",
             "Shadow Analysis",
@@ -8603,7 +8603,7 @@ export const businessIdeas = [
         investmentAmount: 1500000,
         monthlyIncome: "₹1 Lakh - ₹3 Lakhs",
         description: "Fitness center with Cardio, Weights, and CrossFit.",
-        detailedOverview: "Service.\n\n**Revenue:** Memberships (Quarterly/Yearly).\n- Personal Training is the profit skimmer.",
+        detailedOverview: "Service.\n\nRevenue: Memberships (Quarterly/Yearly).\n- Personal Training is the profit skimmer.",
         workflowSteps: [
             "Morning Opening (5 AM)",
             "Equipment Checks",
@@ -8637,7 +8637,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Holistic wellness center. Yoga, Meditation, and Healing.",
-        detailedOverview: "Service.\n\n**Format:** Group classes (Max 15).\n- Per student: ₹1500-2500/month.",
+        detailedOverview: "Service.\n\nFormat: Group classes (Max 15).\n- Per student: ₹1500-2500/month.",
         workflowSteps: [
             "Class Schedule Planning",
             "Studio Info Prep",
@@ -8671,7 +8671,7 @@ export const businessIdeas = [
         investmentAmount: 400000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Zumba, Hip-hop, and Bollywood dance classes.",
-        detailedOverview: "Service.\n\n**Vibe:** High energy.\n- Kids batches (Evening) + Zumba (Morning).",
+        detailedOverview: "Service.\n\nVibe: High energy.\n- Kids batches (Evening) + Zumba (Morning).",
         workflowSteps: [
             "Choreography Prep",
             "Class Management",
@@ -8705,7 +8705,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Rehab center for pain relief, sports injury, and post-surgery.",
-        detailedOverview: "Medical Service.\n\n**Rate:** ₹400 - ₹800 per session.\n- Machines: IFT, Ultrasound, Traction.",
+        detailedOverview: "Medical Service.\n\nRate: ₹400 - ₹800 per session.\n- Machines: IFT, Ultrasound, Traction.",
         workflowSteps: [
             "Patient Assessment",
             "Therapy Plan",
@@ -8739,7 +8739,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹70,000",
         description: "Sample collection center for big labs (Dr. Lal, Thyrocare).",
-        detailedOverview: "Service/Franchise.\n\n**Role:** Phlebotomy (Drawing blood).\n- Commission: 20-30% on tests.",
+        detailedOverview: "Service/Franchise.\n\nRole: Phlebotomy (Drawing blood).\n- Commission: 20-30% on tests.",
         workflowSteps: [
             "Patient Entry",
             "Sample Collection",
@@ -8773,7 +8773,7 @@ export const businessIdeas = [
         investmentAmount: 800000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Medical shop selling medicines, wellness products, and FMCG.",
-        detailedOverview: "Retail.\n\n**Margins:** Generics (high), Branded (15-20%).\n- FMCG/Cosmetics add profit.",
+        detailedOverview: "Retail.\n\nMargins: Generics (high), Branded (15-20%).\n- FMCG/Cosmetics add profit.",
         workflowSteps: [
             "Prescription Check",
             "Consultation (Pharmacist)",
@@ -8807,7 +8807,7 @@ export const businessIdeas = [
         investmentAmount: 1000000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Hair, Skin, and Grooming for Men & Women.",
-        detailedOverview: "Service.\n\n**Ticket Size:** Men ₹300, Women ₹1000+.\n- Services: Hair color, Keratin, Facials.",
+        detailedOverview: "Service.\n\nTicket Size: Men ₹300, Women ₹1000+.\n- Services: Hair color, Keratin, Facials.",
         workflowSteps: [
             "Appointment",
             "Consultation",
@@ -8841,7 +8841,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹15,000 - ₹40,000",
         description: "Ladies beauty services from home or visits.",
-        detailedOverview: "Service.\n\n**Services:** Threading, Waxing, Facial.\n- Very low overheads.",
+        detailedOverview: "Service.\n\nServices: Threading, Waxing, Facial.\n- Very low overheads.",
         workflowSteps: [
             "Appointment",
             "Setup (Portable kit)",
@@ -8875,7 +8875,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Men's grooming studio. Beard styling, Facials.",
-        detailedOverview: "Service.\n\n**Upgrade:** AC, Music, Good chair = ₹150 haircut (vs ₹50).\n- Beard spa is popular.",
+        detailedOverview: "Service.\n\nUpgrade: AC, Music, Good chair = ₹150 haircut (vs ₹50).\n- Beard spa is popular.",
         workflowSteps: [
             "Waiting/Token",
             "Consultation",
@@ -8909,7 +8909,7 @@ export const businessIdeas = [
         investmentAmount: 1500000,
         monthlyIncome: "₹1 Lakh - ₹4 Lakhs",
         description: "Relaxation massage, Thai therapy, and Steam bath.",
-        detailedOverview: "Service.\n\n**Yield:** High per hour value (₹1500+).\n- Location: Hotels/Posh areas.",
+        detailedOverview: "Service.\n\nYield: High per hour value (₹1500+).\n- Location: Hotels/Posh areas.",
         workflowSteps: [
             "Booking",
             "Therapist Assignment",
@@ -8943,7 +8943,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Weight loss/gain diet plans. Clinical nutrition.",
-        detailedOverview: "Service.\n\n**Product:** Knowledge.\n- Monthly plan: ₹2000 - ₹5000.\n- Online consultation works well.",
+        detailedOverview: "Service.\n\nProduct: Knowledge.\n- Monthly plan: ₹2000 - ₹5000.\n- Online consultation works well.",
         workflowSteps: [
             "Body Analysis (BMI)",
             "History Taking",
@@ -8976,7 +8976,7 @@ export const businessIdeas = [
         investmentAmount: 1000000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Eye testing and selling Spectacles/Sunglasses.",
-        detailedOverview: "Retail/Medical.\n\n**Margins:** Frames (300%), Lenses (100%).\n- Styles change like fashion.",
+        detailedOverview: "Retail/Medical.\n\nMargins: Frames (300%), Lenses (100%).\n- Styles change like fashion.",
         workflowSteps: [
             "Eye Testing (Optometrist)",
             "Frame Selection",
@@ -9010,7 +9010,7 @@ export const businessIdeas = [
         investmentAmount: 1500000,
         monthlyIncome: "₹1 Lakh - ₹5 Lakhs",
         description: "Dentist practice. Root canals, Implants, Cleaning.",
-        detailedOverview: "Medical.\n\n**Invest:** Dental Chair is the main asset.\n- Implants are high revenue procedures.",
+        detailedOverview: "Medical.\n\nInvest: Dental Chair is the main asset.\n- Implants are high revenue procedures.",
         workflowSteps: [
             "Diagnosis/X-Ray",
             "Treatment Plan",
@@ -9044,7 +9044,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Selling Patanjali, Dabur, and Herbal medicines.",
-        detailedOverview: "Retail.\n\n**Trend:** Natural healing.\n- Doctor consultation increases sales.",
+        detailedOverview: "Retail.\n\nTrend: Natural healing.\n- Doctor consultation increases sales.",
         workflowSteps: [
             "Stock Check",
             "Customer Query",
@@ -9078,7 +9078,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Specialized Nail Extensions and Gel Polish studio.",
-        detailedOverview: "Beauty.\n\n**Margin:** Material cost ₹100 -> Service ₹1500.\n- Highly Instagrammable.",
+        detailedOverview: "Beauty.\n\nMargin: Material cost ₹100 -> Service ₹1500.\n- Highly Instagrammable.",
         workflowSteps: [
             "Prep/Buffing",
             "Extension Application",
@@ -9112,7 +9112,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹3 Lakhs",
         description: "Bridal and Party Makeup studio + Academy.",
-        detailedOverview: "Service/Education.\n\n**Bridal:** Charge ₹15k - ₹50k per bride.\n- Teaching earns more than service.",
+        detailedOverview: "Service/Education.\n\nBridal: Charge ₹15k - ₹50k per bride.\n- Teaching earns more than service.",
         workflowSteps: [
             "Trial Session",
             "Skin Prep",
@@ -9146,7 +9146,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹40,000 - ₹1.5 Lakhs",
         description: "Permanent Tattoos and Piercings.",
-        detailedOverview: "Art/Service.\n\n**Rate:** ₹500 - ₹1000 per square inch.\n- Needs high artistic skill.",
+        detailedOverview: "Art/Service.\n\nRate: ₹500 - ₹1000 per square inch.\n- Needs high artistic skill.",
         workflowSteps: [
             "Consultation/Design",
             "Stencil Placement",
@@ -9180,7 +9180,7 @@ export const businessIdeas = [
         investmentAmount: 2000000,
         monthlyIncome: "₹2 Lakhs - ₹5 Lakhs",
         description: "Dermatology and Laser center (Hair removal, Acne).",
-        detailedOverview: "Medical.\n\n**Machines:** Laser hair removal is a cash cow.\n- PRP/Botox are high margin.",
+        detailedOverview: "Medical.\n\nMachines: Laser hair removal is a cash cow.\n- PRP/Botox are high margin.",
         workflowSteps: [
             "Consultation (Doctor)",
             "Treatment Plan",
@@ -9214,7 +9214,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Home nursing and companionship for seniors.",
-        detailedOverview: "Service/Aggregator.\n\n**Need:** Kids abroad, parents alone.\n- Services: Medical check, Grooming, Chats.",
+        detailedOverview: "Service/Aggregator.\n\nNeed: Kids abroad, parents alone.\n- Services: Medical check, Grooming, Chats.",
         workflowSteps: [
             "Client Assessment",
             "Staff Assignment (Nurse/Attendant)",
@@ -9247,7 +9247,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Day care for working parents' children.",
-        detailedOverview: "Service.\n\n**Trust:** Safety is #1.\n- Activities: Nap, Play, Snack, Learning.",
+        detailedOverview: "Service.\n\nTrust: Safety is #1.\n- Activities: Nap, Play, Snack, Learning.",
         workflowSteps: [
             "Morning Drop-off",
             "Activity Time",
@@ -9281,7 +9281,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Foam wash, Detailing, and Interior cleaning station.",
-        detailedOverview: "Service.\n\n**Rate:** ₹300 - ₹500 per car.\n- Add-ons: Teflon coating, dry clean.",
+        detailedOverview: "Service.\n\nRate: ₹300 - ₹500 per car.\n- Add-ons: Teflon coating, dry clean.",
         workflowSteps: [
             "Vehicle Intake",
             "Underbody Wash",
@@ -9315,7 +9315,7 @@ export const businessIdeas = [
         investmentAmount: 1000000,
         monthlyIncome: "₹60,000 - ₹2 Lakhs",
         description: "Computerized Alignment and Balancing center.",
-        detailedOverview: "Service.\n\n**Need:** Every 5000km.\n- Rate: ₹500 - ₹1000 (package).",
+        detailedOverview: "Service.\n\nNeed: Every 5000km.\n- Rate: ₹500 - ₹1000 (package).",
         workflowSteps: [
             "Test Drive",
             "Sensor Setup",
@@ -9349,7 +9349,7 @@ export const businessIdeas = [
         investmentAmount: 1200000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Multi-brand tyre showroom (MRF, Apollo, Michelin).",
-        detailedOverview: "Retail.\n\n**Margin:** 10-15% per tyre.\n- Volume game.\n- Service revenue (Changing/Alignment) is extra.",
+        detailedOverview: "Retail.\n\nMargin: 10-15% per tyre.\n- Volume game.\n- Service revenue (Changing/Alignment) is extra.",
         workflowSteps: [
             "Inspection",
             "Brand Selection",
@@ -9383,7 +9383,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Sales of Car/Bike batteries and Home Inverters.",
-        detailedOverview: "Retail.\n\n**Scrap:** Old battery exchange is huge value.\n- Margin: New (10%) + Scrap (20%).",
+        detailedOverview: "Retail.\n\nScrap: Old battery exchange is huge value.\n- Margin: New (10%) + Scrap (20%).",
         workflowSteps: [
             "Testing Old Battery",
             "Recommendation",
@@ -9417,7 +9417,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Booking center for DTDC, Delhivery, or Trackon.",
-        detailedOverview: "Service.\n\n**Commission:** 10-20% on booking.\n- Delivery load gives extra income.",
+        detailedOverview: "Service.\n\nCommission: 10-20% on booking.\n- Delivery load gives extra income.",
         workflowSteps: [
             "Parcel Weighing",
             "Packing Check",
@@ -9451,7 +9451,7 @@ export const businessIdeas = [
         investmentAmount: 400000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "House shifting services. Local and Inter-city.",
-        detailedOverview: "Service.\n\n**Asset Light:** Rent truck when needed.\n- Own: Packing material & Labor.",
+        detailedOverview: "Service.\n\nAsset Light: Rent truck when needed.\n- Own: Packing material & Labor.",
         workflowSteps: [
             "Survey/Quotation",
             "Packing (Bubble/Cardboard)",
@@ -9485,7 +9485,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Commission agent connecting truck owners with goods.",
-        detailedOverview: "Service/Brokerage.\n\n**Role:** Middleman.\n- Commission: ₹500 - ₹2000 per truck.",
+        detailedOverview: "Service/Brokerage.\n\nRole: Middleman.\n- Commission: ₹500 - ₹2000 per truck.",
         workflowSteps: [
             "Load Inquiry",
             "Finding Truck",
@@ -9518,7 +9518,7 @@ export const businessIdeas = [
         investmentAmount: 2000000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Building and renting godowns for e-commerce/FMCG.",
-        detailedOverview: "Real Estate.\n\n**Rate:** ₹15 - ₹25 per sqft per month.\n- PEB Structure (Pre-Engineered Building).",
+        detailedOverview: "Real Estate.\n\nRate: ₹15 - ₹25 per sqft per month.\n- PEB Structure (Pre-Engineered Building).",
         workflowSteps: [
             "Land Acquisition",
             "Shed Construction",
@@ -9551,7 +9551,7 @@ export const businessIdeas = [
         investmentAmount: 1500000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Storage for Fruits, Vegetables, and Frozen food.",
-        detailedOverview: "Storage.\n\n**Spec:** 10-20 Ton capacity.\n- Users: Ice cream guys, Apple traders.",
+        detailedOverview: "Storage.\n\nSpec: 10-20 Ton capacity.\n- Users: Ice cream guys, Apple traders.",
         workflowSteps: [
             "Goods Receipt",
             "Palletizing",
@@ -9585,7 +9585,7 @@ export const businessIdeas = [
         investmentAmount: 1000000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Taxi Fleet owner. Innova/Dzire for outstation or corporate.",
-        detailedOverview: "Service.\n\n**Rate:** ₹12-15/km.\n- Corporate: Monthly fixed ₹40k + Fuel.",
+        detailedOverview: "Service.\n\nRate: ₹12-15/km.\n- Corporate: Monthly fixed ₹40k + Fuel.",
         workflowSteps: [
             "Booking",
             "Driver assignment",
@@ -9618,7 +9618,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Teaching car driving to beginners. License assistance.",
-        detailedOverview: "Service.\n\n**Package:** ₹3000 - ₹5000 for 15 days.\n- Margins: Fuel and Instructor salary are costs.",
+        detailedOverview: "Service.\n\nPackage: ₹3000 - ₹5000 for 15 days.\n- Margins: Fuel and Instructor salary are costs.",
         workflowSteps: [
             "Enrollment",
             "Simulator/Theory",
@@ -9651,7 +9651,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Contract for Parking lots in Malls/Markets/Events.",
-        detailedOverview: "Service/Contract.\n\n**Revenue:** Hourly tickets.\n- 'Stand' ठेka (Contract).",
+        detailedOverview: "Service/Contract.\n\nRevenue: Hourly tickets.\n- 'Stand' ठेka (Contract).",
         workflowSteps: [
             "Entry Ticketing",
             "Vehicle Guiding",
@@ -9684,7 +9684,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Selling Seeds, Fertilizers, and Pesticides to farmers.",
-        detailedOverview: "Retail.\n\n**Seasonality:** Peak during Kharif/Rabi sowing.\n- Seeds margin: High.",
+        detailedOverview: "Retail.\n\nSeasonality: Peak during Kharif/Rabi sowing.\n- Seeds margin: High.",
         workflowSteps: [
             "Farmer Consultation",
             "Prescribing Medicine",
@@ -9717,7 +9717,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Apiculture for Honey and Wax production.",
-        detailedOverview: "Agri/Mfg.\n\n**Mobile:** Move boxes to mustard/lychee fields.\n- 50 Boxes unit.",
+        detailedOverview: "Agri/Mfg.\n\nMobile: Move boxes to mustard/lychee fields.\n- 50 Boxes unit.",
         workflowSteps: [
             "Box Placement",
             "Migration (Season wise)",
@@ -9751,7 +9751,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Small scale milk production with 5-10 Buffaloes/Cows.",
-        detailedOverview: "Animal Husbandry.\n\n**Rate:** Sell at ₹50-70/L direct to home.\n- Manure is extra income.",
+        detailedOverview: "Animal Husbandry.\n\nRate: Sell at ₹50-70/L direct to home.\n- Manure is extra income.",
         workflowSteps: [
             "Milking (4 AM)",
             "Feeding/Cleaning",
@@ -9784,7 +9784,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹15,000 - ₹50,000",
         description: "Converting cow dung into organic manure using worms.",
-        detailedOverview: "Agri/Mfg.\n\n**Gold:** Black Gold.\n- Buying dung ₹300/ton -> Selling compost ₹5000/ton.",
+        detailedOverview: "Agri/Mfg.\n\nGold: Black Gold.\n- Buying dung ₹300/ton -> Selling compost ₹5000/ton.",
         workflowSteps: [
             "Bed Preparation",
             "Dung Cooling",
@@ -9818,7 +9818,7 @@ export const businessIdeas = [
         investmentAmount: 800000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Renting tractor with attachments (Plough, Rotavator).",
-        detailedOverview: "Service.\n\n**Rate:** ₹800 - ₹1200 per hour.\n- Custom Hiring Center (CHC).",
+        detailedOverview: "Service.\n\nRate: ₹800 - ₹1200 per hour.\n- Custom Hiring Center (CHC).",
         workflowSteps: [
             "Booking",
             "Field Work",
@@ -9851,7 +9851,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Culturing pearls in freshwater mussels in ponds/tanks.",
-        detailedOverview: "Aquaculture.\n\n**Value:** Designer pearls sell for ₹500+ each.\n- Cycle: 12-18 months.",
+        detailedOverview: "Aquaculture.\n\nValue: Designer pearls sell for ₹500+ each.\n- Cycle: 12-18 months.",
         workflowSteps: [
             "Mussel Collection",
             "Surgery (Implant)",
@@ -9884,7 +9884,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Rearing Japanese Quail (Bater) for meat and eggs.",
-        detailedOverview: "Livestock.\n\n**Fast:** Ready in 5 weeks.\n- Meat is delicacy/medicinal.",
+        detailedOverview: "Livestock.\n\nFast: Ready in 5 weeks.\n- Meat is delicacy/medicinal.",
         workflowSteps: [
             "Chick Brooding",
             "Feeding",
@@ -9917,7 +9917,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹30,000 - ₹60,000",
         description: "Medicines for Cattle, Poultry, and Pets.",
-        detailedOverview: "Retail.\n\n**Rural:** Cattle feed supplements.\n- Urban: Pet vaccines.",
+        detailedOverview: "Retail.\n\nRural: Cattle feed supplements.\n- Urban: Pet vaccines.",
         workflowSteps: [
             "Stocking",
             "Farmer Query",
@@ -9950,7 +9950,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Wedding, Pre-wedding, and Product photography services.",
-        detailedOverview: "Service.\n\n**Revenue:** Wedding Package ₹50k - ₹2 Lakhs.\n- Passport photos cover rent.",
+        detailedOverview: "Service.\n\nRevenue: Wedding Package ₹50k - ₹2 Lakhs.\n- Passport photos cover rent.",
         workflowSteps: [
             "Client Meeting",
             "Shoot Planning",
@@ -9984,7 +9984,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹50,000 - ₹3 Lakhs",
         description: "Organizing Birthday parties, Corporate events, and Weddings.",
-        detailedOverview: "Service.\n\n**Role:** Coordination.\n- Margin: 10-15% of total event budget.",
+        detailedOverview: "Service.\n\nRole: Coordination.\n- Margin: 10-15% of total event budget.",
         workflowSteps: [
             "Client Brief",
             "Vendor Booking (Tent/Food)",
@@ -10017,7 +10017,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Providing Sound systems and DJ services for parties.",
-        detailedOverview: "Rental/Service.\n\n**Rate:** ₹10k - ₹25k per night.\n- Add-ons: Smoke machine, Sharpy lights.",
+        detailedOverview: "Rental/Service.\n\nRate: ₹10k - ₹25k per night.\n- Add-ons: Smoke machine, Sharpy lights.",
         workflowSteps: [
             "Booking",
             "Transport & Setup",
@@ -10051,7 +10051,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Managing creators and connecting them with brands.",
-        detailedOverview: "Service.\n\n**Rev Share:** 20-30% of deal value.\n- Tasks: Negotiation, Calendar mgmt.",
+        detailedOverview: "Service.\n\nRev Share: 20-30% of deal value.\n- Tasks: Negotiation, Calendar mgmt.",
         workflowSteps: [
             "Scouting Talent",
             "Pitching to Brands",
@@ -10084,7 +10084,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹50,000 - ₹5 Lakhs",
         description: "SEO, Ads (FB/Google), and Social Media Management.",
-        detailedOverview: "Service.\n\n**Retainer:** ₹20k - ₹50k per client/month.\n- Scalable agency model.",
+        detailedOverview: "Service.\n\nRetainer: ₹20k - ₹50k per client/month.\n- Scalable agency model.",
         workflowSteps: [
             "Strategy Call",
             "Content Creation",
@@ -10117,7 +10117,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹40,000 - ₹1.5 Lakhs",
         description: "Logo, Branding, Packaging, and UI/UX design.",
-        detailedOverview: "Service.\n\n**Rate:** Logo ₹5k - ₹50k.\n- Packaging design is high value niche.",
+        detailedOverview: "Service.\n\nRate: Logo ₹5k - ₹50k.\n- Packaging design is high value niche.",
         workflowSteps: [
             "Client Brief",
             "Competitor Research",
@@ -10150,7 +10150,7 @@ export const businessIdeas = [
         investmentAmount: 1000000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Renting desks/cabins to freelancers and startups.",
-        detailedOverview: "Real Estate/Service.\n\n**Seat Cost:** ₹5k/month.\n- Amenities: WiFi, Coffee, AC.",
+        detailedOverview: "Real Estate/Service.\n\nSeat Cost: ₹5k/month.\n- Amenities: WiFi, Coffee, AC.",
         workflowSteps: [
             "Property Lease",
             "Fitout (Cabins)",
@@ -10184,7 +10184,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Hiring employees for companies (Consultancy).",
-        detailedOverview: "Service.\n\n**Commission:** 8.33% of candidate's annual CTC.\n- E.g., for 5LPA hire, get ₹40k.",
+        detailedOverview: "Service.\n\nCommission: 8.33% of candidate's annual CTC.\n- E.g., for 5LPA hire, get ₹40k.",
         workflowSteps: [
             "Job Requirement (JD)",
             "Sourcing (Naukri/LinkedIn)",
@@ -10217,7 +10217,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹50,000 - ₹5 Lakhs",
         description: "Renting/Selling properties. High ticket brokerage.",
-        detailedOverview: "Service.\n\n**Comm:** 1-2% on Sale, 1 month rent on Lease.\n- Network is net worth.",
+        detailedOverview: "Service.\n\nComm: 1-2% on Sale, 1 month rent on Lease.\n- Network is net worth.",
         workflowSteps: [
             "Property Listing",
             "Client Visit",
@@ -10250,7 +10250,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹20,000 - ₹40,000",
         description: "Customer Service Point for SBI/PNB. Mini Bank.",
-        detailedOverview: "Service/Fintech.\n\n**Services:** Account opening, Deposit, Withdrawal.\n- Commission based.",
+        detailedOverview: "Service/Fintech.\n\nServices: Account opening, Deposit, Withdrawal.\n- Commission based.",
         workflowSteps: [
             "Bio-metric Auth",
             "Cash Handling",
@@ -10284,7 +10284,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "DMT (Direct Money Transfer), Bill Pay, Aadhaar withdraw (AePS).",
-        detailedOverview: "Fintech.\n\n**Earnings:** 0.5% - 1% on transfer.\n- Target: Migrant laborers.",
+        detailedOverview: "Fintech.\n\nEarnings: 0.5% - 1% on transfer.\n- Target: Migrant laborers.",
         workflowSteps: [
             "Cash Receipt",
             "Beneficiary Assessment",
@@ -10317,7 +10317,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹0 - ₹10 Lakhs",
         description: "YouTuber / Vlogger. Earning via Adsense & Sponsors.",
-        detailedOverview: "Media.\n\n**Niche:** Tech, Travel, Finance, Food.\n- Income is exponential after traction.",
+        detailedOverview: "Media.\n\nNiche: Tech, Travel, Finance, Food.\n- Income is exponential after traction.",
         workflowSteps: [
             "Scripting",
             "Filming",
@@ -10350,7 +10350,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Teaching Guitar, Keyboard, or Vocals.",
-        detailedOverview: "Education.\n\n**Rate:** ₹2000/month (Group).\n- Weekend batches for working pros.",
+        detailedOverview: "Education.\n\nRate: ₹2000/month (Group).\n- Weekend batches for working pros.",
         workflowSteps: [
             "Enrollment",
             "Theory Lesson",
@@ -10383,7 +10383,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Painting, Pottery, or Resin Art weekend workshops.",
-        detailedOverview: "Education/Event.\n\n**Format:** 3 Hour session @ Cafe = ₹1500/head.\n- Includes material.",
+        detailedOverview: "Education/Event.\n\nFormat: 3 Hour session @ Cafe = ₹1500/head.\n- Includes material.",
         workflowSteps: [
             "Theme Deciding",
             "Ticket Sales (BookMyShow)",
@@ -10416,7 +10416,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹50,000 - ₹3 Lakhs",
         description: "Designing and executing Home/Office interiors.",
-        detailedOverview: "Service.\n\n**Model:** Turnkey (Design + Build).\n- Margin: 15-20% of project cost.",
+        detailedOverview: "Service.\n\nModel: Turnkey (Design + Build).\n- Margin: 15-20% of project cost.",
         workflowSteps: [
             "Measurement/Layout",
             "3D Rendering",
@@ -10449,7 +10449,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹50,000 - ₹3 Lakhs",
         description: "Building plans, municipal approvals, and structural design.",
-        detailedOverview: "Service.\n\n**Fees:** ₹20 - ₹50 per sqft.\n- Legal stamping authority.",
+        detailedOverview: "Service.\n\nFees: ₹20 - ₹50 per sqft.\n- Legal stamping authority.",
         workflowSteps: [
             "Site Analysis",
             "Concept Design",
@@ -10482,7 +10482,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Affidavits, Rent Agreements, and Document verification.",
-        detailedOverview: "Service.\n\n**Volume:** ₹100 - ₹500 per stamp.\n- Location near court/registrar is key.",
+        detailedOverview: "Service.\n\nVolume: ₹100 - ₹500 per stamp.\n- Location near court/registrar is key.",
         workflowSteps: [
             "Drafting",
             "Printing on Stamp Paper",
@@ -10515,7 +10515,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹40,000 - ₹1.5 Lakhs",
         description: "Accounting, ITR filing, and GST returns for small businesses.",
-        detailedOverview: "Service.\n\n**Retainer:** ₹5k/month for bookkeeping.\n- ITR season is bonus.",
+        detailedOverview: "Service.\n\nRetainer: ₹5k/month for bookkeeping.\n- ITR season is bonus.",
         workflowSteps: [
             "Data Collection",
             "Tally Entry",
@@ -10548,7 +10548,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Teaching Technical Analysis and Investing.",
-        detailedOverview: "Education.\n\n**Course:** ₹10k - ₹25k per student.\n- Need proven track record.",
+        detailedOverview: "Education.\n\nCourse: ₹10k - ₹25k per student.\n- Need proven track record.",
         workflowSteps: [
             "Curriculum Dev",
             "Live Market Session",
@@ -10581,7 +10581,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Helping brands expand and investors find franchises.",
-        detailedOverview: "Consulting.\n\n**Fee:** Commission from Brand (Lakhs).\n- Connecting investors to MBA Chaiwala/Lenskart.",
+        detailedOverview: "Consulting.\n\nFee: Commission from Brand (Lakhs).\n- Connecting investors to MBA Chaiwala/Lenskart.",
         workflowSteps: [
             "Investor Profiling",
             "Brand Pitching",
@@ -10614,7 +10614,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "AMC (Annual Maintenance Contract) for Offices/SMEs.",
-        detailedOverview: "Service.\n\n**Retainer:** ₹500/PC/Month.\n- Services: Networking, Printer fix, Formatting.",
+        detailedOverview: "Service.\n\nRetainer: ₹500/PC/Month.\n- Services: Networking, Printer fix, Formatting.",
         workflowSteps: [
             "Client Audit",
             "Contract Signing",
@@ -10648,7 +10648,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹50,000 - ₹3 Lakhs",
         description: "Android/iOS app creation for businesses.",
-        detailedOverview: "Service.\n\n**Project:** ₹50k - ₹5 Lakhs.\n- Maintenance: 15-20% annually.",
+        detailedOverview: "Service.\n\nProject: ₹50k - ₹5 Lakhs.\n- Maintenance: 15-20% annually.",
         workflowSteps: [
             "Requirement Analysis",
             "UI/UX Design",
@@ -10681,7 +10681,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Internet browsing, Printing, Scanning, and Form filling.",
-        detailedOverview: "Service.\n\n**Hook:** Govt Exam Form Filling.\n- Print: ₹5/page (Profit ₹4).",
+        detailedOverview: "Service.\n\nHook: Govt Exam Form Filling.\n- Print: ₹5/page (Profit ₹4).",
         workflowSteps: [
             "Customer Entry",
             "PC Allocation",
@@ -10715,7 +10715,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Buying old corporate laptops, repairing, and selling.",
-        detailedOverview: "Retail/Trading.\n\n**Margin:** Buy @ ₹10k -> Fix -> Sell @ ₹18k.\n- Source: Corporate e-waste auctions.",
+        detailedOverview: "Retail/Trading.\n\nMargin: Buy @ ₹10k -> Fix -> Sell @ ₹18k.\n- Source: Corporate e-waste auctions.",
         workflowSteps: [
             "Procurement (Bulk)",
             "Testing/Grading",
@@ -10749,7 +10749,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Installation of Cameras, Biometrics, and Access Control.",
-        detailedOverview: "Service/Retail.\n\n**Margin:** 20% on product + Installation charges.\n- AMC for societies is big.",
+        detailedOverview: "Service/Retail.\n\nMargin: 20% on product + Installation charges.\n- AMC for societies is big.",
         workflowSteps: [
             "Site Survey",
             "Quotation",
@@ -10783,7 +10783,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Recovering data from crashed Hard Drives/SD Cards.",
-        detailedOverview: "Service.\n\n**Premium:** Charge ₹5k - ₹50k per drive.\n- High value for emotional/business data.",
+        detailedOverview: "Service.\n\nPremium: Charge ₹5k - ₹50k per drive.\n- High value for emotional/business data.",
         workflowSteps: [
             "Diagnosis",
             "Quotation (No recovery no fee)",
@@ -10817,7 +10817,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹60,000 - ₹2 Lakhs",
         description: "Teaching Python, Java, Web Dev to students.",
-        detailedOverview: "Education.\n\n**Fees:** ₹10k - ₹30k per course.\n- Placement assistance is the key seller.",
+        detailedOverview: "Education.\n\nFees: ₹10k - ₹30k per course.\n- Placement assistance is the key seller.",
         workflowSteps: [
             "Admissions",
             "Batch Scheduling",
@@ -10851,7 +10851,7 @@ export const businessIdeas = [
         investmentAmount: 1000000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Collecting electronic waste and extracting metals/parts.",
-        detailedOverview: "Trading/Mfg.\n\n**Gold in Trash:** PCBs contain gold/silver.\n- Sell extracted metals or refurbished parts.",
+        detailedOverview: "Trading/Mfg.\n\nGold in Trash: PCBs contain gold/silver.\n- Sell extracted metals or refurbished parts.",
         workflowSteps: [
             "Collection (Offices)",
             "Segregation",
@@ -10885,7 +10885,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Building WhatsApp/Web chatbots for businesses.",
-        detailedOverview: "Service.\n\n**Automation:** Save support costs.\n- Charge setup + monthly maintenance.",
+        detailedOverview: "Service.\n\nAutomation: Save support costs.\n- Charge setup + monthly maintenance.",
         workflowSteps: [
             "Flow Design",
             "Copywriting",
@@ -10918,7 +10918,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹40,000 - ₹2 Lakhs",
         description: "Ranking websites on Google 1st Page.",
-        detailedOverview: "Service.\n\n**Retainer:** ₹15k - ₹30k per month per client.\n- Long term game.",
+        detailedOverview: "Service.\n\nRetainer: ₹15k - ₹30k per month per client.\n- Long term game.",
         workflowSteps: [
             "Site Audit",
             "Keyword Research",
@@ -10951,7 +10951,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Aerial shoots for Real Estate, Weddings, and Surveys.",
-        detailedOverview: "Service.\n\n**Rate:** ₹10k - ₹20k per day.\n- Real Estate survey is booming.",
+        detailedOverview: "Service.\n\nRate: ₹10k - ₹20k per day.\n- Real Estate survey is booming.",
         workflowSteps: [
             "Flight Planning",
             "Permission Check",
@@ -10984,7 +10984,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Prototyping, Custom gifts, and Architectural models.",
-        detailedOverview: "Manufacturing.\n\n**Niche:** Medical models / College projects.\n- Filament cost is low compared to product value.",
+        detailedOverview: "Manufacturing.\n\nNiche: Medical models / College projects.\n- Filament cost is low compared to product value.",
         workflowSteps: [
             "3D Model Design (CAD)",
             "Slicing",
@@ -11018,7 +11018,7 @@ export const businessIdeas = [
         investmentAmount: 1000000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "PC & Console Gaming zone for youth.",
-        detailedOverview: "Entertainment.\n\n**Rate:** ₹50 - ₹100 per hour.\n- Food & Beverage is major add-on income.",
+        detailedOverview: "Entertainment.\n\nRate: ₹50 - ₹100 per hour.\n- Food & Beverage is major add-on income.",
         workflowSteps: [
             "Setup",
             "Server Management",
@@ -11052,7 +11052,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Automating homes with Alexa/Google, Smart switches.",
-        detailedOverview: "Service.\n\n**Trends:** Voice control, Auto lights.\n- Margin on devices + Installation fee.",
+        detailedOverview: "Service.\n\nTrends: Voice control, Auto lights.\n- Margin on devices + Installation fee.",
         workflowSteps: [
             "Client Needs Install",
             "Device Procurement",
@@ -11085,7 +11085,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Selling POS software to shops/restaurants.",
-        detailedOverview: "Sales/Reselling.\n\n**Model:** License Commission (20-40%).\n- Hardware sales (Printer/Scanner) extra.",
+        detailedOverview: "Sales/Reselling.\n\nModel: License Commission (20-40%).\n- Hardware sales (Printer/Scanner) extra.",
         workflowSteps: [
             "Lead Generation",
             "Demo",
@@ -11118,7 +11118,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Local Internet Service Provider (Fiber).",
-        detailedOverview: "Service.\n\n**Revenue:** Revenue share with main ISP (50-50).\n- Area monopoly is the goal.",
+        detailedOverview: "Service.\n\nRevenue: Revenue share with main ISP (50-50).\n- Area monopoly is the goal.",
         workflowSteps: [
             "Cabling (Overhead)",
             "Connection Install",
@@ -11152,7 +11152,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Buying and Selling second-hand Mobiles.",
-        detailedOverview: "Retail.\n\n**Turnover:** Fast.\n- Buy cheap (Cash) -> Sell with margin.",
+        detailedOverview: "Retail.\n\nTurnover: Fast.\n- Buy cheap (Cash) -> Sell with margin.",
         workflowSteps: [
             "Purchase/Exchange",
             "QC Check",
@@ -11186,7 +11186,7 @@ export const businessIdeas = [
         investmentAmount: 1000000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Running ASIC/GPU rigs to mine Bitcoin/Altcoins.",
-        detailedOverview: "Passive/Tech.\n\n**Key:** Electricity cost.\n- Needs cheap power source.",
+        detailedOverview: "Passive/Tech.\n\nKey: Electricity cost.\n- Needs cheap power source.",
         workflowSteps: [
             "Hardware Setup",
             "Wallet Config",
@@ -11219,7 +11219,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Installing Time & Attendance systems for offices.",
-        detailedOverview: "Service.\n\n**Need:** Payroll calculation.\n- Link with HR software.",
+        detailedOverview: "Service.\n\nNeed: Payroll calculation.\n- Link with HR software.",
         workflowSteps: [
             "Client Demo",
             "Hardware Install",
@@ -11252,7 +11252,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹10,000 - ₹2 Lakhs",
         description: "Reviewing gadgets and software. Amazon Affiliate income.",
-        detailedOverview: "Media.\n\n**Commission:** 1-5% on Sales.\n- Content is king.",
+        detailedOverview: "Media.\n\nCommission: 1-5% on Sales.\n- Content is king.",
         workflowSteps: [
             "Product Research",
             "Article/Video Creation",
@@ -11285,7 +11285,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Training students for foreign university entry exams.",
-        detailedOverview: "Education.\n\n**Fee:** ₹10k - ₹15k for 1 month course.\n- Tie up with Visa consultants for referrals.",
+        detailedOverview: "Education.\n\nFee: ₹10k - ₹15k for 1 month course.\n- Tie up with Visa consultants for referrals.",
         workflowSteps: [
             "Mock Test (Assessment)",
             "Module Training (L/R/W/S)",
@@ -11319,7 +11319,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "STEM learning: Lego, Arduino, and Coding for children.",
-        detailedOverview: "Education.\n\n**Kits:** High margin on selling kits + Fee.\n- Summer camps are gold mines.",
+        detailedOverview: "Education.\n\nKits: High margin on selling kits + Fee.\n- Summer camps are gold mines.",
         workflowSteps: [
             "Demo Workshop",
             "Kit Sale",
@@ -11352,7 +11352,7 @@ export const businessIdeas = [
         investmentAmount: 1000000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Preschool for toddlers (Kidzee, EuroKids).",
-        detailedOverview: "Education.\n\n**Fees:** ₹30k - ₹60k per year.\n- Admission season: Feb-April.",
+        detailedOverview: "Education.\n\nFees: ₹30k - ₹60k per year.\n- Admission season: Feb-April.",
         workflowSteps: [
             "Morning Assembly",
             "Activity Learning",
@@ -11386,7 +11386,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹5 Lakhs",
         description: "Coaching for UPSC, SSC, Banking, or JEE/NEET.",
-        detailedOverview: "Education.\n\n**Star Faculty:** Business runs on teacher's fame.\n- Scale with online app.",
+        detailedOverview: "Education.\n\nStar Faculty: Business runs on teacher's fame.\n- Scale with online app.",
         workflowSteps: [
             "Syllabus Planning",
             "Lecture Delivery",
@@ -11420,7 +11420,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Connecting parents with home tutors.",
-        detailedOverview: "Service.\n\n**Commission:** 50% of 1st month fee.\n- Zero inventory model.",
+        detailedOverview: "Service.\n\nCommission: 50% of 1st month fee.\n- Zero inventory model.",
         workflowSteps: [
             "Parent Inquiry",
             "Tutor Matching",
@@ -11453,7 +11453,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Car driving lessons + License assistance.",
-        detailedOverview: "Service.\n\n**Fuel:** Main expense.\n- 15 days course @ ₹4000.",
+        detailedOverview: "Service.\n\nFuel: Main expense.\n- 15 days course @ ₹4000.",
         workflowSteps: [
             "Enrolment",
             "Simulator/Theory",
@@ -11486,7 +11486,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Teaching chip-level mobile repairing.",
-        detailedOverview: "Vocational.\n\n**Target:** School dropouts/Unemployed.\n- Fee: ₹15k for 3 months.",
+        detailedOverview: "Vocational.\n\nTarget: School dropouts/Unemployed.\n- Fee: ₹15k for 3 months.",
         workflowSteps: [
             "Theory (Electronics)",
             "Soldering Practice",
@@ -11520,7 +11520,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Brain development classes for kids (Age 5-12).",
-        detailedOverview: "Education.\n\n**Franchise:** UCMAS/SIP.\n- Weekends only model.",
+        detailedOverview: "Education.\n\nFranchise: UCMAS/SIP.\n- Weekends only model.",
         workflowSteps: [
             "Level 1 Training",
             "Practice Sheets",
@@ -11553,7 +11553,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Personality development and confidence building.",
-        detailedOverview: "Education.\n\n**Niche:** Corporate communication / Kids stage fear.\n- High per-hour value.",
+        detailedOverview: "Education.\n\nNiche: Corporate communication / Kids stage fear.\n- High per-hour value.",
         workflowSteps: [
             "Ice Breaking",
             "Speech Drafting",
@@ -11586,7 +11586,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Teaching German, French, or Japanese.",
-        detailedOverview: "Education.\n\n**Demand:** Students going abroad / Translators.\n- Levels: A1, A2, B1, B2.",
+        detailedOverview: "Education.\n\nDemand: Students going abroad / Translators.\n- Levels: A1, A2, B1, B2.",
         workflowSteps: [
             "Grammar Basics",
             "Vocab Building",
@@ -11619,7 +11619,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹30,000 - ₹60,000",
         description: "Drawing, Painting, and Craft for exams/hobby.",
-        detailedOverview: "Education.\n\n**Exams:** Elementry/Intermediate grade exams.\n- Material cost covered in fee.",
+        detailedOverview: "Education.\n\nExams: Elementry/Intermediate grade exams.\n- Material cost covered in fee.",
         workflowSteps: [
             "Sketching Basics",
             "Color Theory",
@@ -11652,7 +11652,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Baking, Indian Cuisine, and Chocolate making workshops.",
-        detailedOverview: "Education/Hobby.\n\n**Baking:** Most popular.\n- 1 Day workshop @ ₹1500 per head.",
+        detailedOverview: "Education/Hobby.\n\nBaking: Most popular.\n- 1 Day workshop @ ₹1500 per head.",
         workflowSteps: [
             "Recipe Sheet",
             "Demo",
@@ -11686,7 +11686,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹10,000 - ₹40,000",
         description: "Improving handwriting and teaching artistic font styles.",
-        detailedOverview: "Education.\n\n**Kit:** Sell pen/ink sets.\n- Parents worry about bad handwriting.",
+        detailedOverview: "Education.\n\nKit: Sell pen/ink sets.\n- Parents worry about bad handwriting.",
         workflowSteps: [
             "Grip Correction",
             "Stroke Practice",
@@ -11719,7 +11719,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Teaching Technical Analysis and Derivatives.",
-        detailedOverview: "Education.\n\n**High Ticket:** ₹15k - ₹25k course.\n- Show live profit to convert.",
+        detailedOverview: "Education.\n\nHigh Ticket: ₹15k - ₹25k course.\n- Show live profit to convert.",
         workflowSteps: [
             "Basics of Candle Sticks",
             "Indicators (RSI/MACD)",
@@ -11752,7 +11752,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Theatre and Camera acting workshops.",
-        detailedOverview: "Education.\n\n**Dream:** Bollywood/Web Series.\n- Weekend workshops + Full time diploma.",
+        detailedOverview: "Education.\n\nDream: Bollywood/Web Series.\n- Weekend workshops + Full time diploma.",
         workflowSteps: [
             "Voice Modulation",
             "Body Language",
@@ -11786,7 +11786,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹1 Lakh - ₹5 Lakhs",
         description: "Professional course for aspiring makeup artists.",
-        detailedOverview: "Education.\n\n**Fee:** ₹50k - ₹1 Lakh per student.\n- Kit included in fee.",
+        detailedOverview: "Education.\n\nFee: ₹50k - ₹1 Lakh per student.\n- Kit included in fee.",
         workflowSteps: [
             "Skin Theory",
             "Product Knowledge",
@@ -11820,7 +11820,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Coaching for Cricket, Football, or Skating.",
-        detailedOverview: "Education/Sports.\n\n**Venue:** Rent school grounds evening time.\n- Fee: ₹2000/month.",
+        detailedOverview: "Education/Sports.\n\nVenue: Rent school grounds evening time.\n- Fee: ₹2000/month.",
         workflowSteps: [
             "Warm up",
             "Drills (Skill)",
@@ -11853,7 +11853,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Teaching cutting and stitching to women.",
-        detailedOverview: "Vocational.\n\n**Empowerment:** Students start own boutique.\n- 3-6 month diploma.",
+        detailedOverview: "Vocational.\n\nEmpowerment: Students start own boutique.\n- 3-6 month diploma.",
         workflowSteps: [
             "Measurements",
             "Paper Cutting",
@@ -11886,7 +11886,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Teaching FL Studio, Logic Pro, and Beat making.",
-        detailedOverview: "Education.\n\n**Niche:** Aspiring DJs/Producers.\n- Fee: ₹30k - ₹50k per course.",
+        detailedOverview: "Education.\n\nNiche: Aspiring DJs/Producers.\n- Fee: ₹30k - ₹50k per course.",
         workflowSteps: [
             "DAW Basics",
             "Music Theory",
@@ -11920,7 +11920,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹50,000 - ₹3 Lakhs",
         description: "Soft skills, POSH, and Sales training for companies.",
-        detailedOverview: "B2B Service.\n\n**Rate:** ₹10k - ₹50k per day.\n- Recurring annual contracts.",
+        detailedOverview: "B2B Service.\n\nRate: ₹10k - ₹50k per day.\n- Recurring annual contracts.",
         workflowSteps: [
             "Proposal",
             "Training Needs Analysis",
@@ -11953,7 +11953,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Professional cleaning of Homes, Sofas, and Tanks.",
-        detailedOverview: "Service.\n\n**Festival Peak:** Diwali/New Year revenue spikes 3x.\n- Charge per BHK (e.g., ₹5000 for 2BHK).",
+        detailedOverview: "Service.\n\nFestival Peak: Diwali/New Year revenue spikes 3x.\n- Charge per BHK (e.g., ₹5000 for 2BHK).",
         workflowSteps: [
             "Booking confirmation",
             "Team Arrival",
@@ -11987,7 +11987,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹40,000 - ₹1.5 Lakhs",
         description: "Eradicating Termites, Cockroaches, and Rats from buildings.",
-        detailedOverview: "Service.\n\n**AMC:** Maintenance contracts with Societies/Restaurants.\n- High recurring value.",
+        detailedOverview: "Service.\n\nAMC: Maintenance contracts with Societies/Restaurants.\n- High recurring value.",
         workflowSteps: [
             "Inspection",
             "Chemical Spraying",
@@ -12021,7 +12021,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Designing and maintaining gardens for bungalows/corporate.",
-        detailedOverview: "Service/Design.\n\n**Project:** ₹1 Lakh - ₹10 Lakhs.\n- Maintenance AMC is separate income.",
+        detailedOverview: "Service/Design.\n\nProject: ₹1 Lakh - ₹10 Lakhs.\n- Maintenance AMC is separate income.",
         workflowSteps: [
             "Site Analysis",
             "Design Layout",
@@ -12055,7 +12055,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "setting up and cleaning aquariums for offices/homes.",
-        detailedOverview: "Service.\n\n**Visit:** ₹1000 per visit.\n- Sell fish food and accessories too.",
+        detailedOverview: "Service.\n\nVisit: ₹1000 per visit.\n- Sell fish food and accessories too.",
         workflowSteps: [
             "Tank Install",
             "Water Cycling",
@@ -12088,7 +12088,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Cleaning rooftop solar plants to maintain efficiency.",
-        detailedOverview: "Service.\n\n**Efficiency:** Dust reduces power by 20%.\n- Target factories with huge rooftops.",
+        detailedOverview: "Service.\n\nEfficiency: Dust reduces power by 20%.\n- Target factories with huge rooftops.",
         workflowSteps: [
             "Site Survey",
             "Safety Harness Setup",
@@ -12122,7 +12122,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Mechanized cleaning of underground/overhead tanks.",
-        detailedOverview: "Service.\n\n**Hygiene:** Mandatory for societies/hotels.\n- 6 Stage cleaning process.",
+        detailedOverview: "Service.\n\nHygiene: Mandatory for societies/hotels.\n- 6 Stage cleaning process.",
         workflowSteps: [
             "Dewatering",
             "Sludge Removal",
@@ -12155,7 +12155,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Checking new flats for dampness, electrical, and plumbing faults.",
-        detailedOverview: "Service (Consulting).\n\n**Timing:** Before possession.\n- Save buyer from future repair costs.",
+        detailedOverview: "Service (Consulting).\n\nTiming: Before possession.\n- Save buyer from future repair costs.",
         workflowSteps: [
             "Visual Inspection",
             "Thermal Imaging (Dampness)",
@@ -12189,7 +12189,7 @@ export const businessIdeas = [
         investmentAmount: 30000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "On-site cleaning of upholstery.",
-        detailedOverview: "Service.\n\n**Add-on:** Upsell to deep cleaning clients.\n- Foam based cleaning dries fast.",
+        detailedOverview: "Service.\n\nAdd-on: Upsell to deep cleaning clients.\n- Foam based cleaning dries fast.",
         workflowSteps: [
             "Vacuuming",
             "Spot Treatment",
@@ -12222,7 +12222,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹30,000 - ₹2 Lakhs",
         description: "Advising on home layout for peace and prosperity.",
-        detailedOverview: "Consulting.\n\n**Belief:** High in India.\n- Suggest remedies without demolition (Mirrors/Pyramids).",
+        detailedOverview: "Consulting.\n\nBelief: High in India.\n- Suggest remedies without demolition (Mirrors/Pyramids).",
         workflowSteps: [
             "Map Study",
             "Direction Check (Compass)",
@@ -12255,7 +12255,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Shifting houses within the city (Intra-city).",
-        detailedOverview: "Service.\n\n**Demand:** End of month is peak.\n- Truck Rental model (Asset light).",
+        detailedOverview: "Service.\n\nDemand: End of month is peak.\n- Truck Rental model (Asset light).",
         workflowSteps: [
             "Survey/Quote",
             "Packing (Cartons/Bubble)",
@@ -12289,7 +12289,7 @@ export const businessIdeas = [
         investmentAmount: 30000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Removing oil/grease from kitchen chimneys.",
-        detailedOverview: "Service.\n\n**Niche:** Difficult DIY task.\n- Use Caustic soda/Hot water immersion.",
+        detailedOverview: "Service.\n\nNiche: Difficult DIY task.\n- Use Caustic soda/Hot water immersion.",
         workflowSteps: [
             "Dismantling",
             "Chemical Soaking",
@@ -12322,7 +12322,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Making duplicate keys and opening locked doors.",
-        detailedOverview: "Service.\n\n**Emergency:** High charges for night lockout.\n- Computerized key machine brings precision.",
+        detailedOverview: "Service.\n\nEmergency: High charges for night lockout.\n- Computerized key machine brings precision.",
         workflowSteps: [
             "Key Profiling",
             "Cutting",
@@ -12355,7 +12355,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Managing a team of technicians for reliable service.",
-        detailedOverview: "Service/Agency.\n\n**Trust:** Uniformed, verified staff.\n- Solve the 'technician not showing up' problem.",
+        detailedOverview: "Service/Agency.\n\nTrust: Uniformed, verified staff.\n- Solve the 'technician not showing up' problem.",
         workflowSteps: [
             "Call Receipt",
             "Job Assignment",
@@ -12388,7 +12388,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹1.5 Lakhs",
         description: "Managing rental flats for NRI owners.",
-        detailedOverview: "Service.\n\n**Fee:** 1 Month Rent or % of rent.\n- Handle tenant search, repairs, and rent collection.",
+        detailedOverview: "Service.\n\nFee: 1 Month Rent or % of rent.\n- Handle tenant search, repairs, and rent collection.",
         workflowSteps: [
             "Key Handover",
             "Tenant Screening",
@@ -12421,7 +12421,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹40,000 - ₹1.5 Lakhs",
         description: "Fitting and servicing Split/Window ACs.",
-        detailedOverview: "Service.\n\n**Summer:** Peak season mania.\n- Gas charging is high margin.",
+        detailedOverview: "Service.\n\nSummer: Peak season mania.\n- Gas charging is high margin.",
         workflowSteps: [
             "Installation",
             "Gas Pressure Check",
@@ -12455,7 +12455,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Washing, Ironing, and Dry cleaning clothes.",
-        detailedOverview: "Service.\n\n**Convenience:** Pickup and Drop is key.\n- Charge per kg or per piece.",
+        detailedOverview: "Service.\n\nConvenience: Pickup and Drop is key.\n- Charge per kg or per piece.",
         workflowSteps: [
             "Pickup/Tagging",
             "Sorting",
@@ -12489,7 +12489,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Providing temporary drivers calling on-demand.",
-        detailedOverview: "Service.\n\n**Commission:** ₹100 per booking.\n- Drivers for parties, outstation trips.",
+        detailedOverview: "Service.\n\nCommission: ₹100 per booking.\n- Drivers for parties, outstation trips.",
         workflowSteps: [
             "Customer Call",
             "Driver Allocation",
@@ -12522,7 +12522,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹30,000 - ₹60,000",
         description: "Delivery from local Kirana to flats within 30 mins.",
-        detailedOverview: "Service/Logistics.\n\n**Edge:** Faster/Cheaper than Zepto for bulk.\n- Monthly khaata system.",
+        detailedOverview: "Service/Logistics.\n\nEdge: Faster/Cheaper than Zepto for bulk.\n- Monthly khaata system.",
         workflowSteps: [
             "Order (WhatsApp)",
             "Picking from Partner Shop",
@@ -12555,7 +12555,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Providing verified domestic help.",
-        detailedOverview: "Service.\n\n**Revenue:** 1 Month Salary as commission.\n- 11 Month contract with replacement guarantee.",
+        detailedOverview: "Service.\n\nRevenue: 1 Month Salary as commission.\n- 11 Month contract with replacement guarantee.",
         workflowSteps: [
             "Client Requirement",
             "Staff Interview",
@@ -12588,7 +12588,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Cleaning and repairing premium sneakers/leather shoes.",
-        detailedOverview: "Service.\n\n**Trend:** Sneaker culture.\n- Charge ₹300-₹500 per pair.",
+        detailedOverview: "Service.\n\nTrend: Sneaker culture.\n- Charge ₹300-₹500 per pair.",
         workflowSteps: [
             "Inspection",
             "Sole Cleaning",
@@ -12622,7 +12622,7 @@ export const businessIdeas = [
         investmentAmount: 1500000,
         monthlyIncome: "₹1 Lakh - ₹3 Lakhs",
         description: "Renting artificial grass turf for cricket/football.",
-        detailedOverview: "Entertainment/Sports.\n\n**Rate:** ₹1000 - ₹2000 per hour.\n- Night slots (7 PM - 2 AM) are premium.",
+        detailedOverview: "Entertainment/Sports.\n\nRate: ₹1000 - ₹2000 per hour.\n- Night slots (7 PM - 2 AM) are premium.",
         workflowSteps: [
             "Land Lease",
             "Netting & Grass Install",
@@ -12656,7 +12656,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Virtual Reality gaming zone (Meta Quest/HTC Vive).",
-        detailedOverview: "Entertainment.\n\n**Hook:** Immersive Horror/Rollercoaster.\n- 15 mins = ₹200.",
+        detailedOverview: "Entertainment.\n\nHook: Immersive Horror/Rollercoaster.\n- 15 mins = ₹200.",
         workflowSteps: [
             "Customer Briefing",
             "Headset Suit-up",
@@ -12690,7 +12690,7 @@ export const businessIdeas = [
         investmentAmount: 5000000,
         monthlyIncome: "₹3 Lakhs - ₹8 Lakhs",
         description: "Indoor park with trampolines and foam pits.",
-        detailedOverview: "Entertainment.\n\n**Ticket:** ₹500 - ₹800 per hour.\n- Birthday parties drive 50% revenue.",
+        detailedOverview: "Entertainment.\n\nTicket: ₹500 - ₹800 per hour.\n- Birthday parties drive 50% revenue.",
         workflowSteps: [
             "Waiver Signing",
             "Socks Issue",
@@ -12724,7 +12724,7 @@ export const businessIdeas = [
         investmentAmount: 1000000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Cafe with 100+ board games like Catan, Ticket to Ride.",
-        detailedOverview: "Entertainment/F&B.\n\n**Cover Charge:** ₹200 entry (redeemable).\n- Food order increases due to long stay duration.",
+        detailedOverview: "Entertainment/F&B.\n\nCover Charge: ₹200 entry (redeemable).\n- Food order increases due to long stay duration.",
         workflowSteps: [
             "Welcome",
             "Game Recommendation",
@@ -12758,7 +12758,7 @@ export const businessIdeas = [
         investmentAmount: 800000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Mini cinema hall booking for couples/families.",
-        detailedOverview: "Entertainment.\n\n**Package:** ₹1500 for 3 hours (Movie + Decor).\n- Birthday/Anniversary surprise spot.",
+        detailedOverview: "Entertainment.\n\nPackage: ₹1500 for 3 hours (Movie + Decor).\n- Birthday/Anniversary surprise spot.",
         workflowSteps: [
             "Booking",
             "Decoration (Balloons)",
@@ -12792,7 +12792,7 @@ export const businessIdeas = [
         investmentAmount: 1500000,
         monthlyIncome: "₹1 Lakh - ₹3 Lakhs",
         description: "Themed puzzle rooms where groups try to 'escape'.",
-        detailedOverview: "Entertainment.\n\n**Experience:** 60 mins game.\n- Themes: Horror, Prison Break, Detective.",
+        detailedOverview: "Entertainment.\n\nExperience: 60 mins game.\n- Themes: Horror, Prison Break, Detective.",
         workflowSteps: [
             "Briefing/Storytelling",
             "Locking in Room",
@@ -12826,7 +12826,7 @@ export const businessIdeas = [
         investmentAmount: 1000000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Indoor playground for toddlers (Ball pool, Slides).",
-        detailedOverview: "Entertainment.\n\n**Safety:** Padded everything.\n- Located in Malls/Supermarkets for shopper parents.",
+        detailedOverview: "Entertainment.\n\nSafety: Padded everything.\n- Located in Malls/Supermarkets for shopper parents.",
         workflowSteps: [
             "Entry Log",
             "Sanitization",
@@ -12860,7 +12860,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Outdoor combat simulation game.",
-        detailedOverview: "Entertainment.\n\n**Revenue:** Paintballs are ammo (Recurring cost).\n- Corporate and friends groups.",
+        detailedOverview: "Entertainment.\n\nRevenue: Paintballs are ammo (Recurring cost).\n- Corporate and friends groups.",
         workflowSteps: [
             "Safety Gear Issue",
             "Gun Loading",
@@ -12894,7 +12894,7 @@ export const businessIdeas = [
         investmentAmount: 1500000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Bar/Lounge where guests sing on stage.",
-        detailedOverview: "Entertainment/F&B.\n\n**Vibe:** Judgement free singing.\n- Alcohol sales drive the profit.",
+        detailedOverview: "Entertainment/F&B.\n\nVibe: Judgement free singing.\n- Alcohol sales drive the profit.",
         workflowSteps: [
             "Table Booking",
             "Song Request",
@@ -12928,7 +12928,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Silent air-conditioned space for students/readers.",
-        detailedOverview: "Service.\n\n**Exam Mode:** 24x7 open for UPSC/CA students.\n- Monthly seat rent ₹1000 - ₹2000.",
+        detailedOverview: "Service.\n\nExam Mode: 24x7 open for UPSC/CA students.\n- Monthly seat rent ₹1000 - ₹2000.",
         workflowSteps: [
             "Seat Allocation",
             "Entry Check",
@@ -12961,7 +12961,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Workshops for wheel throwing and glazing.",
-        detailedOverview: "Entertainment/Art.\n\n**Therapeutic:** Date nights or stress relief.\n- Take home your creation.",
+        detailedOverview: "Entertainment/Art.\n\nTherapeutic: Date nights or stress relief.\n- Take home your creation.",
         workflowSteps: [
             "Clay Prep",
             "Wheel Demo",
@@ -12995,7 +12995,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Renting cycles near parks/beaches.",
-        detailedOverview: "Rental.\n\n**Health:** Morning riders who don't own bikes.\n- Hourly rent ₹50 - ₹100.",
+        detailedOverview: "Rental.\n\nHealth: Morning riders who don't own bikes.\n- Hourly rent ₹50 - ₹100.",
         workflowSteps: [
             "ID Deposit",
             "Cycle Check",
@@ -13029,7 +13029,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹20,000 - ₹1 Lakh",
         description: "Organizing weekend hikes and camping trips.",
-        detailedOverview: "Service/Tourism.\n\n**Margin:** ₹500 - ₹1000 per head profit.\n- Transport + Food + Guide.",
+        detailedOverview: "Service/Tourism.\n\nMargin: ₹500 - ₹1000 per head profit.\n- Transport + Food + Guide.",
         workflowSteps: [
             "Itinerary Release",
             "Booking",
@@ -13062,7 +13062,7 @@ export const businessIdeas = [
         investmentAmount: 1000000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Coffee shop with resident cats for petting.",
-        detailedOverview: "F&B/Entertainment.\n\n**Cover:** Entry fee involves drink + cat time.\n- Adoptions can be facilitated.",
+        detailedOverview: "F&B/Entertainment.\n\nCover: Entry fee involves drink + cat time.\n- Adoptions can be facilitated.",
         workflowSteps: [
             "Entry Sanitization",
             "Ordering",
@@ -13096,7 +13096,7 @@ export const businessIdeas = [
         investmentAmount: 2000000,
         monthlyIncome: "₹1 Lakh - ₹3 Lakhs",
         description: "Hammer hit, Claw machines, Racing simulators.",
-        detailedOverview: "Entertainment.\n\n**Model:** Coins/Card swipe.\n- High margin on plush toys won.",
+        detailedOverview: "Entertainment.\n\nModel: Coins/Card swipe.\n- High margin on plush toys won.",
         workflowSteps: [
             "Card Top-up",
             "Gameplay",
@@ -13130,7 +13130,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Small venue for open mics and comedy shows.",
-        detailedOverview: "Entertainment.\n\n**Ticket:** ₹200 - ₹500.\n- F&B earnings during breaks.",
+        detailedOverview: "Entertainment.\n\nTicket: ₹200 - ₹500.\n- F&B earnings during breaks.",
         workflowSteps: [
             "Artist Booking",
             "Ticket Sales (BookMyShow)",
@@ -13164,7 +13164,7 @@ export const businessIdeas = [
         investmentAmount: 3000000,
         monthlyIncome: "₹2 Lakhs - ₹5 Lakhs",
         description: "2 Lane bowling setup in a cafe/mall.",
-        detailedOverview: "Entertainment.\n\n**Game:** ₹300 per person.\n- Shoe rental extra.",
+        detailedOverview: "Entertainment.\n\nGame: ₹300 per person.\n- Shoe rental extra.",
         workflowSteps: [
             "Shoe Issue",
             "Lane Assigned",
@@ -13198,7 +13198,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Fitness dance classes for weight loss and fun.",
-        detailedOverview: "Entertainment/Health.\n\n**Sub:** Monthly ₹2000.\n- Morning/Evening batches.",
+        detailedOverview: "Entertainment/Health.\n\nSub: Monthly ₹2000.\n- Morning/Evening batches.",
         workflowSteps: [
             "Warmup",
             "Choreography",
@@ -13232,7 +13232,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Studio with 20+ unique backdrops for Instagram photos.",
-        detailedOverview: "Entertainment.\n\n**Ticket:** ₹500 for 1 hour.\n- Ring lights and props provided.",
+        detailedOverview: "Entertainment.\n\nTicket: ₹500 for 1 hour.\n- Ring lights and props provided.",
         workflowSteps: [
             "Ticket Check",
             "Changing Room (Outfits)",
@@ -13266,7 +13266,7 @@ export const businessIdeas = [
         investmentAmount: 5000000,
         monthlyIncome: "₹4 Lakhs - ₹10 Lakhs",
         description: "Track racing with electric karts.",
-        detailedOverview: "Entertainment.\n\n**Race:** ₹500 for 5 laps.\n- Electric means indoor possible (No fumes).",
+        detailedOverview: "Entertainment.\n\nRace: ₹500 for 5 laps.\n- Electric means indoor possible (No fumes).",
         workflowSteps: [
             "Registration/Waiver",
             "Helmet/Suit",
@@ -13300,7 +13300,7 @@ export const businessIdeas = [
         investmentAmount: 800000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Producing disposable paper cups for tea stalls/offices.",
-        detailedOverview: "Manufacturing.\n\n**Ban Effect:** Plastic ban boosted this.\n- Sell to wholesalers in bulk.",
+        detailedOverview: "Manufacturing.\n\nBan Effect: Plastic ban boosted this.\n- Sell to wholesalers in bulk.",
         workflowSteps: [
             "Raw Paper Roll Loading",
             "Printing (Optional)",
@@ -13334,7 +13334,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Making incense sticks (Raw or Scented).",
-        detailedOverview: "Manufacturing/Home.\n\n**Machine:** Automatic pedal machine.\n- Perfuming is the value add.",
+        detailedOverview: "Manufacturing/Home.\n\nMachine: Automatic pedal machine.\n- Perfuming is the value add.",
         workflowSteps: [
             "Pre-mix Preparation",
             "Stick Feeding",
@@ -13367,7 +13367,7 @@ export const businessIdeas = [
         investmentAmount: 30000,
         monthlyIncome: "₹15,000 - ₹60,000",
         description: "Designer, Scented, and Birthday candles.",
-        detailedOverview: "Manufacturing/Art.\n\n**Trend:** Scented Soy Candles for decor.\n- High margin in gift segment.",
+        detailedOverview: "Manufacturing/Art.\n\nTrend: Scented Soy Candles for decor.\n- High margin in gift segment.",
         workflowSteps: [
             "Wax Melting",
             "Adding Color/Scent",
@@ -13400,7 +13400,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Custom printing for corporate events, colleges, and startups.",
-        detailedOverview: "Manufacturing.\n\n**Tech:** Sublimation or DTF (Direct to Film).\n- Bulk orders are key.",
+        detailedOverview: "Manufacturing.\n\nTech: Sublimation or DTF (Direct to Film).\n- Bulk orders are key.",
         workflowSteps: [
             "Design Prep",
             "Print Transfer",
@@ -13434,7 +13434,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Eco-friendly carry bags for shops.",
-        detailedOverview: "Manufacturing.\n\n**Process:** Manual or Semi-auto.\n- Target clothing stores/pharmacies.",
+        detailedOverview: "Manufacturing.\n\nProcess: Manual or Semi-auto.\n- Target clothing stores/pharmacies.",
         workflowSteps: [
             "Paper Cutting",
             "Creasing",
@@ -13468,7 +13468,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹60,000",
         description: "Grinding wheat and spices for local customers.",
-        detailedOverview: "Service/Manufacturing.\n\n**Rate:** ₹5-₹8 per kg grinding.\n- Fresh flour demand > Packaged flour.",
+        detailedOverview: "Service/Manufacturing.\n\nRate: ₹5-₹8 per kg grinding.\n- Fresh flour demand > Packaged flour.",
         workflowSteps: [
             "Grain Cleaning",
             "Weighing",
@@ -13502,7 +13502,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Extracting Groundnut, Coconut, and Sesame oil (Wood Pressed).",
-        detailedOverview: "Manufacturing.\n\n**Trend:** Healthy fats (Ghani Oil).\n- Price is 2x of refined oil.",
+        detailedOverview: "Manufacturing.\n\nTrend: Healthy fats (Ghani Oil).\n- Price is 2x of refined oil.",
         workflowSteps: [
             "Seed Selection",
             "Crushing (Kacchi Ghani)",
@@ -13536,7 +13536,7 @@ export const businessIdeas = [
         investmentAmount: 1000000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Making exercise books for schools/colleges.",
-        detailedOverview: "Manufacturing.\n\n**Season:** May-July is crazy demand.\n- Ruling, Stitching, and Cutting process.",
+        detailedOverview: "Manufacturing.\n\nSeason: May-July is crazy demand.\n- Ruling, Stitching, and Cutting process.",
         workflowSteps: [
             "Paper Ruling",
             "Folding",
@@ -13569,7 +13569,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Handmade organic soaps (Goat milk, Charcoal).",
-        detailedOverview: "Manufacturing/Home.\n\n**Niche:** Skin friendly/Gift hampers.\n- Melt and Pour method is easy start.",
+        detailedOverview: "Manufacturing/Home.\n\nNiche: Skin friendly/Gift hampers.\n- Melt and Pour method is easy start.",
         workflowSteps: [
             "Base Melting",
             "Adding Essential Oils",
@@ -13603,7 +13603,7 @@ export const businessIdeas = [
         investmentAmount: 800000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Manufacturing paper napkins for restaurants.",
-        detailedOverview: "Manufacturing.\n\n**Volume:** Disposable hygiene.\n- Branding on napkins is extra income.",
+        detailedOverview: "Manufacturing.\n\nVolume: Disposable hygiene.\n- Branding on napkins is extra income.",
         workflowSteps: [
             "Jumbo Roll Loading",
             "Printing",
@@ -13637,7 +13637,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Grinding and packing Turmeric, Chilli, Coriander.",
-        detailedOverview: "Manufacturing.\n\n**Trust:** Purity guarantee.\n- Agmark certification adds value.",
+        detailedOverview: "Manufacturing.\n\nTrust: Purity guarantee.\n- Agmark certification adds value.",
         workflowSteps: [
             "Drying (Sun/Solar)",
             "Cleaning",
@@ -13671,7 +13671,7 @@ export const businessIdeas = [
         investmentAmount: 1200000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Making BOPP tapes (Clear/Brown/Branded).",
-        detailedOverview: "Manufacturing.\n\n**E-commerce:** Every parcel needs tape.\n- Printed tapes (Amazon/Flipkart style) high demand.",
+        detailedOverview: "Manufacturing.\n\nE-commerce: Every parcel needs tape.\n- Printed tapes (Amazon/Flipkart style) high demand.",
         workflowSteps: [
             "Adhesive Coating (if raw)",
             "Slitting (Jumbo to Small)",
@@ -13705,7 +13705,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Eco-friendly bags for conferences/shopping.",
-        detailedOverview: "Manufacturing.\n\n**Export:** High demand in EU/USA.\n- Corporate gifting with logo.",
+        detailedOverview: "Manufacturing.\n\nExport: High demand in EU/USA.\n- Corporate gifting with logo.",
         workflowSteps: [
             "Fabric Cutting",
             "Printing",
@@ -13739,7 +13739,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Making camphor (Kapoor) tablets for puja.",
-        detailedOverview: "Manufacturing.\n\n**Process:** Powder compression.\n- Hazardous (Flammable) material.",
+        detailedOverview: "Manufacturing.\n\nProcess: Powder compression.\n- Hazardous (Flammable) material.",
         workflowSteps: [
             "Powder Mixing",
             "Tablet Compression",
@@ -13772,7 +13772,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Printing Wedding cards, Visiting cards, and Bags.",
-        detailedOverview: "Service/Mfg.\n\n**Wedding:** Seasonal gold mine.\n- Low tech, high skill.",
+        detailedOverview: "Service/Mfg.\n\nWedding: Seasonal gold mine.\n- Low tech, high skill.",
         workflowSteps: [
             "Design Trace",
             "Screen Exposing",
@@ -13806,7 +13806,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Custom beds, wardrobes, and tables.",
-        detailedOverview: "Manufacturing.\n\n**Custom:** Engineered wood or Solid wood.\n- Interior designers are main source.",
+        detailedOverview: "Manufacturing.\n\nCustom: Engineered wood or Solid wood.\n- Interior designers are main source.",
         workflowSteps: [
             "Design/Measurement",
             "Cutting (Ply/Wood)",
@@ -13840,7 +13840,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Frying Chips, Sev, and Bhujia.",
-        detailedOverview: "Manufacturing/Food.\n\n**Taste:** Standardization is key.\n- Local packaging beats big brands on price.",
+        detailedOverview: "Manufacturing/Food.\n\nTaste: Standardization is key.\n- Local packaging beats big brands on price.",
         workflowSteps: [
             "Dough Making",
             "Extrusion/Cutting",
@@ -13874,7 +13874,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Processing fruits/vegetables into sauces and jams.",
-        detailedOverview: "Manufacturing/Food.\n\n**B2B:** Sell to Chinese stalls/Sandwich shops in bulk (5kg packs).",
+        detailedOverview: "Manufacturing/Food.\n\nB2B: Sell to Chinese stalls/Sandwich shops in bulk (5kg packs).",
         workflowSteps: [
             "Pulping",
             "Cooking (Boiling)",
@@ -13908,7 +13908,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹10,000 - ₹30,000",
         description: "Dustless chalks for schools.",
-        detailedOverview: "Manufacturing.\n\n**Market:** Schools still use blackboards in rural/semi-urban areas.",
+        detailedOverview: "Manufacturing.\n\nMarket: Schools still use blackboards in rural/semi-urban areas.",
         workflowSteps: [
             "Plaster of Paris Mixing",
             "Mould Pouring",
@@ -13940,7 +13940,7 @@ export const businessIdeas = [
         investmentAmount: 1500000,
         monthlyIncome: "₹1 Lakh - ₹3 Lakhs",
         description: "Making cardboard boxes for packaging.",
-        detailedOverview: "Manufacturing.\n\n**Demand:** E-commerce and Industrial packaging.\n- 3 ply, 5 ply, 7 ply sheets.",
+        detailedOverview: "Manufacturing.\n\nDemand: E-commerce and Industrial packaging.\n- 3 ply, 5 ply, 7 ply sheets.",
         workflowSteps: [
             "Sheet Pasting",
             "Creasing/Cutting",
@@ -13974,7 +13974,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Manufacturing biodegradable plates from betel nut leaves.",
-        detailedOverview: "Manufacturing/Eco.\n\n**Export:** Huge demand in Europe/USA as 'Palm Leaf Plates'.\n- Raw material abundant in South India/North East.",
+        detailedOverview: "Manufacturing/Eco.\n\nExport: Huge demand in Europe/USA as 'Palm Leaf Plates'.\n- Raw material abundant in South India/North East.",
         workflowSteps: [
             "Leaf Collection",
             "Washing & Soaking",
@@ -14008,7 +14008,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹20,000 - ₹1 Lakh",
         description: "Turning cow dung and organic waste into rich fertilizer.",
-        detailedOverview: "Agri-business.\n\n**Black Gold:** Farmers/Gardeners buy at ₹10-₹20/kg.\n- Earthworms do the work.",
+        detailedOverview: "Agri-business.\n\nBlack Gold: Farmers/Gardeners buy at ₹10-₹20/kg.\n- Earthworms do the work.",
         workflowSteps: [
             "Bed Preparation",
             "Waste Layering",
@@ -14042,7 +14042,7 @@ export const businessIdeas = [
         investmentAmount: 1000000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Making fuel logs from agricultural waste/sawdust.",
-        detailedOverview: "Manufacturing/Energy.\n\n**Process:** High pressure compression (White Coal).\n- Replaces wood/coal in industrial boilers.",
+        detailedOverview: "Manufacturing/Energy.\n\nProcess: High pressure compression (White Coal).\n- Replaces wood/coal in industrial boilers.",
         workflowSteps: [
             "Waste Collection (Groundnut shell etc.)",
             "Grinding",
@@ -14076,7 +14076,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹60,000",
         description: "Printing logos on cotton/canvas tote bags.",
-        detailedOverview: "Manufacturing.\n\n**Client:** Boutiques, Events, Corporates.\n- 'Say No To Plastic' campaigns drive sales.",
+        detailedOverview: "Manufacturing.\n\nClient: Boutiques, Events, Corporates.\n- 'Say No To Plastic' campaigns drive sales.",
         workflowSteps: [
             "Bag Sourcing (Stitched)",
             "Screen Preparation",
@@ -14110,7 +14110,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹1 Lakh - ₹3 Lakhs",
         description: "Marketing and installing solar panels for homes.",
-        detailedOverview: "Service/Contracting.\n\n**Govt Scheme:** PM Surya Ghar.\n- Margin is in installation and subsidy handling.",
+        detailedOverview: "Service/Contracting.\n\nGovt Scheme: PM Surya Ghar.\n- Margin is in installation and subsidy handling.",
         workflowSteps: [
             "Site Survey (Shadow analysis)",
             "Quotation/Subsidy App",
@@ -14144,7 +14144,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Consultancy and implementation of water recharge pits.",
-        detailedOverview: "Service.\n\n**Mandatory:** For new buildings in many cities.\n- Save water, save borewells.",
+        detailedOverview: "Service.\n\nMandatory: For new buildings in many cities.\n- Save water, save borewells.",
         workflowSteps: [
             "Site Inspection",
             "Design Layout",
@@ -14177,7 +14177,7 @@ export const businessIdeas = [
         investmentAmount: 1000000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Soil-less farming of exotic veggies (Lettuce, Basil).",
-        detailedOverview: "Agri-tech.\n\n**Yield:** 10x of traditional farming.\n- Sell to 5-star hotels/Gourmet stores.",
+        detailedOverview: "Agri-tech.\n\nYield: 10x of traditional farming.\n- Sell to 5-star hotels/Gourmet stores.",
         workflowSteps: [
             "Polyhouse Construction",
             "NFT System Setup",
@@ -14211,7 +14211,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Setting up a charging station at a cafe/mall.",
-        detailedOverview: "Service/Infra.\n\n**Passive:** Earn per unit charged.\n- Attracts EV owners who spend time at your location.",
+        detailedOverview: "Service/Infra.\n\nPassive: Earn per unit charged.\n- Attracts EV owners who spend time at your location.",
         workflowSteps: [
             "Site Selection",
             "Load Sanction",
@@ -14245,7 +14245,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "App-based scrap pickup service.",
-        detailedOverview: "Service/Logistics.\n\n**Trust:** Digital weighing scale and transparent rates.\n- Sell collected scrap to recyclers.",
+        detailedOverview: "Service/Logistics.\n\nTrust: Digital weighing scale and transparent rates.\n- Sell collected scrap to recyclers.",
         workflowSteps: [
             "App Booking",
             "Pickup Van Arrival",
@@ -14279,7 +14279,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Store where customers bring containers to buy grains/cleaners.",
-        detailedOverview: "Retail.\n\n**Concept:** Pay for product, not packaging.\n- Niche eco-conscious audience.",
+        detailedOverview: "Retail.\n\nConcept: Pay for product, not packaging.\n- Niche eco-conscious audience.",
         workflowSteps: [
             "Customer Brings Jar",
             "Tare Weight",
@@ -14313,7 +14313,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Turning bottles, tyres, and pallets into art.",
-        detailedOverview: "Art/Manufacturing.\n\n**Value Add:** Trash to Treasure.\n- Sell on Etsy/Instagram.",
+        detailedOverview: "Art/Manufacturing.\n\nValue Add: Trash to Treasure.\n- Sell on Etsy/Instagram.",
         workflowSteps: [
             "Waste Sourcing",
             "Cleaning/Processing",
@@ -14346,7 +14346,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹70,000",
         description: "Installing portable biogas domes for homes/farms.",
-        detailedOverview: "Service/Product.\n\n**Product:** Syntex/Sintex type domes.\n- Converts kitchen waste to cooking gas.",
+        detailedOverview: "Service/Product.\n\nProduct: Syntex/Sintex type domes.\n- Converts kitchen waste to cooking gas.",
         workflowSteps: [
             "Waste Assessment",
             "Dome Installation",
@@ -14380,7 +14380,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Growing Oyster/Button mushrooms in controlled rooms.",
-        detailedOverview: "Agri-business.\n\n**Cycle:** 45 days.\n- Vertical farming in bags.",
+        detailedOverview: "Agri-business.\n\nCycle: 45 days.\n- Vertical farming in bags.",
         workflowSteps: [
             "Substrate (Straw) Sterilization",
             "Spawning (Seeding)",
@@ -14414,7 +14414,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Liquid fertilizer (Panchagavya, Jeevamrut) & City Compost.",
-        detailedOverview: "Manufacturing.\n\n**Market:** Home gardeners & Organic farmers.\n- Bottled and branded nutrients.",
+        detailedOverview: "Manufacturing.\n\nMarket: Home gardeners & Organic farmers.\n- Bottled and branded nutrients.",
         workflowSteps: [
             "Cow Product Collection",
             "Fermentation",
@@ -14448,7 +14448,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Natural terracotta filters (Terafil) for cooling & purifying.",
-        detailedOverview: "Manufacturing/Assembly.\n\n**Health:** Natural cooling + Alkaline water.\n- No electricity needed.",
+        detailedOverview: "Manufacturing/Assembly.\n\nHealth: Natural cooling + Alkaline water.\n- No electricity needed.",
         workflowSteps: [
             "Pot Sourcing",
             "Candle/Filter Fitment",
@@ -14482,7 +14482,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹30,000 - ₹70,000",
         description: "Toothbrushes, straws, and cutlery.",
-        detailedOverview: "Manufacturing/Trading.\n\n**Plastic Ban:** Hotels need bamboo straws.\n- Toothbrushes are FMCG.",
+        detailedOverview: "Manufacturing/Trading.\n\nPlastic Ban: Hotels need bamboo straws.\n- Toothbrushes are FMCG.",
         workflowSteps: [
             "Bamboo Treatment",
             "Cutting/Shaping",
@@ -14515,7 +14515,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Making dried fruits/veggies using solar heat.",
-        detailedOverview: "Manufacturing/Food.\n\n**Product:** Sun dried tomatoes, Mango leather, Dried herbs.\n- Hygiene > Open sun drying.",
+        detailedOverview: "Manufacturing/Food.\n\nProduct: Sun dried tomatoes, Mango leather, Dried herbs.\n- Hygiene > Open sun drying.",
         workflowSteps: [
             "Washing/Slicing",
             "Tray Loading",
@@ -14549,7 +14549,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹15,000 - ₹40,000",
         description: "Making long logs from cow dung for cremation/fuel.",
-        detailedOverview: "Manufacturing.\n\n**Purpose:** Save trees used in funerals.\n- Religious acceptance is high.",
+        detailedOverview: "Manufacturing.\n\nPurpose: Save trees used in funerals.\n- Religious acceptance is high.",
         workflowSteps: [
             "Dung Collection",
             "Drying (Partial)",
@@ -14582,7 +14582,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Shredding plastic waste into granules for recycling.",
-        detailedOverview: "Manufacturing.\n\n**Input:** PIP/HDPE waste.\n- Output: Raw material for bucket manufacturers.",
+        detailedOverview: "Manufacturing.\n\nInput: PIP/HDPE waste.\n- Output: Raw material for bucket manufacturers.",
         workflowSteps: [
             "Sorting (Color/Type)",
             "Washing",
@@ -14616,7 +14616,7 @@ export const businessIdeas = [
         investmentAmount: 1000000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Applying new rubber tread to old tires (Trucks/Buses).",
-        detailedOverview: "Service/Mfg.\n\n**Savings:** Costs 30% of new tire.\n- Critical for transport companies.",
+        detailedOverview: "Service/Mfg.\n\nSavings: Costs 30% of new tire.\n- Critical for transport companies.",
         workflowSteps: [
             "Inspection",
             "Buffing (Removing old rubber)",
@@ -14650,7 +14650,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Spa, haircut, and hygiene services for dogs/cats.",
-        detailedOverview: "Service.\n\n**Package:** ₹1000 - ₹3000 per session.\n- High demand in metros where pets live indoors.",
+        detailedOverview: "Service.\n\nPackage: ₹1000 - ₹3000 per session.\n- High demand in metros where pets live indoors.",
         workflowSteps: [
             "Appointment",
             "Coat Check",
@@ -14684,7 +14684,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Professional walkers for busy pet owners.",
-        detailedOverview: "Service.\n\n**Rate:** ₹3000 - ₹5000 per month per dog.\n- Morning and evening walks.",
+        detailedOverview: "Service.\n\nRate: ₹3000 - ₹5000 per month per dog.\n- Morning and evening walks.",
         workflowSteps: [
             "Client Meet & Greet",
             "Key Handover (Trust)",
@@ -14717,7 +14717,7 @@ export const businessIdeas = [
         investmentAmount: 1000000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Hostel for pets when owners travel.",
-        detailedOverview: "Service.\n\n**Tariff:** ₹500 - ₹1500 per night.\n- Peak demand during holidays/summer.",
+        detailedOverview: "Service.\n\nTariff: ₹500 - ₹1500 per night.\n- Peak demand during holidays/summer.",
         workflowSteps: [
             "Vaccination Check",
             "Check-in",
@@ -14751,7 +14751,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Selling ornamental fish, tanks, and accessories.",
-        detailedOverview: "Retail.\n\n**Margins:** Fish (High), Tanks (Medium), Food (Low).\n- Setup service is extra income.",
+        detailedOverview: "Retail.\n\nMargins: Fish (High), Tanks (Medium), Food (Low).\n- Setup service is extra income.",
         workflowSteps: [
             "Tank Display",
             "Fish Care (Water change)",
@@ -14785,7 +14785,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Baking customized cakes and cookies for pets.",
-        detailedOverview: "Manufacturing/Food.\n\n**Occasion:** Pet Birthdays.\n- Ingredients: Chicken, Peanut Butter, Carrot (No sugar/choco).",
+        detailedOverview: "Manufacturing/Food.\n\nOccasion: Pet Birthdays.\n- Ingredients: Chicken, Peanut Butter, Carrot (No sugar/choco).",
         workflowSteps: [
             "Recipe Dev",
             "Baking",
@@ -14819,7 +14819,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Behavioral training and obedience classes.",
-        detailedOverview: "Service.\n\n**Fees:** ₹15k - ₹25k for full course.\n- Aggression control is high demand.",
+        detailedOverview: "Service.\n\nFees: ₹15k - ₹25k for full course.\n- Aggression control is high demand.",
         workflowSteps: [
             "Assessment",
             "Command Teaching",
@@ -14852,7 +14852,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Studio or outdoor shoots for pets.",
-        detailedOverview: "Service/Art.\n\n**Package:** ₹5k - ₹15k per shoot.\n- Props make it cute.",
+        detailedOverview: "Service/Art.\n\nPackage: ₹5k - ₹15k per shoot.\n- Props make it cute.",
         workflowSteps: [
             "Concept Discussion",
             "Shoot (With treats/toys)",
@@ -14885,7 +14885,7 @@ export const businessIdeas = [
         investmentAmount: 1000000,
         monthlyIncome: "₹60,000 - ₹1.5 Lakhs",
         description: "Van equipped with grooming station visiting homes.",
-        detailedOverview: "Service.\n\n**Premium:** Charge 30-40% more than salon.\n- Convenience for owners.",
+        detailedOverview: "Service.\n\nPremium: Charge 30-40% more than salon.\n- Convenience for owners.",
         workflowSteps: [
             "Booking Route",
             "Park at Customer Gate",
@@ -14919,7 +14919,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Moving pets domestically or internationally.",
-        detailedOverview: "Service/Logistics.\n\n**Complex:** Documentation, Vaccines, Crates.\n- Airline regulations expertise.",
+        detailedOverview: "Service/Logistics.\n\nComplex: Documentation, Vaccines, Crates.\n- Airline regulations expertise.",
         workflowSteps: [
             "Document Verification",
             "Crate Training Guide",
@@ -14952,7 +14952,7 @@ export const businessIdeas = [
         investmentAmount: 200000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Breeding Lovebirds, Cockatiels, Conures.",
-        detailedOverview: "Breeding/Agri.\n\n**Sales:** Pet shops buy in bulk.\n- Hand tamed birds fetch 3x price.",
+        detailedOverview: "Breeding/Agri.\n\nSales: Pet shops buy in bulk.\n- Hand tamed birds fetch 3x price.",
         workflowSteps: [
             "Pairing",
             "Nesting/Egg Laying",
@@ -14986,7 +14986,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Making Bentonite or Wood-based litter.",
-        detailedOverview: "Manufacturing.\n\n**Consumable:** Every cat owner buys monthly.\n- Bentonite clay is mined in Gujarat/Rajasthan.",
+        detailedOverview: "Manufacturing.\n\nConsumable: Every cat owner buys monthly.\n- Bentonite clay is mined in Gujarat/Rajasthan.",
         workflowSteps: [
             "Raw Clay Sourcing",
             "Granulation",
@@ -15020,7 +15020,7 @@ export const businessIdeas = [
         investmentAmount: 400000,
         monthlyIncome: "₹30,000 - ₹70,000",
         description: "Taxi that allows pets for Vet visits/Outings.",
-        detailedOverview: "Service/Transport.\n\n**Problem:** Uber/Ola refuse pets.\n- Charge premium per km.",
+        detailedOverview: "Service/Transport.\n\nProblem: Uber/Ola refuse pets.\n- Charge premium per km.",
         workflowSteps: [
             "Booking",
             "Pickup",
@@ -15054,7 +15054,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹20,000 - ₹1 Lakh",
         description: "Selling health insurance for dogs/cats.",
-        detailedOverview: "Service/Sales.\n\n**Product:** Surgery/Hospitalization cover.\n- Commission 15-20%.",
+        detailedOverview: "Service/Sales.\n\nProduct: Surgery/Hospitalization cover.\n- Commission 15-20%.",
         workflowSteps: [
             "Lead Generation",
             "Plan Explanation",
@@ -15087,7 +15087,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Breeding high quality lineage dogs (Retreivers, Shih Tzus).",
-        detailedOverview: "Breeding.\n\n**Ethical:** 1 litter per year per female.\n- KCI Papers are mandatory.",
+        detailedOverview: "Breeding.\n\nEthical: 1 litter per year per female.\n- KCI Papers are mandatory.",
         workflowSteps: [
             "Import Lineage",
             "Show Participation",
@@ -15121,7 +15121,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Stitching beds, collars, and clothes.",
-        detailedOverview: "Manufacturing.\n\n**Trend:** Personalized nametags/bandanas.\n- Sell on Amazon/Instagram.",
+        detailedOverview: "Manufacturing.\n\nTrend: Personalized nametags/bandanas.\n- Sell on Amazon/Instagram.",
         workflowSteps: [
             "Design",
             "Fabric Cutting",
@@ -15155,7 +15155,7 @@ export const businessIdeas = [
         investmentAmount: 800000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Pool for hydrotherapy and recreation.",
-        detailedOverview: "Service/Entertain.\n\n**Health:** Good for arthritis/obesity.\n- Charge ₹500 - ₹1000 per hour.",
+        detailedOverview: "Service/Entertain.\n\nHealth: Good for arthritis/obesity.\n- Charge ₹500 - ₹1000 per hour.",
         workflowSteps: [
             "Shower",
             "Swim Session (Life jacket)",
@@ -15188,7 +15188,7 @@ export const businessIdeas = [
         investmentAmount: 1000000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Cremation and burial service for pets.",
-        detailedOverview: "Service.\n\n**Dignity:** Owners want respectful goodbye.\n- Individual or mass cremation.",
+        detailedOverview: "Service.\n\nDignity: Owners want respectful goodbye.\n- Individual or mass cremation.",
         workflowSteps: [
             "Body Pickup",
             "Freezing (if delayed)",
@@ -15222,7 +15222,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "App/Video call based vet advice.",
-        detailedOverview: "Tech/Service.\n\n**Use Case:** Late night emergencies/Second opinion.\n- Subscription or Pay-per-call.",
+        detailedOverview: "Tech/Service.\n\nUse Case: Late night emergencies/Second opinion.\n- Subscription or Pay-per-call.",
         workflowSteps: [
             "Symptom Entry",
             "Video Call",
@@ -15254,7 +15254,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Breeding Mealworms/Roaches for fish, birds, reptiles.",
-        detailedOverview: "Agri/Manufacturing.\n\n**Protein:** Live or Dried feed.\n- Customers: Aquarium owners, Bird breeders.",
+        detailedOverview: "Agri/Manufacturing.\n\nProtein: Live or Dried feed.\n- Customers: Aquarium owners, Bird breeders.",
         workflowSteps: [
             "Breeding Setup (Bins)",
             "Feeding (Veg waste)",
@@ -15288,7 +15288,7 @@ export const businessIdeas = [
         investmentAmount: 1500000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Cafe allowing owners to bring pets + Pet Menu.",
-        detailedOverview: "F&B.\n\n**Differentiator:** 'Human' food + 'Dog' food.\n- Birthday party venue.",
+        detailedOverview: "F&B.\n\nDifferentiator: 'Human' food + 'Dog' food.\n- Birthday party venue.",
         workflowSteps: [
             "Pet Entry Check",
             "Seating",
@@ -15321,7 +15321,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹50,000 - ₹1.5 Lakhs",
         description: "Guiding students/professionals on career paths.",
-        detailedOverview: "Consulting.\n\n**DMIT/Psychometric Tests:** Use tools to assess aptitude.\n- Tie up with schools.",
+        detailedOverview: "Consulting.\n\nDMIT/Psychometric Tests: Use tools to assess aptitude.\n- Tie up with schools.",
         workflowSteps: [
             "Aptitude Testing",
             "Report Analysis",
@@ -15354,7 +15354,7 @@ export const businessIdeas = [
         investmentAmount: 500000,
         monthlyIncome: "₹1 Lakh - ₹5 Lakhs",
         description: "Helping students get admission in foreign universities.",
-        detailedOverview: "Consulting.\n\n**Revenue:** Commission from Universities (USD/GBP).\n- Visa assistance is critical.",
+        detailedOverview: "Consulting.\n\nRevenue: Commission from Universities (USD/GBP).\n- Visa assistance is critical.",
         workflowSteps: [
             "Profile Evaluation",
             "Country/Uni Selection",
@@ -15388,7 +15388,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Personalized meal plans for weight loss/PCOS.",
-        detailedOverview: "Health/Consulting.\n\n**Online:** WhatsApp based tracking.\n- Package: 3 months for ₹5k-₹10k.",
+        detailedOverview: "Health/Consulting.\n\nOnline: WhatsApp based tracking.\n- Package: 3 months for ₹5k-₹10k.",
         workflowSteps: [
             "Medical History",
             "Diet Chart Creation",
@@ -15421,7 +15421,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Helping individuals improve appearance and communication.",
-        detailedOverview: "Consulting/Fashion.\n\n**Clients:** CXOs, Brides, Politicians.\n- Wardrobe detox and shopping assistance.",
+        detailedOverview: "Consulting/Fashion.\n\nClients: CXOs, Brides, Politicians.\n- Wardrobe detox and shopping assistance.",
         workflowSteps: [
             "Style Assessment",
             "Body Shape Analysis",
@@ -15454,7 +15454,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹40,000 - ₹1.5 Lakhs",
         description: "Advising on saving, investing, and tax planning.",
-        detailedOverview: "Consulting/Finance.\n\n**Fee Only:** Charge flat fee, No hidden commissions.\n- Certified Financial Planner (CFP).",
+        detailedOverview: "Consulting/Finance.\n\nFee Only: Charge flat fee, No hidden commissions.\n- Certified Financial Planner (CFP).",
         workflowSteps: [
             "Risk Profiling",
             "Goal Setting (Retirement/Kids)",
@@ -15487,7 +15487,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Helping people achieve personal/professional goals.",
-        detailedOverview: "Consulting.\n\n**Focus:** Mindset, Productivity, Relationships.\n- Selling 'Correction' vs 'Cure'.",
+        detailedOverview: "Consulting.\n\nFocus: Mindset, Productivity, Relationships.\n- Selling 'Correction' vs 'Cure'.",
         workflowSteps: [
             "Discovery Call",
             "Goal Map",
@@ -15520,7 +15520,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Helping small businesses organize and scale.",
-        detailedOverview: "Consulting.\n\n**Problem:** SMEs are stuck in operations.\n- Set up SOPs, CRM, and Sales process.",
+        detailedOverview: "Consulting.\n\nProblem: SMEs are stuck in operations.\n- Set up SOPs, CRM, and Sales process.",
         workflowSteps: [
             "Audit",
             "Strategy Formation",
@@ -15553,7 +15553,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹50,000 - ₹3 Lakhs",
         description: "Hiring for specific sectors like IT, Healthcare, or Hospitality.",
-        detailedOverview: "HR/Service.\n\n**Fee:** 8.33% of Annual CTC.\n- Focus on mid-senior level roles.",
+        detailedOverview: "HR/Service.\n\nFee: 8.33% of Annual CTC.\n- Focus on mid-senior level roles.",
         workflowSteps: [
             "Client Req Analysis",
             "Sourcing (LinkedIn)",
@@ -15586,7 +15586,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Personalized matrimonial service for specific communities.",
-        detailedOverview: "Service.\n\n**Contrast:** Not an algo app (Shaadi.com).\n- Human verification and family mediation.",
+        detailedOverview: "Service.\n\nContrast: Not an algo app (Shaadi.com).\n- Human verification and family mediation.",
         workflowSteps: [
             "Profile Reg",
             "Background Check",
@@ -15619,7 +15619,7 @@ export const businessIdeas = [
         investmentAmount: 30000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Helping startups with incorporation, trademark, and contracts.",
-        detailedOverview: "Legal/Service.\n\n**Aggregator:** Connect clients to CAs/Lawyers.\n- Handle the tech/process part.",
+        detailedOverview: "Legal/Service.\n\nAggregator: Connect clients to CAs/Lawyers.\n- Handle the tech/process part.",
         workflowSteps: [
             "Requirement Gathering",
             "Doc Collection",
@@ -15652,7 +15652,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Advice for Toddler tantrums, Teen issues, Single parenting.",
-        detailedOverview: "Coaching.\n\n**Shift:** Gentle Parenting trend.\n- Workshops and 1-on-1.",
+        detailedOverview: "Coaching.\n\nShift: Gentle Parenting trend.\n- Workshops and 1-on-1.",
         workflowSteps: [
             "Problem Identification",
             "Observation",
@@ -15685,7 +15685,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Handwriting analysis for personality and recruitment.",
-        detailedOverview: "Consulting/Niche.\n\n**Use:** Hiring screening or Self-improvement.\n- Grapho-therapy (Changing writing to change traits).",
+        detailedOverview: "Consulting/Niche.\n\nUse: Hiring screening or Self-improvement.\n- Grapho-therapy (Changing writing to change traits).",
         workflowSteps: [
             "Sample Collection",
             "Analysis (Stroke by stroke)",
@@ -15718,7 +15718,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Helping companies comply with Prevention of Sexual Harassment laws.",
-        detailedOverview: "Consulting/Legal.\n\n**Mandatory:** Every Pvt Ltd needs an External Member.\n- Retainer role for ICC (Internal Committee).",
+        detailedOverview: "Consulting/Legal.\n\nMandatory: Every Pvt Ltd needs an External Member.\n- Retainer role for ICC (Internal Committee).",
         workflowSteps: [
             "Policy Drafting",
             "ICC Formation",
@@ -15751,7 +15751,7 @@ export const businessIdeas = [
         investmentAmount: 30000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Helping exhausted parents get babies to sleep.",
-        detailedOverview: "Coaching.\n\n**Pain:** Sleep deprivation.\n- Sleep training methods (Ferber etc).",
+        detailedOverview: "Coaching.\n\nPain: Sleep deprivation.\n- Sleep training methods (Ferber etc).",
         workflowSteps: [
             "Sleep Log Analysis",
             "Routine Adjustment",
@@ -15784,7 +15784,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Helping offices/factories go Green and ESG compliant.",
-        detailedOverview: "Consulting.\n\n**ESG:** Environmental Social Governance.\n- Waste audits, Energy saving, Carbon footprint.",
+        detailedOverview: "Consulting.\n\nESG: Environmental Social Governance.\n- Waste audits, Energy saving, Carbon footprint.",
         workflowSteps: [
             "Site Audit",
             "Data Collection",
@@ -15817,7 +15817,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹20,000 - ₹1 Lakh",
         description: "Intuitive guidance using Tarot spreads.",
-        detailedOverview: "Consulting/Spiritual.\n\n**Session:** ₹1000 - ₹3000.\n- Online via Zoom/WhatsApp Video.",
+        detailedOverview: "Consulting/Spiritual.\n\nSession: ₹1000 - ₹3000.\n- Online via Zoom/WhatsApp Video.",
         workflowSteps: [
             "Booking",
             "Question Clarification",
@@ -15850,7 +15850,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Writing books, articles, or LinkedIn posts for CEOs.",
-        detailedOverview: "Service/Writing.\n\n**Secret:** You write, they get credit.\n- LinkedIn Personal Branding is hot.",
+        detailedOverview: "Service/Writing.\n\nSecret: You write, they get credit.\n- LinkedIn Personal Branding is hot.",
         workflowSteps: [
             "Client Voice Interview",
             "Content Calendar",
@@ -15882,7 +15882,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Getting news coverage for startups in blogs/papers.",
-        detailedOverview: "Service/Marketing.\n\n**Value:** Funding announcements, Product launches.\n- Retainer or Project basis.",
+        detailedOverview: "Service/Marketing.\n\nValue: Funding announcements, Product launches.\n- Retainer or Project basis.",
         workflowSteps: [
             "Press Release Drafting",
             "Media List Building",
@@ -15915,7 +15915,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹10,000 - ₹40,000",
         description: "Auditing retail stores/hotels anonymously.",
-        detailedOverview: "Service.\n\n**Gig:** Get paid to eat/shop and rate experience.\n- Agencies hire shoppers.",
+        detailedOverview: "Service.\n\nGig: Get paid to eat/shop and rate experience.\n- Agencies hire shoppers.",
         workflowSteps: [
             "Task Assignment",
             "Visit Location",
@@ -15947,7 +15947,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹50,000 - ₹3 Lakhs",
         description: "Helping local businesses sell globally.",
-        detailedOverview: "Consulting/Trade.\n\n**Focus:** Documentation, Buyer finding, Logistics.\n- Commission on container value.",
+        detailedOverview: "Consulting/Trade.\n\nFocus: Documentation, Buyer finding, Logistics.\n- Commission on container value.",
         workflowSteps: [
             "Product Identification",
             "IEC/RCMC Registration",
@@ -15980,7 +15980,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹10,000 - ₹50,000",
         description: "Self-publishing books on Kindle (KDP).",
-        detailedOverview: "Digital.\n\n**Royalties:** Up to 70% per sale.\n- Genres: Romance, Sci-fi, How-to guides.",
+        detailedOverview: "Digital.\n\nRoyalties: Up to 70% per sale.\n- Genres: Romance, Sci-fi, How-to guides.",
         workflowSteps: [
             "Writing (or hiring ghostwriter)",
             "Cover Design (Canva)",
@@ -16013,7 +16013,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹10,000 - ₹40,000",
         description: "Selling photos/videos on Shutterstock/Adobe Stock.",
-        detailedOverview: "Digital.\n\n**Focus:** Indian corporate, Festival, Traffic scenes.\n- Earn per download ($0.10 to $100).",
+        detailedOverview: "Digital.\n\nFocus: Indian corporate, Festival, Traffic scenes.\n- Earn per download ($0.10 to $100).",
         workflowSteps: [
             "Shoot Concept",
             "Editing/Touching",
@@ -16046,7 +16046,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹20,000 - ₹1 Lakh",
         description: "Video courses on Udemy/Skillshare.",
-        detailedOverview: "Digital/Edtech.\n\n**Topic:** Excel, Coding, Yoga, Cooking.\n- One time effort, recurring sales.",
+        detailedOverview: "Digital/Edtech.\n\nTopic: Excel, Coding, Yoga, Cooking.\n- One time effort, recurring sales.",
         workflowSteps: [
             "Curriculum Planning",
             "Recording (Screen or Face)",
@@ -16079,7 +16079,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹10,000 - ₹1 Lakh",
         description: "Audio show on specific topics (e.g., Horror stories, History).",
-        detailedOverview: "Media.\n\n**Revenue:** Sponsorships/Spotify Ads.\n- Regional languages are growing fast.",
+        detailedOverview: "Media.\n\nRevenue: Sponsorships/Spotify Ads.\n- Regional languages are growing fast.",
         workflowSteps: [
             "Scripting",
             "Recording",
@@ -16111,7 +16111,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹10,000 - ₹1 Lakh",
         description: "Subscription email on Substack/Beehiiv.",
-        detailedOverview: "Content.\n\n**Model:** 100 true fans paying ₹500/month.\n- Topics: Stock analysis, Tech trends.",
+        detailedOverview: "Content.\n\nModel: 100 true fans paying ₹500/month.\n- Topics: Stock analysis, Tech trends.",
         workflowSteps: [
             "Topic Selection",
             "Landing Page",
@@ -16143,7 +16143,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹10,000 - ₹50,000",
         description: "Selling productivity dashboards for Notion users.",
-        detailedOverview: "Digital.\n\n**Product:** Student planner, CRM, Finance tracker.\n- Sell on Gumroad/Etsy.",
+        detailedOverview: "Digital.\n\nProduct: Student planner, CRM, Finance tracker.\n- Sell on Gumroad/Etsy.",
         workflowSteps: [
             "Design Template",
             "Create Usage Guide",
@@ -16175,7 +16175,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Creating custom art, portraits, or game assets.",
-        detailedOverview: "Art/Service.\n\n**Platforms:** Fiverr, Instagram, ArtStation.\n- VTuber models are high value.",
+        detailedOverview: "Art/Service.\n\nPlatforms: Fiverr, Instagram, ArtStation.\n- VTuber models are high value.",
         workflowSteps: [
             "Client Brief",
             "Sketching",
@@ -16207,7 +16207,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Recording scripts for commercials, YouTube, E-learning.",
-        detailedOverview: "Service.\n\n**Languages:** Hindi/English/Regional accents.\n- Charge per minute of audio.",
+        detailedOverview: "Service.\n\nLanguages: Hindi/English/Regional accents.\n- Charge per minute of audio.",
         workflowSteps: [
             "Audition/Sample",
             "Recording in Booth",
@@ -16240,7 +16240,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Translating documents/apps to Regional languages.",
-        detailedOverview: "Service.\n\n**India:** Huge demand for Vernacular content.\n- English to Hindi/Tamil/Telugu etc.",
+        detailedOverview: "Service.\n\nIndia: Huge demand for Vernacular content.\n- English to Hindi/Tamil/Telugu etc.",
         workflowSteps: [
             "Receive Text",
             "Translation",
@@ -16272,7 +16272,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Optimizing CVs for ATS (Applicant Tracking Systems).",
-        detailedOverview: "Service.\n\n**Package:** Resume + Cover Letter + LinkedIn.\n- Clients willing to pay for job boost.",
+        detailedOverview: "Service.\n\nPackage: Resume + Cover Letter + LinkedIn.\n- Clients willing to pay for job boost.",
         workflowSteps: [
             "Client Interview",
             "ATS Keyword Research",
@@ -16304,7 +16304,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹50,000 - ₹2 Lakhs",
         description: "Building Chatbots and Workflow automations for biz.",
-        detailedOverview: "Tech/Service.\n\n**Tools:** Zapier, Make, OpenAI API.\n- Automate leads, support, emails.",
+        detailedOverview: "Tech/Service.\n\nTools: Zapier, Make, OpenAI API.\n- Automate leads, support, emails.",
         workflowSteps: [
             "Process Mapping",
             "Bot Design",
@@ -16337,7 +16337,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Training teams to use ChatGPT/Midjourney effectively.",
-        detailedOverview: "Consulting.\n\n**Skill:** Prompt Engineering.\n- Workshops for corporate productivity.",
+        detailedOverview: "Consulting.\n\nSkill: Prompt Engineering.\n- Workshops for corporate productivity.",
         workflowSteps: [
             "Assessment",
             "Custom Prompt Library",
@@ -16369,7 +16369,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Selling beats to rappers/YouTubers.",
-        detailedOverview: "Audio.\n\n**Market:** BeatStars/Airbit.\n- Lease or Exclusive rights.",
+        detailedOverview: "Audio.\n\nMarket: BeatStars/Airbit.\n- Lease or Exclusive rights.",
         workflowSteps: [
             "Composing",
             "Mixing/Mastering",
@@ -16402,7 +16402,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹20,000 - ₹1 Lakh",
         description: "Creating niche plugins for WooCommerce/WP.",
-        detailedOverview: "Tech/Product.\n\n**Model:** Freemium (Free content + Pro features).\n- Repository traffic is huge.",
+        detailedOverview: "Tech/Product.\n\nModel: Freemium (Free content + Pro features).\n- Repository traffic is huge.",
         workflowSteps: [
             "Problem Identification",
             "Coding (PHP/JS)",
@@ -16434,7 +16434,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹10,000 - ₹40,000",
         description: "selling PDF planners for iPad (GoodNotes).",
-        detailedOverview: "Design/Product.\n\n**Platform:** Etsy/Gumroad.\n- Hyperlinked PDFs acting as apps.",
+        detailedOverview: "Design/Product.\n\nPlatform: Etsy/Gumroad.\n- Hyperlinked PDFs acting as apps.",
         workflowSteps: [
             "Layout Design (Keynote/InDesign)",
             "Hyperlinking",
@@ -16466,7 +16466,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹20,000 - ₹80,000",
         description: "Selling Figma/HTML website kits.",
-        detailedOverview: "Design.\n\n**Market:** ThemeForest, UI8.\n- Dashboards, Landing pages, App kits.",
+        detailedOverview: "Design.\n\nMarket: ThemeForest, UI8.\n- Dashboards, Landing pages, App kits.",
         workflowSteps: [
             "Market Research",
             "Design System Setup",
@@ -16498,7 +16498,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹15,000 - ₹40,000",
         description: "Creating captions for YouTubers/Movies.",
-        detailedOverview: "Service.\n\n**Demand:** Short form content (Reels) needs captions.\n- Hormozi style captions.",
+        detailedOverview: "Service.\n\nDemand: Short form content (Reels) needs captions.\n- Hormozi style captions.",
         workflowSteps: [
             "Transcribing",
             "Syncing Timecodes",
@@ -16530,7 +16530,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹0 - ₹1 Lakh",
         description: "Buying undervalues domains and reselling.",
-        detailedOverview: "Trading.\n\n**High Risk:** Buy for $10, Sell for $1000.\n- Keywords, Geo-domains, Brandables.",
+        detailedOverview: "Trading.\n\nHigh Risk: Buy for $10, Sell for $1000.\n- Keywords, Geo-domains, Brandables.",
         workflowSteps: [
             "Research (Expired domains)",
             "Valuation check",
@@ -16562,7 +16562,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹10,000 - ₹30,000",
         description: "Labeling images for AI training.",
-        detailedOverview: "Service.\n\n**Platform:** Remotasks, Amazon MTurk.\n- Simple tasks like 'Draw box around car'.",
+        detailedOverview: "Service.\n\nPlatform: Remotasks, Amazon MTurk.\n- Simple tasks like 'Draw box around car'.",
         workflowSteps: [
             "Qualification Test",
             "Task Acceptance",
@@ -16594,7 +16594,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹10,000 - ₹30,000",
         description: "Testing websites/apps and recording feedback.",
-        detailedOverview: "Service.\n\n**Platform:** UserTesting, TryMyUI.\n- $10 for 20 mins test.",
+        detailedOverview: "Service.\n\nPlatform: UserTesting, TryMyUI.\n- $10 for 20 mins test.",
         workflowSteps: [
             "Screener Survey",
             "Scenario Reading",
@@ -16626,7 +16626,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Assisting seniors with bank work, hospital visits, or tech.",
-        detailedOverview: "Service.\n\n**Non-medical:** Companionship and errand running for NRIs parents.\n- Charge hourly or monthly subscription.",
+        detailedOverview: "Service.\n\nNon-medical: Companionship and errand running for NRIs parents.\n- Charge hourly or monthly subscription.",
         workflowSteps: [
             "Client Interaction (Child)",
             "Visit Parent",
@@ -16659,7 +16659,7 @@ export const businessIdeas = [
         investmentAmount: 5000,
         monthlyIncome: "₹15,000 - ₹40,000",
         description: "Dunzo-style personal runner service for custom tasks.",
-        detailedOverview: "Service.\n\n**Tasks:** Forgotten keys, gift delivery, queue standing.\n- Charge per km + waiting time.",
+        detailedOverview: "Service.\n\nTasks: Forgotten keys, gift delivery, queue standing.\n- Charge per km + waiting time.",
         workflowSteps: [
             "Task Request",
             "Quote Approval",
@@ -16691,7 +16691,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Cleaning cars at customer doorstep.",
-        detailedOverview: "Service.\n\n**USP:** Waterless/Foam wash (Eco friendly).\n- Subscription model for societies.",
+        detailedOverview: "Service.\n\nUSP: Waterless/Foam wash (Eco friendly).\n- Subscription model for societies.",
         workflowSteps: [
             "Booking",
             "Reach Location",
@@ -16725,7 +16725,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹10,000 - ₹30,000",
         description: "Teaching smartphone usage, Zoom, and Online payments.",
-        detailedOverview: "Service/Education.\n\n**Patience:** Seniors fear deleting money/data.\n- Home visit tutorials.",
+        detailedOverview: "Service/Education.\n\nPatience: Seniors fear deleting money/data.\n- Home visit tutorials.",
         workflowSteps: [
             "Assessment (Android/iOS)",
             "Safety Briefing (Scams)",
@@ -16757,7 +16757,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Monthly upkeep of balcony/terrace gardens.",
-        detailedOverview: "Service.\n\n**AMC:** ₹500 - ₹2000 per month.\n- Pruning, Manuring, Pest spray.",
+        detailedOverview: "Service.\n\nAMC: ₹500 - ₹2000 per month.\n- Pruning, Manuring, Pest spray.",
         workflowSteps: [
             "Schedule Visit",
             "Plant Inspection",
@@ -16790,7 +16790,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Driving customer's car for outstation/parties.",
-        detailedOverview: "Service.\n\n**Trust:** Clean record and uniform.\n- Acting Driver agencies charge commission.",
+        detailedOverview: "Service.\n\nTrust: Clean record and uniform.\n- Acting Driver agencies charge commission.",
         workflowSteps: [
             "Booking",
             "Reach Client",
@@ -16822,7 +16822,7 @@ export const businessIdeas = [
         investmentAmount: 0,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Cooking for house parties or weekends.",
-        detailedOverview: "Service.\n\n**Speciality:** BBQ, Biryani, or Healthy Prep.\n- Charge per meal or per person.",
+        detailedOverview: "Service.\n\nSpeciality: BBQ, Biryani, or Healthy Prep.\n- Charge per meal or per person.",
         workflowSteps: [
             "Menu Discussion",
             "Grocery List Check",
@@ -16854,7 +16854,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Deep cleaning upholstery using wet vacuum.",
-        detailedOverview: "Service.\n\n**Visible Result:** Removing dark stains appeals to customers.\n- High margin service.",
+        detailedOverview: "Service.\n\nVisible Result: Removing dark stains appeals to customers.\n- High margin service.",
         workflowSteps: [
             "Inspection",
             "Shampoo Spray",
@@ -16888,7 +16888,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Mechanized cleaning of overhead/underground tanks.",
-        detailedOverview: "Service.\n\n**Health:** Dirty water is major issue.\n- 6 month recurring cycle.",
+        detailedOverview: "Service.\n\nHealth: Dirty water is major issue.\n- 6 month recurring cycle.",
         workflowSteps: [
             "Dewatering (Pump)",
             "Sludge Removal",
@@ -16921,7 +16921,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹20,000 - ₹60,000",
         description: "Degreasing kitchen chimneys and hobs.",
-        detailedOverview: "Service.\n\n**Pain Point:** Grease dripping/Fire hazard.\n- Caustic soda cleaning.",
+        detailedOverview: "Service.\n\nPain Point: Grease dripping/Fire hazard.\n- Caustic soda cleaning.",
         workflowSteps: [
             "Dismantling",
             "Caustic Hot Water Dip",
@@ -16954,7 +16954,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹40,000 - ₹1.5 Lakhs (Summer)",
         description: "Servicing Split/Window ACs.",
-        detailedOverview: "Technician.\n\n**Seasonal:** Earn 80% income in 4 months.\n- Gas charging has high margin.",
+        detailedOverview: "Technician.\n\nSeasonal: Earn 80% income in 4 months.\n- Gas charging has high margin.",
         workflowSteps: [
             "Filter Cleaning",
             "Coil Washing (Jet)",
@@ -16987,7 +16987,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Shifting house within the city (Chota Hathi).",
-        detailedOverview: "Service/Logistics.\n\n**Niche:** Micro-shifting (Studio apts).\n- Packing fragile items is key.",
+        detailedOverview: "Service/Logistics.\n\nNiche: Micro-shifting (Studio apts).\n- Packing fragile items is key.",
         workflowSteps: [
             "Survey/Quote",
             "Packing (Bubble wrap)",
@@ -17020,7 +17020,7 @@ export const businessIdeas = [
         investmentAmount: 5000,
         monthlyIncome: "₹15,000 - ₹40,000",
         description: "Assembling IKEA/Amazon furniture.",
-        detailedOverview: "Service.\n\n**Problem:** DIY is hard for many.\n- Wall mounting TV/Shelves.",
+        detailedOverview: "Service.\n\nProblem: DIY is hard for many.\n- Wall mounting TV/Shelves.",
         workflowSteps: [
             "Visit",
             "Unboxing",
@@ -17053,7 +17053,7 @@ export const businessIdeas = [
         investmentAmount: 20000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Making homes safe for crawling babies.",
-        detailedOverview: "Niche Service.\n\n**Products:** Corner guards, Gate latches, Socket covers.\n- Consultation + Installation.",
+        detailedOverview: "Niche Service.\n\nProducts: Corner guards, Gate latches, Socket covers.\n- Consultation + Installation.",
         workflowSteps: [
             "Home Audit",
             "Risk Report",
@@ -17086,7 +17086,7 @@ export const businessIdeas = [
         investmentAmount: 300000,
         monthlyIncome: "₹20,000 - ₹50,000",
         description: "Mobile book van visiting societies/schools.",
-        detailedOverview: "Service/Ed.\n\n**Subscription:** Monthly fee for borrowing.\n- Nostalgia factor + Kids reading habit.",
+        detailedOverview: "Service/Ed.\n\nSubscription: Monthly fee for borrowing.\n- Nostalgia factor + Kids reading habit.",
         workflowSteps: [
             "Route Planning",
             "Park & Display",
@@ -17120,7 +17120,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Collecting old laptops/phones for recycling.",
-        detailedOverview: "Trading/Eco.\n\n**Value:** Gold/Silver in PCBs + Refurbishing.\n- Tie up with certified recyclers.",
+        detailedOverview: "Trading/Eco.\n\nValue: Gold/Silver in PCBs + Refurbishing.\n- Tie up with certified recyclers.",
         workflowSteps: [
             "Collection Drives",
             "Data Wiper (Cert)",
@@ -17153,7 +17153,7 @@ export const businessIdeas = [
         investmentAmount: 100000,
         monthlyIncome: "₹30,000 - ₹80,000",
         description: "Aggregator for Ironing/Dry Cleaning.",
-        detailedOverview: "Service.\n\n**Convenience:** Doorstep pickup & delivery.\n- Outsource washing to Dhobi Ghat/Industrial laundry.",
+        detailedOverview: "Service.\n\nConvenience: Doorstep pickup & delivery.\n- Outsource washing to Dhobi Ghat/Industrial laundry.",
         workflowSteps: [
             "App Booking",
             "Pickup",
@@ -17187,7 +17187,7 @@ export const businessIdeas = [
         investmentAmount: 600000,
         monthlyIncome: "₹40,000 - ₹80,000",
         description: "Private transport for school kids.",
-        detailedOverview: "Transport.\n\n**Reliability:** Safety and Timing.\n- AM/PM shifts leave day free.",
+        detailedOverview: "Transport.\n\nReliability: Safety and Timing.\n- AM/PM shifts leave day free.",
         workflowSteps: [
             "Route Formation",
             "Parent Agreement",
@@ -17220,7 +17220,7 @@ export const businessIdeas = [
         investmentAmount: 50000,
         monthlyIncome: "₹30,000 - ₹1 Lakh",
         description: "Balloon/Flower decoration for Birthdays/Anniversaries.",
-        detailedOverview: "Service/Event.\n\n**Speed:** Setup in 2 hours.\n- Themes: Unicorn, Marvel, Jungle.",
+        detailedOverview: "Service/Event.\n\nSpeed: Setup in 2 hours.\n- Themes: Unicorn, Marvel, Jungle.",
         workflowSteps: [
             "Booking (Theme)",
             "Material Purchase",
@@ -17254,7 +17254,7 @@ export const businessIdeas = [
         investmentAmount: 10000,
         monthlyIncome: "₹40,000 - ₹1 Lakh",
         description: "Cooking weekly meals for busy families/Expats.",
-        detailedOverview: "Service/Food.\n\n**Meal Prep:** Cook 5 days food in 1 visit.\n- High protein/Keto specialization.",
+        detailedOverview: "Service/Food.\n\nMeal Prep: Cook 5 days food in 1 visit.\n- High protein/Keto specialization.",
         workflowSteps: [
             "Menu Planning",
             "Grocery Shopping",
