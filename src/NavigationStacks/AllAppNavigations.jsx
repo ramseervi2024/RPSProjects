@@ -87,6 +87,7 @@ import PokeSwipe from '../PokeSwipe/PokeSwipe';
 import BazaarHubNavigation from '../Apps/BazaarHub/BazaarHubNavigation';
 import DreamShotsStudioNavigation from '../Apps/DreamShotsStudio/DreamShotsStudioNavigation';
 import FixMyHome from '../Apps/FixMyHome/FixMyHome';
+import HeritageVastra from '../Apps/HeritageVastra/HeritageVastra';
 
 const AllAppNav = createStackNavigator();
 
@@ -179,6 +180,7 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="BazaarHubNavigation" component={BazaarHubNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="DreamShotsStudioNavigation" component={DreamShotsStudioNavigation} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="FixMyHome" component={FixMyHome} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="HeritageVastra" component={HeritageVastra} options={{ headerShown: false }} />
             </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>
