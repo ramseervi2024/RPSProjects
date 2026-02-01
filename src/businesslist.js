@@ -1,6 +1,12 @@
 
 export const business = [
     {
+        "id": 10053,
+        "label": "RoyalTourTrip",
+        "value": "This app will include features like local news, events, services, and community discussions",
+        "appurl": "RoyalTourTrip"
+    },
+    {
         "id": 10052,
         "label": "VyaparSarthi",
         "value": "This app will include features like local news, events, services, and community discussions",
@@ -234,7 +240,7 @@ export const business = [
         "value": " We'll create a fully featured app with hotel search, filtering, and booking capabilities.",
         "appurl": "Booking"
     },
-   
+
     {
         "id": 2009,
         "label": "Snapchat",
@@ -533,16 +539,16 @@ export const business = [
         "label": "Fitness & Health Apps",
         "value": "Apps for fitness tracking, diet, and mental health support."
     },
-  
+
 
     {
         "id": 10,
         "label": "Productivity & Task Management Apps",
         "value": "To-do lists, task managers, and productivity boosters."
     },
-   
-    
-    
+
+
+
     {
         "id": 15,
         "label": "Augmented Reality (AR) Apps",
@@ -723,7 +729,7 @@ export const business = [
         "label": "AR-based Shopping Apps",
         "value": "Apps for shopping with augmented reality features like virtual try-ons."
     },
-    
+
     {
         "id": 52,
         "label": "Social Impact & Charity Apps",
@@ -739,7 +745,7 @@ export const business = [
         "label": "Smartwatch Companion Apps",
         "value": "Apps for pairing with smartwatches for enhanced functionality."
     },
-   
+
     {
         "id": 56,
         "label": "Food & Drink Recipe Apps",
@@ -1625,7 +1631,7 @@ export const business = [
         "label": "Career Counseling Apps",
         "value": "Apps that provide career advice, resume reviews, and job search tips."
     },
-   
+
     {
         "id": 234,
         "label": "Virtual Health Consultations Apps",

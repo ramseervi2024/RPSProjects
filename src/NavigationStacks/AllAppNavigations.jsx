@@ -93,6 +93,7 @@ import LocalPropertyDeal from '../Apps/LocalPropertyDeal/LocalPropertyDeal';
 import RasoiHalwaiHub from '../Apps/RasoiHalwaiHub/RasoiHalwaiHub';
 import TentHouse from '../Apps/TentHouse/TentHouse';
 import VyaparSarthi from '../Apps/VyaparSarthi/VyaparSarthi';
+import RoyalTourTrip from '../Apps/RoyalTourTrip/RoyalTourTrip';
 
 const AllAppNav = createStackNavigator();
 
@@ -191,7 +192,8 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="RasoiHalwaiHub" component={RasoiHalwaiHub} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="TentHouse" component={TentHouse} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="VyaparSarthi" component={VyaparSarthi} options={{ headerShown: false }} />
-                </AllAppNav.Navigator>
+                <AllAppNav.Screen name="RoyalTourTrip" component={RoyalTourTrip} options={{ headerShown: false }} />
+            </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>
     );
