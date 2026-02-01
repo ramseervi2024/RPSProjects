@@ -1,10 +1,14 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import StackNavigator from './src/navigation/StackNavigator';
 
-export default function LocalPropertyDeal() {
-  return (
-    <View>
-      <Text>LocalPropertyDeal</Text>
-    </View>
-  )
-}
+const App = () => {
+    return (
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+            <StackNavigator />
+        </SafeAreaView>
+    );
+};
+
+export default App;
