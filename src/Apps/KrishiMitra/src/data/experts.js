@@ -1,0 +1,38 @@
+export const expertsData = [
+    {
+        id: '1',
+        name: 'Dr. Ramesh Kumar',
+        specialization: 'Soil Health',
+        experienceYears: 12,
+        city: 'Jaipur',
+        rating: 4.8,
+        image: 'https://via.placeholder.com/100/16A34A/FFFFFF?text=Dr+Ramesh',
+    },
+    {
+        id: '2',
+        name: 'Suman Choudhary',
+        specialization: 'Pest Control',
+        experienceYears: 8,
+        city: 'Jodhpur',
+        rating: 4.6,
+        image: 'https://via.placeholder.com/100/16A34A/FFFFFF?text=Suman',
+    },
+    {
+        id: '3',
+        name: 'Rajesh Singh',
+        specialization: 'Irrigation',
+        experienceYears: 15,
+        city: 'Kota',
+        rating: 4.9,
+        image: 'https://via.placeholder.com/100/16A34A/FFFFFF?text=Rajesh',
+    },
+    {
+        id: '4',
+        name: 'Priya Verma',
+        specialization: 'Organic Farming',
+        experienceYears: 6,
+        city: 'Udaipur',
+        rating: 4.7,
+        image: 'https://via.placeholder.com/100/16A34A/FFFFFF?text=Priya',
+    },
+];
