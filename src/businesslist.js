@@ -1,6 +1,30 @@
 
 export const business = [
     {
+        "id": 10052,
+        "label": "VyaparSarthi",
+        "value": "This app will include features like local news, events, services, and community discussions",
+        "appurl": "VyaparSarthi"
+    },
+    {
+        "id": 10051,
+        "label": "TentHouse",
+        "value": "This app will include features like local news, events, services, and community discussions",
+        "appurl": "TentHouse"
+    },
+    {
+        "id": 10050,
+        "label": "RasoiHalwaiHub",
+        "value": "This app will include features like local news, events, services, and community discussions",
+        "appurl": "RasoiHalwaiHub"
+    },
+    {
+        "id": 10049,
+        "label": "LocalPropertyDeal",
+        "value": "This app will include features like local news, events, services, and community discussions",
+        "appurl": "LocalPropertyDeal"
+    },
+    {
         "id": 10048,
         "label": "KrishiMitra",
         "value": "This app will include features like local news, events, services, and community discussions",

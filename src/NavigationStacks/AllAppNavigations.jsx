@@ -89,6 +89,10 @@ import DreamShotsStudioNavigation from '../Apps/DreamShotsStudio/DreamShotsStudi
 import FixMyHome from '../Apps/FixMyHome/FixMyHome';
 import HeritageVastra from '../Apps/HeritageVastra/HeritageVastra';
 import KrishiMitra from '../Apps/KrishiMitra/KrishiMitra';
+import LocalPropertyDeal from '../Apps/LocalPropertyDeal/LocalPropertyDeal';
+import RasoiHalwaiHub from '../Apps/RasoiHalwaiHub/RasoiHalwaiHub';
+import TentHouse from '../Apps/TentHouse/TentHouse';
+import VyaparSarthi from '../Apps/VyaparSarthi/VyaparSarthi';
 
 const AllAppNav = createStackNavigator();
 
@@ -183,6 +187,10 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="FixMyHome" component={FixMyHome} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="HeritageVastra" component={HeritageVastra} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="KrishiMitra" component={KrishiMitra} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="LocalPropertyDeal" component={LocalPropertyDeal} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="RasoiHalwaiHub" component={RasoiHalwaiHub} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="TentHouse" component={TentHouse} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="VyaparSarthi" component={VyaparSarthi} options={{ headerShown: false }} />
                 </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>
