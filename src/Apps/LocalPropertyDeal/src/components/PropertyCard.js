@@ -2,9 +2,9 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { MapPin } from 'lucide-react-native';
 
-const PropertyCard = ({ property, onPress }) => {
+const PropertyCard = ({ property, onPress, style }) => {
     return (
-        <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.9}>
+        <TouchableOpacity style={[styles.card, style]} onPress={onPress} activeOpacity={0.9}>
             <Image source={{ uri: property.images[0] }} style={styles.image} />
 
             <View style={styles.tagContainer}>

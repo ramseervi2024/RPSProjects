@@ -16,6 +16,7 @@ const MyListingsScreen = ({ navigation }) => {
             <PropertyCard
                 property={item}
                 onPress={() => navigation.navigate('PropertyDetail', { property: item })}
+                style={{ width: '100%', marginRight: 0 }}
             />
             <View style={[styles.statusBadge, item.myStatus === 'Active' ? styles.active : styles.pending]}>
                 <Text style={styles.statusText}>{item.myStatus}</Text>
@@ -48,7 +49,6 @@ const styles = StyleSheet.create({
     },
     itemContainer: {
         marginBottom: 24,
-        alignItems: 'center',
         position: 'relative',
     },
     statusBadge: {

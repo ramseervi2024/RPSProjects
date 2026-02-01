@@ -187,9 +187,7 @@ const styles = StyleSheet.create({
         color: '#1a1a1a',
         paddingHorizontal: 20, // If direct child
     },
-    sectionHeader, sectionTitle: {
-        paddingHorizontal: 0,
-    },
+
     seeAll: {
         color: '#007AFF',
         fontSize: 14,

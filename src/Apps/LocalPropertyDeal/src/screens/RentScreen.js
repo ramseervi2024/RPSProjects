@@ -12,6 +12,7 @@ const RentScreen = ({ navigation }) => {
             <PropertyCard
                 property={item}
                 onPress={() => navigation.navigate('PropertyDetail', { property: item })}
+                style={{ width: '100%', marginRight: 0 }}
             />
         </View>
     );
@@ -41,7 +42,6 @@ const styles = StyleSheet.create({
     },
     itemContainer: {
         marginBottom: 20,
-        alignItems: 'center',
     },
 });
 
