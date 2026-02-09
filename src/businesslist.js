@@ -145,6 +145,12 @@ export const business = [
         "appurl": "VillageHub"
     },
     {
+        "id": 1005888,
+        "label": "CalculateChannelMoney",
+        "value": "This app will include features like local news, events, services, and community discussions",
+        "appurl": "CalculateChannelMoney"
+    },
+    {
         "id": 10028,
         "label": "ToolMart",
         "value": "This will be a professional-grade app for a hardware and tools marketplace with features like product browsing, categories, search, and a shopping cart.",
