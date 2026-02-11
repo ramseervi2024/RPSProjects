@@ -95,6 +95,7 @@ import TentHouse from '../Apps/TentHouse/TentHouse';
 import VyaparSarthi from '../Apps/VyaparSarthi/VyaparSarthi';
 import RoyalTourTrip from '../Apps/RoyalTourTrip/RoyalTourTrip';
 import CalculateChannelMoney from '../Apps/CalculateChannelMoney/CalculateChannelMoney';
+import ChatScreenFeatures from '../ChatScreenFeatures/ChatScreenFeatures';
 
 const AllAppNav = createStackNavigator();
 
@@ -195,6 +196,7 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="VyaparSarthi" component={VyaparSarthi} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="RoyalTourTrip" component={RoyalTourTrip} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="CalculateChannelMoney" component={CalculateChannelMoney} options={{ headerShown: false }} />
+                <AllAppNav.Screen name="ChatScreenFeatures" component={ChatScreenFeatures} options={{ headerShown: false }} />
                 </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>

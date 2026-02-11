@@ -2,6 +2,12 @@
 export const business = [
     {
         "id": 10053,
+        "label": "ChatScreenFeatures",
+        "value": "This app will include features like local news, events, services, and community discussions",
+        "appurl": "ChatScreenFeatures"
+    },
+    {
+        "id": 10053,
         "label": "RoyalTourTrip",
         "value": "This app will include features like local news, events, services, and community discussions",
         "appurl": "RoyalTourTrip"
