@@ -96,6 +96,8 @@ import VyaparSarthi from '../Apps/VyaparSarthi/VyaparSarthi';
 import RoyalTourTrip from '../Apps/RoyalTourTrip/RoyalTourTrip';
 import CalculateChannelMoney from '../Apps/CalculateChannelMoney/CalculateChannelMoney';
 import ChatScreenFeatures from '../ChatScreenFeatures/ChatScreenFeatures';
+import SmartHeroGallery from '../SmartHeroGallery/SmartHeroGallery';
+
 
 const AllAppNav = createStackNavigator();
 
@@ -197,7 +199,8 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="RoyalTourTrip" component={RoyalTourTrip} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="CalculateChannelMoney" component={CalculateChannelMoney} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="ChatScreenFeatures" component={ChatScreenFeatures} options={{ headerShown: false }} />
-                </AllAppNav.Navigator>
+                <AllAppNav.Screen name="SmartHeroGallery" component={SmartHeroGallery} options={{ headerShown: false }} />
+            </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>
     );

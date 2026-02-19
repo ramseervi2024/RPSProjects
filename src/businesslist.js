@@ -1,6 +1,12 @@
 
 export const business = [
     {
+        "id": 10055,
+        "label": "SmartHeroGallery",
+        "value": "Smart hero gallery with deterministic layout and progressive media loading.",
+        "appurl": "SmartHeroGallery"
+    },
+    {
         "id": 10054,
         "label": "ChatScreenFeatures",
         "value": "This app will include features like local news, events, services, and community discussions",
