@@ -13,6 +13,7 @@ import FleetMap from './screens/FleetMap';
 import Profile from './screens/Profile';
 import DriversList from './screens/DriversList';
 import TripsList from './screens/TripsList';
+import TripDetails from './screens/TripDetails';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -72,6 +73,7 @@ export default function FleetTrack() {
       <Stack.Screen name="Main" component={MainTabs} />
       <Stack.Screen name="DriversList" component={DriversList} />
       <Stack.Screen name="TripsList" component={TripsList} />
+      <Stack.Screen name="TripDetails" component={TripDetails} />
     </Stack.Navigator>
   );
 }

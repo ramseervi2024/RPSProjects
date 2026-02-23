@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, Dimensions, SafeAreaView, TouchableOpacity, Modal, TextInput, Alert } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Dimensions, SafeAreaView, TouchableOpacity, Modal, TextInput, Alert, Image } from 'react-native';
 import { COLORS, SPACING, SIZES } from '../constants/theme';
 import StatCard from '../components/StatCard';
-import { Truck, Users, AlertTriangle, Fuel, Activity, Bell, History, MapPin, TrendingUp, X, Navigation, User as UserIcon } from 'lucide-react-native';
+import { Truck, Users, AlertTriangle, Fuel, Activity, Bell, History, MapPin, TrendingUp, X, Navigation, User as UserIcon, Search } from 'lucide-react-native';
 import useFleetStore from '../store/useFleetStore';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -74,8 +74,8 @@ const CustomBarChart = ({ data }) => {
     );
 };
 
-const RecentTripItem = ({ target, driver, time, status }) => (
-    <View style={styles.tripItem}>
+const RecentTripItem = ({ trip, onPress }) => (
+    <TouchableOpacity style={styles.tripItem} onPress={onPress} activeOpacity={0.7}>
         <LinearGradient
             colors={[COLORS.primary + '20', COLORS.primary + '05']}
             style={styles.tripIcon}
@@ -83,14 +83,14 @@ const RecentTripItem = ({ target, driver, time, status }) => (
             <MapPin size={18} color={COLORS.primary} />
         </LinearGradient>
         <View style={styles.tripInfo}>
-            <Text style={styles.tripTarget}>{target}</Text>
-            <Text style={styles.tripDetails}>{driver} • {time}</Text>
+            <Text style={styles.tripTarget}>{trip.target}</Text>
+            <Text style={styles.tripDetails}>{trip.driver} • {trip.time}</Text>
         </View>
-        <View style={[styles.tripStatus, { backgroundColor: status === 'Moving' ? COLORS.success + '15' : COLORS.textSecondary + '10' }]}>
-            <View style={[styles.statusPulse, { backgroundColor: status === 'Moving' ? COLORS.success : COLORS.textSecondary }]} />
-            <Text style={[styles.tripStatusText, { color: status === 'Moving' ? COLORS.success : COLORS.textSecondary }]}>{status}</Text>
+        <View style={[styles.tripStatus, { backgroundColor: trip.status === 'Moving' ? COLORS.success + '15' : COLORS.textSecondary + '10' }]}>
+            <View style={[styles.statusPulse, { backgroundColor: trip.status === 'Moving' ? COLORS.success : COLORS.textSecondary }]} />
+            <Text style={[styles.tripStatusText, { color: trip.status === 'Moving' ? COLORS.success : COLORS.textSecondary }]}>{trip.status}</Text>
         </View>
-    </View>
+    </TouchableOpacity>
 );
 
 const Dashboard = ({ navigation }) => {
@@ -105,7 +105,7 @@ const Dashboard = ({ navigation }) => {
     const activeVehicles = vehicles.filter(v => v.status === 'Active').length;
     const maintenanceVehicles = vehicles.filter(v => v.status === 'Maintenance').length;
     const idleVehicles = vehicles.length - activeVehicles - maintenanceVehicles;
-    const totalFuel = vehicles.reduce((acc, v) => acc + v.fuelLevel, 0) / vehicles.length;
+    const totalFuel = vehicles.reduce((acc, v) => acc + v.fuelLevel, 0) / (vehicles.length || 1);
 
     const chartData = [
         { x: 'Active', y: activeVehicles, color: COLORS.success },
@@ -147,18 +147,26 @@ const Dashboard = ({ navigation }) => {
                     </View>
                     <View style={styles.headerActions}>
                         <TouchableOpacity style={styles.headerBtn}>
+                            <Search color={COLORS.text} size={22} />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.headerBtn}>
                             <Bell color={COLORS.text} size={22} />
                             <View style={styles.badge} />
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.profileBtn}>
-                            <Activity color={COLORS.primary} size={20} />
+                        <TouchableOpacity style={styles.profileBtn} onPress={() => navigation.navigate('Profile')}>
+                            <LinearGradient
+                                colors={[COLORS.primary, COLORS.secondary]}
+                                style={styles.profileGradient}
+                            >
+                                <UserIcon color="white" size={20} />
+                            </LinearGradient>
                         </TouchableOpacity>
                     </View>
                 </View>
 
                 <View style={styles.statsGrid}>
                     <View style={styles.statsRow}>
-                        <StatCard title="Total Vehicles" value={vehicles.length} icon={Truck} color={COLORS.primary} />
+                        <StatCard title="All Vehicles" value={vehicles.length} icon={Truck} color={COLORS.primary} />
                         <StatCard title="Active Drivers" value={drivers.length} icon={Users} color={COLORS.secondary} />
                     </View>
                     <View style={styles.statsRow}>
@@ -170,11 +178,13 @@ const Dashboard = ({ navigation }) => {
                 <View style={styles.mainCard}>
                     <View style={styles.cardHeader}>
                         <View style={styles.cardHeaderTitle}>
-                            <TrendingUp size={18} color={COLORS.primary} style={{ marginRight: 8 }} />
+                            <View style={[styles.cardIconBox, { backgroundColor: COLORS.primary + '20' }]}>
+                                <TrendingUp size={18} color={COLORS.primary} />
+                            </View>
                             <Text style={styles.cardTitle}>Real-time Fleet Status</Text>
                         </View>
                         <TouchableOpacity onPress={() => navigation.navigate('TripsList')}>
-                            <Text style={styles.viewMore}>View All</Text>
+                            <Text style={styles.viewMore}>Analysis</Text>
                         </TouchableOpacity>
                     </View>
                     <CustomPieChart data={chartData} />
@@ -183,7 +193,9 @@ const Dashboard = ({ navigation }) => {
                 <View style={styles.mainCard}>
                     <View style={styles.cardHeader}>
                         <View style={styles.cardHeaderTitle}>
-                            <Fuel size={18} color={COLORS.success} style={{ marginRight: 8 }} />
+                            <View style={[styles.cardIconBox, { backgroundColor: COLORS.success + '20' }]}>
+                                <Fuel size={18} color={COLORS.success} />
+                            </View>
                             <Text style={styles.cardTitle}>Weekly Fuel Intake (L)</Text>
                         </View>
                     </View>
@@ -193,7 +205,9 @@ const Dashboard = ({ navigation }) => {
                 <View style={styles.mainCard}>
                     <View style={styles.cardHeader}>
                         <View style={styles.cardHeaderTitle}>
-                            <History size={18} color={COLORS.accent} style={{ marginRight: 8 }} />
+                            <View style={[styles.cardIconBox, { backgroundColor: COLORS.accent + '20' }]}>
+                                <History size={18} color={COLORS.accent} />
+                            </View>
                             <Text style={styles.cardTitle}>Operational Feed</Text>
                         </View>
                         <View style={{ flexDirection: 'row', gap: 12 }}>
@@ -208,10 +222,8 @@ const Dashboard = ({ navigation }) => {
                     {trips.slice(0, 5).map((trip) => (
                         <RecentTripItem
                             key={trip.id}
-                            target={trip.target}
-                            driver={trip.driver}
-                            time={trip.time}
-                            status={trip.status}
+                            trip={trip}
+                            onPress={() => navigation.navigate('TripDetails', { trip })}
                         />
                     ))}
                 </View>
@@ -320,7 +332,7 @@ const styles = StyleSheet.create({
     headerBtn: {
         width: 44,
         height: 44,
-        borderRadius: 12,
+        borderRadius: 14,
         backgroundColor: COLORS.surface,
         justifyContent: 'center',
         alignItems: 'center',
@@ -341,24 +353,28 @@ const styles = StyleSheet.create({
     profileBtn: {
         width: 44,
         height: 44,
-        borderRadius: 22,
-        backgroundColor: COLORS.surface,
-        justifyContent: 'center',
-        alignItems: 'center',
+        borderRadius: 14,
+        overflow: 'hidden',
         borderWidth: 1,
         borderColor: COLORS.primary + '30',
+    },
+    profileGradient: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     statsGrid: {
         marginBottom: 16,
     },
     statsRow: {
         flexDirection: 'row',
+        justifyContent: 'space-between',
         marginBottom: 4,
     },
     mainCard: {
         backgroundColor: COLORS.surface,
-        borderRadius: 20,
-        padding: 20,
+        borderRadius: 24,
+        padding: 24,
         marginBottom: 16,
         borderWidth: 1,
         borderColor: '#ffffff08',
@@ -367,11 +383,19 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 20,
+        marginBottom: 24,
     },
     cardHeaderTitle: {
         flexDirection: 'row',
         alignItems: 'center',
+    },
+    cardIconBox: {
+        width: 36,
+        height: 36,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 12,
     },
     cardTitle: {
         fontSize: 16,
@@ -388,22 +412,22 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     pieVisual: {
-        width: 120,
-        height: 120,
+        width: 130,
+        height: 130,
         justifyContent: 'center',
         alignItems: 'center',
     },
     donutBase: {
-        width: 110,
-        height: 110,
-        borderRadius: 55,
+        width: 120,
+        height: 120,
+        borderRadius: 60,
         backgroundColor: COLORS.background,
         overflow: 'hidden',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 4,
-        borderColor: '#ffffff05',
+        borderWidth: 5,
+        borderColor: '#ffffff03',
         transform: [{ rotate: '45deg' }],
     },
     pieSegment: {
@@ -411,9 +435,9 @@ const styles = StyleSheet.create({
     },
     donutCenter: {
         position: 'absolute',
-        width: 70,
-        height: 70,
-        borderRadius: 35,
+        width: 80,
+        height: 80,
+        borderRadius: 40,
         backgroundColor: COLORS.surface,
         justifyContent: 'center',
         alignItems: 'center',
@@ -454,7 +478,7 @@ const styles = StyleSheet.create({
         marginTop: 1,
     },
     barChartContainer: {
-        height: 140,
+        height: 150,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'flex-end',
@@ -469,19 +493,19 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     barTrack: {
-        width: 16,
-        height: 100,
-        backgroundColor: COLORS.surfaceLight + '40',
-        borderRadius: 8,
+        width: 14,
+        height: 110,
+        backgroundColor: '#ffffff05',
+        borderRadius: 7,
         overflow: 'hidden',
         justifyContent: 'flex-end',
     },
     barFill: {
         width: '100%',
-        borderRadius: 8,
+        borderRadius: 7,
     },
     barLabel: {
-        marginTop: 10,
+        marginTop: 12,
         color: COLORS.textSecondary,
         fontSize: 10,
         fontWeight: '700',
@@ -489,38 +513,38 @@ const styles = StyleSheet.create({
     tripItem: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: 14,
+        paddingVertical: 16,
         borderBottomWidth: 1,
         borderBottomColor: '#ffffff05',
     },
     tripIcon: {
-        width: 40,
-        height: 40,
-        borderRadius: 12,
+        width: 44,
+        height: 44,
+        borderRadius: 14,
         justifyContent: 'center',
         alignItems: 'center',
     },
     tripInfo: {
         flex: 1,
-        marginLeft: 14,
+        marginLeft: 16,
     },
     tripTarget: {
         color: COLORS.text,
-        fontSize: 14,
+        fontSize: 15,
         fontWeight: '700',
     },
     tripDetails: {
         color: COLORS.textSecondary,
         fontSize: 12,
-        marginTop: 3,
+        marginTop: 4,
     },
     tripStatus: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: 10,
+        paddingHorizontal: 12,
         paddingVertical: 6,
-        borderRadius: 8,
-        gap: 6,
+        borderRadius: 10,
+        gap: 8,
     },
     statusPulse: {
         width: 6,
@@ -534,22 +558,22 @@ const styles = StyleSheet.create({
     },
     modalOverlay: {
         flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.7)',
+        backgroundColor: 'rgba(0,0,0,0.8)',
         justifyContent: 'flex-end',
     },
     modalContent: {
         backgroundColor: COLORS.background,
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
-        padding: SPACING.md,
+        borderTopLeftRadius: 32,
+        borderTopRightRadius: 32,
+        padding: SPACING.lg,
         maxHeight: '85%',
     },
     modalHeader: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 20,
-        paddingBottom: 20,
+        marginBottom: 24,
+        paddingBottom: 24,
         borderBottomWidth: 1,
         borderBottomColor: '#ffffff10',
     },
@@ -559,13 +583,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     modalForm: {
-        paddingBottom: 30,
+        paddingBottom: 40,
     },
     inputLabel: {
         color: COLORS.textSecondary,
         fontSize: 14,
         fontWeight: '700',
-        marginBottom: 10,
+        marginBottom: 12,
         marginTop: 20,
         marginLeft: 4,
     },
@@ -573,26 +597,26 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: COLORS.surface,
-        borderRadius: 16,
-        paddingHorizontal: 16,
+        borderRadius: 18,
+        paddingHorizontal: 18,
         borderWidth: 1,
         borderColor: '#ffffff08',
     },
     input: {
         flex: 1,
-        paddingVertical: 14,
+        paddingVertical: 16,
         color: COLORS.text,
         fontSize: 16,
     },
     statusOptions: {
         flexDirection: 'row',
-        gap: 10,
+        gap: 12,
         marginTop: 8,
     },
     statusToggle: {
         flex: 1,
-        paddingVertical: 12,
-        borderRadius: 12,
+        paddingVertical: 14,
+        borderRadius: 14,
         backgroundColor: COLORS.surface,
         alignItems: 'center',
         borderWidth: 1,
@@ -605,10 +629,10 @@ const styles = StyleSheet.create({
     },
     submitBtn: {
         backgroundColor: COLORS.primary,
-        borderRadius: 16,
-        padding: 18,
+        borderRadius: 18,
+        padding: 20,
         alignItems: 'center',
-        marginTop: 40,
+        marginTop: 48,
         marginBottom: 20,
     },
     submitBtnText: {

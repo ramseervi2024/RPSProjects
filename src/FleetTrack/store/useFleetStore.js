@@ -13,9 +13,50 @@ const useFleetStore = create((set) => ({
         { id: 'd3', name: 'Rahul Kumar', status: 'Available', phone: '+91 7777766666', experience: '3 Yrs' },
     ],
     trips: [
-        { id: 't1', target: 'Warehouse A → Terminal 2', driver: 'John Doe', time: '5m ago', status: 'Moving' },
-        { id: 't2', target: 'Main Hub → Depot 4', driver: 'Alok Singh', time: '12m ago', status: 'Moving' },
-        { id: 't3', target: 'City Port → Central', driver: 'Rahul Kumar', time: '45m ago', status: 'Idle' },
+        {
+            id: 't1',
+            target: 'Warehouse A → Terminal 2',
+            driver: 'John Doe',
+            time: '5m ago',
+            status: 'Moving',
+            origin: { latitude: 15.4909, longitude: 73.8278, name: 'Warehouse A' },
+            destination: { latitude: 15.5500, longitude: 73.9000, name: 'Terminal 2' },
+            route: [
+                { latitude: 15.4909, longitude: 73.8278 },
+                { latitude: 15.5100, longitude: 73.8400 },
+                { latitude: 15.5300, longitude: 73.8700 },
+                { latitude: 15.5500, longitude: 73.9000 },
+            ]
+        },
+        {
+            id: 't2',
+            target: 'Main Hub → Depot 4',
+            driver: 'Alok Singh',
+            time: '12m ago',
+            status: 'Moving',
+            origin: { latitude: 12.9716, longitude: 77.5946, name: 'Main Hub' },
+            destination: { latitude: 13.0500, longitude: 77.6500, name: 'Depot 4' },
+            route: [
+                { latitude: 12.9716, longitude: 77.5946 },
+                { latitude: 13.0000, longitude: 77.6100 },
+                { latitude: 13.0200, longitude: 77.6300 },
+                { latitude: 13.0500, longitude: 77.6500 },
+            ]
+        },
+        {
+            id: 't3',
+            target: 'City Port → Central',
+            driver: 'Rahul Kumar',
+            time: '45m ago',
+            status: 'Idle',
+            origin: { latitude: 18.5204, longitude: 73.8567, name: 'City Port' },
+            destination: { latitude: 18.6000, longitude: 73.9500, name: 'Central Hub' },
+            route: [
+                { latitude: 18.5204, longitude: 73.8567 },
+                { latitude: 18.5500, longitude: 73.9000 },
+                { latitude: 18.6000, longitude: 73.9500 },
+            ]
+        },
     ],
     logs: [],
 
@@ -27,9 +68,22 @@ const useFleetStore = create((set) => ({
         drivers: [{ ...driver, id: 'd' + Math.random().toString(36).substr(2, 5) }, ...state.drivers]
     })),
 
-    addTrip: (trip) => set((state) => ({
-        trips: [{ ...trip, id: 't' + Math.random().toString(36).substr(2, 5), time: 'Just now' }, ...state.trips]
-    })),
+    addTrip: (trip) => set((state) => {
+        const id = 't' + Math.random().toString(36).substr(2, 5);
+        return {
+            trips: [{
+                ...trip,
+                id,
+                time: 'Just now',
+                origin: { latitude: 20.0, longitude: 75.0, name: 'Start Point' },
+                destination: { latitude: 21.0, longitude: 76.0, name: 'End Point' },
+                route: [
+                    { latitude: 20.0, longitude: 75.0 },
+                    { latitude: 21.0, longitude: 76.0 },
+                ]
+            }, ...state.trips]
+        };
+    }),
 
     updateVehicleStatus: (id, status) => set((state) => ({
         vehicles: state.vehicles.map((v) => v.id === id ? { ...v, status } : v)

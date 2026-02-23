@@ -9,7 +9,11 @@ const TripsList = ({ navigation }) => {
     const { trips } = useFleetStore();
 
     const renderItem = ({ item }) => (
-        <View style={styles.card}>
+        <TouchableOpacity
+            style={styles.card}
+            activeOpacity={0.7}
+            onPress={() => navigation.navigate('TripDetails', { trip: item })}
+        >
             <View style={styles.cardContent}>
                 <LinearGradient
                     colors={[COLORS.primary + '20', COLORS.primary + '05']}
@@ -30,7 +34,7 @@ const TripsList = ({ navigation }) => {
                     <Text style={[styles.statusText, { color: item.status === 'Moving' ? COLORS.success : COLORS.textSecondary }]}>{item.status}</Text>
                 </View>
             </View>
-        </View>
+        </TouchableOpacity>
     );
 
     return (
