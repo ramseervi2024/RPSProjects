@@ -3,12 +3,13 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import AllAppNavigations from './src/NavigationStacks/AllAppNavigations'
 import PokeSwipe from './src/PokeSwipe/PokeSwipe'
+import FleetTrack from './src/FleetTrack/FleetTrack'
 
 export default function App() {
   return (
     // <SafeAreaView style={{flex:1, backgroundColor:'#fff'}}>
       <NavigationContainer>
-        <AllAppNavigations />
+        <FleetTrack />
       </NavigationContainer>
     // </SafeAreaView>
   )
