@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Dimensions, SafeAreaView, TouchableOpacity, Modal, TextInput, Alert, Image } from 'react-native';
 import { COLORS, SPACING, SIZES } from '../constants/theme';
 import StatCard from '../components/StatCard';
-import { Truck, Users, AlertTriangle, Fuel, Activity, Bell, History, MapPin, TrendingUp, X, Navigation, User as UserIcon, Search } from 'lucide-react-native';
+import { Truck, Users, AlertTriangle, Fuel, Activity, Bell, History, MapPin, TrendingUp, X, Navigation, User as UserIcon, Search, Brain, Zap, DollarSign, Cloud, Wind, ShieldCheck, CreditCard } from 'lucide-react-native';
 import useFleetStore from '../store/useFleetStore';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -94,7 +94,7 @@ const RecentTripItem = ({ trip, onPress }) => (
 );
 
 const Dashboard = ({ navigation }) => {
-    const { vehicles, drivers, trips, addTrip } = useFleetStore();
+    const { vehicles, drivers, trips, addTrip, activeAlerts } = useFleetStore();
     const [modalVisible, setModalVisible] = useState(false);
     const [newTrip, setNewTrip] = useState({
         target: '',
@@ -141,17 +141,32 @@ const Dashboard = ({ navigation }) => {
                 showsVerticalScrollIndicator={false}
             >
                 <View style={styles.header}>
-                    <View>
-                        <Text style={styles.greeting}>Fleet Overview</Text>
-                        <Text style={styles.subGreeting}>Business Intelligence Portal</Text>
+                    <View style={styles.headerInfo}>
+                        <View style={styles.envOverlay}>
+                            <View style={styles.envItem}>
+                                <Cloud size={10} color={COLORS.primary} />
+                                <Text style={styles.envText}>24°C • Sunny</Text>
+                            </View>
+                            <View style={styles.envDivider} />
+                            <View style={styles.envItem}>
+                                <Wind size={10} color={COLORS.success} />
+                                <Text style={styles.envText}>Stable Traffic</Text>
+                            </View>
+                        </View>
+                        <Text style={styles.greeting}>Fleet Control Center</Text>
+                        <Text style={styles.subGreeting}>AI-Powered Logistics Intelligence</Text>
                     </View>
                     <View style={styles.headerActions}>
                         <TouchableOpacity style={styles.headerBtn}>
                             <Search color={COLORS.text} size={22} />
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.headerBtn}>
+                        <TouchableOpacity style={styles.headerBtn} onPress={() => navigation.navigate('Alerts')}>
                             <Bell color={COLORS.text} size={22} />
-                            <View style={styles.badge} />
+                            {activeAlerts.length > 0 && (
+                                <View style={styles.badge}>
+                                    <Text style={styles.badgeText}>{activeAlerts.length}</Text>
+                                </View>
+                            )}
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.profileBtn} onPress={() => navigation.navigate('Profile')}>
                             <LinearGradient
@@ -164,16 +179,55 @@ const Dashboard = ({ navigation }) => {
                     </View>
                 </View>
 
+                <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.actionScroller} contentContainerStyle={styles.actionContent}>
+                    {[
+                        { icon: ShieldCheck, label: 'Geo-fence', color: COLORS.primary },
+                        { icon: CreditCard, label: 'Log Expense', color: COLORS.success },
+                        { icon: Activity, label: 'SOS Alert', color: COLORS.danger },
+                        { icon: MapPin, label: 'Asset Tracker', color: COLORS.accent },
+                    ].map((item, idx) => (
+                        <TouchableOpacity key={idx} style={styles.actionItem}>
+                            <View style={[styles.actionIcon, { backgroundColor: item.color + '15' }]}>
+                                <item.icon size={18} color={item.color} />
+                            </View>
+                            <Text style={styles.actionLabel}>{item.label}</Text>
+                        </TouchableOpacity>
+                    ))}
+                </ScrollView>
+
                 <View style={styles.statsGrid}>
+                    <View style={styles.statsRow}>
+                        <StatCard title="Daily Revenue" value="$4,280" icon={DollarSign} color={COLORS.success} trend="+12%" />
+                        <StatCard title="Op. Expense" value="$1,120" icon={CreditCard} color={COLORS.danger} trend="-5%" />
+                    </View>
                     <View style={styles.statsRow}>
                         <StatCard title="All Vehicles" value={vehicles.length} icon={Truck} color={COLORS.primary} />
                         <StatCard title="Active Drivers" value={drivers.length} icon={Users} color={COLORS.secondary} />
                     </View>
                     <View style={styles.statsRow}>
                         <StatCard title="In Service" value={maintenanceVehicles} icon={AlertTriangle} color={COLORS.warning} />
-                        <StatCard title="Avg Fuel" value={`${totalFuel.toFixed(0)}%`} icon={Fuel} color={COLORS.success} />
+                        <StatCard
+                            title="Avg Fuel"
+                            value={`${totalFuel.toFixed(0)}%`}
+                            icon={Fuel}
+                            color={COLORS.success}
+                            onPress={() => navigation.navigate('FleetHealth')}
+                        />
                     </View>
                 </View>
+
+                <TouchableOpacity style={styles.aiBanner}>
+                    <LinearGradient colors={[COLORS.primary, COLORS.secondary]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.aiGradient}>
+                        <View style={styles.aiIconBox}>
+                            <Brain size={24} color="white" />
+                        </View>
+                        <View style={styles.aiContent}>
+                            <Text style={styles.aiTitle}>AI Fleet Recommendation</Text>
+                            <Text style={styles.aiDesc}>Predictive maintenance suggest checking TX-4092 brakes within 48h to avoid route delay.</Text>
+                        </View>
+                        <Zap size={20} color="white" opacity={0.6} />
+                    </LinearGradient>
+                </TouchableOpacity>
 
                 <View style={styles.mainCard}>
                     <View style={styles.cardHeader}>
@@ -183,7 +237,7 @@ const Dashboard = ({ navigation }) => {
                             </View>
                             <Text style={styles.cardTitle}>Real-time Fleet Status</Text>
                         </View>
-                        <TouchableOpacity onPress={() => navigation.navigate('TripsList')}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Reports')}>
                             <Text style={styles.viewMore}>Analysis</Text>
                         </TouchableOpacity>
                     </View>
@@ -312,6 +366,24 @@ const styles = StyleSheet.create({
         marginBottom: 24,
         marginTop: 4,
     },
+    alertBadge: {
+        position: 'absolute',
+        top: -4,
+        right: -4,
+        backgroundColor: COLORS.danger,
+        borderRadius: 10,
+        minWidth: 16,
+        height: 16,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 1.5,
+        borderColor: COLORS.surface,
+    },
+    alertCount: {
+        color: 'white',
+        fontSize: 8,
+        fontWeight: '800',
+    },
     greeting: {
         fontSize: 26, // Slightly adjusted for better balance
         fontWeight: '800',
@@ -341,14 +413,21 @@ const styles = StyleSheet.create({
     },
     badge: {
         position: 'absolute',
-        top: 10,
-        right: 10,
-        width: 7,
-        height: 7,
-        borderRadius: 3.5,
+        top: 8,
+        right: 8,
+        width: 14,
+        height: 14,
+        borderRadius: 7,
         backgroundColor: COLORS.danger,
         borderWidth: 1.5,
         borderColor: COLORS.surface,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    badgeText: {
+        color: 'white',
+        fontSize: 7,
+        fontWeight: '900',
     },
     profileBtn: {
         width: 42,
@@ -642,6 +721,97 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 16,
         fontWeight: 'bold',
+    },
+    headerInfo: {
+        flex: 1,
+    },
+    envOverlay: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 6,
+    },
+    envItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 6,
+    },
+    envText: {
+        color: COLORS.textSecondary,
+        fontSize: 10,
+        fontWeight: '700',
+        letterSpacing: 0.3,
+    },
+    envDivider: {
+        width: 1,
+        height: 10,
+        backgroundColor: '#ffffff15',
+        marginHorizontal: 12,
+    },
+    actionScroller: {
+        marginBottom: 20,
+        marginTop: 4,
+    },
+    actionContent: {
+        paddingRight: 20,
+    },
+    actionItem: {
+        alignItems: 'center',
+        marginRight: 16,
+        width: 80,
+    },
+    actionIcon: {
+        width: 48,
+        height: 48,
+        borderRadius: 14,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 8,
+        borderWidth: 1,
+        borderColor: '#ffffff05',
+    },
+    actionLabel: {
+        color: COLORS.textSecondary,
+        fontSize: 10,
+        fontWeight: '700',
+        textAlign: 'center',
+    },
+    aiBanner: {
+        borderRadius: 24,
+        overflow: 'hidden',
+        marginBottom: 24,
+        elevation: 10,
+        shadowColor: COLORS.primary,
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 10,
+    },
+    aiGradient: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 20,
+    },
+    aiIconBox: {
+        width: 50,
+        height: 50,
+        borderRadius: 16,
+        backgroundColor: '#ffffff20',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 16,
+    },
+    aiContent: {
+        flex: 1,
+    },
+    aiTitle: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: '800',
+        marginBottom: 4,
+    },
+    aiDesc: {
+        color: 'rgba(255,255,255,0.8)',
+        fontSize: 12,
+        lineHeight: 16,
     },
 });
 

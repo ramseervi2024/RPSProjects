@@ -14,6 +14,9 @@ import Profile from './screens/Profile';
 import DriversList from './screens/DriversList';
 import TripsList from './screens/TripsList';
 import TripDetails from './screens/TripDetails';
+import Reports from './screens/Reports';
+import FleetHealth from './screens/FleetHealth';
+import Alerts from './screens/Alerts';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -74,6 +77,9 @@ export default function FleetTrack() {
       <Stack.Screen name="DriversList" component={DriversList} />
       <Stack.Screen name="TripsList" component={TripsList} />
       <Stack.Screen name="TripDetails" component={TripDetails} />
+      <Stack.Screen name="Reports" component={Reports} />
+      <Stack.Screen name="FleetHealth" component={FleetHealth} />
+      <Stack.Screen name="Alerts" component={Alerts} />
     </Stack.Navigator>
   );
 }

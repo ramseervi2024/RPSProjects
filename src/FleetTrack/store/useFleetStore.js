@@ -2,88 +2,149 @@ import { create } from 'zustand';
 
 const useFleetStore = create((set) => ({
     vehicles: [
-        { id: '1', plate: 'GA-01-BK-2024', model: 'Tesla Model 3', status: 'Active', driverId: 'd1', fuelLevel: 85, health: 98, lastLocation: { latitude: 15.4909, longitude: 73.8278 } },
-        { id: '2', plate: 'KA-05-MN-9988', model: 'TATA Prima 4028', status: 'Active', driverId: 'd2', fuelLevel: 45, health: 82, lastLocation: { latitude: 12.9716, longitude: 77.5946 } },
-        { id: '3', plate: 'MH-12-RT-4567', model: 'Ashok Leyland 3118', status: 'Maintenance', driverId: null, fuelLevel: 10, health: 65, lastLocation: { latitude: 18.5204, longitude: 73.8567 } },
-        { id: '4', plate: 'DL-01-SY-1234', model: 'Eicher Pro 6025', status: 'Idle', driverId: 'd3', fuelLevel: 60, health: 90, lastLocation: { latitude: 28.6139, longitude: 77.2090 } },
+        {
+            id: '1',
+            plateNumber: 'TX-4092-B',
+            model: 'Volvo FH16',
+            status: 'Active',
+            fuelLevel: 82,
+            battery: 94,
+            lastLocation: { latitude: 37.7749, longitude: -122.4194 },
+            avgCost: 1240,
+            rating: 4.8,
+            costHistory: [1100, 1300, 1200, 1400, 1240],
+            health: { engine: 92, tires: 85, electronics: 98 },
+            nextService: '12 Apr 2024'
+        },
+        {
+            id: '2',
+            plateNumber: 'CA-8812-C',
+            model: 'Scania R500',
+            status: 'Maintenance',
+            fuelLevel: 45,
+            battery: 68,
+            lastLocation: { latitude: 37.7833, longitude: -122.4167 },
+            avgCost: 1850,
+            rating: 4.2,
+            costHistory: [1700, 1900, 1800, 2000, 1850],
+            health: { engine: 45, tires: 72, electronics: 88 },
+            nextService: 'In Progress'
+        },
+        {
+            id: '3',
+            plateNumber: 'NY-5521-A',
+            model: 'Mercedes Actros',
+            status: 'Active',
+            fuelLevel: 91,
+            battery: 89,
+            lastLocation: { latitude: 37.7583, longitude: -122.4367 },
+            avgCost: 980,
+            rating: 4.9,
+            costHistory: [900, 1000, 950, 1100, 980],
+            health: { engine: 98, tires: 91, electronics: 95 },
+            nextService: '25 May 2024'
+        },
     ],
     drivers: [
-        { id: 'd1', name: 'John Doe', status: 'On Duty', phone: '+91 9876543210', experience: '5 Yrs' },
-        { id: 'd2', name: 'Alok Singh', status: 'On Duty', phone: '+91 8888877777', experience: '8 Yrs' },
-        { id: 'd3', name: 'Rahul Kumar', status: 'Available', phone: '+91 7777766666', experience: '3 Yrs' },
+        { id: '1', name: 'James Wilson', status: 'On Duty', phone: '+1 555-0101', rating: 4.9, experience: '8 yrs', safetyScore: 98, trips: 142 },
+        { id: '2', name: 'Sarah Miller', status: 'Resting', phone: '+1 555-0102', rating: 4.7, experience: '5 yrs', safetyScore: 95, trips: 118 },
+        { id: '3', name: 'Robert Chen', status: 'On Duty', phone: '+1 555-0103', rating: 4.8, experience: '12 yrs', safetyScore: 99, trips: 256 },
     ],
     trips: [
         {
-            id: 't1',
-            target: 'Warehouse A → Terminal 2',
-            driver: 'John Doe',
-            time: '5m ago',
+            id: '1',
+            target: 'Oakland Hub → Port Terminal',
+            driver: 'James Wilson',
             status: 'Moving',
-            origin: { latitude: 15.4909, longitude: 73.8278, name: 'Warehouse A' },
-            destination: { latitude: 15.5500, longitude: 73.9000, name: 'Terminal 2' },
+            time: '2h 15m left',
+            origin: { latitude: 37.8044, longitude: -122.2712 },
+            destination: { latitude: 37.7749, longitude: -122.4194 },
             route: [
-                { latitude: 15.4909, longitude: 73.8278 },
-                { latitude: 15.5100, longitude: 73.8400 },
-                { latitude: 15.5300, longitude: 73.8700 },
-                { latitude: 15.5500, longitude: 73.9000 },
-            ]
+                { latitude: 37.8044, longitude: -122.2712 },
+                { latitude: 37.7950, longitude: -122.3300 },
+                { latitude: 37.7850, longitude: -122.3800 },
+                { latitude: 37.7749, longitude: -122.4194 },
+            ],
+            cost: 450,
         },
         {
-            id: 't2',
-            target: 'Main Hub → Depot 4',
-            driver: 'Alok Singh',
-            time: '12m ago',
-            status: 'Moving',
-            origin: { latitude: 12.9716, longitude: 77.5946, name: 'Main Hub' },
-            destination: { latitude: 13.0500, longitude: 77.6500, name: 'Depot 4' },
-            route: [
-                { latitude: 12.9716, longitude: 77.5946 },
-                { latitude: 13.0000, longitude: 77.6100 },
-                { latitude: 13.0200, longitude: 77.6300 },
-                { latitude: 13.0500, longitude: 77.6500 },
-            ]
-        },
-        {
-            id: 't3',
-            target: 'City Port → Central',
-            driver: 'Rahul Kumar',
-            time: '45m ago',
+            id: '2',
+            target: 'Warehouse B → City Center',
+            driver: 'Robert Chen',
             status: 'Idle',
-            origin: { latitude: 18.5204, longitude: 73.8567, name: 'City Port' },
-            destination: { latitude: 18.6000, longitude: 73.9500, name: 'Central Hub' },
+            time: 'Scheduled',
+            origin: { latitude: 37.7833, longitude: -122.4167 },
+            destination: { latitude: 37.7583, longitude: -122.4367 },
             route: [
-                { latitude: 18.5204, longitude: 73.8567 },
-                { latitude: 18.5500, longitude: 73.9000 },
-                { latitude: 18.6000, longitude: 73.9500 },
-            ]
+                { latitude: 37.7833, longitude: -122.4167 },
+                { latitude: 37.7700, longitude: -122.4250 },
+                { latitude: 37.7583, longitude: -122.4367 },
+            ],
+            cost: 210,
         },
+    ],
+    maintenanceHistory: [
+        { id: 'm1', vehicleId: '1', date: '10 Feb 2024', type: 'Oil Change', cost: 150, status: 'Completed' },
+        { id: 'm2', vehicleId: '2', date: '22 Feb 2024', type: 'Engine Check', cost: 850, status: 'Completed' },
+        { id: 'm3', vehicleId: '3', date: '05 Mar 2024', type: 'Tire Rotation', cost: 220, status: 'Completed' },
+    ],
+    activeAlerts: [
+        { id: 'a1', type: 'Speeding', vehicle: 'TX-4092-B', driver: 'James Wilson', time: '2m ago', severity: 'Critical' },
+        { id: 'a2', type: 'Hard Braking', vehicle: 'NY-5521-A', driver: 'Robert Chen', time: '15m ago', severity: 'Warning' },
+        { id: 'a3', type: 'Low Fuel', vehicle: 'CA-8812-C', driver: 'Sarah Miller', time: '1h ago', severity: 'Warning' },
     ],
     logs: [],
 
     addVehicle: (vehicle) => set((state) => ({
-        vehicles: [{ ...vehicle, id: Math.random().toString(36).substr(2, 9) }, ...state.vehicles]
+        vehicles: [{
+            ...vehicle,
+            id: Math.random().toString(36).substr(2, 9),
+            fuelLevel: 100,
+            battery: 100,
+            lastLocation: { latitude: 37.7749, longitude: -122.4194 },
+            avgCost: 0,
+            rating: 5.0,
+            costHistory: [0, 0, 0, 0, 0],
+            health: { engine: 100, tires: 100, electronics: 100 },
+            nextService: 'Not Scheduled'
+        }, ...state.vehicles]
     })),
 
     addDriver: (driver) => set((state) => ({
-        drivers: [{ ...driver, id: 'd' + Math.random().toString(36).substr(2, 5) }, ...state.drivers]
+        drivers: [{
+            ...driver,
+            id: Math.random().toString(36).substr(2, 9),
+            status: 'Off Duty',
+            rating: 5.0,
+            safetyScore: 100,
+            trips: 0
+        }, ...state.drivers]
     })),
 
-    addTrip: (trip) => set((state) => {
-        const id = 't' + Math.random().toString(36).substr(2, 5);
-        return {
-            trips: [{
-                ...trip,
-                id,
-                time: 'Just now',
-                origin: { latitude: 20.0, longitude: 75.0, name: 'Start Point' },
-                destination: { latitude: 21.0, longitude: 76.0, name: 'End Point' },
-                route: [
-                    { latitude: 20.0, longitude: 75.0 },
-                    { latitude: 21.0, longitude: 76.0 },
-                ]
-            }, ...state.trips]
-        };
-    }),
+    addTrip: (trip) => set((state) => ({
+        trips: [{
+            ...trip,
+            id: Math.random().toString(36).substr(2, 9),
+            time: 'Just Started',
+            origin: { latitude: 37.7749, longitude: -122.4194 },
+            destination: { latitude: 37.8044, longitude: -122.2712 },
+            route: [
+                { latitude: 37.7749, longitude: -122.4194 },
+                { latitude: 37.7850, longitude: -122.3800 },
+                { latitude: 37.7950, longitude: -122.3300 },
+                { latitude: 37.8044, longitude: -122.2712 },
+            ],
+            cost: Math.floor(Math.random() * 500) + 100
+        }, ...state.trips]
+    })),
+
+    logMaintenance: (entry) => set((state) => ({
+        maintenanceHistory: [{ id: Date.now().toString(), ...entry, status: 'Completed' }, ...state.maintenanceHistory]
+    })),
+
+    clearAlert: (alertId) => set((state) => ({
+        activeAlerts: state.activeAlerts.filter(a => a.id !== alertId)
+    })),
 
     updateVehicleStatus: (id, status) => set((state) => ({
         vehicles: state.vehicles.map((v) => v.id === id ? { ...v, status } : v)

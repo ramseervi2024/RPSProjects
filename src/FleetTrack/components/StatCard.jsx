@@ -1,14 +1,18 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import { COLORS, SPACING, SIZES } from '../constants/theme';
 import LinearGradient from 'react-native-linear-gradient';
 
 const { width } = Dimensions.get('window');
 const CARD_WIDTH = (width - 48) / 2;
 
-const StatCard = ({ title, value, icon: Icon, color }) => {
+const StatCard = ({ title, value, icon: Icon, color, trend, onPress }) => {
     return (
-        <View style={styles.container}>
+        <TouchableOpacity
+            style={styles.container}
+            onPress={onPress}
+            activeOpacity={onPress ? 0.7 : 1}
+        >
             <LinearGradient
                 colors={[COLORS.surface, '#1e293b']}
                 style={styles.gradient}
@@ -17,6 +21,13 @@ const StatCard = ({ title, value, icon: Icon, color }) => {
                     <View style={[styles.iconBox, { backgroundColor: `${color}20` }]}>
                         <Icon color={color} size={20} strokeWidth={2.5} />
                     </View>
+                    {trend && (
+                        <View style={styles.trendRow}>
+                            <Text style={[styles.trendText, { color: trend.startsWith('+') ? COLORS.success : COLORS.danger }]}>
+                                {trend}
+                            </Text>
+                        </View>
+                    )}
                     <View style={[styles.glow, { backgroundColor: color }]} />
                 </View>
 
@@ -27,7 +38,7 @@ const StatCard = ({ title, value, icon: Icon, color }) => {
 
                 <View style={[styles.accent, { backgroundColor: color }]} />
             </LinearGradient>
-        </View>
+        </TouchableOpacity>
     );
 };
 
@@ -92,6 +103,16 @@ const styles = StyleSheet.create({
         right: 0,
         height: 2,
         opacity: 0.4,
+    },
+    trendRow: {
+        backgroundColor: '#ffffff08',
+        paddingHorizontal: 6,
+        paddingVertical: 2,
+        borderRadius: 6,
+    },
+    trendText: {
+        fontSize: 10,
+        fontWeight: '800',
     },
 });
 

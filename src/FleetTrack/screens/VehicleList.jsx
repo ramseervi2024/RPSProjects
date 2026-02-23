@@ -12,9 +12,18 @@ const VehicleList = () => {
         model: '',
         status: 'Active',
         fuelLevel: 100,
-        health: 100,
+        health: { engine: 100, tires: 100, electronics: 100 },
         lastLocation: { latitude: 20.5937, longitude: 78.9629 }
     });
+
+    const getHealthScore = (health) => {
+        if (typeof health === 'number') return health;
+        if (typeof health === 'object' && health !== null) {
+            const values = Object.values(health);
+            return Math.round(values.reduce((a, b) => a + b, 0) / values.length);
+        }
+        return 0;
+    };
 
     const handleAddVehicle = () => {
         if (!newVehicle.plate || !newVehicle.model) {
@@ -28,46 +37,49 @@ const VehicleList = () => {
             model: '',
             status: 'Active',
             fuelLevel: 100,
-            health: 100,
+            health: { engine: 100, tires: 100, electronics: 100 },
             lastLocation: { latitude: 20.5937, longitude: 78.9629 }
         });
     };
 
-    const renderItem = ({ item }) => (
-        <TouchableOpacity style={styles.card} activeOpacity={0.7}>
-            <View style={styles.cardContent}>
-                <View style={[styles.iconContainer, { backgroundColor: item.status === 'Active' ? COLORS.success + '20' : COLORS.warning + '20' }]}>
-                    <Truck color={item.status === 'Active' ? COLORS.success : COLORS.warning} size={24} />
-                </View>
-                <View style={styles.info}>
-                    <View style={styles.row}>
-                        <Text style={styles.plateText}>{item.plate}</Text>
-                        <View style={[styles.statusBadge, { backgroundColor: item.status === 'Active' ? COLORS.success + '20' : COLORS.warning + '20' }]}>
-                            <Text style={[styles.statusBadgeText, { color: item.status === 'Active' ? COLORS.success : COLORS.warning }]}>{item.status}</Text>
-                        </View>
+    const renderItem = ({ item }) => {
+        const healthScore = getHealthScore(item.health);
+        return (
+            <TouchableOpacity style={styles.card} activeOpacity={0.7}>
+                <View style={styles.cardContent}>
+                    <View style={[styles.iconContainer, { backgroundColor: item.status === 'Active' ? COLORS.success + '20' : COLORS.warning + '20' }]}>
+                        <Truck color={item.status === 'Active' ? COLORS.success : COLORS.warning} size={24} />
                     </View>
-                    <Text style={styles.modelText}>{item.model}</Text>
+                    <View style={styles.info}>
+                        <View style={styles.row}>
+                            <Text style={styles.plateText}>{item.plateNumber || item.plate}</Text>
+                            <View style={[styles.statusBadge, { backgroundColor: item.status === 'Active' ? COLORS.success + '20' : COLORS.warning + '20' }]}>
+                                <Text style={[styles.statusBadgeText, { color: item.status === 'Active' ? COLORS.success : COLORS.warning }]}>{item.status}</Text>
+                            </View>
+                        </View>
+                        <Text style={styles.modelText}>{item.model}</Text>
 
-                    <View style={styles.metaRow}>
-                        <View style={styles.metaItem}>
-                            <Gauge size={12} color={COLORS.textSecondary} />
-                            <Text style={styles.metaText}>{item.fuelLevel}% Fuel</Text>
+                        <View style={styles.metaRow}>
+                            <View style={styles.metaItem}>
+                                <Gauge size={12} color={COLORS.textSecondary} />
+                                <Text style={styles.metaText}>{item.fuelLevel}% Fuel</Text>
+                            </View>
+                            <View style={styles.metaDivider} />
+                            <View style={styles.metaItem}>
+                                <Activity size={12} color={COLORS.textSecondary} />
+                                <Text style={styles.metaText}>{healthScore}% Health</Text>
+                            </View>
                         </View>
-                        <View style={styles.metaDivider} />
-                        <View style={styles.metaItem}>
-                            <Activity size={12} color={COLORS.textSecondary} />
-                            <Text style={styles.metaText}>{item.health}% Health</Text>
-                        </View>
-                    </View>
 
-                    <View style={styles.fuelBarContainer}>
-                        <View style={[styles.fuelBar, { width: `${item.fuelLevel}%`, backgroundColor: item.fuelLevel < 20 ? COLORS.danger : COLORS.success }]} />
+                        <View style={styles.fuelBarContainer}>
+                            <View style={[styles.fuelBar, { width: `${item.fuelLevel}%`, backgroundColor: item.fuelLevel < 20 ? COLORS.danger : COLORS.success }]} />
+                        </View>
                     </View>
+                    <ChevronRight color={COLORS.textSecondary} size={20} />
                 </View>
-                <ChevronRight color={COLORS.textSecondary} size={20} />
-            </View>
-        </TouchableOpacity>
-    );
+            </TouchableOpacity>
+        );
+    };
 
     return (
         <SafeAreaView style={styles.safeContainer}>
@@ -201,7 +213,7 @@ const styles = StyleSheet.create({
         borderColor: '#ffffff10',
     },
     listContent: {
-        padding: 20, // Standardized padding
+        padding: 20,
         paddingBottom: 100,
     },
     addBtn: {
@@ -230,10 +242,10 @@ const styles = StyleSheet.create({
     cardContent: {
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 16, // Unified card inner padding
+        padding: 16,
     },
     iconContainer: {
-        width: 48, // Slightly more compact
+        width: 48,
         height: 48,
         borderRadius: 12,
         justifyContent: 'center',
