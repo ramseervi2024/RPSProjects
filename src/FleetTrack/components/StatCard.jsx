@@ -34,16 +34,16 @@ const StatCard = ({ title, value, icon: Icon, color }) => {
 const styles = StyleSheet.create({
     container: {
         width: CARD_WIDTH,
-        height: 120,
-        borderRadius: 24,
+        height: 105, // Slightly reduced height for better density
+        borderRadius: 20, // More subtle radius
         overflow: 'hidden',
         borderWidth: 1,
         borderColor: '#ffffff08',
-        marginBottom: 12,
+        marginBottom: 8, // Reduced margin
     },
     gradient: {
         flex: 1,
-        padding: 16,
+        padding: 14, // Unified internal padding
         justifyContent: 'space-between',
     },
     header: {
@@ -52,9 +52,9 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
     },
     iconBox: {
-        width: 40,
-        height: 40,
-        borderRadius: 14,
+        width: 36,
+        height: 36,
+        borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
         zIndex: 1,
@@ -63,35 +63,35 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: -20,
         right: -20,
-        width: 60,
-        height: 60,
-        borderRadius: 30,
-        opacity: 0.1,
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        opacity: 0.08,
     },
     content: {
-        marginTop: 8,
+        marginTop: 4,
     },
     value: {
         color: COLORS.text,
-        fontSize: 24,
+        fontSize: 22,
         fontWeight: '800',
-        letterSpacing: -1,
+        letterSpacing: -0.5,
     },
     title: {
         color: COLORS.textSecondary,
-        fontSize: 12,
-        fontWeight: '600',
-        marginTop: 2,
+        fontSize: 10,
+        fontWeight: '700',
+        marginTop: 1,
         textTransform: 'uppercase',
-        letterSpacing: 0.5,
+        letterSpacing: 0.8,
     },
     accent: {
         position: 'absolute',
         bottom: 0,
         left: 0,
         right: 0,
-        height: 3,
-        opacity: 0.5,
+        height: 2,
+        opacity: 0.4,
     },
 });
 
