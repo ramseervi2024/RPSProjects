@@ -97,6 +97,7 @@ import RoyalTourTrip from '../Apps/RoyalTourTrip/RoyalTourTrip';
 import CalculateChannelMoney from '../Apps/CalculateChannelMoney/CalculateChannelMoney';
 import ChatScreenFeatures from '../ChatScreenFeatures/ChatScreenFeatures';
 import SmartHeroGallery from '../SmartHeroGallery/SmartHeroGallery';
+import Tasksss from '../Task/Tasksss';
 
 
 const AllAppNav = createStackNavigator();
@@ -200,7 +201,8 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="CalculateChannelMoney" component={CalculateChannelMoney} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="ChatScreenFeatures" component={ChatScreenFeatures} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="SmartHeroGallery" component={SmartHeroGallery} options={{ headerShown: false }} />
-            </AllAppNav.Navigator>
+                <AllAppNav.Screen name="Tasksss" component={Tasksss} options={{ headerShown: false }} />
+                </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>
     );
