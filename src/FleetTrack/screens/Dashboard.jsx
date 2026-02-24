@@ -144,12 +144,12 @@ const Dashboard = ({ navigation }) => {
                     <View style={styles.headerInfo}>
                         <View style={styles.envOverlay}>
                             <View style={styles.envItem}>
-                                <Cloud size={10} color={COLORS.primary} />
+                                <Cloud size={12} color={COLORS.primary} />
                                 <Text style={styles.envText}>24°C • Sunny</Text>
                             </View>
                             <View style={styles.envDivider} />
                             <View style={styles.envItem}>
-                                <Wind size={10} color={COLORS.success} />
+                                <Wind size={12} color={COLORS.success} />
                                 <Text style={styles.envText}>Stable Traffic</Text>
                             </View>
                         </View>
@@ -197,35 +197,57 @@ const Dashboard = ({ navigation }) => {
 
                 <View style={styles.statsGrid}>
                     <View style={styles.statsRow}>
-                        <StatCard title="Daily Revenue" value="$4,280" icon={DollarSign} color={COLORS.success} trend="+12%" />
-                        <StatCard title="Op. Expense" value="$1,120" icon={CreditCard} color={COLORS.danger} trend="-5%" />
+                        <StatCard
+                            title="Daily Revenue"
+                            value="$4,280"
+                            icon={DollarSign}
+                            color={COLORS.success}
+                            trend="+12%"
+                        />
+                        <StatCard
+                            title="Op. Expense"
+                            value="$1,120"
+                            icon={CreditCard}
+                            color={COLORS.danger}
+                            trend="-5%"
+                        />
                     </View>
                     <View style={styles.statsRow}>
-                        <StatCard title="All Vehicles" value={vehicles.length} icon={Truck} color={COLORS.primary} />
-                        <StatCard title="Active Drivers" value={drivers.length} icon={Users} color={COLORS.secondary} />
-                    </View>
-                    <View style={styles.statsRow}>
-                        <StatCard title="In Service" value={maintenanceVehicles} icon={AlertTriangle} color={COLORS.warning} />
+                        <StatCard
+                            title="Fleet Status"
+                            value={vehicles.length}
+                            icon={Truck}
+                            color={COLORS.primary}
+                            trend="Healthy"
+                        />
                         <StatCard
                             title="Avg Fuel"
                             value={`${totalFuel.toFixed(0)}%`}
                             icon={Fuel}
-                            color={COLORS.success}
+                            color={COLORS.accent}
+                            trend="-2%"
                             onPress={() => navigation.navigate('FleetHealth')}
                         />
                     </View>
                 </View>
 
-                <TouchableOpacity style={styles.aiBanner}>
-                    <LinearGradient colors={[COLORS.primary, COLORS.secondary]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.aiGradient}>
+                <TouchableOpacity style={styles.aiBanner} activeOpacity={0.9}>
+                    <LinearGradient
+                        colors={['#4f46e5', '#8b5cf6']}
+                        start={{ x: 0, y: 0 }}
+                        end={{ x: 1, y: 1 }}
+                        style={styles.aiGradient}
+                    >
                         <View style={styles.aiIconBox}>
-                            <Brain size={24} color="white" />
+                            <Brain size={28} color="white" />
                         </View>
                         <View style={styles.aiContent}>
-                            <Text style={styles.aiTitle}>AI Fleet Recommendation</Text>
+                            <Text style={styles.aiTitle}>AI Fleet Insight</Text>
                             <Text style={styles.aiDesc}>Predictive maintenance suggest checking TX-4092 brakes within 48h to avoid route delay.</Text>
                         </View>
-                        <Zap size={20} color="white" opacity={0.6} />
+                        <View style={styles.aiZapBox}>
+                            <Zap size={20} color="white" />
+                        </View>
                     </LinearGradient>
                 </TouchableOpacity>
 
@@ -801,17 +823,28 @@ const styles = StyleSheet.create({
     },
     aiContent: {
         flex: 1,
+        paddingRight: 8,
     },
     aiTitle: {
         color: 'white',
-        fontSize: 16,
-        fontWeight: '800',
-        marginBottom: 4,
+        fontSize: 17,
+        fontWeight: '900',
+        marginBottom: 2,
+        letterSpacing: -0.3,
     },
     aiDesc: {
-        color: 'rgba(255,255,255,0.8)',
+        color: 'rgba(255,255,255,0.9)',
         fontSize: 12,
-        lineHeight: 16,
+        lineHeight: 18,
+        fontWeight: '500',
+    },
+    aiZapBox: {
+        width: 36,
+        height: 36,
+        borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.2)',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });
 

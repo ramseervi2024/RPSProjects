@@ -32,7 +32,11 @@ const StatCard = ({ title, value, icon: Icon, color, trend, onPress }) => {
                 </View>
 
                 <View style={styles.content}>
-                    <Text style={styles.value}>{value}</Text>
+                    <Text style={styles.value}>
+                        {typeof value === 'string' && value.includes('$')
+                            ? value.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                            : value.toLocaleString()}
+                    </Text>
                     <Text style={styles.title}>{title}</Text>
                 </View>
 

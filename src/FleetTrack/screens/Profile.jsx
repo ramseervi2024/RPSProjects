@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, SafeAreaView, Swi
 import { COLORS, SPACING, SIZES } from '../constants/theme';
 import { User, Settings, Bell, Shield, HelpCircle, LogOut, ChevronRight, CreditCard, PieChart, Users, X, Phone, Briefcase } from 'lucide-react-native';
 import useFleetStore from '../store/useFleetStore';
+import LinearGradient from 'react-native-linear-gradient';
 
 const ProfileOption = ({ icon: Icon, title, subtitle, showSwitch, value, onValueChange, onPress }) => (
     <TouchableOpacity style={styles.option} activeOpacity={0.7} onPress={onPress}>
@@ -49,8 +50,12 @@ const Profile = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.safeContainer}>
             <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-                <View style={styles.header}>
+                <LinearGradient
+                    colors={[COLORS.surface, COLORS.background]}
+                    style={styles.header}
+                >
                     <View style={styles.avatarContainer}>
+                        <View style={styles.avatarGlow} />
                         <View style={styles.avatar}>
                             <User size={40} color={COLORS.primary} />
                         </View>
@@ -77,7 +82,7 @@ const Profile = ({ navigation }) => {
                             <Text style={styles.statLab}>Efficiency</Text>
                         </View>
                     </View>
-                </View>
+                </LinearGradient>
 
                 <View style={styles.content}>
                     <Text style={styles.sectionLabel}>DRIVER MANAGEMENT</Text>
@@ -187,7 +192,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     header: {
-        padding: 24, // Unified header padding
+        padding: 24,
         alignItems: 'center',
         backgroundColor: COLORS.surface,
         borderBottomLeftRadius: 30,
@@ -204,11 +209,21 @@ const styles = StyleSheet.create({
         width: 80,
         height: 80,
         borderRadius: 40,
-        backgroundColor: COLORS.background,
+        backgroundColor: COLORS.surface,
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 1,
-        borderColor: COLORS.primary + '30',
+        borderWidth: 2,
+        borderColor: COLORS.primary + '20',
+        zIndex: 1,
+    },
+    avatarGlow: {
+        position: 'absolute',
+        width: 120,
+        height: 120,
+        borderRadius: 60,
+        backgroundColor: COLORS.primary,
+        opacity: 0.15,
+        top: -20,
     },
     editBtn: {
         position: 'absolute',
@@ -217,6 +232,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 12,
         paddingVertical: 4,
         borderRadius: 10,
+        zIndex: 2,
     },
     editBtnText: {
         color: 'white',
@@ -259,7 +275,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     content: {
-        padding: 20, // Unified container padding
+        padding: 20,
         paddingBottom: 110,
     },
     sectionLabel: {
@@ -274,7 +290,7 @@ const styles = StyleSheet.create({
     section: {
         backgroundColor: COLORS.surface,
         borderRadius: 20,
-        padding: 4, // Inner padding for options
+        padding: 4,
         marginBottom: 20,
         borderWidth: 1,
         borderColor: '#ffffff08',
@@ -286,7 +302,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: '#ffffff05',
     },
-    optionIcon: {
+    iconBox: {
         width: 40,
         height: 40,
         borderRadius: 10,
@@ -294,7 +310,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    optionContent: {
+    optionInfo: {
         flex: 1,
         marginLeft: 14,
     },
@@ -311,7 +327,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: SPACING.md,
+        padding: 20,
         gap: 10,
     },
     logoutText: {
@@ -369,25 +385,6 @@ const styles = StyleSheet.create({
         paddingVertical: 14,
         color: COLORS.text,
         fontSize: 15,
-    },
-    statusOptions: {
-        flexDirection: 'row',
-        gap: 10,
-        marginTop: 8,
-    },
-    statusToggle: {
-        flex: 1,
-        paddingVertical: 10,
-        borderRadius: 10,
-        backgroundColor: COLORS.surface,
-        alignItems: 'center',
-        borderWidth: 1,
-        borderColor: '#ffffff10',
-    },
-    statusToggleText: {
-        color: COLORS.textSecondary,
-        fontWeight: 'bold',
-        fontSize: 11,
     },
     submitBtn: {
         backgroundColor: COLORS.primary,
