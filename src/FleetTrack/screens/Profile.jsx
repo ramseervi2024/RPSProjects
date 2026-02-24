@@ -1,83 +1,83 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, SafeAreaView, Switch, Modal, TextInput, Alert } from 'react-native';
-import { COLORS, SPACING, SIZES } from '../constants/theme';
-import { User, Settings, Bell, Shield, HelpCircle, LogOut, ChevronRight, CreditCard, PieChart, Users, X, Phone, Briefcase } from 'lucide-react-native';
+import {
+    View, Text, StyleSheet, ScrollView, TouchableOpacity,
+    SafeAreaView, Switch, Modal, TextInput, Alert
+} from 'react-native';
+import { COLORS } from '../constants/theme';
+import {
+    User, Bell, Shield, HelpCircle, LogOut, ChevronRight,
+    CreditCard, Users, X, Phone, Briefcase
+} from 'lucide-react-native';
 import useFleetStore from '../store/useFleetStore';
 import LinearGradient from 'react-native-linear-gradient';
 
-const ProfileOption = ({ icon: Icon, title, subtitle, showSwitch, value, onValueChange, onPress }) => (
-    <TouchableOpacity style={styles.option} activeOpacity={0.7} onPress={onPress}>
-        <View style={[styles.iconBox, { backgroundColor: COLORS.surfaceLight + '40' }]}>
-            <Icon color={COLORS.primary} size={22} />
+/* ──────────────────────────────────────────────
+   ROW COMPONENT
+────────────────────────────────────────────── */
+const SettingRow = ({ icon: Icon, label, sub, right, onPress, color }) => (
+    <TouchableOpacity style={styles.row} onPress={onPress} activeOpacity={onPress ? 0.7 : 1}>
+        <View style={[styles.rowIcon, { backgroundColor: (color || COLORS.primary) + '18' }]}>
+            <Icon size={18} color={color || COLORS.primary} />
         </View>
-        <View style={styles.optionInfo}>
-            <Text style={styles.optionTitle}>{title}</Text>
-            {subtitle && <Text style={styles.optionSubtitle}>{subtitle}</Text>}
+        <View style={styles.rowText}>
+            <Text style={styles.rowLabel}>{label}</Text>
+            {sub ? <Text style={styles.rowSub}>{sub}</Text> : null}
         </View>
-        {showSwitch ? (
-            <Switch
-                value={value}
-                onValueChange={onValueChange}
-                trackColor={{ false: COLORS.surfaceLight, true: COLORS.primary }}
-                thumbColor="#fff"
-            />
-        ) : (
-            <ChevronRight color={COLORS.textSecondary} size={20} />
-        )}
+        {right ?? <ChevronRight size={16} color={COLORS.textSecondary} />}
     </TouchableOpacity>
 );
 
+/* ──────────────────────────────────────────────
+   MAIN SCREEN
+────────────────────────────────────────────── */
 const Profile = ({ navigation }) => {
     const { vehicles, drivers, addDriver } = useFleetStore();
-    const [modalVisible, setModalVisible] = useState(false);
-    const [newDriver, setNewDriver] = useState({
-        name: '',
-        phone: '',
-        experience: '',
-        status: 'Available'
-    });
+    const [notifications, setNotifications] = useState(true);
+    const [modal, setModal] = useState(false);
+    const [form, setForm] = useState({ name: '', phone: '', experience: '', status: 'Available' });
 
-    const handleAddDriver = () => {
-        if (!newDriver.name || !newDriver.phone) {
-            Alert.alert('Error', 'Please fill in name and phone');
+    const handleAdd = () => {
+        if (!form.name || !form.phone) {
+            Alert.alert('Missing Info', 'Please fill in name and phone.');
             return;
         }
-        addDriver(newDriver);
-        setModalVisible(false);
-        setNewDriver({ name: '', phone: '', experience: '', status: 'Available' });
+        addDriver(form);
+        setModal(false);
+        setForm({ name: '', phone: '', experience: '', status: 'Available' });
     };
 
     return (
-        <SafeAreaView style={styles.safeContainer}>
-            <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+        <SafeAreaView style={styles.safe}>
+            <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
+
+                {/* ── PROFILE HEADER ── */}
                 <LinearGradient
                     colors={[COLORS.surface, COLORS.background]}
-                    style={styles.header}
+                    style={styles.profileHeader}
                 >
-                    <View style={styles.avatarContainer}>
-                        <View style={styles.avatarGlow} />
-                        <View style={styles.avatar}>
-                            <User size={40} color={COLORS.primary} />
+                    <View style={styles.avatarWrap}>
+                        <View style={styles.avatarRing}>
+                            <User size={36} color={COLORS.primary} />
                         </View>
-                        <TouchableOpacity style={styles.editBtn}>
-                            <Text style={styles.editBtnText}>Edit</Text>
-                        </TouchableOpacity>
+                        <View style={styles.editChip}>
+                            <Text style={styles.editChipText}>Edit</Text>
+                        </View>
                     </View>
-                    <Text style={styles.userName}>Director Ramesh</Text>
-                    <Text style={styles.userRole}>Fleet Operations Manager</Text>
+                    <Text style={styles.name}>Director Ramesh</Text>
+                    <Text style={styles.role}>Fleet Operations Manager</Text>
 
-                    <View style={styles.statsContainer}>
-                        <View style={styles.statItem}>
+                    <View style={styles.statsRow}>
+                        <View style={styles.stat}>
                             <Text style={styles.statVal}>{vehicles.length}</Text>
                             <Text style={styles.statLab}>Vehicles</Text>
                         </View>
-                        <View style={styles.statDivider} />
-                        <View style={styles.statItem}>
+                        <View style={styles.statDiv} />
+                        <View style={styles.stat}>
                             <Text style={styles.statVal}>{drivers.length}</Text>
                             <Text style={styles.statLab}>Drivers</Text>
                         </View>
-                        <View style={styles.statDivider} />
-                        <View style={styles.statItem}>
+                        <View style={styles.statDiv} />
+                        <View style={styles.stat}>
                             <Text style={styles.statVal}>94%</Text>
                             <Text style={styles.statLab}>Efficiency</Text>
                         </View>
@@ -85,95 +85,118 @@ const Profile = ({ navigation }) => {
                 </LinearGradient>
 
                 <View style={styles.content}>
-                    <Text style={styles.sectionLabel}>DRIVER MANAGEMENT</Text>
-                    <View style={styles.section}>
-                        <ProfileOption
-                            icon={Users}
-                            title="Add New Driver"
-                            subtitle="Register operator to fleet"
-                            onPress={() => setModalVisible(true)}
+                    {/* ── DRIVER MANAGEMENT ── */}
+                    <Text style={styles.section}>Driver Management</Text>
+                    <View style={styles.card}>
+                        <SettingRow
+                            icon={Users} label="Add New Driver"
+                            sub="Register operator to fleet"
+                            onPress={() => setModal(true)}
                         />
-                        <ProfileOption
-                            icon={Users}
-                            title="View All Drivers"
-                            subtitle={`${drivers.length} registered operators`}
+                        <View style={styles.divider} />
+                        <SettingRow
+                            icon={Users} label="View All Drivers"
+                            sub={`${drivers.length} registered operators`}
                             onPress={() => navigation.navigate('DriversList')}
                         />
                     </View>
 
-                    <Text style={styles.sectionLabel}>FLEET SETTINGS</Text>
-                    <View style={styles.section}>
-                        <ProfileOption icon={Bell} title="Smart Notifications" subtitle="Alerts for fuel and maintenance" showSwitch value={true} />
-                        <ProfileOption icon={Shield} title="Security Protocol" subtitle="Biometric access for drivers" />
-                        <ProfileOption icon={CreditCard} title="Billing & Payments" subtitle="Subscription: Business Pro" />
+                    {/* ── FLEET SETTINGS ── */}
+                    <Text style={styles.section}>Fleet Settings</Text>
+                    <View style={styles.card}>
+                        <SettingRow
+                            icon={Bell} label="Smart Notifications"
+                            sub="Alerts for fuel and maintenance"
+                            right={
+                                <Switch
+                                    value={notifications}
+                                    onValueChange={setNotifications}
+                                    trackColor={{ false: COLORS.surface, true: COLORS.primary }}
+                                    thumbColor="#ffffff"
+                                />
+                            }
+                        />
+                        <View style={styles.divider} />
+                        <SettingRow
+                            icon={Shield} label="Security Protocol"
+                            sub="Biometric access for drivers"
+                        />
+                        <View style={styles.divider} />
+                        <SettingRow
+                            icon={CreditCard} label="Billing & Payments"
+                            sub="Subscription: Business Pro"
+                        />
                     </View>
 
-                    <Text style={styles.sectionLabel}>SUPPORT</Text>
-                    <View style={styles.section}>
-                        <ProfileOption icon={HelpCircle} title="Help Center" subtitle="FAQs and customer support" />
-                        <TouchableOpacity style={styles.logoutBtn}>
-                            <LogOut color={COLORS.danger} size={20} />
-                            <Text style={styles.logoutText}>Sign Out from FleetTrack</Text>
-                        </TouchableOpacity>
+                    {/* ── SUPPORT ── */}
+                    <Text style={styles.section}>Support</Text>
+                    <View style={styles.card}>
+                        <SettingRow
+                            icon={HelpCircle} label="Help Center"
+                            sub="FAQs and customer support"
+                        />
                     </View>
+
+                    {/* ── SIGN OUT ── */}
+                    <TouchableOpacity style={styles.signOutBtn}>
+                        <LogOut size={18} color={COLORS.danger} />
+                        <Text style={styles.signOutText}>Sign Out from FleetTrack</Text>
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
 
+            {/* ── ADD DRIVER MODAL ── */}
             <Modal
+                visible={modal}
                 animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => setModalVisible(false)}
+                transparent
+                onRequestClose={() => setModal(false)}
             >
                 <View style={styles.modalOverlay}>
-                    <View style={styles.modalContent}>
-                        <View style={styles.modalHeader}>
+                    <View style={styles.modalSheet}>
+                        <View style={styles.modalHead}>
                             <Text style={styles.modalTitle}>Register Driver</Text>
-                            <TouchableOpacity onPress={() => setModalVisible(false)}>
-                                <X color={COLORS.text} size={24} />
+                            <TouchableOpacity onPress={() => setModal(false)}>
+                                <X color={COLORS.text} size={22} />
                             </TouchableOpacity>
                         </View>
-
-                        <ScrollView style={styles.modalForm}>
-                            <Text style={styles.inputLabel}>Full Name</Text>
-                            <View style={styles.inputBox}>
-                                <User size={18} color={COLORS.primary} style={{ marginRight: 10 }} />
+                        <ScrollView style={styles.modalBody}>
+                            <Text style={styles.fieldLabel}>Full Name</Text>
+                            <View style={styles.fieldRow}>
+                                <User size={15} color={COLORS.primary} style={{ marginRight: 10 }} />
                                 <TextInput
-                                    style={styles.input}
+                                    style={styles.field}
                                     placeholder="e.g. Alok Singh"
-                                    placeholderTextColor={COLORS.textSecondary + '80'}
-                                    value={newDriver.name}
-                                    onChangeText={(text) => setNewDriver({ ...newDriver, name: text })}
+                                    placeholderTextColor={COLORS.textSecondary + '60'}
+                                    value={form.name}
+                                    onChangeText={t => setForm({ ...form, name: t })}
                                 />
                             </View>
-
-                            <Text style={styles.inputLabel}>Phone Number</Text>
-                            <View style={styles.inputBox}>
-                                <Phone size={18} color={COLORS.primary} style={{ marginRight: 10 }} />
+                            <Text style={styles.fieldLabel}>Phone Number</Text>
+                            <View style={styles.fieldRow}>
+                                <Phone size={15} color={COLORS.primary} style={{ marginRight: 10 }} />
                                 <TextInput
-                                    style={styles.input}
+                                    style={styles.field}
                                     placeholder="e.g. +91 98765 43210"
-                                    placeholderTextColor={COLORS.textSecondary + '80'}
+                                    placeholderTextColor={COLORS.textSecondary + '60'}
                                     keyboardType="phone-pad"
-                                    value={newDriver.phone}
-                                    onChangeText={(text) => setNewDriver({ ...newDriver, phone: text })}
+                                    value={form.phone}
+                                    onChangeText={t => setForm({ ...form, phone: t })}
                                 />
                             </View>
-
-                            <Text style={styles.inputLabel}>Experience</Text>
-                            <View style={styles.inputBox}>
-                                <Briefcase size={18} color={COLORS.primary} style={{ marginRight: 10 }} />
+                            <Text style={styles.fieldLabel}>Experience</Text>
+                            <View style={styles.fieldRow}>
+                                <Briefcase size={15} color={COLORS.primary} style={{ marginRight: 10 }} />
                                 <TextInput
-                                    style={styles.input}
+                                    style={styles.field}
                                     placeholder="e.g. 5 Years"
-                                    placeholderTextColor={COLORS.textSecondary + '80'}
-                                    value={newDriver.experience}
-                                    onChangeText={(text) => setNewDriver({ ...newDriver, experience: text })}
+                                    placeholderTextColor={COLORS.textSecondary + '60'}
+                                    value={form.experience}
+                                    onChangeText={t => setForm({ ...form, experience: t })}
                                 />
                             </View>
-
-                            <TouchableOpacity style={styles.submitBtn} onPress={handleAddDriver}>
-                                <Text style={styles.submitBtnText}>Add Driver</Text>
+                            <TouchableOpacity style={styles.addBtn} onPress={handleAdd}>
+                                <Text style={styles.addBtnText}>Add Driver</Text>
                             </TouchableOpacity>
                         </ScrollView>
                     </View>
@@ -183,227 +206,109 @@ const Profile = ({ navigation }) => {
     );
 };
 
+/* ──────────────────────────────────────────────
+   STYLES
+────────────────────────────────────────────── */
 const styles = StyleSheet.create({
-    safeContainer: {
-        flex: 1,
+    safe: { flex: 1, backgroundColor: COLORS.background },
+    scroll: { flex: 1 },
+
+    /* Profile Header */
+    profileHeader: {
+        alignItems: 'center',
+        paddingTop: 32, paddingBottom: 28, paddingHorizontal: 24,
+        borderBottomLeftRadius: 28, borderBottomRightRadius: 28,
+        borderWidth: 1, borderTopWidth: 0, borderColor: '#ffffff08',
+    },
+    avatarWrap: { alignItems: 'center', marginBottom: 14 },
+    avatarRing: {
+        width: 84, height: 84, borderRadius: 42,
         backgroundColor: COLORS.background,
+        justifyContent: 'center', alignItems: 'center',
+        borderWidth: 2, borderColor: COLORS.primary + '35',
     },
-    container: {
-        flex: 1,
-    },
-    header: {
-        padding: 24,
-        alignItems: 'center',
-        backgroundColor: COLORS.surface,
-        borderBottomLeftRadius: 30,
-        borderBottomRightRadius: 30,
-        borderWidth: 1,
-        borderTopWidth: 0,
-        borderColor: '#ffffff08',
-    },
-    avatarContainer: {
-        alignItems: 'center',
-        marginBottom: 16,
-    },
-    avatar: {
-        width: 80,
-        height: 80,
-        borderRadius: 40,
-        backgroundColor: COLORS.surface,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 2,
-        borderColor: COLORS.primary + '20',
-        zIndex: 1,
-    },
-    avatarGlow: {
-        position: 'absolute',
-        width: 120,
-        height: 120,
-        borderRadius: 60,
+    editChip: {
+        position: 'absolute', bottom: -4,
         backgroundColor: COLORS.primary,
-        opacity: 0.15,
-        top: -20,
+        paddingHorizontal: 14, paddingVertical: 4, borderRadius: 10,
     },
-    editBtn: {
-        position: 'absolute',
-        bottom: -5,
-        backgroundColor: COLORS.primary,
-        paddingHorizontal: 12,
-        paddingVertical: 4,
-        borderRadius: 10,
-        zIndex: 2,
+    editChipText: { color: 'white', fontSize: 10, fontWeight: '800' },
+    name: { fontSize: 22, fontWeight: '800', color: COLORS.text, marginTop: 4 },
+    role: { fontSize: 13, color: COLORS.textSecondary, marginTop: 3 },
+
+    /* Stats Row */
+    statsRow: {
+        flexDirection: 'row', marginTop: 24,
+        backgroundColor: COLORS.background + '80',
+        borderRadius: 16, paddingVertical: 14, paddingHorizontal: 20,
+        borderWidth: 1, borderColor: '#ffffff08', width: '100%',
     },
-    editBtnText: {
-        color: 'white',
-        fontSize: 10,
-        fontWeight: 'bold',
-    },
-    userName: {
-        color: COLORS.text,
-        fontSize: 22,
-        fontWeight: 'bold',
-    },
-    userRole: {
-        color: COLORS.textSecondary,
-        fontSize: 13,
-        marginTop: 2,
-    },
-    statsContainer: {
-        flexDirection: 'row',
-        marginTop: 24,
-        paddingHorizontal: 20,
-    },
-    statItem: {
-        flex: 1,
-        alignItems: 'center',
-    },
-    statVal: {
-        color: COLORS.text,
-        fontSize: 18,
-        fontWeight: '800',
-    },
-    statLab: {
-        color: COLORS.textSecondary,
-        fontSize: 11,
-        marginTop: 2,
-    },
-    statDivider: {
-        width: 1,
-        height: '60%',
-        backgroundColor: '#ffffff10',
-        alignSelf: 'center',
-    },
-    content: {
-        padding: 20,
-        paddingBottom: 110,
-    },
-    sectionLabel: {
-        color: COLORS.textSecondary,
-        fontSize: 11,
-        fontWeight: '700',
-        marginBottom: 10,
-        marginLeft: 4,
-        textTransform: 'uppercase',
-        letterSpacing: 1,
-    },
+    stat: { flex: 1, alignItems: 'center' },
+    statVal: { color: COLORS.text, fontSize: 20, fontWeight: '800' },
+    statLab: { color: COLORS.textSecondary, fontSize: 11, marginTop: 3, fontWeight: '600' },
+    statDiv: { width: 1, backgroundColor: '#ffffff12', marginHorizontal: 10 },
+
+    /* Content */
+    content: { padding: 20, paddingBottom: 100 },
     section: {
-        backgroundColor: COLORS.surface,
-        borderRadius: 20,
-        padding: 4,
-        marginBottom: 20,
-        borderWidth: 1,
-        borderColor: '#ffffff08',
+        fontSize: 11, color: COLORS.textSecondary, fontWeight: '700',
+        textTransform: 'uppercase', letterSpacing: 1,
+        marginBottom: 10, marginTop: 6, marginLeft: 2,
     },
-    option: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 14,
-        borderBottomWidth: 1,
-        borderBottomColor: '#ffffff05',
+    card: {
+        backgroundColor: COLORS.surface, borderRadius: 18,
+        borderWidth: 1, borderColor: '#ffffff08',
+        marginBottom: 16, overflow: 'hidden',
     },
-    iconBox: {
-        width: 40,
-        height: 40,
-        borderRadius: 10,
-        backgroundColor: '#ffffff05',
-        justifyContent: 'center',
-        alignItems: 'center',
+    divider: { height: 1, backgroundColor: '#ffffff06', marginLeft: 62 },
+
+    /* Row */
+    row: { flexDirection: 'row', alignItems: 'center', padding: 14 },
+    rowIcon: {
+        width: 40, height: 40, borderRadius: 12,
+        justifyContent: 'center', alignItems: 'center',
+        marginRight: 14,
     },
-    optionInfo: {
-        flex: 1,
-        marginLeft: 14,
+    rowText: { flex: 1 },
+    rowLabel: { color: COLORS.text, fontSize: 14, fontWeight: '600' },
+    rowSub: { color: COLORS.textSecondary, fontSize: 11, marginTop: 2 },
+
+    /* Sign Out */
+    signOutBtn: {
+        flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+        paddingVertical: 18, gap: 10, marginTop: 8,
     },
-    optionTitle: {
-        color: COLORS.text,
-        fontSize: 14,
-        fontWeight: '600',
+    signOutText: { color: COLORS.danger, fontWeight: '700', fontSize: 15 },
+
+    /* Modal */
+    modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.78)', justifyContent: 'flex-end' },
+    modalSheet: {
+        backgroundColor: COLORS.background, borderTopLeftRadius: 28,
+        borderTopRightRadius: 28, padding: 24, maxHeight: '80%',
     },
-    optionSubtitle: {
-        color: COLORS.textSecondary,
-        fontSize: 11,
+    modalHead: {
+        flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
+        borderBottomWidth: 1, borderBottomColor: '#ffffff10',
+        paddingBottom: 16, marginBottom: 4,
     },
-    logoutBtn: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 20,
-        gap: 10,
+    modalTitle: { color: COLORS.text, fontSize: 18, fontWeight: '800' },
+    modalBody: { paddingBottom: 30 },
+    fieldLabel: {
+        color: COLORS.textSecondary, fontSize: 11, fontWeight: '700',
+        textTransform: 'uppercase', letterSpacing: 0.5,
+        marginTop: 18, marginBottom: 8,
     },
-    logoutText: {
-        color: COLORS.danger,
-        fontWeight: 'bold',
-        fontSize: 15,
+    fieldRow: {
+        flexDirection: 'row', alignItems: 'center',
+        backgroundColor: COLORS.surface, borderRadius: 14,
+        paddingHorizontal: 14, borderWidth: 1, borderColor: '#ffffff10',
     },
-    modalOverlay: {
-        flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.85)',
-        justifyContent: 'flex-end',
+    field: { flex: 1, paddingVertical: 13, color: COLORS.text, fontSize: 14 },
+    addBtn: {
+        backgroundColor: COLORS.primary, borderRadius: 16,
+        padding: 16, alignItems: 'center', marginTop: 32, marginBottom: 20,
     },
-    modalContent: {
-        backgroundColor: COLORS.background,
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
-        padding: 24,
-        maxHeight: '80%',
-    },
-    modalHeader: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: 20,
-        paddingBottom: 16,
-        borderBottomWidth: 1,
-        borderBottomColor: '#ffffff10',
-    },
-    modalTitle: {
-        color: COLORS.text,
-        fontSize: 20,
-        fontWeight: 'bold',
-    },
-    modalForm: {
-        paddingBottom: 40,
-    },
-    inputLabel: {
-        color: COLORS.textSecondary,
-        fontSize: 13,
-        fontWeight: '600',
-        marginBottom: 8,
-        marginTop: 18,
-    },
-    inputBox: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: COLORS.surface,
-        borderRadius: 14,
-        paddingHorizontal: 14,
-        borderWidth: 1,
-        borderColor: '#ffffff10',
-    },
-    input: {
-        flex: 1,
-        paddingVertical: 14,
-        color: COLORS.text,
-        fontSize: 15,
-    },
-    submitBtn: {
-        backgroundColor: COLORS.primary,
-        borderRadius: 16,
-        padding: 18,
-        alignItems: 'center',
-        marginTop: 40,
-        marginBottom: 20,
-        shadowColor: COLORS.primary,
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 10,
-        elevation: 8,
-    },
-    submitBtnText: {
-        color: 'white',
-        fontSize: 16,
-        fontWeight: 'bold',
-    },
+    addBtnText: { color: 'white', fontSize: 15, fontWeight: '800' },
 });
 
 export default Profile;
