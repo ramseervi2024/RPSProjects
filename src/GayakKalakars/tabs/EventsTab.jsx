@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { Clock, MapPin, ChevronRight } from 'lucide-react-native';
 import { COLORS } from '../theme';
-import { ONGOING_EVENTS } from '../ongoingupcomingevents';
+import { ONGOING_EVENTS } from '../data/ongoingupcomingevents';
 
 export default function EventsTab({ onSelectEvent }) {
     return (

@@ -11,8 +11,8 @@ import {
 } from 'react-native';
 import { Search, MapPin } from 'lucide-react-native';
 import { COLORS } from '../theme';
-import { GAYAK_KALAKARS } from '../gayakkalakarslist';
-import { ONGOING_EVENTS } from '../ongoingupcomingevents';
+import { GAYAK_KALAKARS } from '../data/gayakkalakarslist';
+import { ONGOING_EVENTS } from '../data/ongoingupcomingevents';
 
 const { width } = Dimensions.get('window');
 
