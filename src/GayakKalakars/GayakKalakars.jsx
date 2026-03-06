@@ -30,6 +30,7 @@ import ProfileTab from './tabs/ProfileTab';
 import ArtistDetails from './details/ArtistDetails';
 import EventDetails from './details/EventDetails';
 import BookingDetails from './details/BookingDetails';
+import AllArtists from './details/AllArtists';
 
 export default function GayakKalakars() {
   const [activeTab, setActiveTab] = useState('Home');
@@ -86,6 +87,13 @@ export default function GayakKalakars() {
           return <EventDetails event={currentScreen.data} onBack={popFromStack} />;
         case 'booking':
           return <BookingDetails booking={currentScreen.data} onBack={popFromStack} />;
+        case 'all_artists':
+          return (
+            <AllArtists
+              onSelectArtist={(artist) => pushToStack('artist', artist)}
+              onBack={popFromStack}
+            />
+          );
         default:
           return null;
       }
@@ -97,6 +105,8 @@ export default function GayakKalakars() {
           <HomeTab
             onSelectArtist={(artist) => pushToStack('artist', artist)}
             onSelectEvent={(event) => pushToStack('event', event)}
+            onViewAllEvents={() => setActiveTab('Events')}
+            onViewAllArtists={() => pushToStack('all_artists')}
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
           />

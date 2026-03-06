@@ -17,7 +17,9 @@ import { BUSINESS_PLANS } from '../data/business_plans';
 
 const { width } = Dimensions.get('window');
 
-export default function HomeTab({ onSelectArtist, onSelectEvent, searchQuery, setSearchQuery }) {
+export default function HomeTab({ onSelectArtist, onSelectEvent, onViewAllEvents, onViewAllArtists, searchQuery, setSearchQuery }) {
+    const topArtists = GAYAK_KALAKARS.slice(0, 4);
+    const topEvents = ONGOING_EVENTS.slice(0, 4);
     return (
         <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
             {/* Search */}
@@ -93,13 +95,13 @@ export default function HomeTab({ onSelectArtist, onSelectEvent, searchQuery, se
             {/* Featured Public Events */}
             <View style={[styles.sectionHeader, { marginTop: 30 }]}>
                 <Text style={styles.sectionTitle}>Public Events</Text>
-                <TouchableOpacity onPress={() => { }}>
+                <TouchableOpacity onPress={onViewAllEvents}>
                     <Text style={styles.viewAll}>View All</Text>
                 </TouchableOpacity>
             </View>
 
             <FlatList
-                data={ONGOING_EVENTS}
+                data={topEvents}
                 horizontal
                 showsHorizontalScrollIndicator={false}
                 keyExtractor={(item) => item.id}
@@ -135,9 +137,14 @@ export default function HomeTab({ onSelectArtist, onSelectEvent, searchQuery, se
             </View>
 
             {/* Artists */}
-            <Text style={[styles.sectionTitle, { marginLeft: 20, marginTop: 25 }]}>Featured Gayak Kalakars</Text>
+            <View style={[styles.sectionHeader, { marginTop: 25, marginBottom: 10 }]}>
+                <Text style={styles.sectionTitle}>Featured Gayak Kalakars</Text>
+                <TouchableOpacity onPress={onViewAllArtists}>
+                    <Text style={styles.viewAll}>View All</Text>
+                </TouchableOpacity>
+            </View>
             <View style={styles.artistGrid}>
-                {GAYAK_KALAKARS.map(artist => (
+                {topArtists.map(artist => (
                     <TouchableOpacity
                         key={artist.id}
                         style={styles.artistCardSmall}
