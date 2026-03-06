@@ -9,10 +9,11 @@ import {
     FlatList,
     Dimensions,
 } from 'react-native';
-import { Search, MapPin } from 'lucide-react-native';
+import { Search, MapPin, Users, Briefcase, Award, Star, ShieldCheck, Heart } from 'lucide-react-native';
 import { COLORS } from '../theme';
 import { GAYAK_KALAKARS } from '../data/gayakkalakarslist';
 import { ONGOING_EVENTS } from '../data/ongoingupcomingevents';
+import { BUSINESS_PLANS } from '../data/business_plans';
 
 const { width } = Dimensions.get('window');
 
@@ -32,8 +33,65 @@ export default function HomeTab({ onSelectArtist, onSelectEvent, searchQuery, se
                 </View>
             </View>
 
-            {/* Featured Public Events */}
+            {/* Quick Categories */}
+            <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.categoryContainer}
+            >
+                {['Bhajan', 'Folk', 'Vivah Geet', 'DJ Night', 'Sandhya'].map((cat, i) => (
+                    <TouchableOpacity key={i} style={styles.categoryChip}>
+                        <Text style={styles.categoryChipText}>{cat}</Text>
+                    </TouchableOpacity>
+                ))}
+            </ScrollView>
+
+            {/* Quick Actions */}
+            <View style={styles.actionGrid}>
+                {[
+                    { label: 'Book Artist', icon: Star, color: '#E67E22' },
+                    { label: 'Upcoming', icon: Briefcase, color: '#3498DB' },
+                    { label: 'Verified', icon: ShieldCheck, color: '#27AE60' },
+                    { label: 'Partner', icon: Users, color: '#9B59B6' },
+                ].map((action, i) => (
+                    <TouchableOpacity key={i} style={styles.actionItem}>
+                        <View style={[styles.actionIcon, { backgroundColor: action.color + '20' }]}>
+                            <action.icon size={24} color={action.color} />
+                        </View>
+                        <Text style={styles.actionLabel}>{action.label}</Text>
+                    </TouchableOpacity>
+                ))}
+            </View>
+
+            {/* Business Plans */}
             <View style={styles.sectionHeader}>
+                <Text style={styles.sectionTitle}>Business Packages</Text>
+            </View>
+            <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{ paddingLeft: 20, paddingRight: 20 }}
+            >
+                {BUSINESS_PLANS.organizer.map((plan) => (
+                    <View key={plan.id} style={[styles.planCard, { borderColor: plan.color }]}>
+                        {plan.popular && <View style={styles.popularBadge}><Text style={styles.popularText}>POPULAR</Text></View>}
+                        <Text style={[styles.planName, { color: plan.color }]}>{plan.name}</Text>
+                        <Text style={styles.planPrice}>{plan.price}</Text>
+                        <Text style={styles.planDuration}>{plan.duration}</Text>
+                        <View style={styles.planFeatures}>
+                            {plan.features.slice(0, 3).map((f, i) => (
+                                <Text key={i} style={styles.featureText}>• {f}</Text>
+                            ))}
+                        </View>
+                        <TouchableOpacity style={[styles.planBtn, { backgroundColor: plan.color }]}>
+                            <Text style={styles.planBtnText}>Select Plan</Text>
+                        </TouchableOpacity>
+                    </View>
+                ))}
+            </ScrollView>
+
+            {/* Featured Public Events */}
+            <View style={[styles.sectionHeader, { marginTop: 30 }]}>
                 <Text style={styles.sectionTitle}>Public Events</Text>
                 <TouchableOpacity onPress={() => { }}>
                     <Text style={styles.viewAll}>View All</Text>
@@ -66,6 +124,16 @@ export default function HomeTab({ onSelectArtist, onSelectEvent, searchQuery, se
                 )}
             />
 
+            {/* Success Stories */}
+            <View style={[styles.sectionHeader, { marginTop: 30 }]}>
+                <Text style={styles.sectionTitle}>Success Stories</Text>
+            </View>
+            <View style={styles.testimonialCard}>
+                <Heart size={20} color={COLORS.accentRed} fill={COLORS.accentRed} />
+                <Text style={styles.testimonialText}>"Ramesh & Dimple's wedding wouldn't have been the same without Prakash Mali. The app made booking so easy!"</Text>
+                <Text style={styles.testimonialAuthor}>- Ramesh Seervi, Organizer</Text>
+            </View>
+
             {/* Artists */}
             <Text style={[styles.sectionTitle, { marginLeft: 20, marginTop: 25 }]}>Featured Gayak Kalakars</Text>
             <View style={styles.artistGrid}>
@@ -95,6 +163,124 @@ const styles = StyleSheet.create({
     },
     searchSection: {
         padding: 20,
+        paddingBottom: 10,
+    },
+    categoryContainer: {
+        paddingHorizontal: 20,
+        paddingBottom: 20,
+    },
+    categoryChip: {
+        backgroundColor: COLORS.white,
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        borderRadius: 20,
+        marginRight: 10,
+        borderWidth: 1,
+        borderColor: COLORS.border,
+    },
+    categoryChipText: {
+        fontSize: 13,
+        fontWeight: '600',
+        color: COLORS.textSecondary,
+    },
+    actionGrid: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingHorizontal: 20,
+        marginBottom: 25,
+    },
+    actionItem: {
+        alignItems: 'center',
+        flex: 1,
+    },
+    actionIcon: {
+        width: 50,
+        height: 50,
+        borderRadius: 15,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 8,
+    },
+    actionLabel: {
+        fontSize: 11,
+        fontWeight: 'bold',
+        color: COLORS.text,
+    },
+    planCard: {
+        width: 180,
+        backgroundColor: COLORS.white,
+        borderRadius: 16,
+        padding: 15,
+        marginRight: 15,
+        borderWidth: 2,
+        position: 'relative',
+    },
+    popularBadge: {
+        position: 'absolute',
+        top: -10,
+        right: 15,
+        backgroundColor: '#D4AF37',
+        paddingHorizontal: 8,
+        paddingVertical: 2,
+        borderRadius: 4,
+    },
+    popularText: {
+        color: COLORS.white,
+        fontSize: 9,
+        fontWeight: 'bold',
+    },
+    planName: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginBottom: 5,
+    },
+    planPrice: {
+        fontSize: 22,
+        fontWeight: 'bold',
+        color: COLORS.text,
+    },
+    planDuration: {
+        fontSize: 12,
+        color: COLORS.textSecondary,
+        marginBottom: 10,
+    },
+    planFeatures: {
+        marginBottom: 15,
+    },
+    featureText: {
+        fontSize: 11,
+        color: COLORS.textSecondary,
+        marginBottom: 4,
+    },
+    planBtn: {
+        paddingVertical: 8,
+        borderRadius: 8,
+        alignItems: 'center',
+    },
+    planBtnText: {
+        color: COLORS.white,
+        fontSize: 12,
+        fontWeight: 'bold',
+    },
+    testimonialCard: {
+        marginHorizontal: 20,
+        padding: 20,
+        backgroundColor: COLORS.cardBackground,
+        borderRadius: 16,
+        borderLeftWidth: 4,
+        borderLeftColor: COLORS.accentRed,
+    },
+    testimonialText: {
+        fontSize: 14,
+        fontStyle: 'italic',
+        lineHeight: 22,
+        color: COLORS.text,
+        marginVertical: 10,
+    },
+    testimonialAuthor: {
+        fontSize: 12,
+        fontWeight: 'bold',
+        color: COLORS.textSecondary,
     },
     searchBar: {
         flexDirection: 'row',

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import {
     View,
     Text,
@@ -12,13 +12,15 @@ import {
     TextInput,
     Alert,
 } from 'react-native';
-import { ChevronLeft, Play, X, Star, ShieldCheck, Share2, Info } from 'lucide-react-native';
+import { ChevronLeft, Play, X, Star, ShieldCheck, Share2, Info, MapPin, Award, Briefcase } from 'lucide-react-native';
+import YoutubePlayer from 'react-native-youtube-iframe';
 import { COLORS } from '../theme';
 
 const { width } = Dimensions.get('window');
 
 export default function ArtistDetails({ artist, onBack, isAlreadyBooked = false }) {
     const [bookingModalVisible, setBookingModalVisible] = useState(false);
+    const [playingVideoId, setPlayingVideoId] = useState(artist.famousSongs[0]?.youtubeId);
     const [bookingData, setBookingData] = useState({
         date: '',
         eventType: '',
@@ -34,6 +36,12 @@ export default function ArtistDetails({ artist, onBack, isAlreadyBooked = false 
         Alert.alert('Success', `Booking request for ${artist.name} has been sent! Status: Pending Approval.`);
         setBookingModalVisible(false);
     };
+
+    const onStateChange = useCallback((state) => {
+        if (state === 'ended') {
+            console.log('Video has ended');
+        }
+    }, []);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -51,18 +59,36 @@ export default function ArtistDetails({ artist, onBack, isAlreadyBooked = false 
             </View>
 
             <ScrollView showsVerticalScrollIndicator={false}>
+                {/* YouTube Video Section */}
+                <View style={styles.videoSection}>
+                    {playingVideoId ? (
+                        <YoutubePlayer
+                            height={width * 0.56}
+                            play={false}
+                            videoId={playingVideoId}
+                            onChangeState={onStateChange}
+                        />
+                    ) : (
+                        <View style={styles.videoPlaceholder}>
+                            <Text style={styles.videoPlaceholderText}>Video Unavailable</Text>
+                        </View>
+                    )}
+                </View>
+
                 {/* Profile Info */}
                 <View style={styles.profileSection}>
-                    <View style={styles.profileImagePlaceholder}>
-                        <Text style={styles.profileInitials}>{artist.name.charAt(0)}</Text>
-                    </View>
-                    <Text style={styles.artistName}>{artist.name}</Text>
-                    <View style={styles.badgeRow}>
-                        <View style={styles.verifiedBadge}>
-                            <ShieldCheck size={14} color={COLORS.success} />
-                            <Text style={styles.verifiedText}>Verified Kalakar</Text>
+                    <View style={styles.artistInfoRow}>
+                        <View style={styles.profileImagePlaceholder}>
+                            <Text style={styles.profileInitials}>{artist.name.charAt(0)}</Text>
                         </View>
-                        <Text style={styles.artistTitle}>{artist.title}</Text>
+                        <View style={styles.profileMeta}>
+                            <Text style={styles.artistName}>{artist.name}</Text>
+                            <Text style={styles.artistTitle}>{artist.title}</Text>
+                            <View style={styles.verifiedBadge}>
+                                <ShieldCheck size={14} color={COLORS.success} />
+                                <Text style={styles.verifiedText}>Verified Kalakar</Text>
+                            </View>
+                        </View>
                     </View>
 
                     <View style={styles.statsRow}>
@@ -84,23 +110,52 @@ export default function ArtistDetails({ artist, onBack, isAlreadyBooked = false 
                     </View>
                 </View>
 
+                {/* Extra Details */}
+                <View style={styles.detailsSection}>
+                    <View style={styles.detailCard}>
+                        <MapPin size={20} color={COLORS.accentRed} />
+                        <View style={styles.detailTextContainer}>
+                            <Text style={styles.detailLabel}>Native Location</Text>
+                            <Text style={styles.detailValue}>{artist.location || 'Rajasthan'}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.detailCard}>
+                        <Briefcase size={20} color={COLORS.accentRed} />
+                        <View style={styles.detailTextContainer}>
+                            <Text style={styles.detailLabel}>Professional Experience</Text>
+                            <Text style={styles.detailValue}>{artist.experience || '10+ Years'}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.detailCard}>
+                        <Award size={20} color={COLORS.accentRed} />
+                        <View style={styles.detailTextContainer}>
+                            <Text style={styles.detailLabel}>Major Awards</Text>
+                            <Text style={styles.detailValue}>{artist.awards?.join(', ') || 'Folk Legend'}</Text>
+                        </View>
+                    </View>
+                </View>
+
                 {/* Bio */}
                 <View style={styles.section}>
                     <Text style={styles.sectionTitle}>Life Journey</Text>
                     <Text style={styles.bioText}>{artist.bio}</Text>
                 </View>
 
-                {/* Famous Songs */}
+                {/* Famous Songs List */}
                 <View style={styles.section}>
                     <Text style={styles.sectionTitle}>Famous Melodies</Text>
                     {artist.famousSongs.map((song) => (
-                        <TouchableOpacity key={song.id} style={styles.songRow}>
+                        <TouchableOpacity
+                            key={song.id}
+                            style={[styles.songRow, playingVideoId === song.youtubeId && styles.songRowActive]}
+                            onPress={() => setPlayingVideoId(song.youtubeId)}
+                        >
                             <View style={styles.songIcon}>
-                                <Play size={16} color={COLORS.accentRed} fill={COLORS.accentRed} />
+                                <Play size={16} color={playingVideoId === song.youtubeId ? COLORS.white : COLORS.accentRed} fill={playingVideoId === song.youtubeId ? COLORS.white : COLORS.accentRed} />
                             </View>
                             <View style={styles.songInfo}>
-                                <Text style={styles.songTitle}>{song.title}</Text>
-                                <Text style={styles.songPlays}>1.2M+ Plays</Text>
+                                <Text style={[styles.songTitle, playingVideoId === song.youtubeId && styles.songTitleActive]}>{song.title}</Text>
+                                <Text style={styles.songPlays}>Click to Play Video</Text>
                             </View>
                         </TouchableOpacity>
                     ))}
@@ -209,8 +264,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 15,
         paddingVertical: 10,
+        backgroundColor: COLORS.white,
         borderBottomWidth: 1,
         borderBottomColor: COLORS.border,
+        zIndex: 10,
     },
     headerTitle: {
         fontSize: 18,
@@ -221,35 +278,53 @@ const styles = StyleSheet.create({
         width: 40,
         alignItems: 'flex-end',
     },
-    profileSection: {
-        alignItems: 'center',
-        paddingVertical: 30,
-        backgroundColor: COLORS.cardBackground,
+    videoSection: {
+        width: width,
+        backgroundColor: '#000',
     },
-    profileImagePlaceholder: {
-        width: 120,
-        height: 120,
-        borderRadius: 60,
-        backgroundColor: COLORS.border,
+    videoPlaceholder: {
+        height: width * 0.56,
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 20,
     },
-    profileInitials: {
-        fontSize: 48,
-        fontWeight: 'bold',
-        color: COLORS.accentRed,
+    videoPlaceholderText: {
+        color: COLORS.white,
     },
-    artistName: {
-        fontSize: 26,
-        fontWeight: 'bold',
-        color: COLORS.text,
-        marginBottom: 8,
+    profileSection: {
+        padding: 20,
+        backgroundColor: COLORS.cardBackground,
     },
-    badgeRow: {
+    artistInfoRow: {
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 20,
+    },
+    profileImagePlaceholder: {
+        width: 80,
+        height: 80,
+        borderRadius: 40,
+        backgroundColor: COLORS.border,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    profileInitials: {
+        fontSize: 32,
+        fontWeight: 'bold',
+        color: COLORS.accentRed,
+    },
+    profileMeta: {
+        marginLeft: 20,
+        flex: 1,
+    },
+    artistName: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: COLORS.text,
+    },
+    artistTitle: {
+        fontSize: 14,
+        color: COLORS.textSecondary,
+        marginVertical: 4,
     },
     verifiedBadge: {
         flexDirection: 'row',
@@ -258,17 +333,13 @@ const styles = StyleSheet.create({
         paddingHorizontal: 8,
         paddingVertical: 4,
         borderRadius: 6,
-        marginRight: 10,
+        alignSelf: 'flex-start',
     },
     verifiedText: {
         fontSize: 12,
         color: COLORS.success,
         marginLeft: 4,
         fontWeight: '600',
-    },
-    artistTitle: {
-        fontSize: 14,
-        color: COLORS.textSecondary,
     },
     statsRow: {
         flexDirection: 'row',
@@ -295,11 +366,41 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
+    detailsSection: {
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+    },
+    detailCard: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: COLORS.white,
+        padding: 15,
+        borderRadius: 12,
+        marginBottom: 10,
+        borderWidth: 1,
+        borderColor: COLORS.border,
+    },
+    detailTextContainer: {
+        marginLeft: 15,
+        flex: 1,
+    },
+    detailLabel: {
+        fontSize: 11,
+        color: COLORS.textSecondary,
+        textTransform: 'uppercase',
+        letterSpacing: 0.5,
+    },
+    detailValue: {
+        fontSize: 14,
+        fontWeight: '600',
+        color: COLORS.text,
+        marginTop: 2,
+    },
     section: {
         padding: 20,
     },
     sectionTitle: {
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: 'bold',
         color: COLORS.text,
         marginBottom: 15,
@@ -320,6 +421,10 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: COLORS.border,
     },
+    songRowActive: {
+        backgroundColor: COLORS.accentRed,
+        borderColor: COLORS.accentRed,
+    },
     songIcon: {
         width: 36,
         height: 36,
@@ -338,6 +443,9 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '600',
         color: COLORS.text,
+    },
+    songTitleActive: {
+        color: COLORS.white,
     },
     songPlays: {
         fontSize: 12,
