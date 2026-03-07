@@ -41,7 +41,7 @@ export default function HomeTab({ onSelectArtist, onSelectEvent, onViewAllEvents
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={styles.categoryContainer}
             >
-                {['Bhajan', 'Folk', 'Vivah Geet', 'DJ Night', 'Sandhya'].map((cat, i) => (
+                {['Desi Bhajan', 'Folk Folk', 'Marwadi Vivah', 'Teja Ji Katha', 'Sangeet Sandhya'].map((cat, i) => (
                     <TouchableOpacity key={i} style={styles.categoryChip}>
                         <Text style={styles.categoryChipText}>{cat}</Text>
                     </TouchableOpacity>
@@ -132,8 +132,8 @@ export default function HomeTab({ onSelectArtist, onSelectEvent, onViewAllEvents
             </View>
             <View style={styles.testimonialCard}>
                 <Heart size={20} color={COLORS.accentRed} fill={COLORS.accentRed} />
-                <Text style={styles.testimonialText}>"Ramesh & Dimple's wedding wouldn't have been the same without Prakash Mali. The app made booking so easy!"</Text>
-                <Text style={styles.testimonialAuthor}>- Ramesh Seervi, Organizer</Text>
+                <Text style={styles.testimonialText}>"Ramesh & Dimple's wedding in Pali was a grand success. Prakash Mali's performance was the highlight. This app made managing artists and payments so professional!"</Text>
+                <Text style={styles.testimonialAuthor}>- Ramesh Seervi, Lead Organizer</Text>
             </View>
 
             {/* Artists */}
@@ -158,6 +158,38 @@ export default function HomeTab({ onSelectArtist, onSelectEvent, onViewAllEvents
                     </TouchableOpacity>
                 ))}
             </View>
+
+            {/* Partner Ads - Monetization */}
+            <View style={[styles.sectionHeader, { marginTop: 35 }]}>
+                <Text style={styles.sectionTitle}>Partner Services</Text>
+                <View style={styles.adBadge}><Text style={styles.adBadgeText}>AD</Text></View>
+            </View>
+            <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{ paddingLeft: 20, paddingRight: 20, paddingBottom: 30 }}
+            >
+                {[
+                    { name: 'Jodhpur Sound Hub', type: 'Sound & Light', price: '₹12k', color: '#3498DB' },
+                    { name: 'Marwar Caterers', type: 'Traditional Rajasthani', price: '₹450/plate', color: '#E67E22' },
+                    { name: 'Pali Tent House', type: 'Royal Decoration', price: '₹40k', color: '#27AE60' },
+                    { name: 'Desert Flora', type: 'Event Florist', price: '₹10k', color: '#9B59B6' },
+                    { name: 'Royal Stage Props', type: 'Stage Setup', price: '₹25k', color: '#F1C40F' },
+                    { name: 'Marwar Security', type: 'Event Security', price: '₹15k', color: '#34495E' },
+                ].map((ad, i) => (
+                    <TouchableOpacity key={i} style={styles.adCard}>
+                        <View style={[styles.adIcon, { backgroundColor: ad.color + '20' }]}>
+                            <Briefcase size={20} color={ad.color} />
+                        </View>
+                        <View style={styles.adInfo}>
+                            <Text style={styles.adName}>{ad.name}</Text>
+                            <Text style={styles.adType}>{ad.type}</Text>
+                            <Text style={styles.adPrice}>Starting {ad.price}</Text>
+                        </View>
+                    </TouchableOpacity>
+                ))}
+            </ScrollView>
+
             <View style={{ height: 100 }} />
         </ScrollView>
     );
@@ -288,6 +320,56 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontWeight: 'bold',
         color: COLORS.textSecondary,
+    },
+    adBadge: {
+        backgroundColor: COLORS.border,
+        paddingHorizontal: 6,
+        paddingVertical: 2,
+        borderRadius: 4,
+        marginLeft: 10,
+    },
+    adBadgeText: {
+        fontSize: 8,
+        fontWeight: 'bold',
+        color: COLORS.textSecondary,
+    },
+    adCard: {
+        width: 200,
+        backgroundColor: COLORS.white,
+        borderRadius: 16,
+        padding: 15,
+        marginRight: 15,
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: COLORS.border,
+    },
+    adIcon: {
+        width: 45,
+        height: 45,
+        borderRadius: 22.5,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    adInfo: {
+        marginLeft: 12,
+        flex: 1,
+    },
+    adName: {
+        fontSize: 13,
+        fontWeight: 'bold',
+        color: COLORS.text,
+    },
+    adType: {
+        fontSize: 10,
+        color: COLORS.textSecondary,
+        marginTop: 2,
+    },
+    adPrice: {
+        fontSize: 10,
+        fontWeight: 'bold',
+        color: COLORS.accentRed,
+        marginTop: 4,
     },
     searchBar: {
         flexDirection: 'row',

@@ -33,7 +33,7 @@ export default function EventDetails({ event, onBack }) {
                 <View style={styles.heroSection}>
                     <View style={styles.imagePlaceholder}>
                         <Text style={styles.imageText}>{event.title}</Text>
-                        <View style={[styles.statusBadge, { backgroundColor: event.status === 'LIVE' ? '#E74C3C' : COLORS.accent }]}>
+                        <View style={[styles.statusBadge, { backgroundColor: (event.status === 'LIVE' || event.status === 'Ongoing') ? '#E74C3C' : COLORS.accent }]}>
                             <Text style={styles.statusText}>{event.status}</Text>
                         </View>
                     </View>

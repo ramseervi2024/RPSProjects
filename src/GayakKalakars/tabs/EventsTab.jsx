@@ -20,7 +20,7 @@ export default function EventsTab({ onSelectEvent }) {
                     style={styles.listEventCard}
                     onPress={() => onSelectEvent(event)}
                 >
-                    <View style={[styles.statusBadge, { backgroundColor: event.status === 'LIVE' ? '#E74C3C' : COLORS.accent }]}>
+                    <View style={[styles.statusBadge, { backgroundColor: (event.status === 'LIVE' || event.status === 'Ongoing') ? '#E74C3C' : COLORS.accent }]}>
                         <Text style={styles.statusText}>{event.status}</Text>
                     </View>
                     <View style={styles.listEventInfo}>

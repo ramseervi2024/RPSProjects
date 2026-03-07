@@ -72,9 +72,13 @@ export default function BookingDetails({ booking, onBack }) {
                             <Text style={styles.paymentLabel}>Management Fee</Text>
                             <Text style={styles.paymentValue}>₹10,000</Text>
                         </View>
+                        <View style={styles.paymentRow}>
+                            <Text style={styles.paymentLabel}>Platform Service Fee (5%)</Text>
+                            <Text style={styles.paymentValue}>₹7,500</Text>
+                        </View>
                         <View style={[styles.paymentRow, styles.totalRow]}>
                             <Text style={styles.totalLabel}>Total Amount</Text>
-                            <Text style={styles.totalValue}>₹1,60,000</Text>
+                            <Text style={styles.totalValue}>₹1,67,500</Text>
                         </View>
                         <View style={styles.paidBadge}>
                             <DollarSign size={14} color={COLORS.success} />
