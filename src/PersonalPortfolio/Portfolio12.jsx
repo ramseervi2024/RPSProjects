@@ -19,12 +19,12 @@ const StorySlide = ({ title, subtitle, quote, icon: Icon, children, bg = '#FFF' 
     <View style={[styles.slide, { backgroundColor: bg }]}>
         <SafeAreaView style={styles.safeSlide}>
             <View style={styles.slideHeader}>
-                <Icon size={40} color="#000" strokeWidth={1} />
+                <Icon size={32} color="#1A1A1A" strokeWidth={1} />
             </View>
             <View style={styles.slideBody}>
-                <Animated.Text entering={FadeInRight.duration(800)} style={styles.slideTitle}>{title}</Animated.Text>
-                {quote && <Animated.Text entering={FadeInRight.delay(200)} style={styles.slideQuote}>"{quote}"</Animated.Text>}
-                <Animated.Text entering={FadeInRight.delay(400)} style={styles.slideSubtitle}>{subtitle}</Animated.Text>
+                <Animated.Text entering={FadeInRight.duration(1000)} style={styles.slideTitle}>{title}</Animated.Text>
+                {quote && <Animated.Text entering={FadeInRight.delay(200).duration(1000)} style={styles.slideQuote}>{quote}</Animated.Text>}
+                <Animated.Text entering={FadeInRight.delay(400).duration(1000)} style={styles.slideSubtitle}>{subtitle}</Animated.Text>
                 <View style={styles.childrenContainer}>
                     {children}
                 </View>
@@ -38,45 +38,51 @@ export default function Portfolio12({ navigation }) {
 
     return (
         <View style={styles.container}>
+            {/* Progress Top Bar */}
+            <View style={styles.progressBarContainer}>
+                <View style={styles.progressBar} />
+            </View>
+
             <ScrollView 
                 horizontal 
                 pagingEnabled 
                 showsHorizontalScrollIndicator={false}
                 style={styles.horizontalScroll}
+                scrollEventThrottle={16}
             >
                 {/* 1. Introduction Slide */}
                 <StorySlide 
-                    title="THE BEGINNING" 
+                    title="CHAPTER I / ORIGIN" 
                     subtitle={`${personal_info.name}. A developer with a vision.`}
                     quote={personal_info.headline}
                     icon={BookOpen}
-                    bg="#FDFCF0"
+                    bg="#FBFBF7"
                 >
-                    <Text style={styles.bodyText}>{summary.slice(0, 200)}...</Text>
+                    <Text style={styles.bodyText}>{summary.slice(0, 250)}...</Text>
                     <View style={styles.scrollIndicator}>
-                        <Text style={styles.scrollText}>Swipe to continue the story</Text>
-                        <ArrowRight size={16} color="#000" />
+                        <Text style={styles.scrollText}>PULL TO EXPLORE</Text>
+                        <ArrowRight size={14} color="#1A1A1A" />
                     </View>
                 </StorySlide>
 
                 {/* 2. Expertise Slide */}
                 <StorySlide 
-                    title="THE ENGINE" 
+                    title="CHAPTER II / THE ENGINE" 
                     subtitle="Mastering the cross-platform ecosystem."
                     icon={Terminal}
-                    bg="#F0F9FF"
+                    bg="#F5F5F0"
                 >
                     <View style={styles.journeyList}>
                         <View style={styles.journeyItem}>
-                            <Layout size={20} color="#000" />
+                            <View style={styles.marker} />
                             <Text style={styles.journeyText}>3.5+ Years of building scalable mobile apps.</Text>
                         </View>
                         <View style={styles.journeyItem}>
-                            <Code size={20} color="#000" />
+                            <View style={styles.marker} />
                             <Text style={styles.journeyText}>Expertise in React Native, iOS, and Android.</Text>
                         </View>
                         <View style={styles.journeyItem}>
-                            <Smartphone size={20} color="#000" />
+                            <View style={styles.marker} />
                             <Text style={styles.journeyText}>5+ Production apps launched to date.</Text>
                         </View>
                     </View>
@@ -84,32 +90,33 @@ export default function Portfolio12({ navigation }) {
 
                 {/* 3. Projects Slide */}
                 <StorySlide 
-                    title="THE WORKS" 
-                    subtitle="Real-world impact through code."
+                    title="CHAPTER III / THE CURATION" 
+                    subtitle="High-impact digital products."
                     icon={Layout}
-                    bg="#F5F3FF"
+                    bg="#F9F9F4"
                 >
                     <ScrollView showsVerticalScrollIndicator={false} style={styles.projectScroll}>
                         {projects.slice(0, 3).map((p, i) => (
                             <View key={i} style={styles.miniProjectCard}>
-                                <Text style={styles.miniProjectName}>{p.name}</Text>
-                                <Text style={styles.miniProjectDesc}>{p.description.slice(0, 80)}...</Text>
+                                <Text style={styles.miniProjectName}>{p.name.toUpperCase()}</Text>
+                                <Text style={styles.miniProjectDesc}>{p.description.slice(0, 100)}...</Text>
                             </View>
                         ))}
                     </ScrollView>
                 </StorySlide>
 
-                {/* 4. Education & Conclusion Slide */}
+                {/* 4. Conclusion Slide */}
                 <StorySlide 
-                    title="THE LEGACY" 
+                    title="FIN / CONNECT" 
                     subtitle="Foundation and Future."
                     icon={Quote}
-                    bg="#FEF2F2"
+                    bg="#F1F1EB"
                 >
-                    <Text style={styles.bodyText}>Graduated from {education.institution} in {education.year}.</Text>
-                    <Text style={[styles.bodyText, { marginTop: 20 }]}>Currently {personal_info.availability}.</Text>
+                    <Text style={styles.bodyText}>Academic background from {education.institution}.</Text>
+                    <Text style={[styles.bodyText, { marginTop: 15 }]}>Currently {personal_info.availability}.</Text>
+                    
                     <TouchableOpacity style={styles.contactBtn} onPress={() => navigation.goBack()}>
-                        <Text style={styles.contactBtnText}>REACH OUT</Text>
+                        <Text style={styles.contactBtnText}>ESTABLISH CONNECTION</Text>
                     </TouchableOpacity>
                 </StorySlide>
 
@@ -129,7 +136,21 @@ export default function Portfolio12({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FFF',
+        backgroundColor: '#FBFBF7',
+    },
+    progressBarContainer: {
+        position: 'absolute',
+        top: Platform.OS === 'ios' ? 100 : 80,
+        left: 40,
+        right: 40,
+        height: 1,
+        backgroundColor: 'rgba(0,0,0,0.05)',
+        zIndex: 1000,
+    },
+    progressBar: {
+        width: '25%',
+        height: '100%',
+        backgroundColor: '#1A1A1A',
     },
     horizontalScroll: {
         flex: 1,
@@ -140,100 +161,111 @@ const styles = StyleSheet.create({
     },
     safeSlide: {
         flex: 1,
-        padding: 40,
-        justifyContent: 'center',
+        paddingHorizontal: 44,
+        paddingTop: Platform.OS === 'ios' ? 180 : 140,
+        paddingBottom: 60,
     },
     slideHeader: {
         marginBottom: 40,
     },
     slideTitle: {
-        fontSize: 12,
+        fontSize: 10,
         fontWeight: '900',
-        color: '#000',
+        color: '#1A1A1A',
         letterSpacing: 4,
-        marginBottom: 24,
+        marginBottom: 32,
     },
     slideQuote: {
-        fontSize: 28,
+        fontSize: 24,
         fontWeight: '300',
-        color: '#000',
-        lineHeight: 38,
-        marginBottom: 32,
-        fontStyle: 'italic',
+        color: '#1A1A1A',
+        lineHeight: 34,
+        marginBottom: 30,
+        letterSpacing: -0.5,
     },
     slideSubtitle: {
-        fontSize: 18,
-        fontWeight: '700',
-        color: '#000',
+        fontSize: 14,
+        fontWeight: '800',
+        color: '#1A1A1A',
         marginBottom: 24,
-        lineHeight: 26,
+        lineHeight: 22,
+        textTransform: 'uppercase',
     },
     bodyText: {
-        fontSize: 16,
+        fontSize: 14,
         color: '#444',
-        lineHeight: 26,
+        lineHeight: 24,
+        fontWeight: '400',
     },
     childrenContainer: {
-        marginTop: 10,
+        marginTop: 20,
     },
     scrollIndicator: {
         flexDirection: 'row',
         alignItems: 'center',
         gap: 12,
-        marginTop: 40,
+        marginTop: 60,
     },
     scrollText: {
-        fontSize: 11,
+        fontSize: 10,
         fontWeight: '900',
-        color: '#000',
-        letterSpacing: 1,
+        color: '#1A1A1A',
+        letterSpacing: 2,
     },
     journeyList: {
-        gap: 24,
+        gap: 32,
     },
     journeyItem: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 16,
+        gap: 20,
+    },
+    marker: {
+        width: 6,
+        height: 6,
+        borderRadius: 3,
+        backgroundColor: '#1A1A1A',
     },
     journeyText: {
-        fontSize: 14,
-        color: '#333',
-        fontWeight: '500',
+        fontSize: 15,
+        color: '#1A1A1A',
+        fontWeight: '600',
         flex: 1,
+        lineHeight: 22,
     },
     projectScroll: {
-        maxHeight: 300,
+        maxHeight: 400,
     },
     miniProjectCard: {
-        paddingVertical: 16,
+        paddingVertical: 24,
         borderBottomWidth: 1,
-        borderBottomColor: 'rgba(0,0,0,0.05)',
+        borderBottomColor: 'rgba(0,0,0,0.08)',
     },
     miniProjectName: {
-        fontSize: 18,
-        fontWeight: '800',
-        color: '#000',
-        marginBottom: 8,
+        fontSize: 14,
+        fontWeight: '900',
+        color: '#1A1A1A',
+        marginBottom: 10,
+        letterSpacing: 1,
     },
     miniProjectDesc: {
-        fontSize: 13,
+        fontSize: 14,
         color: '#666',
-        lineHeight: 18,
+        lineHeight: 22,
     },
     contactBtn: {
-        marginTop: 40,
-        backgroundColor: '#000',
-        paddingVertical: 18,
-        paddingHorizontal: 32,
-        borderRadius: 4,
+        marginTop: 60,
+        backgroundColor: '#1A1A1A',
+        paddingVertical: 20,
+        paddingHorizontal: 36,
+        borderRadius: 0,
         alignSelf: 'flex-start',
     },
     contactBtnText: {
         color: '#FFF',
-        fontSize: 12,
+        fontSize: 11,
         fontWeight: '900',
-        letterSpacing: 2,
+        letterSpacing: 3,
     },
     fixedBack: {
         position: 'absolute',
@@ -243,7 +275,7 @@ const styles = StyleSheet.create({
         width: 44,
         height: 44,
         borderRadius: 22,
-        backgroundColor: 'rgba(255,255,255,0.8)',
+        backgroundColor: 'transparent',
         justifyContent: 'center',
         alignItems: 'center',
     }

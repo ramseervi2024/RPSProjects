@@ -9,7 +9,8 @@ import {
     Dimensions
 } from 'react-native';
 import { LayoutGrid, Cpu, Globe, Smartphone, ChevronLeft, MapPin, ExternalLink, Mail, Github } from 'lucide-react-native';
-import Animated, { FadeInDown, ZoomIn } from 'react-native-reanimated';
+import LinearGradient from 'react-native-linear-gradient';
+import Animated, { FadeInDown, ZoomIn, useAnimatedStyle, withHover, withSpring, withSequence, withTiming, useSharedValue } from 'react-native-reanimated';
 import { portfolioprofile } from './portfoliodata';
 
 const { width } = Dimensions.get('window');
@@ -43,19 +44,26 @@ export default function Portfolio6({ navigation }) {
 
                     {/* Bento Grid Layout */}
                     <View style={styles.grid}>
-                        
-                        {/* Profile Large Box */}
-                        <BentoBox style={styles.boxLarge}>
+                                                {/* Profile Large Box */}
+                        <BentoBox style={[styles.boxLarge, { backgroundColor: '#FFF' }]}>
                             <View style={styles.profileHeader}>
-                                <View style={styles.avatarPlaceholder}><Text style={styles.avatarInitial}>RS</Text></View>
+                                <LinearGradient 
+                                    colors={['#3B82F6', '#1D4ED8']} 
+                                    style={styles.avatarPlaceholder}
+                                >
+                                    <Text style={[styles.avatarInitial, { color: '#FFF' }]}>RS</Text>
+                                </LinearGradient>
                                 <View>
                                     <Text style={styles.profileName}>{personal_info.name}</Text>
-                                    <Text style={styles.profileTitle}>{personal_info.title}</Text>
+                                <View style={styles.statusBadge}>
+                                    <View style={styles.statusDot} />
+                                    <Text style={styles.statusText}>ACTIVE NOW</Text>
+                                </View>
                                 </View>
                             </View>
                             <Text style={styles.profileDesc}>Crafting high-performance mobile ecosystems with React Native & modern UI/UX principles.</Text>
                             <View style={styles.locationTag}>
-                                <MapPin size={14} color="#666" />
+                                <MapPin size={14} color="#64748B" />
                                 <Text style={styles.locationText}>{personal_info.location}</Text>
                             </View>
                         </BentoBox>
@@ -128,7 +136,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     scrollContainer: {
-        paddingBottom: 40,
+        paddingBottom: 60,
     },
     nav: {
         flexDirection: 'row',
@@ -153,17 +161,19 @@ const styles = StyleSheet.create({
     },
     bentoBox: {
         backgroundColor: '#FFF',
-        borderRadius: 24,
-        padding: 20,
+        borderRadius: 28,
+        padding: 24,
         shadowColor: '#000',
-        shadowOpacity: 0.05,
-        shadowRadius: 10,
-        elevation: 2,
+        shadowOpacity: 0.1,
+        shadowRadius: 15,
+        elevation: 8,
         justifyContent: 'center',
+        borderWidth: 1,
+        borderColor: 'rgba(255,255,255,0.8)',
     },
     boxLarge: {
         width: width - (GRID_PADDING * 2),
-        minHeight: 200,
+        minHeight: 220,
     },
     boxSmall: {
         width: CARD_WIDTH,
@@ -173,86 +183,110 @@ const styles = StyleSheet.create({
     },
     boxWide: {
         width: width - (GRID_PADDING * 2),
-        minHeight: 120,
+        minHeight: 130,
+        backgroundColor: '#F8FAFC',
+        borderWidth: 1,
+        borderColor: '#E2E8F0',
     },
     profileHeader: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 16,
+        marginBottom: 18,
     },
     avatarPlaceholder: {
-        width: 44,
-        height: 44,
-        borderRadius: 22,
-        backgroundColor: '#E2E8F0',
+        width: 54,
+        height: 54,
+        borderRadius: 27,
         justifyContent: 'center',
         alignItems: 'center',
-        marginRight: 12,
+        marginRight: 14,
     },
     avatarInitial: {
-        fontSize: 14,
-        fontWeight: '800',
-        color: '#64748B',
+        fontSize: 16,
+        fontWeight: '900',
     },
     profileName: {
-        fontSize: 18,
-        fontWeight: '800',
-        color: '#000',
+        fontSize: 22,
+        fontWeight: '900',
+        color: '#1E293B',
     },
-    profileTitle: {
-        fontSize: 12,
-        color: '#64748B',
-        fontWeight: '600',
+    statusBadge: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 6,
+        marginTop: 4,
+    },
+    statusDot: {
+        width: 6,
+        height: 6,
+        borderRadius: 3,
+        backgroundColor: '#10B981',
+    },
+    statusText: {
+        fontSize: 10,
+        color: '#10B981',
+        fontWeight: '800',
+        letterSpacing: 1,
     },
     profileDesc: {
-        fontSize: 14,
-        color: '#334155',
-        lineHeight: 20,
-        marginBottom: 16,
+        fontSize: 15,
+        color: '#475569',
+        lineHeight: 22,
+        marginBottom: 20,
     },
     locationTag: {
         flexDirection: 'row',
         alignItems: 'center',
         gap: 6,
+        backgroundColor: '#F1F5F9',
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        borderRadius: 20,
+        alignSelf: 'flex-start',
     },
     locationText: {
-        fontSize: 12,
+        fontSize: 11,
         color: '#64748B',
-        fontWeight: '600',
+        fontWeight: '700',
     },
     statVal: {
-        fontSize: 32,
+        fontSize: 38,
         fontWeight: '900',
-        color: '#0EA5E9',
+        color: '#3B82F6',
+        letterSpacing: -1,
     },
     statLabel: {
-        fontSize: 10,
+        fontSize: 11,
         fontWeight: '800',
         color: '#64748B',
         textTransform: 'uppercase',
         marginTop: 4,
+        letterSpacing: 1,
     },
     boxHeader: {
         flexDirection: 'row',
         alignItems: 'center',
         gap: 12,
-        marginBottom: 16,
+        marginBottom: 20,
     },
     boxTitle: {
-        fontSize: 12,
-        fontWeight: '800',
-        color: '#000',
+        fontSize: 13,
+        fontWeight: '900',
+        color: '#1E293B',
         letterSpacing: 1,
     },
     techList: {
         flexDirection: 'row',
-        gap: 8,
+        flexWrap: 'wrap',
+        gap: 10,
     },
     techPill: {
-        paddingHorizontal: 12,
-        paddingVertical: 6,
-        backgroundColor: '#EEF2FF',
-        borderRadius: 8,
+        paddingHorizontal: 14,
+        paddingVertical: 8,
+        backgroundColor: '#FFF',
+        borderRadius: 12,
+        borderWidth: 1,
+        borderColor: '#E2E8F0',
     },
     techText: {
         fontSize: 12,
@@ -260,22 +294,28 @@ const styles = StyleSheet.create({
         fontWeight: '700',
     },
     projectName: {
-        fontSize: 22,
-        fontWeight: '800',
-        marginBottom: 8,
+        fontSize: 26,
+        fontWeight: '900',
+        marginBottom: 10,
+        letterSpacing: -0.5,
     },
     projectDesc: {
-        fontSize: 13,
-        lineHeight: 18,
-        marginBottom: 20,
+        fontSize: 14,
+        lineHeight: 20,
+        marginBottom: 24,
     },
     projectLink: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 8,
+        paddingVertical: 12,
+        paddingHorizontal: 20,
+        backgroundColor: '#334155',
+        borderRadius: 30,
+        alignSelf: 'flex-start',
+        gap: 10,
     },
     projectLinkText: {
-        color: '#FACC15',
+        color: '#FFF',
         fontWeight: '800',
         fontSize: 12,
     }

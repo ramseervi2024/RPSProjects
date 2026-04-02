@@ -10,8 +10,8 @@ import {
     Linking
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { Mail, Phone, MapPin, ExternalLink, Briefcase, GraduationCap, Award, ChevronLeft } from 'lucide-react-native';
-import Animated, { FadeIn, FadeInDown, SlideInRight } from 'react-native-reanimated';
+import { Mail, Phone, MapPin, ExternalLink, Briefcase, GraduationCap, Award, ChevronLeft, Users, Zap, CheckCircle2 } from 'lucide-react-native';
+import Animated, { FadeIn, FadeInDown, SlideInRight, useAnimatedStyle, withSpring } from 'react-native-reanimated';
 import { portfolioprofile } from './portfoliodata';
 
 export default function Portfolio1({ navigation }) {
@@ -32,7 +32,12 @@ export default function Portfolio1({ navigation }) {
                 <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
                     
                     {/* Hero Section */}
-                    <LinearGradient colors={['#1E293B', '#0F172A']} style={styles.heroCard}>
+                    <LinearGradient 
+                        colors={['#0F172A', '#1E293B', '#334155']} 
+                        style={styles.heroCard}
+                        start={{ x: 0, y: 0 }}
+                        end={{ x: 1, y: 1 }}
+                    >
                         <TouchableOpacity 
                             onPress={() => navigation.goBack()}
                             style={styles.backButton}
@@ -42,23 +47,42 @@ export default function Portfolio1({ navigation }) {
                         
                         <Animated.View entering={FadeIn.duration(1000)} style={styles.profileInfo}>
                             <Text style={styles.name}>{personal_info.name}</Text>
-                            <Text style={styles.title}>{personal_info.title}</Text>
+                            <Text style={styles.title}>{personal_info.title.toUpperCase()}</Text>
                             <View style={styles.badgeContainer}>
-                                <Text style={styles.badgeText}>{personal_info.experience_years} Years Exp</Text>
+                                <Text style={styles.badgeText}>AVAILABLE FOR HIRE</Text>
                             </View>
                         </Animated.View>
 
-                        <View style={styles.contactStrip}>
-                            <View style={styles.contactItem}>
-                                <Mail size={14} color="#94A3B8" />
-                                <Text style={styles.contactText}>{personal_info.email}</Text>
+                        <View style={styles.statsStrip}>
+                            <View style={styles.statBox}>
+                                <Text style={styles.statNumber}>{personal_info.experience_years}+</Text>
+                                <Text style={styles.statLabel}>Years Exp</Text>
                             </View>
-                            <View style={styles.contactItem}>
-                                <MapPin size={14} color="#94A3B8" />
-                                <Text style={styles.contactText}>{personal_info.location}</Text>
+                            <View style={styles.statDivider} />
+                            <View style={styles.statBox}>
+                                <Text style={styles.statNumber}>15+</Text>
+                                <Text style={styles.statLabel}>Projects</Text>
+                            </View>
+                            <View style={styles.statDivider} />
+                            <View style={styles.statBox}>
+                                <Text style={styles.statNumber}>100%</Text>
+                                <Text style={styles.statLabel}>Success</Text>
                             </View>
                         </View>
                     </LinearGradient>
+
+                    <View style={styles.metaSection}>
+                        <View style={styles.metaRow}>
+                            <View style={styles.metaItem}>
+                                <Mail size={14} color="#3B82F6" />
+                                <Text style={styles.metaText}>{personal_info.email}</Text>
+                            </View>
+                            <View style={styles.metaItem}>
+                                <MapPin size={14} color="#3B82F6" />
+                                <Text style={styles.metaText}>{personal_info.location}</Text>
+                            </View>
+                        </View>
+                    </View>
 
                     {/* About Section */}
                     <View style={styles.section}>
@@ -135,11 +159,12 @@ const styles = StyleSheet.create({
         paddingBottom: 40,
     },
     heroCard: {
-        padding: 30,
-        paddingTop: 60,
-        borderBottomLeftRadius: 40,
-        borderBottomRightRadius: 40,
-        marginBottom: 20,
+        paddingVertical: 48,
+        paddingHorizontal: 24,
+        marginBottom: 0,
+        overflow: 'hidden',
+        minHeight: 320,
+        justifyContent: 'center',
     },
     backButton: {
         position: 'absolute',
@@ -147,55 +172,100 @@ const styles = StyleSheet.create({
         left: 20,
         zIndex: 10,
         padding: 8,
+        backgroundColor: 'rgba(255,255,255,0.1)',
+        borderRadius: 12,
     },
     profileInfo: {
         alignItems: 'center',
-        marginVertical: 20,
+        marginVertical: 10,
     },
     name: {
-        fontSize: 34,
+        fontSize: 38,
         fontWeight: '900',
         color: '#FFFFFF',
         letterSpacing: -1,
+        textAlign: 'center',
     },
     title: {
-        fontSize: 18,
+        fontSize: 14,
         color: '#3B82F6',
-        fontWeight: '600',
-        marginTop: 5,
+        fontWeight: '800',
+        marginTop: 8,
+        letterSpacing: 2,
     },
     badgeContainer: {
-        backgroundColor: 'rgba(59, 130, 246, 0.15)',
+        backgroundColor: 'rgba(16, 185, 129, 0.1)',
         paddingHorizontal: 12,
-        paddingVertical: 4,
+        paddingVertical: 5,
         borderRadius: 20,
-        marginTop: 15,
+        marginTop: 20,
         borderWidth: 1,
-        borderColor: 'rgba(59, 130, 246, 0.3)',
+        borderColor: 'rgba(16, 185, 129, 0.3)',
     },
     badgeText: {
-        color: '#60A5FA',
+        color: '#10B981',
+        fontSize: 10,
+        fontWeight: '900',
+        letterSpacing: 1,
+    },
+    statsStrip: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginTop: 35,
+        backgroundColor: 'rgba(255,255,255,0.03)',
+        paddingVertical: 20,
+        borderRadius: 24,
+        borderWidth: 1,
+        borderColor: 'rgba(255,255,255,0.05)',
+    },
+    statBox: {
+        alignItems: 'center',
+        paddingHorizontal: 15,
+    },
+    statNumber: {
+        color: '#FFF',
+        fontSize: 22,
+        fontWeight: '900',
+    },
+    statLabel: {
+        color: '#64748B',
+        fontSize: 10,
+        fontWeight: '700',
+        marginTop: 4,
+        textTransform: 'uppercase',
+        letterSpacing: 1,
+    },
+    statDivider: {
+        width: 1,
+        height: '60%',
+        backgroundColor: 'rgba(255,255,255,0.1)',
+        alignSelf: 'center',
+    },
+    metaSection: {
+        backgroundColor: '#FFF',
+        paddingVertical: 20,
+        borderBottomWidth: 1,
+        borderBottomColor: '#F1F5F9',
+        marginBottom: 40,
+    },
+    metaRow: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        gap: 32,
+    },
+    metaItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+    },
+    metaText: {
+        color: '#475569',
         fontSize: 12,
         fontWeight: '700',
     },
-    contactStrip: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginTop: 20,
-        gap: 20,
-    },
-    contactItem: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 6,
-    },
-    contactText: {
-        color: '#94A3B8',
-        fontSize: 13,
-    },
     section: {
-        paddingHorizontal: 24,
-        marginBottom: 30,
+        paddingHorizontal: 32,
+        marginBottom: 48,
     },
     sectionHeader: {
         flexDirection: 'row',
