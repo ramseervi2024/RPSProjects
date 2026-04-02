@@ -98,6 +98,7 @@ import CalculateChannelMoney from '../Apps/CalculateChannelMoney/CalculateChanne
 import ChatScreenFeatures from '../ChatScreenFeatures/ChatScreenFeatures';
 import SmartHeroGallery from '../SmartHeroGallery/SmartHeroGallery';
 import Tasksss from '../Task/Tasksss';
+import PersonalPortfolio from '../PersonalPortfolio/PersonalPortfolio';
 
 
 const AllAppNav = createStackNavigator();
@@ -202,7 +203,8 @@ const AllAppNavigations = () => {
                 <AllAppNav.Screen name="ChatScreenFeatures" component={ChatScreenFeatures} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="SmartHeroGallery" component={SmartHeroGallery} options={{ headerShown: false }} />
                 <AllAppNav.Screen name="Tasksss" component={Tasksss} options={{ headerShown: false }} />
-                </AllAppNav.Navigator>
+                <AllAppNav.Screen name="PersonalPortfolio" component={PersonalPortfolio} options={{ headerShown: false }} />
+            </AllAppNav.Navigator>
             {/* <ECommerceBottomNavigation /> */}
         </GestureHandlerRootView>
     );
