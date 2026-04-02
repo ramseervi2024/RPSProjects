@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { LayoutGrid, Cpu, Globe, Smartphone, ChevronLeft, MapPin, ExternalLink, Mail, Github } from 'lucide-react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import Animated, { FadeInDown, ZoomIn, useAnimatedStyle, withHover, withSpring, withSequence, withTiming, useSharedValue } from 'react-native-reanimated';
+import Animated, { FadeInDown, ZoomIn, useAnimatedStyle, withHover, withSpring, withSequence, withTiming, useSharedValue, interpolate, Extrapolate } from 'react-native-reanimated';
 import { portfolioprofile } from './portfoliodata';
 
 const { width } = Dimensions.get('window');
@@ -20,14 +20,29 @@ const CARD_WIDTH = (width - (GRID_PADDING * 3)) / 2;
 export default function Portfolio6({ navigation }) {
     const { personal_info, technical_stack, projects, stats } = portfolioprofile;
 
-    const BentoBox = ({ children, style, delay = 0 }) => (
-        <Animated.View 
-            entering={ZoomIn.delay(delay).duration(600)}
-            style={[styles.bentoBox, style]}
-        >
-            {children}
-        </Animated.View>
-    );
+    const BentoBox = ({ children, style, delay = 0 }) => {
+        const scale = useSharedValue(1);
+        
+        const animatedStyle = useAnimatedStyle(() => ({
+            transform: [{ scale: scale.value }]
+        }));
+
+        return (
+            <Animated.View 
+                entering={ZoomIn.delay(delay).duration(600)}
+                style={[styles.bentoBox, style, animatedStyle]}
+            >
+                <TouchableOpacity 
+                    activeOpacity={0.9}
+                    onPressIn={() => scale.value = withSpring(0.97)}
+                    onPressOut={() => scale.value = withSpring(1)}
+                    style={styles.innerBox}
+                >
+                    {children}
+                </TouchableOpacity>
+            </Animated.View>
+        );
+    };
 
     return (
         <View style={styles.container}>
@@ -160,61 +175,69 @@ const styles = StyleSheet.create({
         gap: GRID_PADDING,
     },
     bentoBox: {
-        backgroundColor: '#FFF',
-        borderRadius: 28,
-        padding: 24,
-        shadowColor: '#000',
+        borderRadius: 32,
+        shadowColor: '#1E293B',
+        shadowOffset: { width: 0, height: 12 },
         shadowOpacity: 0.1,
-        shadowRadius: 15,
-        elevation: 8,
-        justifyContent: 'center',
-        borderWidth: 1,
-        borderColor: 'rgba(255,255,255,0.8)',
+        shadowRadius: 24,
+        elevation: 10,
+    },
+    innerBox: {
+        flex: 1,
+        width: '100%',
+        padding: 24,
+        borderRadius: 32,
+        overflow: 'hidden',
     },
     boxLarge: {
         width: width - (GRID_PADDING * 2),
-        minHeight: 220,
+        minHeight: 240,
     },
     boxSmall: {
         width: CARD_WIDTH,
         height: CARD_WIDTH,
-        alignItems: 'center',
-        justifyContent: 'center',
     },
     boxWide: {
         width: width - (GRID_PADDING * 2),
-        minHeight: 130,
-        backgroundColor: '#F8FAFC',
-        borderWidth: 1,
-        borderColor: '#E2E8F0',
+        minHeight: 140,
     },
     profileHeader: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 18,
+        marginBottom: 20,
     },
     avatarPlaceholder: {
-        width: 54,
-        height: 54,
-        borderRadius: 27,
+        width: 64,
+        height: 64,
+        borderRadius: 32,
         justifyContent: 'center',
         alignItems: 'center',
-        marginRight: 14,
+        marginRight: 16,
+        shadowColor: '#3B82F6',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
     },
     avatarInitial: {
-        fontSize: 16,
+        fontSize: 20,
         fontWeight: '900',
     },
     profileName: {
-        fontSize: 22,
+        fontSize: 24,
         fontWeight: '900',
-        color: '#1E293B',
+        color: '#0F172A',
+        letterSpacing: -0.5,
     },
     statusBadge: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 6,
-        marginTop: 4,
+        gap: 8,
+        marginTop: 6,
+        backgroundColor: '#F0FDF4',
+        paddingHorizontal: 8,
+        paddingVertical: 4,
+        borderRadius: 12,
+        alignSelf: 'flex-start',
     },
     statusDot: {
         width: 6,
@@ -223,57 +246,61 @@ const styles = StyleSheet.create({
         backgroundColor: '#10B981',
     },
     statusText: {
-        fontSize: 10,
+        fontSize: 9,
         color: '#10B981',
-        fontWeight: '800',
+        fontWeight: '900',
         letterSpacing: 1,
     },
     profileDesc: {
-        fontSize: 15,
+        fontSize: 16,
         color: '#475569',
-        lineHeight: 22,
-        marginBottom: 20,
+        lineHeight: 24,
+        marginBottom: 24,
+        fontWeight: '500',
     },
     locationTag: {
         flexDirection: 'row',
         alignItems: 'center',
         gap: 6,
-        backgroundColor: '#F1F5F9',
-        paddingHorizontal: 10,
-        paddingVertical: 5,
-        borderRadius: 20,
+        backgroundColor: '#F8FAFC',
+        paddingHorizontal: 12,
+        paddingVertical: 6,
+        borderRadius: 24,
         alignSelf: 'flex-start',
+        borderWidth: 1,
+        borderColor: '#F1F5F9',
     },
     locationText: {
         fontSize: 11,
         color: '#64748B',
-        fontWeight: '700',
+        fontWeight: '800',
     },
     statVal: {
-        fontSize: 38,
+        fontSize: 42,
         fontWeight: '900',
         color: '#3B82F6',
-        letterSpacing: -1,
+        letterSpacing: -2,
     },
     statLabel: {
-        fontSize: 11,
-        fontWeight: '800',
-        color: '#64748B',
+        fontSize: 10,
+        fontWeight: '900',
+        color: '#94A3B8',
         textTransform: 'uppercase',
         marginTop: 4,
-        letterSpacing: 1,
+        letterSpacing: 1.5,
     },
     boxHeader: {
         flexDirection: 'row',
         alignItems: 'center',
         gap: 12,
-        marginBottom: 20,
+        marginBottom: 16,
     },
     boxTitle: {
-        fontSize: 13,
+        fontSize: 12,
         fontWeight: '900',
-        color: '#1E293B',
-        letterSpacing: 1,
+        color: '#475569',
+        letterSpacing: 1.5,
+        textTransform: 'uppercase',
     },
     techList: {
         flexDirection: 'row',
@@ -281,42 +308,50 @@ const styles = StyleSheet.create({
         gap: 10,
     },
     techPill: {
-        paddingHorizontal: 14,
-        paddingVertical: 8,
-        backgroundColor: '#FFF',
-        borderRadius: 12,
+        paddingHorizontal: 16,
+        paddingVertical: 10,
+        backgroundColor: '#FFFFFF',
+        borderRadius: 16,
         borderWidth: 1,
-        borderColor: '#E2E8F0',
+        borderColor: '#F1F5F9',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.05,
+        shadowRadius: 4,
     },
     techText: {
         fontSize: 12,
         color: '#6366F1',
-        fontWeight: '700',
+        fontWeight: '800',
     },
     projectName: {
-        fontSize: 26,
+        fontSize: 28,
         fontWeight: '900',
-        marginBottom: 10,
-        letterSpacing: -0.5,
+        marginBottom: 12,
+        letterSpacing: -1,
     },
     projectDesc: {
         fontSize: 14,
-        lineHeight: 20,
-        marginBottom: 24,
+        lineHeight: 22,
+        marginBottom: 28,
+        fontWeight: '500',
     },
     projectLink: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: 12,
-        paddingHorizontal: 20,
-        backgroundColor: '#334155',
-        borderRadius: 30,
+        paddingVertical: 14,
+        paddingHorizontal: 24,
+        backgroundColor: 'rgba(255,255,255,0.1)',
+        borderRadius: 32,
         alignSelf: 'flex-start',
-        gap: 10,
+        gap: 12,
+        borderWidth: 1,
+        borderColor: 'rgba(255,255,255,0.1)',
     },
     projectLinkText: {
         color: '#FFF',
-        fontWeight: '800',
+        fontWeight: '900',
         fontSize: 12,
+        letterSpacing: 0.5,
     }
 });

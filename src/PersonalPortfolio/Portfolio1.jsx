@@ -31,24 +31,25 @@ export default function Portfolio1({ navigation }) {
             <SafeAreaView style={styles.safeArea}>
                 <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
                     
-                    {/* Hero Section */}
-                    <LinearGradient 
-                        colors={['#0F172A', '#1E293B', '#334155']} 
-                        style={styles.heroCard}
-                        start={{ x: 0, y: 0 }}
-                        end={{ x: 1, y: 1 }}
-                    >
+                    {/* Header Nav */}
+                    <View style={styles.headerNav}>
                         <TouchableOpacity 
                             onPress={() => navigation.goBack()}
                             style={styles.backButton}
                         >
-                            <ChevronLeft color="#FFF" size={24} />
+                            <ChevronLeft color="#0F172A" size={24} />
                         </TouchableOpacity>
+                    </View>
+
+                    {/* Hero Section */}
+                    <View style={styles.heroCard}>
                         
-                        <Animated.View entering={FadeIn.duration(1000)} style={styles.profileInfo}>
+                        <Animated.View entering={FadeInDown.duration(800).delay(300)} style={styles.profileInfo}>
                             <Text style={styles.name}>{personal_info.name}</Text>
                             <Text style={styles.title}>{personal_info.title.toUpperCase()}</Text>
+                            <View style={styles.heroLine} />
                             <View style={styles.badgeContainer}>
+                                <View style={styles.statusDot} />
                                 <Text style={styles.badgeText}>AVAILABLE FOR HIRE</Text>
                             </View>
                         </Animated.View>
@@ -56,7 +57,7 @@ export default function Portfolio1({ navigation }) {
                         <View style={styles.statsStrip}>
                             <View style={styles.statBox}>
                                 <Text style={styles.statNumber}>{personal_info.experience_years}+</Text>
-                                <Text style={styles.statLabel}>Years Exp</Text>
+                                <Text style={styles.statLabel}>Exp Years</Text>
                             </View>
                             <View style={styles.statDivider} />
                             <View style={styles.statBox}>
@@ -69,7 +70,7 @@ export default function Portfolio1({ navigation }) {
                                 <Text style={styles.statLabel}>Success</Text>
                             </View>
                         </View>
-                    </LinearGradient>
+                    </View>
 
                     <View style={styles.metaSection}>
                         <View style={styles.metaRow}>
@@ -119,7 +120,9 @@ export default function Portfolio1({ navigation }) {
                             >
                                 <View style={styles.projectHeader}>
                                     <Text style={styles.projectName}>{project.name}</Text>
-                                    <Text style={styles.projectCategory}>{project.category}</Text>
+                                    <View style={styles.categoryBadge}>
+                                        <Text style={styles.projectCategory}>{project.category}</Text>
+                                    </View>
                                 </View>
                                 <Text style={styles.projectDesc}>{project.description}</Text>
                                 <View style={styles.techList}>
@@ -134,11 +137,17 @@ export default function Portfolio1({ navigation }) {
                     {/* Education */}
                     <View style={styles.section}>
                         <SectionHeader title="Education" icon={GraduationCap} />
-                        <View style={styles.eduCard}>
+                        <Animated.View entering={FadeInDown.delay(500)} style={styles.eduCard}>
+                            <LinearGradient 
+                                colors={['#1E293B', '#0F172A']} 
+                                style={StyleSheet.absoluteFill}
+                                start={{ x: 0, y: 0 }}
+                                end={{ x: 1, y: 1 }}
+                            />
                             <Text style={styles.degree}>{education.degree}</Text>
                             <Text style={styles.institution}>{education.institution}</Text>
                             <Text style={styles.eduYear}>{education.year}</Text>
-                        </View>
+                        </Animated.View>
                     </View>
 
                 </ScrollView>
@@ -159,48 +168,64 @@ const styles = StyleSheet.create({
         paddingBottom: 40,
     },
     heroCard: {
-        paddingVertical: 48,
+        paddingVertical: 32,
         paddingHorizontal: 24,
         marginBottom: 0,
-        overflow: 'hidden',
-        minHeight: 320,
+        backgroundColor: '#F8FAFC',
         justifyContent: 'center',
     },
+    headerNav: {
+        paddingHorizontal: 16,
+        paddingTop: 8,
+        paddingBottom: 4,
+        backgroundColor: '#F8FAFC',
+    },
     backButton: {
-        position: 'absolute',
-        top: 20,
-        left: 20,
-        zIndex: 10,
         padding: 8,
-        backgroundColor: 'rgba(255,255,255,0.1)',
-        borderRadius: 12,
+        alignSelf: 'flex-start',
     },
     profileInfo: {
         alignItems: 'center',
-        marginVertical: 10,
+        marginVertical: 5,
+        zIndex: 5,
     },
     name: {
-        fontSize: 38,
+        fontSize: 36,
         fontWeight: '900',
-        color: '#FFFFFF',
-        letterSpacing: -1,
+        color: '#0F172A',
+        letterSpacing: -1.5,
         textAlign: 'center',
     },
     title: {
-        fontSize: 14,
+        fontSize: 11,
         color: '#3B82F6',
         fontWeight: '800',
-        marginTop: 8,
-        letterSpacing: 2,
+        marginTop: 10,
+        letterSpacing: 3,
+    },
+    heroLine: {
+        height: 1,
+        width: 30,
+        backgroundColor: '#E2E8F0',
+        marginTop: 15,
     },
     badgeContainer: {
-        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#F0FDF4',
         paddingHorizontal: 12,
         paddingVertical: 5,
-        borderRadius: 20,
-        marginTop: 20,
+        borderRadius: 24,
+        marginTop: 15,
         borderWidth: 1,
-        borderColor: 'rgba(16, 185, 129, 0.3)',
+        borderColor: '#DCFCE7',
+        gap: 6,
+    },
+    statusDot: {
+        width: 6,
+        height: 6,
+        borderRadius: 3,
+        backgroundColor: '#10B981',
     },
     badgeText: {
         color: '#10B981',
@@ -211,34 +236,40 @@ const styles = StyleSheet.create({
     statsStrip: {
         flexDirection: 'row',
         justifyContent: 'center',
-        marginTop: 35,
-        backgroundColor: 'rgba(255,255,255,0.03)',
-        paddingVertical: 20,
-        borderRadius: 24,
+        marginTop: 30,
+        backgroundColor: '#FFFFFF',
+        paddingVertical: 18,
+        borderRadius: 30,
         borderWidth: 1,
-        borderColor: 'rgba(255,255,255,0.05)',
+        borderColor: '#F1F5F9',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.03,
+        shadowRadius: 10,
+        zIndex: 5,
     },
     statBox: {
         alignItems: 'center',
-        paddingHorizontal: 15,
+        paddingHorizontal: 20,
     },
     statNumber: {
-        color: '#FFF',
-        fontSize: 22,
+        color: '#0F172A',
+        fontSize: 24,
         fontWeight: '900',
+        letterSpacing: -1,
     },
     statLabel: {
-        color: '#64748B',
-        fontSize: 10,
-        fontWeight: '700',
+        color: '#94A3B8',
+        fontSize: 9,
+        fontWeight: '800',
         marginTop: 4,
         textTransform: 'uppercase',
-        letterSpacing: 1,
+        letterSpacing: 1.5,
     },
     statDivider: {
         width: 1,
-        height: '60%',
-        backgroundColor: 'rgba(255,255,255,0.1)',
+        height: '50%',
+        backgroundColor: '#F1F5F9',
         alignSelf: 'center',
     },
     metaSection: {
@@ -246,7 +277,11 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
         borderBottomWidth: 1,
         borderBottomColor: '#F1F5F9',
-        marginBottom: 40,
+        marginBottom: 30,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.02,
+        shadowRadius: 10,
     },
     metaRow: {
         flexDirection: 'row',
@@ -256,130 +291,149 @@ const styles = StyleSheet.create({
     metaItem: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 8,
+        gap: 10,
     },
     metaText: {
-        color: '#475569',
+        color: '#64748B',
         fontSize: 12,
         fontWeight: '700',
     },
     section: {
-        paddingHorizontal: 32,
-        marginBottom: 48,
+        paddingHorizontal: 28,
+        marginBottom: 56,
     },
     sectionHeader: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 15,
-        gap: 12,
+        marginBottom: 20,
+        gap: 14,
     },
     iconCircle: {
-        width: 36,
-        height: 36,
-        borderRadius: 18,
+        width: 44,
+        height: 44,
+        borderRadius: 14,
         backgroundColor: '#EFF6FF',
         justifyContent: 'center',
         alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#DBEAFE',
     },
     sectionTitle: {
-        fontSize: 20,
-        fontWeight: '800',
-        color: '#1E293B',
+        fontSize: 22,
+        fontWeight: '900',
+        color: '#0F172A',
         letterSpacing: -0.5,
     },
     summaryText: {
-        fontSize: 15,
+        fontSize: 16,
         color: '#475569',
-        lineHeight: 24,
+        lineHeight: 28,
+        fontWeight: '500',
     },
     skillsGrid: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        gap: 10,
+        gap: 12,
     },
     skillBadge: {
         backgroundColor: '#FFFFFF',
-        paddingHorizontal: 14,
-        paddingVertical: 8,
-        borderRadius: 12,
+        paddingHorizontal: 16,
+        paddingVertical: 10,
+        borderRadius: 14,
         borderWidth: 1,
         borderColor: '#E2E8F0',
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.05,
-        shadowRadius: 5,
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.04,
+        shadowRadius: 8,
         elevation: 2,
     },
     skillText: {
         color: '#334155',
         fontSize: 13,
-        fontWeight: '600',
+        fontWeight: '700',
     },
     projectCard: {
         backgroundColor: '#FFFFFF',
-        borderRadius: 20,
-        padding: 20,
-        marginBottom: 15,
+        borderRadius: 24,
+        padding: 24,
+        marginBottom: 20,
         borderWidth: 1,
         borderColor: '#F1F5F9',
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
+        shadowOffset: { width: 0, height: 10 },
         shadowOpacity: 0.05,
-        shadowRadius: 10,
-        elevation: 3,
+        shadowRadius: 20,
+        elevation: 4,
     },
     projectHeader: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: 8,
+        marginBottom: 16,
+        gap: 6,
     },
     projectName: {
-        fontSize: 18,
-        fontWeight: '700',
-        color: '#1E293B',
+        fontSize: 22,
+        fontWeight: '900',
+        color: '#0F172A',
+        letterSpacing: -0.5,
+    },
+    categoryBadge: {
+        backgroundColor: '#EFF6FF',
+        paddingHorizontal: 8,
+        paddingVertical: 4,
+        borderRadius: 6,
+        alignSelf: 'flex-start',
     },
     projectCategory: {
-        fontSize: 11,
+        fontSize: 9,
         color: '#3B82F6',
-        fontWeight: '700',
+        fontWeight: '900',
         textTransform: 'uppercase',
+        letterSpacing: 1,
     },
     projectDesc: {
         fontSize: 14,
         color: '#64748B',
-        lineHeight: 20,
-        marginBottom: 12,
+        lineHeight: 22,
+        marginBottom: 16,
+        fontWeight: '500',
     },
     techList: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        gap: 8,
+        gap: 10,
     },
     techText: {
-        fontSize: 12,
+        fontSize: 11,
         color: '#94A3B8',
-        fontWeight: '500',
+        fontWeight: '600',
+        backgroundColor: '#F8FAFC',
+        paddingHorizontal: 8,
+        paddingVertical: 4,
+        borderRadius: 6,
     },
     eduCard: {
-        backgroundColor: '#1E293B',
-        padding: 20,
-        borderRadius: 20,
+        padding: 26,
+        borderRadius: 24,
+        overflow: 'hidden',
+        borderWidth: 1,
+        borderColor: 'rgba(255,255,255,0.1)',
     },
     degree: {
-        fontSize: 16,
-        fontWeight: '700',
+        fontSize: 18,
+        fontWeight: '800',
         color: '#FFFFFF',
+        marginBottom: 6,
     },
     institution: {
         fontSize: 14,
         color: '#94A3B8',
-        marginTop: 4,
+        fontWeight: '600',
     },
     eduYear: {
         fontSize: 12,
         color: '#3B82F6',
-        fontWeight: '600',
-        marginTop: 8,
+        fontWeight: '800',
+        marginTop: 14,
+        letterSpacing: 1,
     }
 });
