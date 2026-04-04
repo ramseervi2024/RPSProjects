@@ -30,10 +30,10 @@ export default function Portfolio1({ navigation }) {
         <View style={styles.mainContainer}>
             <SafeAreaView style={styles.safeArea}>
                 <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
-                    
+
                     {/* Header Nav */}
                     <View style={styles.headerNav}>
-                        <TouchableOpacity 
+                        <TouchableOpacity
                             onPress={() => navigation.goBack()}
                             style={styles.backButton}
                         >
@@ -43,7 +43,7 @@ export default function Portfolio1({ navigation }) {
 
                     {/* Hero Section */}
                     <View style={styles.heroCard}>
-                        
+
                         <Animated.View entering={FadeInDown.duration(800).delay(300)} style={styles.profileInfo}>
                             <Text style={styles.name}>{personal_info.name}</Text>
                             <Text style={styles.title}>{personal_info.title.toUpperCase()}</Text>
@@ -98,8 +98,8 @@ export default function Portfolio1({ navigation }) {
                         <SectionHeader title="Technical Stack" icon={Briefcase} />
                         <View style={styles.skillsGrid}>
                             {technical_stack.mobile.map((skill, index) => (
-                                <Animated.View 
-                                    key={index} 
+                                <Animated.View
+                                    key={index}
                                     entering={FadeInDown.delay(index * 50)}
                                     style={styles.skillBadge}
                                 >
@@ -113,8 +113,8 @@ export default function Portfolio1({ navigation }) {
                     <View style={styles.section}>
                         <SectionHeader title="Featured Projects" icon={ExternalLink} />
                         {projects.slice(0, 4).map((project, index) => (
-                            <Animated.View 
-                                key={index} 
+                            <Animated.View
+                                key={index}
                                 entering={SlideInRight.delay(index * 100)}
                                 style={styles.projectCard}
                             >
@@ -138,8 +138,8 @@ export default function Portfolio1({ navigation }) {
                     <View style={styles.section}>
                         <SectionHeader title="Education" icon={GraduationCap} />
                         <Animated.View entering={FadeInDown.delay(500)} style={styles.eduCard}>
-                            <LinearGradient 
-                                colors={['#1E293B', '#0F172A']} 
+                            <LinearGradient
+                                colors={['#1E293B', '#0F172A']}
                                 style={StyleSheet.absoluteFill}
                                 start={{ x: 0, y: 0 }}
                                 end={{ x: 1, y: 1 }}
@@ -165,19 +165,19 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     scrollContent: {
-        paddingBottom: 40,
+        paddingBottom: 60,
+        paddingHorizontal: 32,
     },
     heroCard: {
-        paddingVertical: 32,
-        paddingHorizontal: 24,
-        marginBottom: 0,
+        paddingVertical: 50,
         backgroundColor: '#F8FAFC',
         justifyContent: 'center',
+        marginBottom: 30,
     },
     headerNav: {
         paddingHorizontal: 16,
-        paddingTop: 8,
-        paddingBottom: 4,
+        paddingTop: 12,
+        paddingBottom: 20,
         backgroundColor: '#F8FAFC',
     },
     backButton: {
@@ -274,10 +274,12 @@ const styles = StyleSheet.create({
     },
     metaSection: {
         backgroundColor: '#FFF',
-        paddingVertical: 20,
+        paddingVertical: 24,
         borderBottomWidth: 1,
         borderBottomColor: '#F1F5F9',
-        marginBottom: 30,
+        marginBottom: 60,
+        marginHorizontal: -32,
+        paddingHorizontal: 32,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.02,
@@ -299,8 +301,7 @@ const styles = StyleSheet.create({
         fontWeight: '700',
     },
     section: {
-        paddingHorizontal: 28,
-        marginBottom: 56,
+        marginBottom: 60,
     },
     sectionHeader: {
         flexDirection: 'row',

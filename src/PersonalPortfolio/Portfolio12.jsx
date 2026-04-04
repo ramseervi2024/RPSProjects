@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
     SafeAreaView,
     Dimensions,
+    Platform,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { ArrowRight, BookOpen, Quote, ChevronLeft, Layout, Smartphone, Code, Terminal } from 'lucide-react-native';
@@ -43,16 +44,19 @@ export default function Portfolio12({ navigation }) {
                 <View style={styles.progressBar} />
             </View>
 
-            <ScrollView 
-                horizontal 
-                pagingEnabled 
+            <ScrollView
+                horizontal
                 showsHorizontalScrollIndicator={false}
                 style={styles.horizontalScroll}
+                contentContainerStyle={styles.scrollContent}
+                snapToInterval={width - 50}
+                snapToAlignment="center"
+                decelerationRate="fast"
                 scrollEventThrottle={16}
             >
                 {/* 1. Introduction Slide */}
-                <StorySlide 
-                    title="CHAPTER I / ORIGIN" 
+                <StorySlide
+                    title="CHAPTER I / ORIGIN"
                     subtitle={`${personal_info.name}. A developer with a vision.`}
                     quote={personal_info.headline}
                     icon={BookOpen}
@@ -66,8 +70,8 @@ export default function Portfolio12({ navigation }) {
                 </StorySlide>
 
                 {/* 2. Expertise Slide */}
-                <StorySlide 
-                    title="CHAPTER II / THE ENGINE" 
+                <StorySlide
+                    title="CHAPTER II / THE ENGINE"
                     subtitle="Mastering the cross-platform ecosystem."
                     icon={Terminal}
                     bg="#F5F5F0"
@@ -89,8 +93,8 @@ export default function Portfolio12({ navigation }) {
                 </StorySlide>
 
                 {/* 3. Projects Slide */}
-                <StorySlide 
-                    title="CHAPTER III / THE CURATION" 
+                <StorySlide
+                    title="CHAPTER III / THE CURATION"
                     subtitle="High-impact digital products."
                     icon={Layout}
                     bg="#F9F9F4"
@@ -106,15 +110,15 @@ export default function Portfolio12({ navigation }) {
                 </StorySlide>
 
                 {/* 4. Conclusion Slide */}
-                <StorySlide 
-                    title="FIN / CONNECT" 
+                <StorySlide
+                    title="FIN / CONNECT"
                     subtitle="Foundation and Future."
                     icon={Quote}
                     bg="#F1F1EB"
                 >
                     <Text style={styles.bodyText}>Academic background from {education.institution}.</Text>
                     <Text style={[styles.bodyText, { marginTop: 15 }]}>Currently {personal_info.availability}.</Text>
-                    
+
                     <TouchableOpacity style={styles.contactBtn} onPress={() => navigation.goBack()}>
                         <Text style={styles.contactBtnText}>ESTABLISH CONNECTION</Text>
                     </TouchableOpacity>
@@ -123,8 +127,8 @@ export default function Portfolio12({ navigation }) {
             </ScrollView>
 
             {/* Fixed Navigation Elements */}
-            <TouchableOpacity 
-                style={styles.fixedBack} 
+            <TouchableOpacity
+                style={styles.fixedBack}
                 onPress={() => navigation.goBack()}
             >
                 <ChevronLeft size={24} color="#000" />
@@ -140,12 +144,13 @@ const styles = StyleSheet.create({
     },
     progressBarContainer: {
         position: 'absolute',
-        top: Platform.OS === 'ios' ? 80 : 60,
-        left: 44,
-        right: 44,
+        top: Platform.OS === 'ios' ? 70 : 50,
+        left: 100, // Move right to clear back button
+        right: 48,
         height: 2,
-        backgroundColor: 'rgba(0,0,0,0.03)',
+        backgroundColor: 'rgba(0,0,0,0.06)',
         zIndex: 1000,
+        borderRadius: 2,
     },
     progressBar: {
         width: '25%',
@@ -155,26 +160,42 @@ const styles = StyleSheet.create({
     horizontalScroll: {
         flex: 1,
     },
+    scrollContent: {
+        paddingHorizontal: 35, // (width - (width - 70)) / 2
+        paddingTop: 110,
+        paddingBottom: 40,
+    },
     slide: {
-        width: width,
-        height: height,
+        width: width - 70,
+        height: height * 0.68,
+        marginHorizontal: 10,
+        borderRadius: 36,
+        overflow: 'hidden',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 15 },
+        shadowOpacity: 0.05,
+        shadowRadius: 30,
+        elevation: 10,
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.03)',
     },
     safeSlide: {
         flex: 1,
-        paddingHorizontal: 54,
-        paddingTop: Platform.OS === 'ios' ? 140 : 100,
-        paddingBottom: 80,
+        paddingHorizontal: 60,
+        paddingTop: 48,
+        paddingBottom: 40,
     },
     slideHeader: {
         marginBottom: 60,
     },
     slideTitle: {
-        fontSize: 12,
+        fontSize: 11,
         fontWeight: '900',
         color: '#1A1A1A',
-        letterSpacing: 6,
-        marginBottom: 40,
-        opacity: 0.4,
+        letterSpacing: 8,
+        marginBottom: 32,
+        paddingLeft: 8,
+        opacity: 0.3,
     },
     slideQuote: {
         fontSize: 32,
@@ -185,17 +206,17 @@ const styles = StyleSheet.create({
         letterSpacing: -1,
     },
     slideSubtitle: {
-        fontSize: 16,
-        fontWeight: '800',
+        fontSize: 18,
+        fontWeight: '900',
         color: '#1A1A1A',
         marginBottom: 32,
-        lineHeight: 24,
+        lineHeight: 28,
         textTransform: 'uppercase',
     },
     bodyText: {
         fontSize: 16,
         color: '#555',
-        lineHeight: 28,
+        lineHeight: 32,
         fontWeight: '400',
     },
     childrenContainer: {
@@ -239,6 +260,7 @@ const styles = StyleSheet.create({
     },
     miniProjectCard: {
         paddingVertical: 32,
+        paddingHorizontal: 8, // Added gap around card labels
         borderBottomWidth: 1,
         borderBottomColor: 'rgba(0,0,0,0.06)',
     },
@@ -255,12 +277,12 @@ const styles = StyleSheet.create({
         lineHeight: 24,
     },
     contactBtn: {
-        marginTop: 80,
+        marginTop: 60,
         backgroundColor: '#1A1A1A',
         paddingVertical: 24,
         paddingHorizontal: 44,
         borderRadius: 0,
-        alignSelf: 'flex-start',
+        alignSelf: 'center', // Centered for better balance
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 10 },
         shadowOpacity: 0.1,
@@ -274,18 +296,18 @@ const styles = StyleSheet.create({
     },
     fixedBack: {
         position: 'absolute',
-        top: 50,
-        left: 24,
-        zIndex: 100,
-        width: 48,
-        height: 48,
-        borderRadius: 24,
+        top: Platform.OS === 'ios' ? 50 : 30,
+        left: 30,
+        zIndex: 2000,
+        width: 44,
+        height: 44,
+        borderRadius: 22,
         backgroundColor: '#FFF',
         justifyContent: 'center',
         alignItems: 'center',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.05,
-        shadowRadius: 10,
+        shadowOpacity: 0.15,
+        shadowRadius: 12,
     }
 });

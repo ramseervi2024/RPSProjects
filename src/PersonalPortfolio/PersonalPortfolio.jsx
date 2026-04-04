@@ -11,7 +11,12 @@ import {
 } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LinearGradient from 'react-native-linear-gradient';
-import { ChevronRight, Code, Layout, Moon, Camera, Rocket, Grid, Box, Cpu, Package, Layers, Feather, Edit, Monitor, Coffee, Zap } from 'lucide-react-native';
+import { 
+    ChevronRight, Code, Layout, Moon, Camera, Rocket, 
+    Grid, Box, Cpu, Package, Layers, Feather, Edit, 
+    Monitor, Coffee, Zap, User, Film, Sparkles, Star, Compass,
+    Target, Aperture, Library, BookOpen, Terminal, Orbit, Maximize2, Settings
+} from 'lucide-react-native';
 import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated';
 
 // Import Portfolio Themes (to be created)
@@ -31,6 +36,22 @@ import Portfolio13 from './Portfolio13';
 import Portfolio14 from './Portfolio14';
 import Portfolio15 from './Portfolio15';
 import Portfolio16 from './Portfolio16';
+import Portfolio17 from './Portfolio17';
+import Portfolio18 from './Portfolio18';
+import Portfolio19 from './Portfolio19';
+import Portfolio20 from './Portfolio20';
+import Portfolio21 from './Portfolio21';
+import Portfolio22 from './Portfolio22';
+import Portfolio23 from './Portfolio23';
+import Portfolio24 from './Portfolio24';
+import Portfolio25 from './Portfolio25';
+import Portfolio26 from './Portfolio26';
+import Portfolio27 from './Portfolio27';
+import Portfolio28 from './Portfolio28';
+import Portfolio29 from './Portfolio29';
+import Portfolio30 from './Portfolio30';
+import Portfolio31 from './Portfolio31';
+import Portfolio32 from './Portfolio32';
 
 const Stack = createStackNavigator();
 
@@ -51,6 +72,22 @@ const portfolios = [
     { id: 'Portfolio14', title: 'Developer OS', desc: 'System monitoring & Terminal feel.', icon: Code, color: ['#14B8A6', '#0F766E'] },
     { id: 'Portfolio15', title: 'Zen Minimalist', desc: 'Minimalist foundation with accents.', icon: Coffee, color: ['#D946EF', '#A21CAF'] },
     { id: 'Portfolio16', title: 'Liquid Agency', desc: 'Fluid agency style with animations.', icon: Zap, color: ['#6366F1', '#3730A3'] },
+    { id: 'Portfolio17', title: 'Refined Brutalist', desc: 'Stark B&W with architectural type.', icon: Layout, color: ['#000000', '#333333'] },
+    { id: 'Portfolio18', title: 'Neumorphic Glass', desc: 'Ultra-soft depth and tactile UI.', icon: User, color: ['#E0E5EC', '#A3B1C6'] },
+    { id: 'Portfolio19', title: 'Swiss Modernist', desc: 'Grid-perfect, Helvetica-focused.', icon: Grid, color: ['#E63946', '#1D3557'] },
+    { id: 'Portfolio20', title: 'Cinematic Noir', desc: 'Moody dark mode film aesthetic.', icon: Film, color: ['#111111', '#000000'] },
+    { id: 'Portfolio21', title: 'Cyber Modular', desc: 'Futuristic bento instrumentation.', icon: Cpu, color: ['#06B6D4', '#0891B2'] },
+    { id: 'Portfolio22', title: 'Organic Fluid', desc: 'Pastel gradients and blob shapes.', icon: Sparkles, color: ['#8B5CF6', '#7C3AED'] },
+    { id: 'Portfolio23', title: 'Gradient Mesh', desc: 'Dynamic mesh with glass depth.', icon: Star, color: ['#4F46E5', '#EC4899'] },
+    { id: 'Portfolio24', title: 'Future Vision', desc: 'Transparent Vision OS glass.', icon: Compass, color: ['#1E293B', '#334155'] },
+    { id: 'Portfolio25', title: 'Abstract Geometry', desc: 'Bold SVG-style color blocks.', icon: Target, color: ['#EF4444', '#3B82F6'] },
+    { id: 'Portfolio26', title: 'Glass Duo-Tone', desc: 'Split-screen high-contrast glass.', icon: Aperture, color: ['#3B82F6', '#2563EB'] },
+    { id: 'Portfolio27', title: 'Typography Archive', desc: 'Oversized index-style navigation.', icon: Library, color: ['#111111', '#000000'] },
+    { id: 'Portfolio28', title: 'Paper & Ink', desc: 'Textured print-magazine aesthetic.', icon: BookOpen, color: ['#FCFAF5', '#1A1A1A'] },
+    { id: 'Portfolio29', title: 'Glitch Technical', desc: 'HUD instrumentation and terminal logs.', icon: Terminal, color: ['#00FF41', '#003B00'] },
+    { id: 'Portfolio30', title: 'Solar Orbital', desc: 'Radial composition with rotating nodes.', icon: Orbit, color: ['#F59E0B', '#EF4444'] },
+    { id: 'Portfolio31', title: 'Minimalist Solo', desc: 'Centred micro-interaction focus.', icon: Maximize2, color: ['#FFF', '#F3F4F6'] },
+    { id: 'Portfolio32', title: 'Sidebar Wall', desc: 'Modular vertical navigation wall.', icon: Settings, color: ['#000', '#333'] },
 ];
 
 export function PortfolioDirectory({ navigation }) {
@@ -96,7 +133,7 @@ export function PortfolioDirectory({ navigation }) {
                     My Portfolios
                 </Animated.Text>
                 <Animated.Text entering={FadeInUp.delay(200).duration(600)} style={styles.headerSubtitle}>
-                    Explore 16 unique, high-end portfolio designs crafting with React Native.
+                    Explore 32 unique, high-end portfolio designs crafting with React Native.
                 </Animated.Text>
             </View>
 
@@ -200,6 +237,22 @@ export default function PersonalPortfolio() {
             <Stack.Screen name="Portfolio14" component={Portfolio14} />
             <Stack.Screen name="Portfolio15" component={Portfolio15} />
             <Stack.Screen name="Portfolio16" component={Portfolio16} />
+            <Stack.Screen name="Portfolio17" component={Portfolio17} />
+            <Stack.Screen name="Portfolio18" component={Portfolio18} />
+            <Stack.Screen name="Portfolio19" component={Portfolio19} />
+            <Stack.Screen name="Portfolio20" component={Portfolio20} />
+            <Stack.Screen name="Portfolio21" component={Portfolio21} />
+            <Stack.Screen name="Portfolio22" component={Portfolio22} />
+            <Stack.Screen name="Portfolio23" component={Portfolio23} />
+            <Stack.Screen name="Portfolio24" component={Portfolio24} />
+            <Stack.Screen name="Portfolio25" component={Portfolio25} />
+            <Stack.Screen name="Portfolio26" component={Portfolio26} />
+            <Stack.Screen name="Portfolio27" component={Portfolio27} />
+            <Stack.Screen name="Portfolio28" component={Portfolio28} />
+            <Stack.Screen name="Portfolio29" component={Portfolio29} />
+            <Stack.Screen name="Portfolio30" component={Portfolio30} />
+            <Stack.Screen name="Portfolio31" component={Portfolio31} />
+            <Stack.Screen name="Portfolio32" component={Portfolio32} />
         </Stack.Navigator>
     );
 }
