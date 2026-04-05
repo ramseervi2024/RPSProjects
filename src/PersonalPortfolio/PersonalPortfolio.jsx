@@ -17,7 +17,8 @@ import {
     Monitor, Coffee, Zap, User, Film, Sparkles, Star, Compass,
     Target, Aperture, Library, BookOpen, Terminal, Orbit, Maximize2, Settings,
     Activity, Gamepad2, Diamond, Droplet, FileCode, Hash, Eye,
-    Leaf, Maximize, Droplets, Move, Trophy, Scissors, Shield, Sun
+    Leaf, Maximize, Droplets, Move, Trophy, Scissors, Shield, Sun,
+    PenTool, HardDrive, Map
 } from 'lucide-react-native';
 import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated';
 
@@ -94,6 +95,16 @@ import Portfolio69 from './Portfolio69';
 import Portfolio70 from './Portfolio70';
 import Portfolio71 from './Portfolio71';
 import Portfolio72 from './Portfolio72';
+import Portfolio73 from './Portfolio73';
+import Portfolio74 from './Portfolio74';
+import Portfolio75 from './Portfolio75';
+import Portfolio76 from './Portfolio76';
+import Portfolio77 from './Portfolio77';
+import Portfolio78 from './Portfolio78';
+import Portfolio79 from './Portfolio79';
+import Portfolio80 from './Portfolio80';
+import Portfolio81 from './Portfolio81';
+import Portfolio82 from './Portfolio82';
 
 const Stack = createStackNavigator();
 
@@ -170,6 +181,16 @@ const portfolios = [
     { id: 'Portfolio70', title: 'Minimalist Stroke', desc: 'Sharp lines and outline-only cards.', icon: Layout, color: ['#FFFFFF', '#000000'] },
     { id: 'Portfolio71', title: 'Split Vertical Duo', desc: 'High-contrast split-screen layout.', icon: Layers, color: ['#000000', '#FF007A'] },
     { id: 'Portfolio72', title: 'Cosmic Starfield', desc: 'Animated deep space particles.', icon: Rocket, color: ['#020617', '#38BDF8'] },
+    { id: 'Portfolio73', title: 'Carbon Fiber', desc: 'Sleek dark tactical texture.', icon: Shield, color: ['#1A1A1A', '#0D0D0D'] },
+    { id: 'Portfolio74', title: 'Topographic Map', desc: 'Flowing elevation contours.', icon: Compass, color: ['#1E1E1E', '#121212'] },
+    { id: 'Portfolio75', title: 'Circuitry HUD', desc: 'High-tech PCB traces & nodes.', icon: Activity, color: ['#050110', '#0D0221'] },
+    { id: 'Portfolio76', title: 'Abstract Bauhaus', desc: 'Geometric grid modernist lines.', icon: Target, color: ['#F5F5F5', '#1D3557'] },
+    { id: 'Portfolio77', title: 'Microchip Die', desc: 'Precision silicon wafer patterns.', icon: Cpu, color: ['#1F2937', '#111827'] },
+    { id: 'Portfolio78', title: 'Noise Grain Noir', desc: 'Cinematic film grain & light leaks.', icon: Film, color: ['#111111', '#000000'] },
+    { id: 'Portfolio79', title: 'Hexagonal Mesh', desc: 'Tactical sleek honeycomb mesh.', icon: Shield, color: ['#0F172A', '#38BDF8'] },
+    { id: 'Portfolio80', title: 'Polar Radar', desc: 'Navigational radial scope grid.', icon: Orbit, color: ['#020617', '#FBBF24'] },
+    { id: 'Portfolio81', title: 'Matrix Flow', desc: 'Cybernetic digital rain effect.', icon: Terminal, color: ['#001100', '#00FF41'] },
+    { id: 'Portfolio82', title: 'Blueprint Sketch', desc: 'Architectural pencil sketch lines.', icon: PenTool, color: ['#FFFFFF', '#1E3A8A'] },
 ];
 
 export function PortfolioDirectory({ navigation }) {
@@ -217,7 +238,7 @@ export function PortfolioDirectory({ navigation }) {
                     My Portfolios
                 </Animated.Text>
                 <Animated.Text entering={FadeInUp.delay(200).duration(600)} style={styles.headerSubtitle}>
-                    Explore 72 unique, high-end portfolio designs crafted with React Native.
+                    Explore 82 unique, high-end portfolio designs crafted with React Native.
                 </Animated.Text>
             </View>
 
@@ -377,6 +398,16 @@ export default function PersonalPortfolio() {
             <Stack.Screen name="Portfolio70" component={Portfolio70} />
             <Stack.Screen name="Portfolio71" component={Portfolio71} />
             <Stack.Screen name="Portfolio72" component={Portfolio72} />
+            <Stack.Screen name="Portfolio73" component={Portfolio73} />
+            <Stack.Screen name="Portfolio74" component={Portfolio74} />
+            <Stack.Screen name="Portfolio75" component={Portfolio75} />
+            <Stack.Screen name="Portfolio76" component={Portfolio76} />
+            <Stack.Screen name="Portfolio77" component={Portfolio77} />
+            <Stack.Screen name="Portfolio78" component={Portfolio78} />
+            <Stack.Screen name="Portfolio79" component={Portfolio79} />
+            <Stack.Screen name="Portfolio80" component={Portfolio80} />
+            <Stack.Screen name="Portfolio81" component={Portfolio81} />
+            <Stack.Screen name="Portfolio82" component={Portfolio82} />
         </Stack.Navigator>
     );
 }
