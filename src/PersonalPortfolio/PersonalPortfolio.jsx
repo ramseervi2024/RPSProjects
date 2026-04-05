@@ -17,7 +17,7 @@ import {
     Monitor, Coffee, Zap, User, Film, Sparkles, Star, Compass,
     Target, Aperture, Library, BookOpen, Terminal, Orbit, Maximize2, Settings,
     Activity, Gamepad2, Diamond, Droplet, FileCode, Hash, Eye,
-    Leaf, Maximize, Droplets, Move, Trophy, Scissors, Shield
+    Leaf, Maximize, Droplets, Move, Trophy, Scissors, Shield, Sun
 } from 'lucide-react-native';
 import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated';
 
@@ -78,6 +78,22 @@ import Portfolio53 from './Portfolio53';
 import Portfolio54 from './Portfolio54';
 import Portfolio55 from './Portfolio55';
 import Portfolio56 from './Portfolio56';
+import Portfolio57 from './Portfolio57';
+import Portfolio58 from './Portfolio58';
+import Portfolio59 from './Portfolio59';
+import Portfolio60 from './Portfolio60';
+import Portfolio61 from './Portfolio61';
+import Portfolio62 from './Portfolio62';
+import Portfolio63 from './Portfolio63';
+import Portfolio64 from './Portfolio64';
+import Portfolio65 from './Portfolio65';
+import Portfolio66 from './Portfolio66';
+import Portfolio67 from './Portfolio67';
+import Portfolio68 from './Portfolio68';
+import Portfolio69 from './Portfolio69';
+import Portfolio70 from './Portfolio70';
+import Portfolio71 from './Portfolio71';
+import Portfolio72 from './Portfolio72';
 
 const Stack = createStackNavigator();
 
@@ -138,6 +154,22 @@ const portfolios = [
     { id: 'Portfolio54', title: 'Midnight Neon', desc: 'Glowing accents midnight blue.', icon: Moon, color: ['#050110', '#BD00FF'] },
     { id: 'Portfolio55', title: 'Minimalist Grid', desc: 'Perfectly aligned strict grid.', icon: Grid, color: ['#FFFFFF', '#000000'] },
     { id: 'Portfolio56', title: 'Dynamic Gradient Mesh', desc: 'Fluid morphing color transitions.', icon: Sparkles, color: ['#EEF2FF', '#4338CA'] },
+    { id: 'Portfolio57', title: 'Soft Mesh Gradient', desc: 'Morphing pastel pink/blue mesh.', icon: Sparkles, color: ['#FFDEE9', '#B5FFFC'] },
+    { id: 'Portfolio58', title: 'Zebra Organic', desc: 'Wavy lines and earthy textures.', icon: Leaf, color: ['#F5F5F0', '#8B4513'] },
+    { id: 'Portfolio59', title: 'Purple Abstract', desc: 'Playful organic purple shapes.', icon: Droplets, color: ['#F3E8FF', '#A855F7'] },
+    { id: 'Portfolio60', title: 'Sunset Horizon', desc: 'Bold orange-to-cyan horizon.', icon: Sun, color: ['#FF8C00', '#00CED1'] },
+    { id: 'Portfolio61', title: 'Glassmorphic Noir', desc: 'Ultra-clear glass on dark mode.', icon: Moon, color: ['#111827', '#000000'] },
+    { id: 'Portfolio62', title: 'Deep Emerald Mint', desc: 'Rich greens with soft mint icons.', icon: Leaf, color: ['#064E3B', '#10B981'] },
+    { id: 'Portfolio63', title: 'Retro Clay', desc: 'Soft, pillowy UI with beige tones.', icon: Target, color: ['#FDFCF0', '#8E8D7A'] },
+    { id: 'Portfolio64', title: 'Vignette Espresso', desc: 'Focused center deep brown vignette.', icon: Target, color: ['#3E2723', '#1B1110'] },
+    { id: 'Portfolio65', title: 'Floating Geometric', desc: 'Clean background moving shapes.', icon: Sparkles, color: ['#F8FAFC', '#64748B'] },
+    { id: 'Portfolio66', title: 'Blueprint Grid', desc: 'Professional scientific grid paper.', icon: Library, color: ['#1E3A8A', '#60A5FA'] },
+    { id: 'Portfolio67', title: 'Holographic Foil', desc: 'Shifting metallic rainbow on black.', icon: Sparkles, color: ['#FF00CC', '#3333FF'] },
+    { id: 'Portfolio68', title: 'Grainy Sand & Stone', desc: 'Neutral, organic textured feel.', icon: Terminal, color: ['#E5E5E5', '#404040'] },
+    { id: 'Portfolio69', title: 'Cyber Neon Violet', desc: 'High-energy glowing purple/pink.', icon: Cpu, color: ['#0F0524', '#BD00FF'] },
+    { id: 'Portfolio70', title: 'Minimalist Stroke', desc: 'Sharp lines and outline-only cards.', icon: Layout, color: ['#FFFFFF', '#000000'] },
+    { id: 'Portfolio71', title: 'Split Vertical Duo', desc: 'High-contrast split-screen layout.', icon: Layers, color: ['#000000', '#FF007A'] },
+    { id: 'Portfolio72', title: 'Cosmic Starfield', desc: 'Animated deep space particles.', icon: Rocket, color: ['#020617', '#38BDF8'] },
 ];
 
 export function PortfolioDirectory({ navigation }) {
@@ -185,7 +217,7 @@ export function PortfolioDirectory({ navigation }) {
                     My Portfolios
                 </Animated.Text>
                 <Animated.Text entering={FadeInUp.delay(200).duration(600)} style={styles.headerSubtitle}>
-                    Explore 56 unique, high-end portfolio designs crafted with React Native.
+                    Explore 72 unique, high-end portfolio designs crafted with React Native.
                 </Animated.Text>
             </View>
 
@@ -329,6 +361,22 @@ export default function PersonalPortfolio() {
             <Stack.Screen name="Portfolio54" component={Portfolio54} />
             <Stack.Screen name="Portfolio55" component={Portfolio55} />
             <Stack.Screen name="Portfolio56" component={Portfolio56} />
+            <Stack.Screen name="Portfolio57" component={Portfolio57} />
+            <Stack.Screen name="Portfolio58" component={Portfolio58} />
+            <Stack.Screen name="Portfolio59" component={Portfolio59} />
+            <Stack.Screen name="Portfolio60" component={Portfolio60} />
+            <Stack.Screen name="Portfolio61" component={Portfolio61} />
+            <Stack.Screen name="Portfolio62" component={Portfolio62} />
+            <Stack.Screen name="Portfolio63" component={Portfolio63} />
+            <Stack.Screen name="Portfolio64" component={Portfolio64} />
+            <Stack.Screen name="Portfolio65" component={Portfolio65} />
+            <Stack.Screen name="Portfolio66" component={Portfolio66} />
+            <Stack.Screen name="Portfolio67" component={Portfolio67} />
+            <Stack.Screen name="Portfolio68" component={Portfolio68} />
+            <Stack.Screen name="Portfolio69" component={Portfolio69} />
+            <Stack.Screen name="Portfolio70" component={Portfolio70} />
+            <Stack.Screen name="Portfolio71" component={Portfolio71} />
+            <Stack.Screen name="Portfolio72" component={Portfolio72} />
         </Stack.Navigator>
     );
 }
