@@ -1,7 +1,6 @@
 import React, { useMemo, useRef, useState } from 'react';
 import {
   Alert,
-  Dimensions,
   Image,
   PermissionsAndroid,
   Platform,
@@ -15,6 +14,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  useWindowDimensions,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {
@@ -24,10 +24,12 @@ import {
   Palette,
   Share2,
   Sparkles,
+  Trash2,
   Upload,
   UserRound,
 } from 'lucide-react-native';
 import { CameraRoll } from '@react-native-camera-roll/camera-roll';
+import { launchImageLibrary } from 'react-native-image-picker';
 import { captureRef } from 'react-native-view-shot';
 
 const festivals = [
@@ -211,6 +213,7 @@ const avatarPositions = [
 
 export default function DynamicPoster() {
   const posterRef = useRef(null);
+  const { width: windowWidth } = useWindowDimensions();
   const [selectedFestivalId, setSelectedFestivalId] = useState(festivals[0].id);
   const [language, setLanguage] = useState('English');
   const [fullName, setFullName] = useState('');
@@ -230,8 +233,12 @@ export default function DynamicPoster() {
   const selectedFormat = posterFormats.find(format => format.id === formatId) || posterFormats[0];
   const selectedNameStyle = nameStyles.find(style => style.id === nameStyleId) || nameStyles[0];
   const avatarPosition = avatarPositions.find(position => position.id === avatarPositionId) || avatarPositions[1];
-  const posterWidth = Math.min(Dimensions.get('window').width - 48, 390);
+  const isCompact = windowWidth < 430;
+  const screenPadding = isCompact ? 12 : 16;
+  const previewMaxWidth = selectedFormat.id === 'story' ? 252 : 312;
+  const posterWidth = Math.min(windowWidth - screenPadding * 2 - 42, previewMaxWidth);
   const posterHeight = posterWidth / selectedFormat.ratio;
+  const templateCardWidth = Math.min(136, Math.max(124, windowWidth * 0.31));
   const exportWidth = 1080;
   const exportHeight = Math.round(exportWidth / selectedFormat.ratio);
 
@@ -243,6 +250,30 @@ export default function DynamicPoster() {
   const updateFestival = festival => {
     setSelectedFestivalId(festival.id);
     setGreeting(festival.greetings[language]);
+  };
+
+  const pickProfileImage = async () => {
+    try {
+      const result = await launchImageLibrary({
+        mediaType: 'photo',
+        quality: 0.9,
+        selectionLimit: 1,
+      });
+
+      if (result.didCancel) {
+        return;
+      }
+
+      const uri = result.assets?.[0]?.uri;
+
+      if (uri) {
+        setProfileImage(uri);
+        setAvatarZoom(1.08);
+        setAvatarPositionId('center');
+      }
+    } catch (error) {
+      Alert.alert('Upload failed', 'Unable to open the photo library right now.');
+    }
   };
 
   const requestAndroidSavePermission = async () => {
@@ -341,13 +372,22 @@ export default function DynamicPoster() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar barStyle="light-content" backgroundColor="#020617" />
-      <ScrollView style={styles.container} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={[styles.content, { paddingHorizontal: screenPadding }]}
+        showsVerticalScrollIndicator={false}>
         <View style={styles.heroCard}>
-          <View style={styles.badge}>
-            <Sparkles size={15} color="#fbbf24" />
-            <Text style={styles.badgeText}>Personalized Festival Poster Generator</Text>
+          <View style={styles.headerTop}>
+            <View>
+              <Text style={styles.appTitle}>Dynamic Poster</Text>
+              <Text numberOfLines={1} style={styles.appSubtitle}>
+                {selectedFestival.name}
+              </Text>
+            </View>
+            <View style={styles.badge}>
+              <Sparkles size={15} color="#fbbf24" />
+            </View>
           </View>
-          <Text style={styles.title}>Create a premium festival story poster</Text>
 
           <View style={styles.segment}>
             {languages.map(item => (
@@ -365,8 +405,11 @@ export default function DynamicPoster() {
 
         <View style={styles.previewShell}>
           <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Live Preview</Text>
-            <Text style={styles.formatBadge}>{selectedFormat.size}</Text>
+            <View>
+              <Text style={styles.sectionTitle}>Live Preview</Text>
+              <Text style={styles.sectionHint}>Poster scales down for mobile editing</Text>
+            </View>
+            <Text numberOfLines={1} adjustsFontSizeToFit style={styles.formatBadge}>{selectedFormat.size}</Text>
           </View>
 
           <LinearGradient
@@ -390,13 +433,15 @@ export default function DynamicPoster() {
             )}
 
             <View style={styles.posterTopBar}>
-              <Text style={styles.posterPill}>{selectedFestival.name}</Text>
+              <Text numberOfLines={1} adjustsFontSizeToFit style={styles.posterPill}>
+                {selectedFestival.name}
+              </Text>
               <View style={styles.posterSymbol}>
                 <Text style={[styles.posterSymbolText, { color: selectedFestival.glow }]}>{selectedFestival.symbol}</Text>
               </View>
             </View>
 
-            <View style={[styles.posterProfileBlock, { top: posterHeight * 0.19 }]}>
+            <View style={[styles.posterProfileBlock, { top: posterHeight * 0.17 }]}>
               <LinearGradient colors={['#ffffff', '#fef3c7', '#ffffff']} style={styles.posterAvatarRing}>
                 <View style={styles.posterAvatarInner}>
                   {profileImage.trim() ? (
@@ -431,7 +476,7 @@ export default function DynamicPoster() {
               </Text>
             </View>
 
-            <View style={[styles.greetingBox, { bottom: posterHeight * 0.14 }]}>
+            <View style={[styles.greetingBox, { bottom: posterHeight * 0.13 }]}>
               <Text numberOfLines={3} adjustsFontSizeToFit style={styles.greetingText}>
                 {greeting}
               </Text>
@@ -468,8 +513,13 @@ export default function DynamicPoster() {
 
         <View style={styles.card}>
           <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Festival Template</Text>
-            <Text style={styles.mutedText}>{selectedFestival.name}</Text>
+            <View>
+              <Text style={styles.sectionTitle}>Festival Template</Text>
+              <Text style={styles.sectionHint}>Swipe to change theme</Text>
+            </View>
+            <Text numberOfLines={1} style={styles.mutedText}>
+              {selectedFestival.name}
+            </Text>
           </View>
 
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.templateList}>
@@ -481,12 +531,12 @@ export default function DynamicPoster() {
                   key={festival.id}
                   activeOpacity={0.86}
                   onPress={() => updateFestival(festival)}
-                  style={[styles.templateCard, isActive && styles.templateCardActive]}>
+                  style={[styles.templateCard, { width: templateCardWidth }, isActive && styles.templateCardActive]}>
                   <LinearGradient colors={festival.colors} style={styles.templateGradient}>
-                    <View style={styles.templateSymbol}>
-                      <Text style={styles.templateSymbolText}>{festival.symbol}</Text>
-                    </View>
-                    <Text style={styles.templateName}>{festival.name}</Text>
+                    <Text style={styles.templateSymbolText}>{festival.symbol}</Text>
+                    <Text numberOfLines={2} adjustsFontSizeToFit style={styles.templateName}>
+                      {festival.name}
+                    </Text>
                   </LinearGradient>
                 </TouchableOpacity>
               );
@@ -495,9 +545,21 @@ export default function DynamicPoster() {
         </View>
 
         <View style={styles.card}>
-          <Text style={styles.sectionTitle}>Profile Image</Text>
-          <View style={styles.profileRow}>
-            <LinearGradient colors={['#ffffff', '#fef3c7', '#ffffff']} style={styles.profilePreviewRing}>
+          <View style={styles.sectionHeader}>
+            <View>
+              <Text style={styles.sectionTitle}>Profile Image</Text>
+              <Text style={styles.sectionHint}>Upload from gallery or paste an image URL</Text>
+            </View>
+            {profileImage.trim() ? (
+              <TouchableOpacity activeOpacity={0.85} onPress={() => setProfileImage('')} style={styles.iconButton}>
+                <Trash2 size={18} color="#ffffff" />
+              </TouchableOpacity>
+            ) : null}
+          </View>
+          <View style={[styles.profileRow, isCompact && styles.profileRowCompact]}>
+            <LinearGradient
+              colors={['#ffffff', '#fef3c7', '#ffffff']}
+              style={[styles.profilePreviewRing, isCompact && styles.profilePreviewRingCompact]}>
               <View style={styles.profilePreviewInner}>
                 {profileImage.trim() ? (
                   <Image source={{ uri: profileImage.trim() }} resizeMode="cover" style={styles.profilePreviewImage} />
@@ -506,10 +568,16 @@ export default function DynamicPoster() {
                 )}
               </View>
             </LinearGradient>
-            <View style={styles.profileControls}>
-              <View style={styles.uploadLabel}>
-                <Upload size={17} color="#020617" />
-                <Text style={styles.uploadLabelText}>Paste Image URL</Text>
+            <View style={[styles.profileControls, isCompact && styles.profileControlsCompact]}>
+              <View style={styles.profileButtonRow}>
+                <TouchableOpacity activeOpacity={0.85} onPress={pickProfileImage} style={styles.uploadButton}>
+                  <Upload size={17} color="#020617" />
+                  <Text style={styles.uploadButtonText}>Upload Photo</Text>
+                </TouchableOpacity>
+              </View>
+              <View style={styles.urlLabel}>
+                <Upload size={17} color="rgba(255,255,255,0.78)" />
+                <Text style={styles.urlLabelText}>Image URL</Text>
               </View>
               <TextInput
                 value={profileImage}
@@ -521,19 +589,20 @@ export default function DynamicPoster() {
                 placeholder="https://example.com/photo.jpg"
                 placeholderTextColor="rgba(255,255,255,0.36)"
                 autoCapitalize="none"
+                autoCorrect={false}
                 style={styles.input}
               />
             </View>
           </View>
 
           <Text style={styles.controlLabel}>Image zoom {Math.round(avatarZoom * 100)}%</Text>
-          <View style={styles.optionRow}>
+          <View style={styles.chipGrid}>
             {[1, 1.08, 1.22, 1.4, 1.6].map(value => (
               <TouchableOpacity
                 key={value}
                 activeOpacity={0.85}
                 onPress={() => setAvatarZoom(value)}
-                style={[styles.smallChip, avatarZoom === value && styles.smallChipActive]}>
+                style={[styles.smallChip, styles.zoomChip, avatarZoom === value && styles.smallChipActive]}>
                 <Text style={[styles.smallChipText, avatarZoom === value && styles.smallChipTextActive]}>
                   {Math.round(value * 100)}%
                 </Text>
@@ -542,13 +611,13 @@ export default function DynamicPoster() {
           </View>
 
           <Text style={styles.controlLabel}>Image position</Text>
-          <View style={styles.optionRow}>
+          <View style={styles.chipGrid}>
             {avatarPositions.map(position => (
               <TouchableOpacity
                 key={position.id}
                 activeOpacity={0.85}
                 onPress={() => setAvatarPositionId(position.id)}
-                style={[styles.smallChip, avatarPositionId === position.id && styles.smallChipActive]}>
+                style={[styles.smallChip, styles.positionChip, avatarPositionId === position.id && styles.smallChipActive]}>
                 <Text style={[styles.smallChipText, avatarPositionId === position.id && styles.smallChipTextActive]}>
                   {position.label}
                 </Text>
@@ -647,41 +716,45 @@ const styles = StyleSheet.create({
     backgroundColor: '#020617',
   },
   content: {
-    padding: 16,
+    paddingTop: 12,
     paddingBottom: 32,
-    gap: 16,
+    gap: 14,
   },
   heroCard: {
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.10)',
     backgroundColor: 'rgba(255,255,255,0.10)',
-    borderRadius: 20,
-    padding: 18,
+    borderRadius: 18,
+    padding: 14,
   },
-  badge: {
-    alignSelf: 'flex-start',
+  headerTop: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    justifyContent: 'space-between',
+    gap: 12,
+    marginBottom: 14,
+  },
+  appTitle: {
+    color: '#ffffff',
+    fontSize: 24,
+    lineHeight: 29,
+    fontWeight: '900',
+  },
+  appSubtitle: {
+    color: 'rgba(255,255,255,0.62)',
+    fontSize: 13,
+    fontWeight: '800',
+    marginTop: 2,
+  },
+  badge: {
+    width: 42,
+    height: 42,
+    alignItems: 'center',
+    justifyContent: 'center',
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.14)',
     backgroundColor: 'rgba(255,255,255,0.10)',
-    borderRadius: 999,
-    paddingHorizontal: 12,
-    paddingVertical: 7,
-    marginBottom: 14,
-  },
-  badgeText: {
-    color: 'rgba(255,255,255,0.82)',
-    fontSize: 12,
-    fontWeight: '700',
-  },
-  title: {
-    color: '#ffffff',
-    fontSize: 30,
-    lineHeight: 36,
-    fontWeight: '800',
-    marginBottom: 18,
+    borderRadius: 21,
   },
   segment: {
     flexDirection: 'row',
@@ -715,15 +788,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.10)',
     backgroundColor: 'rgba(255,255,255,0.10)',
-    borderRadius: 20,
-    padding: 16,
+    borderRadius: 18,
+    padding: 14,
   },
   previewShell: {
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.10)',
     backgroundColor: 'rgba(255,255,255,0.10)',
-    borderRadius: 20,
-    padding: 14,
+    borderRadius: 18,
+    padding: 12,
     alignItems: 'center',
   },
   sectionHeader: {
@@ -731,13 +804,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    gap: 12,
-    marginBottom: 14,
+    gap: 10,
+    marginBottom: 12,
   },
   sectionTitle: {
     color: '#ffffff',
+    flexShrink: 1,
     fontSize: 20,
     fontWeight: '800',
+  },
+  sectionHint: {
+    color: 'rgba(255,255,255,0.52)',
+    fontSize: 12,
+    fontWeight: '700',
+    marginTop: 2,
   },
   formatBadge: {
     color: 'rgba(255,255,255,0.72)',
@@ -754,10 +834,13 @@ const styles = StyleSheet.create({
     color: 'rgba(255,255,255,0.58)',
     fontSize: 13,
     fontWeight: '700',
+    flexShrink: 1,
+    maxWidth: '42%',
+    textAlign: 'right',
   },
   poster: {
     alignSelf: 'center',
-    borderRadius: 20,
+    borderRadius: 18,
     overflow: 'hidden',
   },
   posterOverlay: {
@@ -811,31 +894,31 @@ const styles = StyleSheet.create({
   },
   posterTopBar: {
     position: 'absolute',
-    left: 20,
-    right: 20,
-    top: 20,
+    left: 16,
+    right: 16,
+    top: 16,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
   posterPill: {
-    maxWidth: '72%',
+    maxWidth: '58%',
     color: '#ffffff',
     textTransform: 'uppercase',
-    fontSize: 11,
+    fontSize: 9,
     fontWeight: '900',
     letterSpacing: 0,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.35)',
     backgroundColor: 'rgba(255,255,255,0.20)',
     borderRadius: 999,
-    paddingHorizontal: 13,
-    paddingVertical: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
   },
   posterSymbol: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
+    width: 46,
+    height: 46,
+    borderRadius: 23,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.40)',
     backgroundColor: 'rgba(255,255,255,0.25)',
@@ -843,25 +926,25 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   posterSymbolText: {
-    fontSize: 25,
+    fontSize: 22,
     fontWeight: '900',
   },
   posterProfileBlock: {
     position: 'absolute',
-    left: 28,
-    right: 28,
+    left: 22,
+    right: 22,
     alignItems: 'center',
   },
   posterAvatarRing: {
-    width: 116,
-    height: 116,
-    borderRadius: 58,
-    padding: 6,
-    marginBottom: 18,
+    width: 92,
+    height: 92,
+    borderRadius: 46,
+    padding: 5,
+    marginBottom: 12,
   },
   posterAvatarInner: {
     flex: 1,
-    borderRadius: 52,
+    borderRadius: 41,
     overflow: 'hidden',
     backgroundColor: 'rgba(15,23,42,0.84)',
     alignItems: 'center',
@@ -873,14 +956,14 @@ const styles = StyleSheet.create({
   },
   wishesText: {
     color: 'rgba(255,255,255,0.82)',
-    fontSize: 13,
+    fontSize: 11,
     fontWeight: '800',
     textTransform: 'uppercase',
   },
   posterName: {
     color: '#ffffff',
-    fontSize: 34,
-    lineHeight: 39,
+    fontSize: 28,
+    lineHeight: 32,
     textAlign: 'center',
     marginTop: 7,
     textShadowColor: 'rgba(15,23,42,0.45)',
@@ -889,21 +972,21 @@ const styles = StyleSheet.create({
   },
   greetingBox: {
     position: 'absolute',
-    left: 24,
-    right: 24,
-    minHeight: 132,
+    left: 22,
+    right: 22,
+    minHeight: 118,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.20)',
     backgroundColor: 'rgba(15,23,42,0.28)',
     borderRadius: 18,
-    padding: 18,
+    padding: 14,
     alignItems: 'center',
     justifyContent: 'center',
   },
   greetingText: {
     color: '#ffffff',
-    fontSize: 29,
-    lineHeight: 35,
+    fontSize: 24,
+    lineHeight: 29,
     fontWeight: '900',
     textAlign: 'center',
     textShadowColor: 'rgba(15,23,42,0.42)',
@@ -911,16 +994,16 @@ const styles = StyleSheet.create({
     textShadowRadius: 8,
   },
   accentLine: {
-    width: 96,
-    height: 6,
+    width: 86,
+    height: 5,
     borderRadius: 999,
     marginTop: 14,
   },
   posterFooter: {
     position: 'absolute',
-    left: 24,
-    right: 24,
-    bottom: 24,
+    left: 22,
+    right: 22,
+    bottom: 20,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -939,8 +1022,8 @@ const styles = StyleSheet.create({
   actionRow: {
     width: '100%',
     flexDirection: 'row',
-    gap: 12,
-    marginTop: 16,
+    gap: 10,
+    marginTop: 14,
   },
   primaryButton: {
     flex: 1,
@@ -978,13 +1061,12 @@ const styles = StyleSheet.create({
     fontWeight: '900',
   },
   templateList: {
-    gap: 12,
+    gap: 10,
     paddingRight: 2,
   },
   templateCard: {
-    width: 172,
-    height: 124,
-    borderRadius: 18,
+    height: 150,
+    borderRadius: 14,
     overflow: 'hidden',
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.10)',
@@ -995,14 +1077,14 @@ const styles = StyleSheet.create({
   },
   templateGradient: {
     flex: 1,
-    padding: 14,
+    padding: 10,
     justifyContent: 'space-between',
   },
   templateSymbol: {
     alignSelf: 'flex-end',
-    width: 46,
-    height: 46,
-    borderRadius: 23,
+    width: 42,
+    height: 42,
+    borderRadius: 21,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.42)',
     backgroundColor: 'rgba(255,255,255,0.24)',
@@ -1011,13 +1093,15 @@ const styles = StyleSheet.create({
   },
   templateSymbolText: {
     color: '#ffffff',
-    fontSize: 20,
+    alignSelf: 'flex-end',
+    fontSize: 22,
     fontWeight: '900',
+    opacity: 0.9,
   },
   templateName: {
     color: '#ffffff',
-    fontSize: 16,
-    lineHeight: 20,
+    fontSize: 13,
+    lineHeight: 16,
     fontWeight: '900',
     textShadowColor: 'rgba(15,23,42,0.35)',
     textShadowOffset: { width: 0, height: 1 },
@@ -1027,13 +1111,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 14,
-    marginTop: 14,
+  },
+  profileRowCompact: {
+    flexDirection: 'column',
+    alignItems: 'stretch',
   },
   profilePreviewRing: {
     width: 108,
     height: 108,
     borderRadius: 54,
     padding: 5,
+  },
+  profilePreviewRingCompact: {
+    alignSelf: 'center',
   },
   profilePreviewInner: {
     flex: 1,
@@ -1049,22 +1139,57 @@ const styles = StyleSheet.create({
   },
   profileControls: {
     flex: 1,
+    gap: 9,
+  },
+  profileControlsCompact: {
+    width: '100%',
+    flex: 0,
+  },
+  profileButtonRow: {
+    flexDirection: 'row',
     gap: 10,
   },
-  uploadLabel: {
+  uploadButton: {
+    minHeight: 46,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    borderRadius: 16,
+    backgroundColor: '#ffffff',
+    paddingHorizontal: 16,
+  },
+  uploadButtonText: {
+    color: '#020617',
+    fontSize: 14,
+    fontWeight: '900',
+  },
+  urlLabel: {
     alignSelf: 'flex-start',
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
-    borderRadius: 14,
-    backgroundColor: '#ffffff',
-    paddingHorizontal: 13,
-    paddingVertical: 9,
+    borderRadius: 999,
+    backgroundColor: 'rgba(255,255,255,0.10)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.12)',
+    paddingHorizontal: 11,
+    paddingVertical: 7,
   },
-  uploadLabelText: {
-    color: '#020617',
-    fontSize: 13,
-    fontWeight: '900',
+  urlLabelText: {
+    color: 'rgba(255,255,255,0.78)',
+    fontSize: 12,
+    fontWeight: '800',
+  },
+  iconButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.12)',
+    backgroundColor: 'rgba(255,255,255,0.10)',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   input: {
     minHeight: 48,
@@ -1094,6 +1219,11 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: 9,
   },
+  chipGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 9,
+  },
   optionColumn: {
     gap: 9,
   },
@@ -1106,6 +1236,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  zoomChip: {
+    minWidth: 76,
+    flexGrow: 1,
+  },
+  positionChip: {
+    minWidth: 92,
   },
   smallChipActive: {
     backgroundColor: '#ffffff',
