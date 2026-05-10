@@ -962,8 +962,7 @@ const styles = StyleSheet.create({
   },
   posterName: {
     color: '#ffffff',
-    fontSize: 28,
-    lineHeight: 32,
+    fontSize: 22,
     textAlign: 'center',
     marginTop: 7,
     textShadowColor: 'rgba(15,23,42,0.45)',
