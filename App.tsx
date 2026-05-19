@@ -6,6 +6,7 @@ import { PortfolioDirectory } from './src/PersonalPortfolio/PersonalPortfolio'
 import PokeSwipe from './src/PokeSwipe/PokeSwipe'
 import GayakKalakars from './src/GayakKalakars/GayakKalakars'
 import DynamicPoster from './src/Apps/DynamicPoster/DynamicPoster'
+import Test from './src/Test'
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
     <NavigationContainer>
       {/* <GayakKalakars /> */}
       <DynamicPoster />
+      {/* <Test /> */}
     </NavigationContainer>
     // </SafeAreaView>
   )
