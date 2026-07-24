@@ -14,7 +14,8 @@ export default function App() {
     <NavigationContainer>
       {/* <GayakKalakars /> */}
       {/* <DynamicPoster /> */}
-      <Test />
+      {/* <Test /> */}
+      <AllAppNavigations />
     </NavigationContainer>
     // </SafeAreaView>
   )
