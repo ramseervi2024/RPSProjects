@@ -1,0 +1,11 @@
+
+//Homepage Model
+export const SIP_LISTS = 'SIP_LISTS';
+export const SERVICE_LIST = 'SERVICE_LIST';
+export const ORDER_LIST = 'ORDER_LIST';
+export const TRANSACTION_LIST = 'TRANSACTION_LIST';
+export const ORDER_DETAILS = 'ORDER_DETAILS';
+export const PROFILE_DETAILS = 'PROFILE_DETAILS';
+export const NOTIFICATIONS = 'NOTIFICATIONS';
+export const DASHBOARD = 'DASHBOARD';
+export const CATEGORIES_LIST = 'CATEGORIES_LIST';

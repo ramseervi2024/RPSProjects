@@ -7,16 +7,18 @@ import PokeSwipe from './src/PokeSwipe/PokeSwipe'
 import GayakKalakars from './src/GayakKalakars/GayakKalakars'
 import DynamicPoster from './src/Apps/DynamicPoster/DynamicPoster'
 import Test from './src/Test'
+import WealthHackersApp from './src/Apps/WealthHackersApp/WealthHackersApp'
 
 export default function App() {
   return (
     // <SafeAreaView style={{flex:1, backgroundColor:'#fff'}}>
-    <NavigationContainer>
-      {/* <GayakKalakars /> */}
-      {/* <DynamicPoster /> */}
-      {/* <Test /> */}
-      <AllAppNavigations />
-    </NavigationContainer>
+    // <NavigationContainer>
+    //   {/* <GayakKalakars /> */}
+    //   {/* <DynamicPoster /> */}
+    //   {/* <Test /> */}
+    //   <AllAppNavigations />
+    // </NavigationContainer>
+    <WealthHackersApp />
     // </SafeAreaView>
   )
 }
