@@ -8,6 +8,7 @@ import GayakKalakars from './src/GayakKalakars/GayakKalakars'
 import DynamicPoster from './src/Apps/DynamicPoster/DynamicPoster'
 import Test from './src/Test'
 import WealthHackersApp from './src/Apps/WealthHackersApp/WealthHackersApp'
+import MarwariEcommerce from './src/Apps/MarwariEcommerce/MarwariEcommerce'
 
 export default function App() {
   return (
@@ -18,7 +19,7 @@ export default function App() {
     //   {/* <Test /> */}
     //   <AllAppNavigations />
     // </NavigationContainer>
-    <WealthHackersApp />
+    <MarwariEcommerce />
     // </SafeAreaView>
   )
 }
