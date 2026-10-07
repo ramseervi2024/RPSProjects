@@ -69,10 +69,9 @@ export default function RegisterScreen() {
 
       if (res?.success) {
         showToast.success('Welcome to Mārwāri', 'Your royal patronage account has been created.');
-        navigation.reset({
-          index: 0,
-          routes: [{ name: 'Main' }],
-        });
+        if (navigation.canGoBack()) {
+          navigation.goBack();
+        }
       } else {
         showToast.error('Registration Notice', res?.error || 'Registration failed.');
       }
@@ -106,11 +105,17 @@ export default function RegisterScreen() {
             {/* Top Back link */}
             <TouchableOpacity
               style={styles.backToStoreBtn}
-              onPress={() => navigation.goBack()}
+              onPress={() => {
+                if (navigation.canGoBack()) {
+                  navigation.goBack();
+                } else {
+                  navigation.navigate('Login');
+                }
+              }}
               activeOpacity={0.8}
             >
               <ArrowLeft size={16} color="#FFFFFF" />
-              <Text style={styles.backToStoreText}>Back to Store</Text>
+              <Text style={styles.backToStoreText}>Back to Login</Text>
             </TouchableOpacity>
 
             {/* Elevated White Card */}

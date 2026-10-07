@@ -27,7 +27,7 @@ import {
   Sparkles,
 } from 'lucide-react-native';
 import AppStatusBar from '../components/common/AppStatusBar';
-import { login, sendLoginOtp } from '../redux/auth/action';
+import { login, sendLoginOtp, continueAsGuest } from '../redux/auth/action';
 import { showToast } from '../components/common/Toast';
 
 export default function LoginScreen() {
@@ -37,11 +37,19 @@ export default function LoginScreen() {
   const { height } = useWindowDimensions();
 
   const [authMode, setAuthMode] = useState('password'); // 'password' | 'otp'
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('user@gmail.com');
+  const [password, setPassword] = useState('password123');
+  const [phone, setPhone] = useState('9001122334');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const handleBackToStore = () => {
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+    } else {
+      dispatch(continueAsGuest());
+    }
+  };
 
   const handlePasswordLogin = async () => {
     if (!email.trim() || !password) {
@@ -54,10 +62,9 @@ export default function LoginScreen() {
       const res = await dispatch(login({ email: email.trim(), password }));
       if (res?.success) {
         showToast.success('Welcome Patron', 'Successfully authenticated into Mārwāri.');
-        navigation.reset({
-          index: 0,
-          routes: [{ name: 'Main' }],
-        });
+        if (navigation.canGoBack()) {
+          navigation.goBack();
+        }
       } else {
         // In dev or demo, if backend user credentials fail, provide a seamless fallback
         showToast.error('Login Notice', res?.error || 'Invalid credentials.');
@@ -116,7 +123,7 @@ export default function LoginScreen() {
             {/* Top Back to Store link */}
             <TouchableOpacity
               style={styles.backToStoreBtn}
-              onPress={() => navigation.goBack()}
+              onPress={handleBackToStore}
               activeOpacity={0.8}
             >
               <ArrowLeft size={16} color="#FFFFFF" />
@@ -310,6 +317,14 @@ export default function LoginScreen() {
                   <Text style={styles.footerLink}>Sign up</Text>
                 </TouchableOpacity>
               </View>
+
+              <TouchableOpacity
+                style={styles.guestLinkBtn}
+                onPress={() => dispatch(continueAsGuest())}
+                activeOpacity={0.8}
+              >
+                <Text style={styles.guestLinkText}>Browse as Royal Guest →</Text>
+              </TouchableOpacity>
             </View>
           </ScrollView>
         </KeyboardAvoidingView>
@@ -504,6 +519,17 @@ const styles = StyleSheet.create({
   footerLink: {
     fontSize: 13,
     fontWeight: '800',
+    color: '#077B9F',
+  },
+  guestLinkBtn: {
+    alignSelf: 'center',
+    marginTop: 14,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+  },
+  guestLinkText: {
+    fontSize: 13,
+    fontWeight: '700',
     color: '#077B9F',
   },
 });

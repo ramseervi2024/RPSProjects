@@ -34,10 +34,9 @@ export default function VerificationSuccessScreen({ route }) {
       payload: { token: dummyToken, user },
     });
 
-    navigation.reset({
-      index: 0,
-      routes: [{ name: 'Main' }],
-    });
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+    }
   };
 
   return (

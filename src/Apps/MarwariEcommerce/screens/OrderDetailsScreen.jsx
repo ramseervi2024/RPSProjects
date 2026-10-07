@@ -137,13 +137,7 @@ export default function OrderDetailsScreen({ route }) {
   ];
 
   const items = orderData.items || [];
-  const address = orderData.shippingAddress || {
-    name: 'Ramesh Seervi',
-    phone: '9001122334',
-    street: '12 Heritage Lane',
-    city: 'Jodhpur',
-    zip: '342001',
-  };
+  const address = orderData.shippingAddress || orderData.shippingDetails || {};
 
   return (
     <View style={styles.container}>
@@ -289,10 +283,10 @@ export default function OrderDetailsScreen({ route }) {
             <MapPin size={18} color="#831843" />
             <Text style={styles.cardTitle}>DELIVERING TO</Text>
           </View>
-          <Text style={styles.recipientName}>{address.name}</Text>
-          <Text style={styles.recipientPhone}>Phone: {address.phone}</Text>
+          <Text style={styles.recipientName}>{address.name || 'Patron'}</Text>
+          {address.phone ? <Text style={styles.recipientPhone}>Phone: {address.phone}</Text> : null}
           <Text style={styles.recipientAddress}>
-            {address.street}, {address.city} - {address.zip}
+            {[address.street, address.city, address.zip].filter(Boolean).join(', ') || 'Recorded with order dispatch'}
           </Text>
         </View>
 

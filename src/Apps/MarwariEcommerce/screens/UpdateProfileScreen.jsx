@@ -34,9 +34,9 @@ export default function UpdateProfileScreen() {
   const profile = useSelector((state) => state.profile.profiledetails) || {};
   const authUser = useSelector((state) => state.auth.user) || {};
 
-  const [name, setName] = useState(profile?.name || authUser?.name || 'Ramesh Seervi');
-  const [email, setEmail] = useState(profile?.email || authUser?.email || 'ramesh@example.com');
-  const [phone, setPhone] = useState(profile?.phone || authUser?.phone || '9001122334');
+  const [name, setName] = useState(profile?.name || authUser?.name || '');
+  const [email, setEmail] = useState(profile?.email || authUser?.email || '');
+  const [phone, setPhone] = useState(profile?.phone || authUser?.phone || '');
   const [saving, setSaving] = useState(false);
 
   const handleSave = async () => {

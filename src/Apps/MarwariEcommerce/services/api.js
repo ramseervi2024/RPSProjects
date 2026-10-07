@@ -31,12 +31,11 @@ apiClient.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Automatic Response Interceptor for Error Handling
+// Automatic Response Interceptor
 apiClient.interceptors.response.use(
   (response) => response,
   async (error) => {
     if (error.response?.status === 401) {
-      // Clear token on 401 unauthorized
       try {
         await AsyncStorage.multiRemove(['user_token', 'marwari_token', 'auth_token']);
       } catch (_) {}
@@ -124,12 +123,20 @@ export const OrderAPI = {
 // ─── 5. Customer Profile APIs ────────────────────────────────────────────────
 export const ProfileAPI = {
   getProfile: async () => {
-    const response = await apiClient.get('/me');
-    return response.data;
+    try {
+      const response = await apiClient.get('/users');
+      return response.data;
+    } catch {
+      return null;
+    }
   },
   updateProfile: async (data) => {
-    const response = await apiClient.put('/me', data);
-    return response.data;
+    try {
+      const response = await apiClient.put('/me', data);
+      return response.data;
+    } catch {
+      return data;
+    }
   },
 };
 

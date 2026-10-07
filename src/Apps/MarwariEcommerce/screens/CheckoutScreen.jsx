@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   View,
   Text,
@@ -29,6 +29,7 @@ import {
 } from 'lucide-react-native';
 import AppStatusBar from '../components/common/AppStatusBar';
 import { placeOrderWithPayment, clearCart } from '../redux/cart/action';
+import { getOrderList } from '../redux/profile/action';
 import { COLORS, RADII } from '../theme/theme';
 import { showToast } from '../components/common/Toast';
 
@@ -49,29 +50,38 @@ export default function CheckoutScreen({ route }) {
   const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState('upi'); // 'upi' | 'razorpay' | 'cod'
 
+  const authUser = useSelector((state) => state.auth.user);
+  const activeUser = userProfile?.name ? userProfile : authUser;
+
+  const defaultUserAddresses = useMemo(() => {
+    if (activeUser?.addresses && activeUser.addresses.length > 0) {
+      return activeUser.addresses.map((addr, idx) => ({
+        id: addr.id || `addr-${idx}`,
+        name: activeUser.name || 'Patron',
+        phone: activeUser.phone || '',
+        street: addr.street || addr.label || '',
+        city: addr.city || 'Jodhpur',
+        state: addr.state || 'Rajasthan',
+        zip: addr.zip || '342001',
+        isDefault: !!addr.default || idx === 0,
+      }));
+    }
+    return [
+      {
+        id: 'addr-1',
+        name: activeUser?.name || 'Patron',
+        phone: activeUser?.phone || '',
+        street: '12 Heritage Lane, Paota',
+        city: 'Jodhpur',
+        state: 'Rajasthan',
+        zip: '342001',
+        isDefault: true,
+      },
+    ];
+  }, [activeUser]);
+
   // Saved Addresses
-  const [addresses, setAddresses] = useState([
-    {
-      id: 'addr-1',
-      name: userProfile?.name || 'Ramesh Seervi',
-      phone: userProfile?.phone || userProfile?.mobile || '9001122334',
-      street: '12 Heritage Lane, Paota',
-      city: 'Jodhpur',
-      state: 'Rajasthan',
-      zip: '342001',
-      isDefault: true,
-    },
-    {
-      id: 'addr-2',
-      name: userProfile?.name || 'Ramesh Seervi',
-      phone: userProfile?.phone || userProfile?.mobile || '9001122334',
-      street: '45 Palace Road, C-Scheme',
-      city: 'Jaipur',
-      state: 'Rajasthan',
-      zip: '302001',
-      isDefault: false,
-    },
-  ]);
+  const [addresses, setAddresses] = useState(defaultUserAddresses);
 
   // Modal for new address
   const [newAddressModal, setNewAddressModal] = useState(false);
@@ -140,6 +150,7 @@ export default function CheckoutScreen({ route }) {
       };
 
       dispatch(clearCart());
+      dispatch(getOrderList());
       navigation.replace('OrderSuccess', { order: orderData });
     } catch (err) {
       showToast.error('Order Error', err?.message || 'Could not place order.');

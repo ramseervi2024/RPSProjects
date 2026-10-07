@@ -101,20 +101,36 @@ export default function OrdersScreen() {
 
   const renderOrderItem = ({ item }) => {
     const orderId = item.id || 'ORD-2026-8941';
-    const displayTotal = parseFloat(item.total || 7109).toLocaleString('en-IN');
-    const orderDate = item.date ? new Date(item.date).toLocaleDateString('en-IN', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-    }) : '06 Oct 2026';
+    const displayTotal = parseFloat(item.total || 0).toLocaleString('en-IN');
+    const orderDate = item.date
+      ? new Date(item.date).toLocaleDateString('en-IN', {
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric',
+        })
+      : '06 Oct 2026';
 
-    const items = item.items || [
-      {
-        name: 'Imperial Udaipur Heritage Silver Peacock Box',
-        price: 7899,
-        image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80',
-      },
-    ];
+    const rawItems = Array.isArray(item.items) ? item.items : [];
+    const items =
+      rawItems.length > 0
+        ? rawItems.map((prod) => ({
+            name: prod.product?.name || prod.productName || prod.name || 'Heritage Creation',
+            price: prod.product?.price || prod.price || 0,
+            image:
+              prod.product?.image ||
+              prod.image ||
+              'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80',
+            quantity: prod.quantity || prod.qty || 1,
+          }))
+        : [
+            {
+              name: 'Royal Heritage Artifact',
+              price: item.total || 0,
+              image:
+                'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80',
+              quantity: 1,
+            },
+          ];
 
     return (
       <TouchableOpacity

@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import {
   View,
   Text,
   StyleSheet,
   ScrollView,
-  ActivityIndicator,
   TouchableOpacity,
   RefreshControl,
   Modal,
@@ -13,23 +12,21 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import {
-  User,
   MapPin,
   Package,
-  Heart,
   Bell,
   ShieldCheck,
   PhoneCall,
   LogOut,
   ChevronRight,
   Edit3,
-  CheckCircle2,
+  Plus,
+  LogIn,
   Sparkles,
 } from 'lucide-react-native';
 import AppStatusBar from '../components/common/AppStatusBar';
-import { getProfileDetails } from '../redux/profile/action';
+import { getProfileDetails, getOrderList } from '../redux/profile/action';
 import { logout } from '../redux/auth/action';
-import { COLORS, RADII } from '../theme/theme';
 import { showToast } from '../components/common/Toast';
 
 export default function ProfileScreen() {
@@ -37,35 +34,43 @@ export default function ProfileScreen() {
   const dispatch = useDispatch();
   const insets = useSafeAreaInsets();
 
-  const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [logoutModalVisible, setLogoutModalVisible] = useState(false);
 
-  const profile = useSelector((state) => state.profile.profiledetails) || {};
-  const authUser = useSelector((state) => state.auth.user) || {};
+  const { isAuthenticated, user: authUser } = useSelector((state) => state.auth);
+  const profile = useSelector((state) => state.profile.profiledetails);
   const orders = useSelector((state) => state.profile.orderlists) || [];
-  const notifications = useSelector((state) => state.profile.notifications) || [];
 
-  const displayName = profile?.name || authUser?.name || 'Ramesh Seervi';
-  const displayEmail = profile?.email || authUser?.email || 'ramesh@example.com';
-  const displayPhone = profile?.phone || authUser?.phone || '9001122334';
+  const currentUser = useMemo(() => {
+    const p = profile && typeof profile === 'object' ? profile : {};
+    const a = authUser && typeof authUser === 'object' ? authUser : {};
+    const addrs = (a.addresses && a.addresses.length > 0)
+      ? a.addresses
+      : (p.addresses && p.addresses.length > 0)
+        ? p.addresses
+        : [];
+    return {
+      ...p,
+      ...a,
+      addresses: addrs,
+    };
+  }, [authUser, profile]);
+  const isUserLoggedIn = isAuthenticated && (!!currentUser?.email || !!currentUser?.name || !!currentUser?.phone);
 
-  const addresses = profile?.addresses || [
-    {
-      id: 'addr-1',
-      label: 'Home Base',
-      street: '12 Heritage Lane, Paota',
-      city: 'Jodhpur',
-      zip: '342001',
-      default: true,
-    },
-  ];
+  const displayName = currentUser?.name || (isUserLoggedIn ? 'Royal Patron' : 'Royal Guest Patron');
+  const displayEmail = currentUser?.email || (isUserLoggedIn ? '' : 'Sign in to access your royal patronage');
+  const displayPhone = currentUser?.phone || '';
+  const addresses = currentUser?.addresses || [];
 
   const fetchProfile = async () => {
     try {
-      await dispatch(getProfileDetails());
+      if (isAuthenticated) {
+        await Promise.allSettled([
+          dispatch(getProfileDetails()),
+          dispatch(getOrderList()),
+        ]);
+      }
     } finally {
-      setLoading(false);
       setRefreshing(false);
     }
   };
@@ -73,17 +78,17 @@ export default function ProfileScreen() {
   useEffect(() => {
     fetchProfile();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
+  }, [dispatch, isAuthenticated]);
 
   const handleRefresh = () => {
     setRefreshing(true);
     fetchProfile();
   };
 
-  const confirmLogout = () => {
+  const confirmLogout = async () => {
     setLogoutModalVisible(false);
-    dispatch(logout());
     showToast.info('Signed Out', 'You have been safely signed out.');
+    await dispatch(logout());
   };
 
   return (
@@ -93,12 +98,14 @@ export default function ProfileScreen() {
       {/* Header */}
       <View style={[styles.header, { paddingTop: Math.max(insets.top, 10) }]}>
         <Text style={styles.headerTitle}>Royal Patron Profile</Text>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('UpdateProfile')}
-          style={styles.editBtn}
-        >
-          <Edit3 size={18} color="#831843" />
-        </TouchableOpacity>
+        {isUserLoggedIn && (
+          <TouchableOpacity
+            onPress={() => navigation.navigate('UpdateProfile')}
+            style={styles.editBtn}
+          >
+            <Edit3 size={18} color="#831843" />
+          </TouchableOpacity>
+        )}
       </View>
 
       <ScrollView
@@ -116,54 +123,102 @@ export default function ProfileScreen() {
         <View style={styles.profileCard}>
           <View style={styles.avatarWrap}>
             <Text style={styles.avatarText}>
-              {(displayName[0] || 'R').toUpperCase()}
+              {(displayName[0] || (isUserLoggedIn ? 'R' : 'G')).toUpperCase()}
             </Text>
-            <View style={styles.badgeCrown}>
-              <Sparkles size={11} color="#78350F" />
-            </View>
+            {isUserLoggedIn && (
+              <View style={styles.badgeCrown}>
+                <Sparkles size={11} color="#78350F" />
+              </View>
+            )}
           </View>
 
           <View style={styles.profileInfo}>
             <Text style={styles.profileName}>{displayName}</Text>
-            <Text style={styles.profileEmail}>{displayEmail}</Text>
-            <Text style={styles.profilePhone}>📞 +91 {displayPhone}</Text>
+            {displayEmail ? (
+              <Text style={styles.profileEmail}>{displayEmail}</Text>
+            ) : null}
+            {displayPhone ? (
+              <Text style={styles.profilePhone}>📞 +91 {displayPhone}</Text>
+            ) : null}
+
             <View style={styles.tierPill}>
-              <ShieldCheck size={12} color="#059669" />
-              <Text style={styles.tierText}>Verified Royal Patron</Text>
+              <ShieldCheck
+                size={12}
+                color={isUserLoggedIn ? '#059669' : '#B45309'}
+              />
+              <Text
+                style={[
+                  styles.tierText,
+                  { color: isUserLoggedIn ? '#059669' : '#B45309' },
+                ]}
+              >
+                {isUserLoggedIn ? 'Verified Royal Patron' : 'Guest Traveler'}
+              </Text>
             </View>
           </View>
         </View>
 
-        {/* Saved Addresses Section */}
-        <View style={styles.sectionBlock}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>SAVED ADDRESSES</Text>
-            <TouchableOpacity onPress={() => navigation.navigate('Checkout')}>
-              <Text style={styles.manageLink}>Manage</Text>
+        {/* If Guest: Sign In Call to Action */}
+        {!isUserLoggedIn && (
+          <View style={styles.guestCard}>
+            <Text style={styles.guestCardTitle}>Sign In for Royal Privileges</Text>
+            <Text style={styles.guestCardSub}>
+              Save your delivery addresses, track live courier shipments, and view official tax invoices.
+            </Text>
+            <TouchableOpacity
+              style={styles.guestLoginBtn}
+              onPress={() => navigation.navigate('Login')}
+              activeOpacity={0.88}
+            >
+              <LogIn size={16} color="#FFFFFF" />
+              <Text style={styles.guestLoginBtnText}>Sign In / Create Account</Text>
             </TouchableOpacity>
           </View>
+        )}
 
-          {addresses.map((addr) => (
-            <View key={addr.id} style={styles.addressCard}>
-              <View style={styles.addrIconWrap}>
-                <MapPin size={18} color="#831843" />
-              </View>
-              <View style={styles.addrTextWrap}>
-                <View style={styles.addrLabelRow}>
-                  <Text style={styles.addrLabel}>{addr.label || 'Primary Residence'}</Text>
-                  {addr.default && (
-                    <View style={styles.defaultBadge}>
-                      <Text style={styles.defaultBadgeText}>DEFAULT</Text>
-                    </View>
-                  )}
-                </View>
-                <Text style={styles.addrDetails}>
-                  {addr.street}, {addr.city} - {addr.zip}
+        {/* Saved Addresses Section (Only if Logged In) */}
+        {isUserLoggedIn && (
+          <View style={styles.sectionBlock}>
+            <View style={styles.sectionHeader}>
+              <Text style={styles.sectionTitle}>SAVED ADDRESSES</Text>
+              <TouchableOpacity onPress={() => navigation.navigate('Checkout')}>
+                <Text style={styles.manageLink}>+ Add New</Text>
+              </TouchableOpacity>
+            </View>
+
+            {addresses.length === 0 ? (
+              <View style={styles.emptyAddrBox}>
+                <MapPin size={22} color="#94A3B8" />
+                <Text style={styles.emptyAddrText}>
+                  No saved addresses found. Add an address during checkout.
                 </Text>
               </View>
-            </View>
-          ))}
-        </View>
+            ) : (
+              addresses.map((addr, idx) => (
+                <View key={addr.id || idx} style={styles.addressCard}>
+                  <View style={styles.addrIconWrap}>
+                    <MapPin size={18} color="#831843" />
+                  </View>
+                  <View style={styles.addrTextWrap}>
+                    <View style={styles.addrLabelRow}>
+                      <Text style={styles.addrLabel}>
+                        {addr.label || `Address ${idx + 1}`}
+                      </Text>
+                      {addr.default && (
+                        <View style={styles.defaultBadge}>
+                          <Text style={styles.defaultBadgeText}>DEFAULT</Text>
+                        </View>
+                      )}
+                    </View>
+                    <Text style={styles.addrDetails}>
+                      {addr.street}, {addr.city} - {addr.zip}
+                    </Text>
+                  </View>
+                </View>
+              ))
+            )}
+          </View>
+        )}
 
         {/* Quick Menu Links */}
         <View style={styles.sectionBlock}>
@@ -180,7 +235,9 @@ export default function ProfileScreen() {
             <View style={styles.menuTextWrap}>
               <Text style={styles.menuTitle}>My Orders & Shipments</Text>
               <Text style={styles.menuSub}>
-                Track live BlueDart courier & tax invoices
+                {orders.length > 0
+                  ? `${orders.length} orders recorded`
+                  : 'Track live courier & tax invoices'}
               </Text>
             </View>
             <ChevronRight size={18} color="#CBD5E1" />
@@ -196,7 +253,9 @@ export default function ProfileScreen() {
             </View>
             <View style={styles.menuTextWrap}>
               <Text style={styles.menuTitle}>Notifications & Royal Alerts</Text>
-              <Text style={styles.menuSub}>Exclusive discounts & festive launches</Text>
+              <Text style={styles.menuSub}>
+                Exclusive discounts & festive launches
+              </Text>
             </View>
             <ChevronRight size={18} color="#CBD5E1" />
           </TouchableOpacity>
@@ -221,7 +280,9 @@ export default function ProfileScreen() {
             </View>
             <View style={styles.menuTextWrap}>
               <Text style={styles.menuTitle}>Authenticity & GI Tag Guarantee</Text>
-              <Text style={styles.menuSub}>Directly supporting artisan families</Text>
+              <Text style={styles.menuSub}>
+                Directly supporting artisan families
+              </Text>
             </View>
             <ChevronRight size={18} color="#CBD5E1" />
           </TouchableOpacity>
@@ -241,21 +302,34 @@ export default function ProfileScreen() {
             </View>
             <View style={styles.menuTextWrap}>
               <Text style={styles.menuTitle}>Royal Concierge Support</Text>
-              <Text style={styles.menuSub}>Toll-Free WhatsApp & Email assistance</Text>
+              <Text style={styles.menuSub}>
+                Toll-Free WhatsApp & Email assistance
+              </Text>
             </View>
             <ChevronRight size={18} color="#CBD5E1" />
           </TouchableOpacity>
         </View>
 
-        {/* Sign Out CTA */}
-        <TouchableOpacity
-          style={styles.logoutBtn}
-          onPress={() => setLogoutModalVisible(true)}
-          activeOpacity={0.8}
-        >
-          <LogOut size={18} color="#DC2626" />
-          <Text style={styles.logoutText}>Sign Out of Mārwāri</Text>
-        </TouchableOpacity>
+        {/* Dynamic Action: Sign Out if logged in, or Sign In if guest */}
+        {isUserLoggedIn ? (
+          <TouchableOpacity
+            style={styles.logoutBtn}
+            onPress={() => setLogoutModalVisible(true)}
+            activeOpacity={0.8}
+          >
+            <LogOut size={18} color="#DC2626" />
+            <Text style={styles.logoutText}>Sign Out of Mārwāri</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={styles.loginCtaBtn}
+            onPress={() => navigation.navigate('Login')}
+            activeOpacity={0.85}
+          >
+            <LogIn size={18} color="#FFFFFF" />
+            <Text style={styles.loginCtaBtnText}>Sign In to Account</Text>
+          </TouchableOpacity>
+        )}
       </ScrollView>
 
       {/* Logout Confirmation Modal */}
@@ -267,9 +341,9 @@ export default function ProfileScreen() {
       >
         <View style={styles.modalOverlay}>
           <View style={styles.modalCard}>
-            <Text style={styles.modalTitle}>Sign Out?</Text>
+            <Text style={styles.modalTitle}>Sign Out of Mārwāri?</Text>
             <Text style={styles.modalSubtitle}>
-              Are you sure you wish to sign out of your Mārwāri account?
+              You will need to sign in again to view your orders and saved delivery addresses.
             </Text>
 
             <View style={styles.modalBtnRow}>
@@ -386,7 +460,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'flex-start',
-    backgroundColor: '#ECFDF5',
+    backgroundColor: '#F8FAFC',
     paddingHorizontal: 8,
     paddingVertical: 2,
     borderRadius: 4,
@@ -396,7 +470,39 @@ const styles = StyleSheet.create({
   tierText: {
     fontSize: 10,
     fontWeight: '700',
-    color: '#059669',
+  },
+  guestCard: {
+    backgroundColor: '#FFFBEB',
+    borderRadius: 14,
+    padding: 16,
+    borderWidth: 1,
+    borderColor: '#FEF3C7',
+    gap: 8,
+  },
+  guestCardTitle: {
+    fontSize: 14,
+    fontWeight: '800',
+    color: '#78350F',
+  },
+  guestCardSub: {
+    fontSize: 12,
+    color: '#92400E',
+    lineHeight: 18,
+  },
+  guestLoginBtn: {
+    backgroundColor: '#077B9F',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 10,
+    borderRadius: 8,
+    gap: 8,
+    marginTop: 4,
+  },
+  guestLoginBtnText: {
+    color: '#FFFFFF',
+    fontSize: 13,
+    fontWeight: '700',
   },
   sectionBlock: {
     backgroundColor: '#FFFFFF',
@@ -421,6 +527,16 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '700',
     color: '#831843',
+  },
+  emptyAddrBox: {
+    alignItems: 'center',
+    paddingVertical: 14,
+    gap: 6,
+  },
+  emptyAddrText: {
+    fontSize: 12,
+    color: '#94A3B8',
+    textAlign: 'center',
   },
   addressCard: {
     flexDirection: 'row',
@@ -509,6 +625,20 @@ const styles = StyleSheet.create({
   },
   logoutText: {
     color: '#DC2626',
+    fontWeight: '700',
+    fontSize: 14,
+  },
+  loginCtaBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#077B9F',
+    paddingVertical: 14,
+    borderRadius: 12,
+    gap: 8,
+  },
+  loginCtaBtnText: {
+    color: '#FFFFFF',
     fontWeight: '700',
     fontSize: 14,
   },

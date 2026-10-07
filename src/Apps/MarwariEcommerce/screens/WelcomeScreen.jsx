@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
 import {
   Sparkles,
   ShieldCheck,
@@ -19,14 +20,16 @@ import {
   User,
 } from 'lucide-react-native';
 import AppStatusBar from '../components/common/AppStatusBar';
+import { continueAsGuest } from '../redux/auth/action';
 
 export default function WelcomeScreen() {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
 
   const handleGuestExplore = () => {
-    navigation.navigate('Main');
+    dispatch(continueAsGuest());
   };
 
   return (
