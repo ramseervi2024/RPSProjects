@@ -1,70 +1,148 @@
+import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const API_BASE = 'https://wealthhackers.in/wp-json/user/api/v1';
-export const API_KEY = '0qgru2HjXqdkLQovwIzouU6l3E4F1xUb';
-export const RAZORPAY_KEY_ID = 'rzp_live_TTf3oHWPQhd4kr';
-export const RAZORPAY_KEY_SECRET = 'LPJOQn9LXHkqfJiFybFqiYwD';
+export const API_BASE_URL = 'https://rpsdigitalworld.store/wp-json/wp-ecommerce/v1';
 
-/**
- * Universal API Client compliant with WealthHackers API Specification v1
- */
-export const apiClient = async (endpoint, options = {}) => {
-  const token = (await AsyncStorage.getItem('wh_token')) || (await AsyncStorage.getItem('auth_token'));
-  
-  const headers = {
+export const apiClient = axios.create({
+  baseURL: API_BASE_URL,
+  headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
-    ...(options.requiresApiKey ? { 'X-API-KEY': API_KEY } : {}),
-    ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
-    ...options.headers,
-  };
+  },
+  timeout: 15000,
+});
 
-  const response = await fetch(`${API_BASE}${endpoint}`, {
-    ...options,
-    headers,
-  });
+// Automatic Bearer Token Interceptor
+apiClient.interceptors.request.use(
+  async (config) => {
+    try {
+      const token =
+        (await AsyncStorage.getItem('user_token')) ||
+        (await AsyncStorage.getItem('marwari_token')) ||
+        (await AsyncStorage.getItem('auth_token'));
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+    } catch (e) {
+      console.warn('Error reading token from storage:', e);
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
-  const data = await response.json();
-  if (!response.ok || data.success === false) {
-    throw new Error(data.message || data.data?.message || 'API request failed');
+// Automatic Response Interceptor for Error Handling
+apiClient.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    if (error.response?.status === 401) {
+      // Clear token on 401 unauthorized
+      try {
+        await AsyncStorage.multiRemove(['user_token', 'marwari_token', 'auth_token']);
+      } catch (_) {}
+    }
+    return Promise.reject(error);
   }
-  return data;
+);
+
+// ─── 1. Authentication APIs ──────────────────────────────────────────────────
+export const AuthAPI = {
+  login: async (credentials) => {
+    const response = await apiClient.post('/auth/login', credentials);
+    return response.data;
+  },
+  register: async (userData) => {
+    const response = await apiClient.post('/auth/register', userData);
+    return response.data;
+  },
+  sendOTP: async (phone) => {
+    const response = await apiClient.post('/auth/send-otp', { phone });
+    return response.data;
+  },
+  verifyOTP: async (phone, otp) => {
+    const response = await apiClient.post('/auth/verify-otp', { phone, otp });
+    return response.data;
+  },
 };
 
-// ─── Convenience Endpoint Helpers ─────────────────────────────────────────────
-export const sendLoginOtp = (email) =>
-  apiClient('/send_login_otp', {
-    method: 'POST',
-    requiresApiKey: true,
-    body: JSON.stringify({ email }),
-  });
+// ─── 2. Catalog & Home APIs ──────────────────────────────────────────────────
+export const CatalogAPI = {
+  getHomeFeed: async () => {
+    const response = await apiClient.get('/home');
+    return response.data;
+  },
+  getProducts: async (params = {}) => {
+    const response = await apiClient.get('/products', { params });
+    return response.data;
+  },
+  getProductDetail: async (id) => {
+    const response = await apiClient.get(`/products/${id}`);
+    return response.data;
+  },
+  getCategories: async () => {
+    const response = await apiClient.get('/categories');
+    return response.data;
+  },
+};
 
-export const verifyLoginOtp = (email, otp) =>
-  apiClient('/verify_login_otp', {
-    method: 'POST',
-    requiresApiKey: true,
-    body: JSON.stringify({ email, otp }),
-  });
+// ─── 3. Cart Management APIs ─────────────────────────────────────────────────
+export const CartAPI = {
+  getCart: async () => {
+    const response = await apiClient.get('/cart');
+    return response.data;
+  },
+  addItem: async (productId, quantity = 1) => {
+    const response = await apiClient.post('/cart/items', { productId, quantity });
+    return response.data;
+  },
+  updateQuantity: async (itemId, quantity) => {
+    const response = await apiClient.put(`/cart/items/${itemId}`, { quantity });
+    return response.data;
+  },
+  removeItem: async (itemId) => {
+    const response = await apiClient.delete(`/cart/items/${itemId}`);
+    return response.data;
+  },
+};
 
-export const getDashboard = () => apiClient('/dashboard');
-export const getProfile = () => apiClient('/profile');
-export const getServices = () => apiClient('/services');
-export const getCart = () => apiClient('/cart');
-export const addToCart = (item) =>
-  apiClient('/cart/add', { method: 'POST', body: JSON.stringify(item) });
-export const updateCartQty = (id, platform, qty) =>
-  apiClient('/cart/add', { method: 'POST', body: JSON.stringify({ id, platform, qty }) });
-export const removeFromCart = (id, platform) =>
-  apiClient('/cart/remove', { method: 'POST', body: JSON.stringify({ id, platform }) });
-export const clearCart = () => apiClient('/cart/clear', { method: 'POST' });
-export const syncCart = (cart_items) =>
-  apiClient('/cart/sync', { method: 'POST', body: JSON.stringify({ cart_items }) });
-export const createRazorpayOrder = (amount) =>
-  apiClient('/orders/create_razorpay_order', { method: 'POST', body: JSON.stringify({ amount }) });
-export const placeOrderWithPayment = (payload) =>
-  apiClient('/orders/place_with_payment', { method: 'POST', body: JSON.stringify(payload) });
-export const getOrders = () => apiClient('/orders');
-export const getOrderDetails = (orderId) => apiClient(`/orders/${orderId}`);
-export const getTransactions = () => apiClient('/transactions');
-export const getSips = () => apiClient('/sips');
-export const getNotifications = () => apiClient('/notifications');
+// ─── 4. Orders & Checkout APIs ───────────────────────────────────────────────
+export const OrderAPI = {
+  placeOrder: async (orderPayload) => {
+    const response = await apiClient.post('/orders', orderPayload);
+    return response.data;
+  },
+  getOrderHistory: async () => {
+    const response = await apiClient.get('/orders');
+    return response.data;
+  },
+  getOrderDetail: async (orderId) => {
+    const response = await apiClient.get(`/orders/${orderId}`);
+    return response.data;
+  },
+};
+
+// ─── 5. Customer Profile APIs ────────────────────────────────────────────────
+export const ProfileAPI = {
+  getProfile: async () => {
+    const response = await apiClient.get('/me');
+    return response.data;
+  },
+  updateProfile: async (data) => {
+    const response = await apiClient.put('/me', data);
+    return response.data;
+  },
+};
+
+// ─── 6. Media Upload API ─────────────────────────────────────────────────────
+export const MediaAPI = {
+  uploadMedia: async (formData) => {
+    const response = await apiClient.post('/upload', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
+  },
+};
+
+export default apiClient;

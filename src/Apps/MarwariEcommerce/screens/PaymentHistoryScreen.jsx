@@ -8,16 +8,18 @@ import {
   TouchableOpacity,
   RefreshControl,
 } from 'react-native';
-import AppStatusBar from '../components/common/AppStatusBar';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-import { ChevronLeft, CreditCard } from 'lucide-react-native';
+import { ArrowLeft, CreditCard, Sparkles } from 'lucide-react-native';
+import AppStatusBar from '../components/common/AppStatusBar';
 import { getTransactionList } from '../redux/profile/action';
-import { COLORS, TYPOGRAPHY, SPACING, RADII, SHADOWS, GLOBAL_STYLES } from '../theme/theme';
+import { COLORS } from '../theme/theme';
 
 export default function PaymentHistoryScreen() {
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const insets = useSafeAreaInsets();
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const transactions = useSelector((state) => state.profile.transactionlists);
@@ -44,45 +46,40 @@ export default function PaymentHistoryScreen() {
   const renderStatusPill = (status) => {
     const s = (status || '').toLowerCase();
     const isSuccess = s === 'completed' || s === 'success';
-    const isFailed = s === 'failed' || s === 'error';
-
-    let pillStyle = styles.pillPending;
-    let textStyle = styles.pillPendingText;
-    let label = (status || 'PENDING').toUpperCase();
-
-    if (isSuccess) {
-      pillStyle = styles.pillCompleted;
-      textStyle = styles.pillCompletedText;
-      label = 'COMPLETED';
-    } else if (isFailed) {
-      pillStyle = styles.pillFailed;
-      textStyle = styles.pillFailedText;
-      label = 'FAILED';
-    }
 
     return (
-      <View style={[styles.statusPill, pillStyle]}>
-        <Text style={textStyle}>{label}</Text>
+      <View
+        style={[
+          styles.statusPill,
+          { backgroundColor: isSuccess ? '#ECFDF5' : '#FEF3C7' },
+        ]}
+      >
+        <Text
+          style={[
+            styles.statusPillText,
+            { color: isSuccess ? '#059669' : '#B45309' },
+          ]}
+        >
+          ● {isSuccess ? 'COMPLETED' : 'PENDING'}
+        </Text>
       </View>
     );
   };
 
-  const renderTransactionItem = ({ item }) => {
-    const formattedAmount = parseFloat(item.amount || 0).toFixed(2);
-    const orderId = item.order_id || 'AG-20260914-2510';
-    const title = item.plan_name || 'Corporate Cart (1 Items)';
-    const dateStr = item.date || '14 Sep 2026, 12:05 PM';
-    const gateway = item.payment_method || 'Razorpay Gateway';
+  const renderItem = ({ item }) => {
+    const formattedAmount = parseFloat(item.amount || 7109).toLocaleString('en-IN');
+    const orderId = item.order_id || 'ORD-2026-8941';
+    const title = item.title || 'Royal Handicrafts & Apparel Order';
+    const dateStr = item.date || '06 Oct 2026';
+    const gateway = item.method || 'Razorpay UPI Gateway';
 
     return (
       <View style={styles.card}>
         <View style={styles.cardContent}>
-          {/* Left squircle icon */}
           <View style={styles.iconBox}>
-            <CreditCard size={20} color={COLORS.primary} />
+            <CreditCard size={20} color="#831843" />
           </View>
 
-          {/* Middle details */}
           <View style={styles.infoCol}>
             <Text style={styles.cardTitle} numberOfLines={1}>
               {title}
@@ -92,209 +89,153 @@ export default function PaymentHistoryScreen() {
             <Text style={styles.dateText}>{dateStr}</Text>
           </View>
 
-          {/* Right amount & pill */}
           <View style={styles.rightCol}>
             <Text style={styles.amountText}>₹{formattedAmount}</Text>
-            <View style={{ marginTop: SPACING.xs }}>
-              {renderStatusPill(item.status)}
-            </View>
+            <View style={{ marginTop: 6 }}>{renderStatusPill(item.status)}</View>
           </View>
         </View>
       </View>
     );
   };
 
-  if (loading && !refreshing) {
-    return (
-      <View style={GLOBAL_STYLES.loadingContainer}>
-        <ActivityIndicator size="large" color={COLORS.primary} />
-      </View>
-    );
-  }
-
   const list = Array.isArray(transactions) ? transactions : [];
 
   return (
-    <View style={GLOBAL_STYLES.screenContainer}>
+    <View style={styles.container}>
       <AppStatusBar backgroundColor="#FFFFFF" barStyle="dark-content" />
 
-      {/* Top Bar matching Mockup 2 Screen 5 */}
-      <View style={styles.topHeader}>
+      {/* Header */}
+      <View style={[styles.header, { paddingTop: Math.max(insets.top, 10) }]}>
         <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => (navigation.canGoBack() ? navigation.goBack() : navigation.navigate('Main'))}
-          activeOpacity={0.7}
+          style={styles.backBtn}
+          onPress={() => navigation.goBack()}
         >
-          <ChevronLeft size={22} color={COLORS.navy} />
+          <ArrowLeft size={20} color="#0F172A" />
         </TouchableOpacity>
-        <View style={styles.titleWrap}>
-          <Text style={styles.screenTitle}>Payment History</Text>
-          <Text style={styles.screenSubtitle}>Monetary gateway logs and verified transactions.</Text>
-        </View>
+        <Text style={styles.headerTitle}>Payment Receipts</Text>
+        <View style={{ width: 36 }} />
       </View>
 
-      <FlatList
-        data={list}
-        keyExtractor={(item, index) => `${item.id || item.order_id || 'txn'}-${index}`}
-        renderItem={renderTransactionItem}
-        contentContainerStyle={styles.listContent}
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={handleRefresh}
-            colors={[COLORS.primary]}
-            tintColor={COLORS.primary}
-          />
-        }
-        ListEmptyComponent={
-          <View style={GLOBAL_STYLES.emptyContainer}>
-            <Text style={GLOBAL_STYLES.emptyIcon}>💳</Text>
-            <Text style={GLOBAL_STYLES.emptyTitle}>No Transactions Recorded</Text>
-            <Text style={GLOBAL_STYLES.emptySubtitle}>
-              Completed corporate advisory orders and payment receipts will appear here automatically.
-            </Text>
-          </View>
-        }
-      />
+      {loading ? (
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="#831843" />
+        </View>
+      ) : (
+        <FlatList
+          data={list}
+          keyExtractor={(item) => item.id || String(Math.random())}
+          renderItem={renderItem}
+          contentContainerStyle={styles.listContent}
+          showsVerticalScrollIndicator={false}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={handleRefresh}
+              colors={['#831843']}
+            />
+          }
+        />
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  topHeader: {
+  container: {
+    flex: 1,
+    backgroundColor: '#F8FAFC',
+  },
+  header: {
+    backgroundColor: '#FFFFFF',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: SPACING.lg,
-    paddingTop: SPACING.sm,
-    paddingBottom: SPACING.md,
-    backgroundColor: COLORS.surface,
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingBottom: 12,
     borderBottomWidth: 1,
-    borderBottomColor: COLORS.borderLight,
+    borderColor: '#E2E8F0',
   },
-  backButton: {
-    width: 38,
-    height: 38,
-    borderRadius: RADII.sm,
+  backBtn: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: '#F8FAFC',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: COLORS.backgroundAlt,
-    marginRight: SPACING.sm,
   },
-  titleWrap: {
+  headerTitle: {
+    fontSize: 18,
+    fontWeight: '800',
+    color: '#0F172A',
+  },
+  loadingContainer: {
     flex: 1,
-  },
-  screenTitle: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size18,
-    color: COLORS.navy,
-  },
-  screenSubtitle: {
-    fontFamily: TYPOGRAPHY.family.regular,
-    fontSize: TYPOGRAPHY.sizes.size12,
-    color: COLORS.textMuted,
-    marginTop: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   listContent: {
-    paddingHorizontal: SPACING.lg,
-    paddingTop: SPACING.md,
-    paddingBottom: SPACING.xxxl + 40,
+    padding: 16,
+    gap: 12,
   },
   card: {
-    backgroundColor: COLORS.surface,
-    borderRadius: RADII.lg,
-    padding: SPACING.md,
-    marginBottom: SPACING.md,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 14,
+    padding: 14,
     borderWidth: 1,
-    borderColor: COLORS.mintBorder,
-    ...SHADOWS.card,
+    borderColor: '#E2E8F0',
   },
   cardContent: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
+    alignItems: 'center',
+    gap: 12,
   },
   iconBox: {
-    width: 44,
-    height: 44,
-    borderRadius: RADII.md,
-    backgroundColor: COLORS.mint,
+    width: 42,
+    height: 42,
+    borderRadius: 10,
+    backgroundColor: '#FDF2F8',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: SPACING.md,
-    borderWidth: 1,
-    borderColor: '#BFE7DE',
   },
   infoCol: {
     flex: 1,
-    marginRight: SPACING.sm,
   },
   cardTitle: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size14,
-    color: COLORS.navy,
-    marginBottom: 2,
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#0F172A',
   },
   orderRef: {
-    fontFamily: TYPOGRAPHY.family.medium,
-    fontSize: TYPOGRAPHY.sizes.size11,
-    color: COLORS.textMuted,
-    marginBottom: 2,
+    fontSize: 11,
+    color: '#831843',
+    fontWeight: '600',
+    marginTop: 2,
   },
   gatewayText: {
-    fontFamily: TYPOGRAPHY.family.regular,
-    fontSize: TYPOGRAPHY.sizes.size11,
-    color: COLORS.textPlaceholder,
-    marginBottom: 4,
+    fontSize: 11,
+    color: '#64748B',
+    marginTop: 2,
   },
   dateText: {
-    fontFamily: TYPOGRAPHY.family.medium,
-    fontSize: TYPOGRAPHY.sizes.size11,
-    color: COLORS.textSecondary,
+    fontSize: 10,
+    color: '#94A3B8',
+    marginTop: 2,
   },
   rightCol: {
     alignItems: 'flex-end',
   },
   amountText: {
-    fontFamily: TYPOGRAPHY.family.extraBold,
-    fontSize: TYPOGRAPHY.sizes.size15,
-    color: COLORS.navy,
+    fontSize: 15,
+    fontWeight: '800',
+    color: '#0F172A',
   },
   statusPill: {
     paddingHorizontal: 8,
     paddingVertical: 3,
-    borderRadius: RADII.full,
-    alignSelf: 'flex-end',
+    borderRadius: 4,
   },
-  pillCompleted: {
-    backgroundColor: '#DCFCE7',
-    borderWidth: 1,
-    borderColor: '#86EFAC',
-  },
-  pillCompletedText: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size9,
-    color: '#15803D',
-    letterSpacing: 0.5,
-  },
-  pillPending: {
-    backgroundColor: '#FEF3C7',
-    borderWidth: 1,
-    borderColor: '#FDE68A',
-  },
-  pillPendingText: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size9,
-    color: '#B45309',
-    letterSpacing: 0.5,
-  },
-  pillFailed: {
-    backgroundColor: '#FEE2E2',
-    borderWidth: 1,
-    borderColor: '#FECACA',
-  },
-  pillFailedText: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size9,
-    color: '#B91C1C',
-    letterSpacing: 0.5,
+  statusPillText: {
+    fontSize: 9,
+    fontWeight: '800',
   },
 });

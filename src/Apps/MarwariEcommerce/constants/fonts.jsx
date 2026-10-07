@@ -267,7 +267,7 @@ export const getFont = (
 | GLOBAL FONT STYLES
 |--------------------------------------------------------------------------
 |
-| Recommended typography for your WealthHackers UI.
+| Recommended typography for your Mārwāri E-Commerce UI.
 |
 */
 

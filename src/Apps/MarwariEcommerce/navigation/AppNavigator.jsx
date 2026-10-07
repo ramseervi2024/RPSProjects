@@ -3,23 +3,23 @@ import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
-import { Home, TrendingUp, LayoutGrid, ShoppingBag, User } from 'lucide-react-native';
+import { Home, LayoutGrid, ShoppingBag, Package, User } from 'lucide-react-native';
 import { COLORS } from '../theme/theme';
 import { fontFamilies, fontSizes } from '../constants/fonts';
 
 import HomeScreen from '../screens/HomeScreen';
-import SIPScreen from '../screens/SIPScreen';
 import CategoriesScreen from '../screens/CategoriesScreen';
-import ServicesScreen from '../screens/ServicesScreen';
+import CartScreen from '../screens/CartScreen';
+import OrdersScreen from '../screens/OrdersScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
 
 const TABS = [
   { name: 'Dashboard', label: 'Home', Icon: Home },
-  { name: 'SIP', label: 'SIP', Icon: TrendingUp },
-  { name: 'Categories', label: 'Categories', Icon: LayoutGrid },
-  { name: 'Services', label: 'All Services', Icon: ShoppingBag, hasBadge: true },
+  { name: 'Categories', label: 'Collections', Icon: LayoutGrid },
+  { name: 'Cart', label: 'Royal Bag', Icon: ShoppingBag, hasBadge: true },
+  { name: 'Orders', label: 'Orders', Icon: Package },
   { name: 'Profile', label: 'Profile', Icon: User },
 ];
 
@@ -60,10 +60,8 @@ function CustomBottomTabBar({ state, navigation }) {
         };
 
         const IconComponent = tabMeta.Icon || Home;
-        const iconColor = isFocused ? COLORS.primary : '#64748B';
-        // State B badge support: show 8 if active (per spec State B) or live cart count
-        const showBadge = tabMeta.hasBadge && (isFocused || cartCount > 0);
-        const badgeValue = cartCount > 0 ? cartCount : 8;
+        const iconColor = isFocused ? '#831843' : '#64748B';
+        const showBadge = tabMeta.hasBadge && cartCount > 0;
 
         return (
           <TouchableOpacity
@@ -75,20 +73,19 @@ function CustomBottomTabBar({ state, navigation }) {
             accessibilityState={{ selected: isFocused }}
             accessibilityLabel={tabMeta.label}
           >
-            {/* Active Pill indicator behind icon per official spec */}
+            {/* Active Pill indicator behind icon */}
             <View style={[styles.iconPill, isFocused && styles.iconPillActive]}>
-              <IconComponent color={iconColor} size={21} strokeWidth={isFocused ? 2.2 : 1.8} />
+              <IconComponent
+                color={iconColor}
+                size={21}
+                strokeWidth={isFocused ? 2.4 : 1.8}
+              />
 
-              {/* Service badge (State B) */}
+              {/* Shopping Bag Badge */}
               {showBadge && (
                 <View style={styles.nodeBadge}>
-                  <Text style={styles.nodeBadgeText}>{badgeValue}</Text>
+                  <Text style={styles.nodeBadgeText}>{cartCount}</Text>
                 </View>
-              )}
-
-              {/* Plans notification dot (State A - Home active) */}
-              {tabMeta.hasDot && state.index === 0 && (
-                <View style={styles.nodeDot} />
               )}
             </View>
 
@@ -119,9 +116,9 @@ export default function AppNavigator() {
       }}
     >
       <Tab.Screen name="Dashboard" component={HomeScreen} />
-      <Tab.Screen name="SIP" component={SIPScreen} />
       <Tab.Screen name="Categories" component={CategoriesScreen} />
-      <Tab.Screen name="Services" component={ServicesScreen} />
+      <Tab.Screen name="Cart" component={CartScreen} />
+      <Tab.Screen name="Orders" component={OrdersScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );
@@ -144,8 +141,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 8,
     elevation: 8,
-    overflow: 'visible',
-    position: 'relative',
   },
   tabNode: {
     flex: 1,
@@ -163,7 +158,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   iconPillActive: {
-    backgroundColor: '#E6F4F1',
+    backgroundColor: '#FDF2F8',
   },
   tabLabel: {
     fontSize: fontSizes.size10,
@@ -172,58 +167,21 @@ const styles = StyleSheet.create({
   },
   activeLabel: {
     fontFamily: fontFamilies.bold,
-    color: '#0F766E',
+    color: '#831843',
+    fontWeight: '700',
   },
   inactiveLabel: {
     fontFamily: fontFamilies.medium,
     color: '#64748B',
   },
-  centerTabWrapper: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 999,
-  },
-  centerDockButtonWrap: {
-    width: 56,
-    height: 32,
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
-  },
-  centerDockButton: {
-    position: 'absolute',
-    top: -20,
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: '#0F766E',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 4,
-    borderColor: '#FFFFFF',
-    shadowColor: '#0F766E',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.35,
-    shadowRadius: 12,
-    elevation: 8,
-  },
-  centerDockButtonActive: {
-    backgroundColor: '#0D9488',
-    transform: [{ scale: 1.04 }],
-  },
-  centerLabel: {
-    fontFamily: fontFamilies.extraBold,
-    color: '#0F766E',
-  },
   nodeBadge: {
     position: 'absolute',
-    top: -2,
+    top: -3,
     right: 2,
-    minWidth: 15,
-    height: 15,
-    borderRadius: 7.5,
-    backgroundColor: '#0F766E',
+    minWidth: 16,
+    height: 16,
+    borderRadius: 8,
+    backgroundColor: '#831843',
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 3,
@@ -233,17 +191,7 @@ const styles = StyleSheet.create({
   nodeBadgeText: {
     fontFamily: fontFamilies.bold,
     color: '#FFFFFF',
-    fontSize: fontSizes.size9,
-  },
-  nodeDot: {
-    position: 'absolute',
-    top: 2,
-    right: 8,
-    width: 6,
-    height: 6,
-    borderRadius: 3,
-    backgroundColor: '#10B981',
-    borderWidth: 1,
-    borderColor: '#FFFFFF',
+    fontSize: 9,
+    fontWeight: '800',
   },
 });

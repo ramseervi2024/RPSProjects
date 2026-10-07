@@ -61,7 +61,7 @@ function numberToWords(num) {
 }
 
 /**
- * Generates an official Tax Invoice / Order Bill PDF matching the WealthHackers website layout.
+ * Generates an official Tax Invoice / Order Bill PDF matching the Mārwāri Royal E-Commerce format.
  * Returns the local file path and URI.
  */
 export async function generateInvoicePdf(orderData = {}, profile = {}) {
@@ -109,24 +109,24 @@ export async function generateInvoicePdf(orderData = {}, profile = {}) {
   let cursorY = pageHeight - margin - 25;
 
   // 1. Header Left: Logo & Company Info
-  page.drawText('ASSUREDGAIN', {
+  page.drawText('MĀRWĀRI', {
     x: innerX,
     y: cursorY - 14,
     size: 16,
     font: fontBold,
-    color: cTeal,
+    color: hexToRgb('#831843'),
   });
 
-  const agWidth = fontBold.widthOfTextAtSize('ASSUREDGAIN', 16);
-  page.drawText('  WEALTH HACKERS', {
+  const agWidth = fontBold.widthOfTextAtSize('MĀRWĀRI', 16);
+  page.drawText('  ROYAL E-COMMERCE', {
     x: innerX + agWidth,
     y: cursorY - 14,
     size: 12,
     font: fontBold,
-    color: cSlateLight,
+    color: hexToRgb('#B45309'),
   });
 
-  page.drawText('WealthHackers Corporate Financial Advisory Services', {
+  page.drawText('Mārwāri Heritage Artisans Guild & Royal Handicrafts', {
     x: innerX,
     y: cursorY - 30,
     size: 8.5,
@@ -134,7 +134,7 @@ export async function generateInvoicePdf(orderData = {}, profile = {}) {
     color: cSlateDark,
   });
 
-  page.drawText('Registered Office: Bengaluru, Karnataka - 560001, India', {
+  page.drawText('Registered Palace Hub: Jodhpur, Rajasthan - 342001, India', {
     x: innerX,
     y: cursorY - 42,
     size: 7.5,
@@ -142,7 +142,7 @@ export async function generateInvoicePdf(orderData = {}, profile = {}) {
     color: cSlateMedium,
   });
 
-  page.drawText('GSTIN: 29AAICA8891P1Z8  |  SAC: 997152', {
+  page.drawText('GSTIN: 08AAICM9921P1Z5  |  HSN/SAC: 6204 / 7113', {
     x: innerX,
     y: cursorY - 53,
     size: 7.5,
@@ -150,7 +150,7 @@ export async function generateInvoicePdf(orderData = {}, profile = {}) {
     color: cSlateDark,
   });
 
-  page.drawText('Email: billing@assuredgain.com  |  Web: wealthhackers.in', {
+  page.drawText('Email: concierge@marwari.heritage  |  Web: rpsdigitalworld.store', {
     x: innerX,
     y: cursorY - 64,
     size: 7.5,
@@ -731,7 +731,7 @@ export async function generateInvoicePdf(orderData = {}, profile = {}) {
 
   // 5. Bottom Sub-footer line
   const botNotice =
-    'Official Electronic Tax Invoice / Order Bill  |  Generated from WealthHackers  |  www.wealthhackers.in';
+    'Official Electronic Tax Invoice / Order Bill  |  Mārwāri Royal E-Commerce  |  rpsdigitalworld.store';
   const botNoticeWidth = fontRegular.widthOfTextAtSize(botNotice, 6.5);
   page.drawText(botNotice, {
     x: (pageWidth - botNoticeWidth) / 2,
@@ -777,7 +777,7 @@ export async function downloadOrShareInvoice(orderData = {}, profile = {}) {
             url: fileUrl,
           },
           {
-            subject: `WealthHackers Tax Invoice #${orderId}`,
+            subject: `Mārwāri Tax Invoice #${orderId}`,
           }
         );
       } catch (shareErr) {

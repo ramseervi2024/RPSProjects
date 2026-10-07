@@ -10,35 +10,99 @@ import {
   Image,
   RefreshControl,
 } from 'react-native';
-import AppStatusBar from '../components/common/AppStatusBar';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Search,
-  Filter,
   ArrowRight,
   ShoppingBag,
   X,
+  Sparkles,
+  ChevronLeft,
 } from 'lucide-react-native';
-import { getCategoryList } from '../redux/profile/action';
-import { COLORS, SHADOWS, GLOBAL_STYLES } from '../theme/theme';
-import { fontFamilies, fontSizes } from '../constants/fonts';
-import { getCategoryTheme, getCategoryImageUrl } from '../utils/mediaUtils';
+import AppStatusBar from '../components/common/AppStatusBar';
+import { getCategoryList, getProductsList } from '../redux/profile/action';
+import { COLORS, RADII } from '../theme/theme';
+
+const DEFAULT_CATEGORIES = [
+  {
+    id: 'cat-1',
+    name: 'Royal Apparel',
+    subtitle: 'Bandhani Sarees & Royal Jodhpuri Suits',
+    image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=600&q=80',
+    itemCount: '48 items',
+  },
+  {
+    id: 'cat-2',
+    name: 'Handicrafts',
+    subtitle: 'Jaipur Blue Pottery & Hand-Carved Artifacts',
+    image: 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=600&q=80',
+    itemCount: '62 items',
+  },
+  {
+    id: 'cat-3',
+    name: 'Silver Jewellery',
+    subtitle: 'Pure Sterling Silver Kundan & Meenakari Jhumkas',
+    image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=600&q=80',
+    itemCount: '35 items',
+  },
+  {
+    id: 'cat-4',
+    name: 'Marwari Mojari',
+    subtitle: 'Hand-stitched Double-Tanned Camel Leather Mojaris',
+    image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=600&q=80',
+    itemCount: '29 items',
+  },
+  {
+    id: 'cat-5',
+    name: 'Food & Spices',
+    subtitle: 'Kashmiri Kesar Peda & Bikaneri Bhujia',
+    image: 'https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=600&q=80',
+    itemCount: '24 items',
+  },
+  {
+    id: 'cat-6',
+    name: 'Home & Décor',
+    subtitle: 'Jaipuri Razai Quilts & Brass Hanging Lamps',
+    image: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=600&q=80',
+    itemCount: '41 items',
+  },
+  {
+    id: 'cat-7',
+    name: 'Art & Collectibles',
+    subtitle: 'Miniature Rajasthani Paintings & Wood Carvings',
+    image: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=600&q=80',
+    itemCount: '19 items',
+  },
+];
 
 export default function CategoriesScreen() {
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const insets = useSafeAreaInsets();
 
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
   const rawCategories = useSelector((state) => state.profile.categories);
-  const categories = useMemo(() => (Array.isArray(rawCategories) ? rawCategories : []), [rawCategories]);
+
+  const categories = useMemo(() => {
+    if (Array.isArray(rawCategories) && rawCategories.length > 0) {
+      return rawCategories.map((c, idx) => ({
+        ...c,
+        subtitle: DEFAULT_CATEGORIES[idx % DEFAULT_CATEGORIES.length]?.subtitle || 'Authentic heritage creations',
+        itemCount: DEFAULT_CATEGORIES[idx % DEFAULT_CATEGORIES.length]?.itemCount || '30+ items',
+      }));
+    }
+    return DEFAULT_CATEGORIES;
+  }, [rawCategories]);
 
   const loadData = async () => {
     try {
       await dispatch(getCategoryList());
+      await dispatch(getProductsList());
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -60,111 +124,98 @@ export default function CategoriesScreen() {
     const q = searchQuery.toLowerCase().trim();
     return categories.filter(
       (cat) =>
-        (cat.title || '').toLowerCase().includes(q) ||
-        (cat.description || '').toLowerCase().includes(q)
+        (cat.name || cat.title || '').toLowerCase().includes(q) ||
+        (cat.subtitle || '').toLowerCase().includes(q)
     );
   }, [categories, searchQuery]);
 
-  const [imageErrors, setImageErrors] = useState({});
-
-  const renderCategoryCard = ({ item, index }) => {
-    const itemKey = item.id || item.slug || index;
-    const imgUrl = imageErrors[itemKey] ? null : getCategoryImageUrl(item, index);
-    const theme = getCategoryTheme(index);
-
+  const renderCategoryCard = ({ item }) => {
+    const title = item.name || item.title;
     return (
-      <View style={styles.card}>
-        <View style={styles.cardBannerWrap}>
-          {imgUrl ? (
-            <Image
-              source={{ uri: imgUrl }}
-              style={styles.cardImage}
-              resizeMode="cover"
-              onError={() => setImageErrors((prev) => ({ ...prev, [itemKey]: true }))}
-            />
-          ) : (
-            <View style={[styles.cardFallback, { backgroundColor: theme.bg }]}>
-              <ShoppingBag size={32} color={theme.text} />
+      <TouchableOpacity
+        style={styles.card}
+        activeOpacity={0.88}
+        onPress={() => {
+          navigation.navigate('Dashboard');
+        }}
+      >
+        <Image
+          source={{ uri: item.image }}
+          style={styles.cardImage}
+          resizeMode="cover"
+        />
+        <View style={styles.cardOverlay}>
+          <View style={styles.badgeWrap}>
+            <Text style={styles.badgeText}>{item.itemCount}</Text>
+          </View>
+          <View style={styles.cardTextContent}>
+            <Text style={styles.cardTitle}>{title}</Text>
+            <Text style={styles.cardSubtitle} numberOfLines={2}>
+              {item.subtitle}
+            </Text>
+            <View style={styles.exploreLink}>
+              <Text style={styles.exploreText}>Explore Collection</Text>
+              <ArrowRight size={14} color="#FEF08A" />
             </View>
-          )}
+          </View>
         </View>
-
-        <View style={styles.cardBody}>
-          <Text style={styles.categoryTitle}>{item.title}</Text>
-
-          <TouchableOpacity
-            style={styles.viewServicesBtn}
-            onPress={() =>
-              navigation.navigate('Services', { selectedCategory: item.title })
-            }
-            activeOpacity={0.8}
-          >
-            <Text style={styles.viewServicesBtnText}>View Services</Text>
-            <ArrowRight size={14} color="#0F766E" style={{ marginLeft: 6 }} />
-          </TouchableOpacity>
-        </View>
-      </View>
+      </TouchableOpacity>
     );
   };
 
   return (
-    <View style={GLOBAL_STYLES.screenContainer}>
+    <View style={styles.container}>
       <AppStatusBar backgroundColor="#FFFFFF" barStyle="dark-content" />
 
-      {/* Simple Clean Mobile Header */}
-      <View style={styles.topHeader}>
-        <View style={styles.headerTitleWrap}>
-          <Text style={styles.headerTitle}>Categories</Text>
+      {/* Top Header */}
+      <View style={[styles.header, { paddingTop: Math.max(insets.top, 10) }]}>
+        <View style={styles.headerLeft}>
+          <Text style={styles.headerTitle}>Heritage Collections</Text>
+          <Text style={styles.headerSubtitle}>
+            All 7 authentic guilds of Rajasthan
+          </Text>
+        </View>
+        <View style={styles.royalIcon}>
+          <Sparkles size={18} color="#B45309" />
         </View>
       </View>
 
-      {/* Search Bar + Filter Button matching Screenshot 3 */}
-      <View style={styles.searchBarRow}>
-        <View style={styles.searchBox}>
-          <Search size={16} color="#94A3B8" />
+      {/* Search Bar */}
+      <View style={styles.searchBarWrap}>
+        <View style={styles.searchInputWrap}>
+          <Search size={18} color="#64748B" />
           <TextInput
             style={styles.searchInput}
-            placeholder="Search categories..."
+            placeholder="Search collections..."
             placeholderTextColor="#94A3B8"
             value={searchQuery}
             onChangeText={setSearchQuery}
           />
           {searchQuery.length > 0 && (
             <TouchableOpacity onPress={() => setSearchQuery('')}>
-              <X size={15} color="#94A3B8" />
+              <X size={16} color="#94A3B8" />
             </TouchableOpacity>
           )}
         </View>
-        <TouchableOpacity style={styles.filterBtn} activeOpacity={0.8}>
-          <Filter size={15} color="#FFFFFF" />
-          <Text style={styles.filterBtnText}>Filter</Text>
-        </TouchableOpacity>
       </View>
 
       {loading ? (
-        <View style={GLOBAL_STYLES.loadingContainer}>
-          <ActivityIndicator size="large" color={COLORS.primary} />
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="#831843" />
         </View>
       ) : (
         <FlatList
           data={filteredCategories}
-          keyExtractor={(item) => String(item.id)}
+          keyExtractor={(item, index) => item.id || String(index)}
           renderItem={renderCategoryCard}
-          contentContainerStyle={styles.listContainer}
+          contentContainerStyle={styles.listContent}
+          showsVerticalScrollIndicator={false}
           refreshControl={
             <RefreshControl
               refreshing={refreshing}
               onRefresh={handleRefresh}
-              colors={[COLORS.primary]}
-              tintColor={COLORS.primary}
+              colors={['#831843']}
             />
-          }
-          ListEmptyComponent={
-            <View style={styles.emptyContainer}>
-              <ShoppingBag size={44} color="#94A3B8" />
-              <Text style={styles.emptyTitle}>No Categories Found</Text>
-              <Text style={styles.emptySub}>Try searching for another service category.</Text>
-            </View>
           }
         />
       )}
@@ -173,165 +224,130 @@ export default function CategoriesScreen() {
 }
 
 const styles = StyleSheet.create({
-  topHeader: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    paddingHorizontal: 20,
-    paddingTop: 14,
-    paddingBottom: 10,
+  container: {
+    flex: 1,
+    backgroundColor: '#F8FAFC',
+  },
+  header: {
     backgroundColor: '#FFFFFF',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingBottom: 12,
+    borderBottomWidth: 1,
+    borderColor: '#E2E8F0',
+  },
+  headerLeft: {
+    flex: 1,
+  },
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: '800',
+    color: '#0F172A',
+  },
+  headerSubtitle: {
+    fontSize: 12,
+    color: '#64748B',
+    marginTop: 2,
+  },
+  royalIcon: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: '#FEF3C7',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  searchBarWrap: {
+    backgroundColor: '#FFFFFF',
+    paddingHorizontal: 16,
+    paddingVertical: 10,
     borderBottomWidth: 1,
     borderColor: '#F1F5F9',
   },
-  backButton: {
-    width: 38,
-    height: 38,
-    borderRadius: 12,
-    backgroundColor: '#F8FAFC',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#E2E8F0',
-    marginRight: 12,
-    marginTop: 2,
-  },
-  headerTitleWrap: {
-    flex: 1,
-  },
-  headerSubtitleTop: {
-    fontFamily: fontFamilies.bold,
-    fontSize: fontSizes.size10,
-    color: '#0F766E',
-    letterSpacing: 0.8,
-    marginBottom: 2,
-  },
-  headerTitle: {
-    fontFamily: fontFamilies.bold,
-    fontSize: fontSizes.size24,
-    color: '#0F172A',
-    letterSpacing: -0.3,
-  },
-  headerSubtitle: {
-    fontFamily: fontFamilies.regular,
-    fontSize: fontSizes.size12,
-    color: '#64748B',
-    marginTop: 2,
-    lineHeight: 16,
-  },
-  searchBarRow: {
-    flexDirection: 'row',
-    paddingHorizontal: 20,
-    paddingTop: 12,
-    paddingBottom: 10,
-    backgroundColor: '#FFFFFF',
-    gap: 10,
-  },
-  searchBox: {
-    flex: 1,
+  searchInputWrap: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#F8FAFC',
-    borderWidth: 1,
-    borderColor: '#E2E8F0',
-    borderRadius: 12,
+    borderRadius: 10,
     paddingHorizontal: 12,
     height: 42,
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
+    gap: 8,
   },
   searchInput: {
     flex: 1,
-    fontFamily: fontFamilies.regular,
-    fontSize: fontSizes.size13,
+    fontSize: 14,
     color: '#0F172A',
-    marginLeft: 8,
-    padding: 0,
   },
-  filterBtn: {
-    backgroundColor: '#0F766E',
-    flexDirection: 'row',
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 14,
-    borderRadius: 12,
-    height: 42,
-    gap: 6,
   },
-  filterBtnText: {
-    fontFamily: fontFamilies.semiBold,
-    fontSize: fontSizes.size12,
-    color: '#FFFFFF',
-  },
-  listContainer: {
-    padding: 20,
-    paddingBottom: 110,
+  listContent: {
+    padding: 16,
+    paddingBottom: 30,
+    gap: 14,
   },
   card: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: '#E2E8F0',
-    overflow: 'hidden',
-    marginBottom: 16,
-    ...SHADOWS.card,
-  },
-  cardBannerWrap: {
-    width: '100%',
     height: 160,
-    backgroundColor: '#F1F5F9',
+    borderRadius: 16,
+    overflow: 'hidden',
+    position: 'relative',
+    backgroundColor: '#1E293B',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
+    elevation: 3,
   },
   cardImage: {
     width: '100%',
     height: '100%',
+    opacity: 0.85,
   },
-  cardFallback: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  cardBody: {
+  cardOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(15, 23, 42, 0.45)',
     padding: 16,
+    justifyContent: 'space-between',
   },
-  categoryTitle: {
-    fontFamily: fontFamilies.semiBold,
-    fontSize: fontSizes.size16,
-    color: '#0F172A',
-    marginBottom: 6,
-    lineHeight: fontSizes.size16 * 1.25,
+  badgeWrap: {
+    alignSelf: 'flex-start',
+    backgroundColor: 'rgba(131, 24, 67, 0.9)',
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 6,
   },
-  categoryDesc: {
-    fontFamily: fontFamilies.regular,
-    fontSize: fontSizes.size12,
-    color: '#64748B',
-    lineHeight: fontSizes.size12 * 1.4,
-    marginBottom: 14,
+  badgeText: {
+    color: '#FFFFFF',
+    fontSize: 10,
+    fontWeight: '700',
+    letterSpacing: 0.3,
   },
-  viewServicesBtn: {
-    backgroundColor: '#F0FDFA',
-    borderWidth: 1,
-    borderColor: '#CCFBF1',
-    borderRadius: 10,
-    paddingVertical: 10,
+  cardTextContent: {},
+  cardTitle: {
+    color: '#FFFFFF',
+    fontSize: 18,
+    fontWeight: '800',
+  },
+  cardSubtitle: {
+    color: '#E2E8F0',
+    fontSize: 12,
+    marginTop: 2,
+    marginBottom: 8,
+  },
+  exploreLink: {
     flexDirection: 'row',
-    justifyContent: 'center',
     alignItems: 'center',
+    gap: 6,
   },
-  viewServicesBtnText: {
-    fontFamily: fontFamilies.semiBold,
-    fontSize: fontSizes.size12,
-    color: '#0F766E',
-  },
-  emptyContainer: {
-    alignItems: 'center',
-    paddingVertical: 60,
-  },
-  emptyTitle: {
-    fontFamily: fontFamilies.bold,
-    fontSize: fontSizes.size16,
-    color: '#0F172A',
-    marginTop: 12,
-  },
-  emptySub: {
-    fontFamily: fontFamilies.regular,
-    fontSize: fontSizes.size12,
-    color: '#64748B',
-    marginTop: 4,
+  exploreText: {
+    color: '#FEF08A',
+    fontSize: 12,
+    fontWeight: '700',
   },
 });

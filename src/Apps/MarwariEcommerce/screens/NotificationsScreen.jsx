@@ -8,84 +8,76 @@ import {
   TouchableOpacity,
   RefreshControl,
 } from 'react-native';
-import AppStatusBar from '../components/common/AppStatusBar';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import {
-  ChevronLeft,
-  CheckCircle2,
-  ShieldCheck,
+  ArrowLeft,
   Bell,
-  Calendar,
-  Info,
-  ChevronRight,
+  Sparkles,
+  Package,
+  ShieldCheck,
+  Tag,
+  CheckCircle2,
 } from 'lucide-react-native';
+import AppStatusBar from '../components/common/AppStatusBar';
 import { getNotifications } from '../redux/profile/action';
-import { COLORS, TYPOGRAPHY, SPACING, RADII, SHADOWS, GLOBAL_STYLES } from '../theme/theme';
+import { COLORS, RADII } from '../theme/theme';
 
-const SEED_NOTIFICATIONS = [
+const ROYAL_NOTIFICATIONS = [
   {
-    id: 'seed-1',
-    title: 'Welcome to WealthHackers',
-    message: 'Thank you for joining our corporate program.',
-    date: '2026-09-15 17:42:37',
-    category: 'System',
-    type: 'welcome',
-    read: true,
-  },
-  {
-    id: 'seed-2',
-    title: 'Profile Verified',
-    message: 'Your corporate employee ID has been verified.',
-    date: '2026-09-15 17:42:37',
-    category: 'System',
-    type: 'verified',
-    read: true,
-  },
-  {
-    id: 'seed-3',
-    title: 'Order #362 Processed',
-    message: 'Your order has been successfully processed.',
-    date: '2026-09-14 11:22:04',
+    id: 'notif-1',
+    title: 'Shipment Dispatched via BlueDart',
+    message: 'Your order #ORD-2026-8941 has departed from Jodhpur Palace Hub.',
+    date: '2 hours ago',
     category: 'Orders',
     type: 'order',
     read: false,
-    badgeCount: 2,
   },
   {
-    id: 'seed-4',
-    title: 'SIP Reminder',
-    message: 'Your SIP of ₹5,000 is due in 3 days.',
-    date: '2026-09-12 09:30:00',
-    category: 'SIP Updates',
-    type: 'sip',
+    id: 'notif-2',
+    title: 'Festive Royal Privilege: ROYAL500',
+    message: 'Use coupon ROYAL500 at checkout to receive ₹500 discount on silver jewellery and sarees.',
+    date: '1 day ago',
+    category: 'Privilege',
+    type: 'discount',
+    read: false,
+  },
+  {
+    id: 'notif-3',
+    title: 'Authenticity Guarantee Certified',
+    message: 'Your purchased Udaipur Silver Box has been issued verified GI artisan provenance.',
+    date: '3 days ago',
+    category: 'Heritage',
+    type: 'certificate',
     read: true,
   },
   {
-    id: 'seed-5',
-    title: 'System Update',
-    message: 'We have updated our latest financial plans.',
-    date: '2026-09-10 16:20:15',
-    category: 'System',
-    type: 'info',
+    id: 'notif-4',
+    title: 'Welcome to Mārwāri Royal Court',
+    message: 'Thank you for joining our patronage society supporting authentic Rajasthan artisans.',
+    date: '1 week ago',
+    category: 'Welcome',
+    type: 'welcome',
     read: true,
   },
 ];
 
-const NOTIF_TABS = ['All', 'Orders', 'SIP Updates', 'System'];
-
 export default function NotificationsScreen() {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(true);
-  const [refreshing, setRefreshing] = useState(false);
-  const [activeTab, setActiveTab] = useState('All');
+  const insets = useSafeAreaInsets();
 
-  const reduxNotifications = useSelector((state) => state.profile.notifications);
+  const [loading, setLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  const [notifications, setNotifications] = useState(ROYAL_NOTIFICATIONS);
 
   const fetchNotifs = async () => {
     try {
-      await dispatch(getNotifications());
+      const res = await dispatch(getNotifications());
+      if (res?.data && Array.isArray(res.data) && res.data.length > 0) {
+        setNotifications(res.data);
+      }
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -102,318 +94,143 @@ export default function NotificationsScreen() {
     fetchNotifs();
   };
 
-  const combinedNotifications = useMemo(() => {
-    const list = Array.isArray(reduxNotifications) ? reduxNotifications : [];
-    if (list.length === 0) return SEED_NOTIFICATIONS;
-
-    const formattedApiList = list.map((item, idx) => {
-      const lowerTitle = (item.title || '').toLowerCase();
-      let cat = 'System';
-      let type = 'info';
-
-      if (lowerTitle.includes('order')) {
-        cat = 'Orders';
-        type = 'order';
-      } else if (lowerTitle.includes('sip') || lowerTitle.includes('invest')) {
-        cat = 'SIP Updates';
-        type = 'sip';
-      }
-
-      return {
-        id: `api-${item.id || idx}`,
-        title: item.title || 'Corporate Alert',
-        message: item.message || '',
-        date: item.date || 'Recent',
-        category: cat,
-        type,
-        read: !!item.read,
-      };
-    });
-
-    return [...formattedApiList, ...SEED_NOTIFICATIONS];
-  }, [reduxNotifications]);
-
-  const filteredNotifications = useMemo(() => {
-    if (activeTab === 'All') return combinedNotifications;
-    return combinedNotifications.filter(
-      (item) => (item.category || '').toLowerCase() === activeTab.toLowerCase()
-    );
-  }, [combinedNotifications, activeTab]);
-
-  const getIconConfig = (type) => {
+  const getIcon = (type) => {
     switch (type) {
-      case 'welcome':
-        return {
-          Icon: CheckCircle2,
-          bg: '#DCFCE7',
-          color: '#15803D',
-        };
-      case 'verified':
-        return {
-          Icon: ShieldCheck,
-          bg: '#E6F4F1',
-          color: '#0F766E',
-        };
       case 'order':
-        return {
-          Icon: Bell,
-          bg: '#FEF3C7',
-          color: '#D97706',
-        };
-      case 'sip':
-        return {
-          Icon: Calendar,
-          bg: '#DCFCE7',
-          color: '#15803D',
-        };
-      case 'info':
+        return <Package size={18} color="#831843" />;
+      case 'discount':
+        return <Tag size={18} color="#B45309" />;
+      case 'certificate':
+        return <ShieldCheck size={18} color="#059669" />;
       default:
-        return {
-          Icon: Info,
-          bg: '#E0F2FE',
-          color: '#0284C7',
-        };
+        return <Sparkles size={18} color="#831843" />;
     }
   };
 
-  const renderNotificationItem = ({ item }) => {
-    const { Icon, bg, color } = getIconConfig(item.type);
-
-    return (
-      <View style={styles.card}>
-        <View style={[styles.iconBox, { backgroundColor: bg }]}>
-          <Icon size={20} color={color} />
-        </View>
-
-        <View style={styles.contentCol}>
-          <View style={styles.titleRow}>
-            <Text style={styles.notifTitle} numberOfLines={1}>
-              {item.title}
-            </Text>
-            {item.badgeCount && (
-              <View style={styles.unreadBadge}>
-                <Text style={styles.unreadBadgeText}>{item.badgeCount}</Text>
-              </View>
-            )}
-          </View>
-
-          <Text style={styles.notifMessage}>{item.message}</Text>
+  const renderItem = ({ item }) => (
+    <View style={[styles.notifCard, !item.read && styles.notifCardUnread]}>
+      <View style={styles.iconCircle}>{getIcon(item.type)}</View>
+      <View style={styles.textContent}>
+        <View style={styles.titleRow}>
+          <Text style={styles.notifTitle}>{item.title}</Text>
           <Text style={styles.notifDate}>{item.date}</Text>
         </View>
-
-        <ChevronRight size={16} color={COLORS.textPlaceholder} style={styles.chevron} />
+        <Text style={styles.notifMessage}>{item.message}</Text>
       </View>
-    );
-  };
+    </View>
+  );
 
   return (
-    <View style={GLOBAL_STYLES.screenContainer}>
+    <View style={styles.container}>
       <AppStatusBar backgroundColor="#FFFFFF" barStyle="dark-content" />
 
-      {/* Top Header matching Mockup 2 Screen 8 */}
-      <View style={styles.topHeader}>
+      {/* Header */}
+      <View style={[styles.header, { paddingTop: Math.max(insets.top, 10) }]}>
         <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => (navigation.canGoBack() ? navigation.goBack() : navigation.navigate('Main'))}
-          activeOpacity={0.7}
+          style={styles.backBtn}
+          onPress={() => navigation.goBack()}
         >
-          <ChevronLeft size={22} color={COLORS.navy} />
+          <ArrowLeft size={20} color="#0F172A" />
         </TouchableOpacity>
-        <View style={styles.titleWrap}>
-          <Text style={styles.screenTitle}>Notifications</Text>
-          <Text style={styles.screenSubtitle}>
-            Stay updated with your order statuses and SIP updates.
-          </Text>
-        </View>
+        <Text style={styles.headerTitle}>Royal Notifications</Text>
+        <View style={{ width: 36 }} />
       </View>
 
-      {/* Tabs Filter Bar */}
-      <View style={styles.tabsBar}>
-        <FlatList
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          data={NOTIF_TABS}
-          keyExtractor={(item) => item}
-          contentContainerStyle={styles.tabsContent}
-          renderItem={({ item: tab }) => {
-            const isActive = activeTab === tab;
-            return (
-              <TouchableOpacity
-                style={[styles.tabPill, isActive && styles.tabPillActive]}
-                onPress={() => setActiveTab(tab)}
-                activeOpacity={0.7}
-              >
-                <Text style={[styles.tabText, isActive && styles.tabTextActive]}>
-                  {tab}
-                </Text>
-              </TouchableOpacity>
-            );
-          }}
-        />
-      </View>
-
-      {/* Notifications List */}
-      {loading && !refreshing ? (
-        <View style={GLOBAL_STYLES.loadingContainer}>
-          <ActivityIndicator size="large" color={COLORS.primary} />
-        </View>
-      ) : (
-        <FlatList
-          data={filteredNotifications}
-          keyExtractor={(item) => item.id}
-          renderItem={renderNotificationItem}
-          contentContainerStyle={styles.listContent}
-          refreshControl={
-            <RefreshControl
-              refreshing={refreshing}
-              onRefresh={handleRefresh}
-              colors={[COLORS.primary]}
-              tintColor={COLORS.primary}
-            />
-          }
-          ListEmptyComponent={
-            <View style={GLOBAL_STYLES.emptyContainer}>
-              <Text style={GLOBAL_STYLES.emptyIcon}>🔔</Text>
-              <Text style={GLOBAL_STYLES.emptyTitle}>No Notifications</Text>
-              <Text style={GLOBAL_STYLES.emptySubtitle}>
-                You have no updates in this category at this time.
-              </Text>
-            </View>
-          }
-        />
-      )}
+      <FlatList
+        data={notifications}
+        keyExtractor={(item) => item.id}
+        renderItem={renderItem}
+        contentContainerStyle={styles.listContent}
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={handleRefresh}
+            colors={['#831843']}
+          />
+        }
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  topHeader: {
+  container: {
+    flex: 1,
+    backgroundColor: '#F8FAFC',
+  },
+  header: {
+    backgroundColor: '#FFFFFF',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: SPACING.lg,
-    paddingTop: SPACING.sm,
-    paddingBottom: SPACING.md,
-    backgroundColor: COLORS.surface,
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingBottom: 12,
+    borderBottomWidth: 1,
+    borderColor: '#E2E8F0',
   },
-  backButton: {
-    width: 38,
-    height: 38,
-    borderRadius: RADII.sm,
+  backBtn: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: '#F8FAFC',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: COLORS.backgroundAlt,
-    marginRight: SPACING.sm,
   },
-  titleWrap: {
-    flex: 1,
-  },
-  screenTitle: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size18,
-    color: COLORS.navy,
-  },
-  screenSubtitle: {
-    fontFamily: TYPOGRAPHY.family.regular,
-    fontSize: TYPOGRAPHY.sizes.size12,
-    color: COLORS.textMuted,
-    marginTop: 2,
-  },
-  tabsBar: {
-    backgroundColor: COLORS.surface,
-    paddingVertical: SPACING.xs,
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.borderLight,
-  },
-  tabsContent: {
-    paddingHorizontal: SPACING.lg,
-    gap: SPACING.sm,
-  },
-  tabPill: {
-    paddingHorizontal: 16,
-    paddingVertical: 7,
-    borderRadius: RADII.full,
-    backgroundColor: COLORS.backgroundAlt,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-  },
-  tabPillActive: {
-    backgroundColor: COLORS.primary,
-    borderColor: COLORS.primary,
-  },
-  tabText: {
-    fontFamily: TYPOGRAPHY.family.semiBold,
-    fontSize: TYPOGRAPHY.sizes.size12,
-    color: COLORS.textMuted,
-  },
-  tabTextActive: {
-    color: COLORS.textInverted,
+  headerTitle: {
+    fontSize: 18,
+    fontWeight: '800',
+    color: '#0F172A',
   },
   listContent: {
-    paddingHorizontal: SPACING.lg,
-    paddingTop: SPACING.md,
-    paddingBottom: 130,
+    padding: 16,
+    gap: 12,
   },
-  card: {
-    backgroundColor: COLORS.surface,
-    borderRadius: RADII.lg,
-    padding: SPACING.md,
-    marginBottom: SPACING.sm + 2,
-    borderWidth: 1,
-    borderColor: COLORS.mintBorder,
+  notifCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 14,
+    padding: 14,
     flexDirection: 'row',
-    alignItems: 'center',
-    ...SHADOWS.card,
+    alignItems: 'flex-start',
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
+    gap: 12,
   },
-  iconBox: {
-    width: 44,
-    height: 44,
-    borderRadius: RADII.full,
+  notifCardUnread: {
+    borderColor: '#FCE7F3',
+    backgroundColor: '#FFFDFE',
+  },
+  iconCircle: {
+    width: 38,
+    height: 38,
+    borderRadius: 19,
+    backgroundColor: '#F8FAFC',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: SPACING.md,
   },
-  contentCol: {
+  textContent: {
     flex: 1,
-    marginRight: SPACING.sm,
   },
   titleRow: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 2,
-  },
-  notifTitle: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size14,
-    color: COLORS.navy,
-    flex: 1,
-  },
-  unreadBadge: {
-    width: 18,
-    height: 18,
-    borderRadius: 9,
-    backgroundColor: COLORS.error,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: SPACING.xs,
-  },
-  unreadBadgeText: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size10,
-    color: COLORS.textInverted,
-  },
-  notifMessage: {
-    fontFamily: TYPOGRAPHY.family.regular,
-    fontSize: TYPOGRAPHY.sizes.size12,
-    color: COLORS.textMuted,
-    lineHeight: 17,
     marginBottom: 4,
   },
-  notifDate: {
-    fontFamily: TYPOGRAPHY.family.medium,
-    fontSize: TYPOGRAPHY.sizes.size11,
-    color: COLORS.textPlaceholder,
+  notifTitle: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#0F172A',
+    flex: 1,
+    marginRight: 6,
   },
-  chevron: {
-    marginLeft: 4,
+  notifDate: {
+    fontSize: 10,
+    color: '#94A3B8',
+  },
+  notifMessage: {
+    fontSize: 12,
+    color: '#64748B',
+    lineHeight: 18,
   },
 });

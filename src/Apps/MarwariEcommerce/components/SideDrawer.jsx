@@ -13,248 +13,188 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   Home,
   LayoutGrid,
-  Calculator,
-  ClipboardList,
-  CreditCard,
+  ShoppingBag,
+  Package,
+  User,
+  Heart,
+  PhoneCall,
   LogOut,
-  Check,
+  ChevronRight,
+  ShieldCheck,
+  X,
 } from 'lucide-react-native';
-import { fontFamilies, fontSizes } from '../constants/fonts';
-import { logoutAction } from '../redux/auth/action';
+import { COLORS, RADII, TYPOGRAPHY } from '../theme/theme';
+import { logout } from '../redux/auth/action';
 
-export default function SideDrawer({ visible, onClose, navigation, activeRoute = 'Dashboard' }) {
+export default function SideDrawer({
+  visible,
+  onClose,
+  navigation,
+  activeRoute = 'Dashboard',
+}) {
   const dispatch = useDispatch();
   const insets = useSafeAreaInsets();
-  const userProfile = useSelector((s) => s.profile?.userProfile) || {};
-  const ordersList = useSelector((s) => s.profile?.orders) || [];
-  const servicesList = useSelector((s) => s.profile?.services) || [];
+  const { user, isAuthenticated } = useSelector((s) => s.auth);
+  const cartItems = useSelector((s) => s.cart?.items) || [];
+  const cartCount = cartItems.reduce((acc, it) => acc + (it.qty || 1), 0);
 
-  const fullName = `${userProfile?.first_name || 'Ramesh'} ${userProfile?.last_name || 'Seervi'}`.trim();
-  const initials = `${(userProfile?.first_name || 'R')[0]}${(userProfile?.last_name || 'S')[0]}`.toUpperCase();
-  const email = userProfile?.email || 'ramseervi4321@gmail.com';
-  const company = userProfile?.company_name || 'Accenture Corporate Tier 1';
+  const customerName = user?.name || 'Royal Patron';
+  const customerEmail = user?.email || (isAuthenticated ? 'patron@marwari.heritage' : 'Guest Traveler');
 
-  const topPadding = insets.top > 0 ? insets.top + 14 : (Platform.OS === 'android' ? 48 : 24);
-  const bottomPadding = insets.bottom > 0 ? insets.bottom + 12 : (Platform.OS === 'android' ? 22 : 16);
+  const topPadding = insets.top > 0 ? insets.top + 16 : 40;
+  const bottomPadding = insets.bottom > 0 ? insets.bottom + 16 : 24;
 
-  const handleNavigate = (routeName) => {
+  const handleNavigate = (routeName, params) => {
     onClose();
     if (navigation) {
-      navigation.navigate(routeName);
+      navigation.navigate(routeName, params);
     }
   };
 
   const handleLogout = () => {
     onClose();
-    dispatch(logoutAction());
-    if (navigation) {
-      navigation.reset({
-        index: 0,
-        routes: [{ name: 'Welcome' }],
-      });
-    }
+    dispatch(logout());
   };
 
-  const PORTALS = [
-    {
-      id: 'Dashboard',
-      title: 'Executive Dashboard',
-      Icon: Home,
-      badge: 'Active',
-      badgeType: 'active',
-      screen: 'Dashboard',
-    },
-    {
-      id: 'SIPPortfolios',
-      title: 'SIP Portfolios',
-      Icon: Calculator,
-      badge: 'Verified CAGR',
-      badgeType: 'popular',
-      screen: 'SIPPortfolios',
-    },
-    {
-      id: 'Categories',
-      title: 'Service Categories',
-      Icon: LayoutGrid,
-      badge: '12 Domains',
-      badgeType: 'neutral',
-      screen: 'Categories',
-    },
-    {
-      id: 'Services',
-      title: 'All Corporate Services',
-      Icon: LayoutGrid,
-      badge: `${servicesList.length || 8} Available`,
-      badgeType: 'neutral',
-      screen: 'Services',
-    },
-    {
-      id: 'Calculate',
-      title: 'Wealth Calculators',
-      Icon: Calculator,
-      badge: 'Popular',
-      badgeType: 'popular',
-      screen: 'Calculate',
-    },
-    {
-      id: 'Orders',
-      title: 'Order History & Status',
-      Icon: ClipboardList,
-      badge: `${ordersList.length || 14} Total`,
-      badgeType: 'neutral',
-      screen: 'Orders',
-    },
-    {
-      id: 'ContactAdvisor',
-      title: 'Contact Advisor Desk',
-      Icon: CreditCard,
-      badge: 'Online',
-      badgeType: 'popular',
-      screen: 'ContactAdvisor',
-    },
+  const MENU_ITEMS = [
+    { id: 'Dashboard', label: 'Home Feed', icon: Home, route: 'Dashboard' },
+    { id: 'Categories', label: 'All Collections (7)', icon: LayoutGrid, route: 'Categories' },
+    { id: 'Cart', label: 'My Royal Bag', icon: ShoppingBag, route: 'Cart', badge: cartCount },
+    { id: 'Orders', label: 'My Orders & Invoices', icon: Package, route: 'Orders' },
+    { id: 'Profile', label: 'Royal Profile & Addresses', icon: User, route: 'Profile' },
   ];
 
   return (
     <Modal
       visible={visible}
-      animationType="fade"
       transparent
-      statusBarTranslucent
+      animationType="fade"
       onRequestClose={onClose}
     >
       <View style={styles.overlay}>
-        {/* Drawer Panel on Left */}
-        <View
-          style={[
-            styles.drawerContainer,
-            {
-              paddingTop: topPadding,
-              paddingBottom: bottomPadding,
-            },
-          ]}
-        >
-          {/* User Profile Header (Matching Section 1 Spec) */}
-          <View style={styles.drawerHeader}>
-            {/* RS Squircle Avatar with Online Status */}
-            <View style={styles.avatar}>
-              <Text style={styles.avatarText}>{initials}</Text>
-              <View style={styles.onlineDot} />
-            </View>
-
-            {/* Name, PRO tag, email, company */}
-            <View style={styles.userInfo}>
-              <View style={styles.nameRow}>
-                <Text style={styles.userName} numberOfLines={1}>
-                  {fullName}
-                </Text>
-                <View style={styles.proBadge}>
-                  <Text style={styles.proText}>PRO</Text>
-                </View>
-              </View>
-              <Text style={styles.userEmail} numberOfLines={1}>
-                {email}
-              </Text>
-              <View style={styles.corporateRow}>
-                <View style={styles.checkIconWrapper}>
-                  <Check size={8} color="#FFFFFF" strokeWidth={3.5} />
-                </View>
-                <Text style={styles.corporateText} numberOfLines={1}>
-                  {company}
-                </Text>
-              </View>
-            </View>
-          </View>
-
-          <View style={styles.divider} />
-
-          {/* Primary Portals List */}
-          <ScrollView
-            style={styles.drawerBody}
-            contentContainerStyle={styles.drawerBodyContent}
-            showsVerticalScrollIndicator={false}
-          >
-            <Text style={styles.sectionHeading}>PRIMARY PORTALS</Text>
-
-            {PORTALS.map((portal) => {
-              const isActive = activeRoute === portal.id;
-              const IconComp = portal.Icon;
-
-              return (
-                <TouchableOpacity
-                  key={portal.id}
-                  style={[styles.portalItem, isActive && styles.portalItemActive]}
-                  onPress={() => handleNavigate(portal.screen)}
-                  activeOpacity={0.7}
-                >
-                  <View
-                    style={[
-                      styles.portalIconWrapper,
-                      isActive && styles.portalIconWrapperActive,
-                    ]}
-                  >
-                    <IconComp
-                      size={18}
-                      color={isActive ? '#FFFFFF' : '#0F766E'}
-                      strokeWidth={2.2}
-                    />
-                  </View>
-
-                  <Text
-                    style={[
-                      styles.portalTitle,
-                      isActive && styles.portalTitleActive,
-                    ]}
-                    numberOfLines={1}
-                  >
-                    {portal.title}
-                  </Text>
-
-                  {portal.badgeType === 'active' && (
-                    <View style={styles.badgeActive}>
-                      <Text style={styles.badgeTextActive}>{portal.badge}</Text>
-                    </View>
-                  )}
-
-                  {portal.badgeType === 'popular' && (
-                    <View style={styles.badgePopular}>
-                      <Text style={styles.badgeTextPopular}>{portal.badge}</Text>
-                    </View>
-                  )}
-
-                  {portal.badgeType === 'neutral' && (
-                    <Text style={styles.badgeTextNeutral}>{portal.badge}</Text>
-                  )}
-
-                  {portal.badgeType === 'currency' && (
-                    <Text style={styles.badgeTextCurrency}>{portal.badge}</Text>
-                  )}
-                </TouchableOpacity>
-              );
-            })}
-          </ScrollView>
-
-          <View style={styles.divider} />
-
-          {/* Drawer Footer (Logout + Version) */}
-          <View style={styles.drawerFooter}>
-            <TouchableOpacity
-              style={styles.logoutBtn}
-              onPress={handleLogout}
-              activeOpacity={0.7}
-            >
-              <LogOut size={16} color="#EF4444" strokeWidth={2.2} />
-              <Text style={styles.logoutText}>Logout Account</Text>
-            </TouchableOpacity>
-            <Text style={styles.versionText}>v2.4.0 (2028)</Text>
-          </View>
-        </View>
-
-        {/* Backdrop on Right - Dismiss on tap */}
         <TouchableOpacity
           style={styles.backdrop}
           activeOpacity={1}
           onPress={onClose}
         />
+
+        <View
+          style={[
+            styles.drawerContent,
+            { paddingTop: topPadding, paddingBottom: bottomPadding },
+          ]}
+        >
+          {/* Header Profile Header */}
+          <View style={styles.header}>
+            <View style={styles.royalEmblem}>
+              <Text style={styles.royalEmblemText}>
+                {(customerName[0] || 'M').toUpperCase()}
+              </Text>
+            </View>
+            <View style={styles.userInfo}>
+              <Text style={styles.userName} numberOfLines={1}>
+                {customerName}
+              </Text>
+              <Text style={styles.userEmail} numberOfLines={1}>
+                {customerEmail}
+              </Text>
+              <View style={styles.verifiedBadge}>
+                <ShieldCheck size={12} color="#059669" />
+                <Text style={styles.verifiedText}>Verified Artisan Patron</Text>
+              </View>
+            </View>
+            <TouchableOpacity
+              onPress={onClose}
+              style={styles.closeBtn}
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            >
+              <X size={20} color="#64748B" />
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.divider} />
+
+          {/* Menu Items */}
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.menuList}
+          >
+            <Text style={styles.sectionTitle}>ROYAL EXPLORER</Text>
+            {MENU_ITEMS.map((item) => {
+              const IconComp = item.icon;
+              const isActive = activeRoute === item.id;
+              return (
+                <TouchableOpacity
+                  key={item.id}
+                  style={[styles.menuItem, isActive && styles.menuItemActive]}
+                  onPress={() => handleNavigate(item.route)}
+                  activeOpacity={0.7}
+                >
+                  <View
+                    style={[
+                      styles.iconWrap,
+                      isActive && styles.iconWrapActive,
+                    ]}
+                  >
+                    <IconComp
+                      size={20}
+                      color={isActive ? '#831843' : '#64748B'}
+                    />
+                  </View>
+                  <Text
+                    style={[
+                      styles.menuLabel,
+                      isActive && styles.menuLabelActive,
+                    ]}
+                  >
+                    {item.label}
+                  </Text>
+                  {item.badge > 0 ? (
+                    <View style={styles.badgeWrap}>
+                      <Text style={styles.badgeText}>{item.badge}</Text>
+                    </View>
+                  ) : (
+                    <ChevronRight size={18} color="#CBD5E1" />
+                  )}
+                </TouchableOpacity>
+              );
+            })}
+
+            <View style={styles.divider} />
+
+            {/* Heritage Features Banner */}
+            <View style={styles.heritageCard}>
+              <Text style={styles.heritageCardTitle}>MĀRWĀRI CRAFT PLEDGE</Text>
+              <Text style={styles.heritageCardSubtitle}>
+                Every piece is authentic, handcrafted by master artisans of
+                Jodhpur, Jaipur & Udaipur.
+              </Text>
+            </View>
+          </ScrollView>
+
+          {/* Bottom Auth CTA */}
+          <View style={styles.footer}>
+            {isAuthenticated ? (
+              <TouchableOpacity
+                style={styles.logoutBtn}
+                onPress={handleLogout}
+                activeOpacity={0.8}
+              >
+                <LogOut size={18} color="#DC2626" />
+                <Text style={styles.logoutText}>Sign Out</Text>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                style={styles.signInBtn}
+                onPress={() => handleNavigate('Login')}
+                activeOpacity={0.8}
+              >
+                <User size={18} color="#FFFFFF" />
+                <Text style={styles.signInText}>Sign In / Register</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+        </View>
       </View>
     </Modal>
   );
@@ -264,215 +204,179 @@ const styles = StyleSheet.create({
   overlay: {
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: 'rgba(15, 23, 42, 0.45)',
   },
   backdrop: {
-    flex: 1,
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(15, 23, 42, 0.45)',
   },
-  drawerContainer: {
-    width: '84%',
-    maxWidth: 350,
+  drawerContent: {
+    width: '82%',
+    maxWidth: 320,
     backgroundColor: '#FFFFFF',
-    borderTopRightRadius: 24,
-    borderBottomRightRadius: 24,
-    shadowColor: '#000000',
+    height: '100%',
+    paddingHorizontal: 20,
+    shadowColor: '#000',
     shadowOffset: { width: 4, height: 0 },
-    shadowOpacity: 0.16,
-    shadowRadius: 18,
-    elevation: 22,
-    paddingHorizontal: 18,
+    shadowOpacity: 0.15,
+    shadowRadius: 10,
+    elevation: 16,
   },
-  drawerHeader: {
+  header: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 10,
+    marginBottom: 16,
   },
-  avatar: {
+  royalEmblem: {
     width: 48,
     height: 48,
-    borderRadius: 14,
-    backgroundColor: '#0F766E',
+    borderRadius: 24,
+    backgroundColor: '#831843',
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'relative',
+    marginRight: 12,
   },
-  avatarText: {
-    fontFamily: fontFamilies.extraBold,
-    color: '#FFFFFF',
-    fontSize: fontSizes.size16,
-    letterSpacing: 0.5,
-  },
-  onlineDot: {
-    position: 'absolute',
-    bottom: -1,
-    right: -1,
-    width: 12,
-    height: 12,
-    borderRadius: 6,
-    backgroundColor: '#10B981',
-    borderWidth: 2,
-    borderColor: '#FFFFFF',
+  royalEmblemText: {
+    color: '#FEF08A',
+    fontSize: 20,
+    fontWeight: '800',
   },
   userInfo: {
-    marginLeft: 12,
     flex: 1,
-    justifyContent: 'center',
-  },
-  nameRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
   },
   userName: {
-    fontFamily: fontFamilies.bold,
-    fontSize: fontSizes.size15,
+    fontSize: 16,
+    fontWeight: '700',
     color: '#0F172A',
-    flexShrink: 1,
-  },
-  proBadge: {
-    backgroundColor: '#ECFDF5',
-    borderWidth: 1,
-    borderColor: '#6EE7B7',
-    borderRadius: 4,
-    paddingHorizontal: 5,
-    paddingVertical: 1,
-    marginLeft: 6,
-  },
-  proText: {
-    fontFamily: fontFamilies.extraBold,
-    fontSize: fontSizes.size10,
-    color: '#0F766E',
   },
   userEmail: {
-    fontFamily: fontFamilies.regular,
-    fontSize: fontSizes.size12,
+    fontSize: 12,
     color: '#64748B',
     marginTop: 2,
   },
-  corporateRow: {
+  verifiedBadge: {
     flexDirection: 'row',
     alignItems: 'center',
+    gap: 4,
     marginTop: 4,
   },
-  checkIconWrapper: {
-    width: 13,
-    height: 13,
-    borderRadius: 6.5,
-    backgroundColor: '#0F766E',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 4,
+  verifiedText: {
+    fontSize: 10,
+    fontWeight: '600',
+    color: '#059669',
   },
-  corporateText: {
-    fontFamily: fontFamilies.semiBold,
-    fontSize: fontSizes.size11,
-    color: '#0F766E',
-    flexShrink: 1,
+  closeBtn: {
+    padding: 6,
   },
   divider: {
     height: 1,
     backgroundColor: '#F1F5F9',
-    marginVertical: 10,
+    marginVertical: 12,
   },
-  drawerBody: {
-    flex: 1,
+  menuList: {
+    paddingVertical: 4,
   },
-  drawerBodyContent: {
-    paddingVertical: 6,
-  },
-  sectionHeading: {
-    fontFamily: fontFamilies.extraBold,
-    fontSize: fontSizes.size11,
+  sectionTitle: {
+    fontSize: 11,
+    fontWeight: '700',
     color: '#94A3B8',
-    letterSpacing: 0.8,
-    marginBottom: 12,
+    letterSpacing: 1,
+    marginBottom: 8,
   },
-  portalItem: {
+  menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 10,
-    paddingHorizontal: 12,
-    borderRadius: 14,
-    marginBottom: 6,
-    borderWidth: 1,
-    borderColor: 'transparent',
-  },
-  portalItemActive: {
-    backgroundColor: '#F0FDF4',
-    borderColor: '#BBF7D0',
-  },
-  portalIconWrapper: {
-    width: 36,
-    height: 36,
+    paddingVertical: 11,
+    paddingHorizontal: 10,
     borderRadius: 10,
-    backgroundColor: '#F1F5F9',
+    marginBottom: 4,
+  },
+  menuItemActive: {
+    backgroundColor: '#FDF2F8',
+  },
+  iconWrap: {
+    width: 34,
+    height: 34,
+    borderRadius: 8,
+    backgroundColor: '#F8FAFC',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 10,
+    marginRight: 12,
   },
-  portalIconWrapperActive: {
-    backgroundColor: '#0F766E',
+  iconWrapActive: {
+    backgroundColor: '#FCE7F3',
   },
-  portalTitle: {
-    fontFamily: fontFamilies.semiBold,
-    fontSize: fontSizes.size13,
-    color: '#1E293B',
+  menuLabel: {
     flex: 1,
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#334155',
   },
-  portalTitleActive: {
-    fontFamily: fontFamilies.bold,
-    color: '#0F766E',
+  menuLabelActive: {
+    color: '#831843',
+    fontWeight: '700',
   },
-  badgeActive: {
-    backgroundColor: '#0F766E',
+  badgeWrap: {
+    backgroundColor: '#831843',
     borderRadius: 12,
-    paddingHorizontal: 9,
-    paddingVertical: 3,
-  },
-  badgeTextActive: {
-    fontFamily: fontFamilies.bold,
-    color: '#FFFFFF',
-    fontSize: fontSizes.size11,
-  },
-  badgePopular: {
-    backgroundColor: '#ECFDF5',
-    borderRadius: 10,
     paddingHorizontal: 8,
-    paddingVertical: 3,
+    paddingVertical: 2,
   },
-  badgeTextPopular: {
-    fontFamily: fontFamilies.bold,
-    color: '#059669',
-    fontSize: fontSizes.size11,
+  badgeText: {
+    color: '#FFFFFF',
+    fontSize: 11,
+    fontWeight: '700',
   },
-  badgeTextNeutral: {
-    fontFamily: fontFamilies.medium,
-    color: '#64748B',
-    fontSize: fontSizes.size11,
+  heritageCard: {
+    backgroundColor: '#FFFBEB',
+    borderRadius: 10,
+    padding: 12,
+    borderWidth: 1,
+    borderColor: '#FEF3C7',
+    marginTop: 12,
   },
-  badgeTextCurrency: {
-    fontFamily: fontFamilies.bold,
-    color: '#0F766E',
-    fontSize: fontSizes.size12,
+  heritageCardTitle: {
+    fontSize: 11,
+    fontWeight: '800',
+    color: '#B45309',
+    letterSpacing: 0.5,
+    marginBottom: 4,
   },
-  drawerFooter: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+  heritageCardSubtitle: {
+    fontSize: 11,
+    color: '#78350F',
+    lineHeight: 16,
+  },
+  footer: {
     paddingTop: 12,
   },
   logoutBtn: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#FEE2E2',
+    backgroundColor: '#FEF2F2',
+    gap: 8,
   },
   logoutText: {
-    fontFamily: fontFamilies.semiBold,
-    fontSize: fontSizes.size13,
-    color: '#EF4444',
-    marginLeft: 8,
+    color: '#DC2626',
+    fontWeight: '700',
+    fontSize: 14,
   },
-  versionText: {
-    fontFamily: fontFamilies.medium,
-    fontSize: fontSizes.size11,
-    color: '#94A3B8',
+  signInBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    borderRadius: 10,
+    backgroundColor: '#077B9F',
+    gap: 8,
+  },
+  signInText: {
+    color: '#FFFFFF',
+    fontWeight: '700',
+    fontSize: 14,
   },
 });

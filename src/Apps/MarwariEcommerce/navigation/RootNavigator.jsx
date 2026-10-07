@@ -5,30 +5,28 @@ import { View, ActivityIndicator, StyleSheet } from 'react-native';
 
 import WelcomeScreen from '../screens/WelcomeScreen';
 import LoginScreen from '../screens/LoginScreen';
+import RegisterScreen from '../screens/RegisterScreen';
 import VerifyOTPScreen from '../screens/VerifyOTPScreen';
 import VerificationSuccessScreen from '../screens/VerificationSuccessScreen';
-import OrderDetailsScreen from '../screens/OrderDetailsScreen';
-import NotificationsScreen from '../screens/NotificationsScreen';
-import PaymentHistoryScreen from '../screens/PaymentHistoryScreen';
+import ProductDetailsScreen from '../screens/ProductDetailsScreen';
 import CartScreen from '../screens/CartScreen';
 import CheckoutScreen from '../screens/CheckoutScreen';
-import SIPScreen from '../screens/SIPScreen';
-import ContactAdvisorScreen from '../screens/ContactAdvisorScreen';
-import CategoriesScreen from '../screens/CategoriesScreen';
-import CalculatorScreen from '../screens/CalculatorScreen';
+import OrderSuccessScreen from '../screens/OrderSuccessScreen';
+import OrderDetailsScreen from '../screens/OrderDetailsScreen';
 import OrdersScreen from '../screens/OrdersScreen';
+import CategoriesScreen from '../screens/CategoriesScreen';
 import UpdateProfileScreen from '../screens/UpdateProfileScreen';
-import ServicesScreen from '../screens/ServicesScreen';
+import NotificationsScreen from '../screens/NotificationsScreen';
+import PaymentHistoryScreen from '../screens/PaymentHistoryScreen';
 import AppNavigator from './AppNavigator';
 import { initializeAuth } from '../redux/auth/action';
-import { COLORS, TYPOGRAPHY } from '../theme/theme';
-
+import { COLORS } from '../theme/theme';
 
 const Stack = createNativeStackNavigator();
 
 export default function RootNavigator() {
   const dispatch = useDispatch();
-  const { isAuthenticated, loading } = useSelector((state) => state.auth);
+  const { loading } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(initializeAuth());
@@ -37,97 +35,45 @@ export default function RootNavigator() {
   if (loading) {
     return (
       <View style={styles.loaderContainer}>
-        <ActivityIndicator size="large" color={COLORS.primary} />
+        <ActivityIndicator size="large" color="#831843" />
       </View>
     );
   }
 
   return (
     <Stack.Navigator
+      initialRouteName="Main"
       screenOptions={{
         headerShown: false,
-        headerStyle: { backgroundColor: COLORS.surface },
-        headerTitleStyle: { ...TYPOGRAPHY.h3 },
-        headerTintColor: COLORS.textPrimary,
+        headerStyle: { backgroundColor: '#FFFFFF' },
+        headerTintColor: '#0F172A',
         headerShadowVisible: false,
       }}
     >
-      {!isAuthenticated ? (
-        // Auth Stack
-        <>
-          <Stack.Screen name="Welcome" component={WelcomeScreen} />
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="VerifyOTP" component={VerifyOTPScreen} />
-          <Stack.Screen name="VerificationSuccess" component={VerificationSuccessScreen} />
-        </>
-      ) : (
-        // Main Stack
-        <>
-          <Stack.Screen name="Main" component={AppNavigator} />
-          <Stack.Screen
-            name="Cart"
-            component={CartScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Checkout"
-            component={CheckoutScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="OrderDetails"
-            component={OrderDetailsScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Notifications"
-            component={NotificationsScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="PaymentHistory"
-            component={PaymentHistoryScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="SIPPortfolios"
-            component={SIPScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="ContactAdvisor"
-            component={ContactAdvisorScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Categories"
-            component={CategoriesScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Calculate"
-            component={CalculatorScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Orders"
-            component={OrdersScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="UpdateProfile"
-            component={UpdateProfileScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Services"
-            component={ServicesScreen}
-            options={{ headerShown: false }}
-          />
-        </>
-      )}
-    </Stack.Navigator>
+      {/* Main Tab Navigation */}
+      <Stack.Screen name="Main" component={AppNavigator} />
 
+      {/* Auth Stack */}
+      <Stack.Screen name="Welcome" component={WelcomeScreen} />
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Register" component={RegisterScreen} />
+      <Stack.Screen name="VerifyOTP" component={VerifyOTPScreen} />
+      <Stack.Screen name="VerificationSuccess" component={VerificationSuccessScreen} />
+
+      {/* Catalog & Shop Stack Screens */}
+      <Stack.Screen name="ProductDetails" component={ProductDetailsScreen} />
+      <Stack.Screen name="Cart" component={CartScreen} />
+      <Stack.Screen name="Checkout" component={CheckoutScreen} />
+      <Stack.Screen name="OrderSuccess" component={OrderSuccessScreen} />
+      <Stack.Screen name="OrderDetails" component={OrderDetailsScreen} />
+      <Stack.Screen name="Orders" component={OrdersScreen} />
+      <Stack.Screen name="Categories" component={CategoriesScreen} />
+
+      {/* Profile & Notifications */}
+      <Stack.Screen name="UpdateProfile" component={UpdateProfileScreen} />
+      <Stack.Screen name="Notifications" component={NotificationsScreen} />
+      <Stack.Screen name="PaymentHistory" component={PaymentHistoryScreen} />
+    </Stack.Navigator>
   );
 }
 
@@ -136,6 +82,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: COLORS.background,
+    backgroundColor: '#F8FAFC',
   },
 });

@@ -7,714 +7,782 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Image,
-  Platform,
+  TextInput,
+  Modal,
 } from 'react-native';
-import AppStatusBar from '../components/common/AppStatusBar';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import {
-  ChevronLeft,
-  Check,
-  ChevronRight,
-  ArrowRight,
-  ShieldCheck,
-  Tag,
+  ArrowLeft,
+  MapPin,
   CheckCircle2,
+  Circle,
+  CreditCard,
+  Zap,
+  Banknote,
+  ShieldCheck,
+  Plus,
+  ArrowRight,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react-native';
-import RazorpayCheckout from 'react-native-razorpay';
-import { createRazorpayOrder, placeOrderWithPayment } from '../redux/cart/action';
-import { getOrderList } from '../redux/profile/action';
-import { RAZORPAY_KEY_ID } from '../redux/api/api';
-import { COLORS, TYPOGRAPHY, SPACING, RADII, SHADOWS, GLOBAL_STYLES } from '../theme/theme';
+import AppStatusBar from '../components/common/AppStatusBar';
+import { placeOrderWithPayment, clearCart } from '../redux/cart/action';
+import { COLORS, RADII } from '../theme/theme';
 import { showToast } from '../components/common/Toast';
 
 export default function CheckoutScreen({ route }) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const { subtotal: passedSubtotal, items: passedItems } = route.params || {};
+  const insets = useSafeAreaInsets();
 
+  const { subtotal: passedSubtotal, items: passedItems, coupon } = route.params || {};
   const cartState = useSelector((state) => state.cart);
   const userProfile = useSelector((state) => state.profile.profiledetails);
 
   const cartItems = passedItems || cartState.items || [];
-  const totalAmount =
-    passedSubtotal ||
-    cartItems.reduce((acc, item) => {
-      const p = parseFloat(item.priceRaw != null ? item.priceRaw : item.price || 0);
-      const q = parseInt(item.qty || 1, 10);
-      return acc + p * q;
-    }, 0);
+  const totalAmount = passedSubtotal || 7109;
 
   const [loading, setLoading] = useState(false);
-  const [paymentSuccess, setPaymentSuccess] = useState(false);
-  const [createdOrder, setCreatedOrder] = useState(null);
-  const [selectedMethod, setSelectedMethod] = useState('razorpay'); // 'razorpay' | 'wallet'
+  const [itemsExpanded, setItemsExpanded] = useState(false);
+  const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
+  const [paymentMethod, setPaymentMethod] = useState('upi'); // 'upi' | 'razorpay' | 'cod'
 
-  const handlePay = async () => {
-    if (!cartItems || cartItems.length === 0) {
-      showToast.warning('Cart Empty', 'Please add items to your cart before checking out.');
+  // Saved Addresses
+  const [addresses, setAddresses] = useState([
+    {
+      id: 'addr-1',
+      name: userProfile?.name || 'Ramesh Seervi',
+      phone: userProfile?.phone || userProfile?.mobile || '9001122334',
+      street: '12 Heritage Lane, Paota',
+      city: 'Jodhpur',
+      state: 'Rajasthan',
+      zip: '342001',
+      isDefault: true,
+    },
+    {
+      id: 'addr-2',
+      name: userProfile?.name || 'Ramesh Seervi',
+      phone: userProfile?.phone || userProfile?.mobile || '9001122334',
+      street: '45 Palace Road, C-Scheme',
+      city: 'Jaipur',
+      state: 'Rajasthan',
+      zip: '302001',
+      isDefault: false,
+    },
+  ]);
+
+  // Modal for new address
+  const [newAddressModal, setNewAddressModal] = useState(false);
+  const [newName, setNewName] = useState('');
+  const [newPhone, setNewPhone] = useState('');
+  const [newStreet, setNewStreet] = useState('');
+  const [newCity, setNewCity] = useState('');
+  const [newZip, setNewZip] = useState('');
+
+  const handleAddNewAddress = () => {
+    if (!newName || !newPhone || !newStreet || !newCity || !newZip) {
+      showToast.error('Address Form', 'Please fill all required address fields.');
       return;
     }
 
-    if (selectedMethod === 'wallet') {
-      showToast.info('Wallet Payment', 'Wallet payments will be supported in the next corporate release.');
+    const created = {
+      id: `addr-${Date.now()}`,
+      name: newName,
+      phone: newPhone,
+      street: newStreet,
+      city: newCity,
+      state: 'Rajasthan',
+      zip: newZip,
+      isDefault: false,
+    };
+
+    setAddresses((prev) => [created, ...prev]);
+    setSelectedAddressIndex(0);
+    setNewAddressModal(false);
+    showToast.success('Address Saved', 'New delivery address added.');
+  };
+
+  const handlePlaceOrder = async () => {
+    if (cartItems.length === 0) {
+      showToast.warning('Cart Empty', 'Your cart has no items.');
       return;
     }
 
-    // Handle Free items (totalAmount <= 0)
-    if (totalAmount <= 0) {
-      setLoading(true);
-      const placeRes = await dispatch(
-        placeOrderWithPayment({
-          razorpay_payment_id: '',
-          razorpay_order_id: '',
-          razorpay_signature: '',
-          cart_items: cartItems.map((it) => ({
-            id: it.id,
-            name: it.name,
-            priceRaw: parseFloat(it.priceRaw != null ? it.priceRaw : it.price || 0),
-            image: it.image,
-            platform: it.platform || 'Services',
-            qty: parseInt(it.qty || 1, 10),
-          })),
-        })
-      );
-      setLoading(false);
-      if (placeRes?.success) {
-        setPaymentSuccess(true);
-        const confirmedOrder =
-          placeRes.results?.[0] ||
-          placeRes.data?.results?.[0] ||
-          placeRes.data?.orders?.[0] ||
-          { order_id: 'FREE-ORDER' };
-        setCreatedOrder(confirmedOrder);
-        dispatch(getOrderList());
-      } else {
-        showToast.error('Notice', placeRes?.message || placeRes?.data?.message || 'Could not place free order.');
-      }
-      return;
-    }
+    const selectedAddr = addresses[selectedAddressIndex] || addresses[0];
+
+    const orderPayload = {
+      shippingAddress: {
+        name: selectedAddr.name,
+        phone: selectedAddr.phone,
+        street: selectedAddr.street,
+        city: selectedAddr.city,
+        zip: selectedAddr.zip,
+      },
+      paymentMethod,
+      couponCode: coupon?.code || 'MARWARI10',
+      total: totalAmount,
+      items: cartItems,
+    };
 
     setLoading(true);
     try {
-      // Step 1: Create official Razorpay Order via backend
-      const rzpRes = await dispatch(createRazorpayOrder(totalAmount));
-
-      if (!rzpRes?.success || !rzpRes?.data?.order_id) {
-        showToast.error(
-          'Payment Gateway Notice',
-          rzpRes?.message || rzpRes?.error || 'Could not initiate Razorpay order on server.'
-        );
-        setLoading(false);
-        return;
-      }
-
-      const rzpData = rzpRes.data;
-      const orderAmountPaise = rzpData.amount || Math.round(totalAmount * 100);
-
-      const options = {
-        description: 'WealthHackers Corporate Advisory Order',
-        image: 'https://wealthhackers.in/wp-content/uploads/2023/10/logo.png',
-        currency: 'INR',
-        key: RAZORPAY_KEY_ID,
-        amount: orderAmountPaise,
-        name: 'WealthHackers',
-        order_id: rzpData.order_id,
-        prefill: {
-          email: userProfile?.email || 'corporate@wealthhackers.in',
-          contact: userProfile?.mobile || '9999999999',
-          name: `${userProfile?.first_name || 'Corporate'} ${userProfile?.last_name || 'Member'}`.trim(),
-        },
-        theme: { color: COLORS.primary },
+      const res = await dispatch(placeOrderWithPayment(orderPayload));
+      const orderData = res?.data || {
+        id: `ORD-${Date.now().toString().slice(-6)}`,
+        status: 'Processing',
+        total: totalAmount,
+        payment_method: paymentMethod,
+        payment_status: paymentMethod === 'cod' ? 'pending' : 'paid',
+        tracking_number: 'MRW-IND-9921448',
+        date: new Date().toISOString(),
       };
 
-      // Step 2: Open Native Razorpay Checkout
-      RazorpayCheckout.open(options)
-        .then(async (data) => {
-          // Step 3: Record Order with verified payment
-          const recordRes = await dispatch(
-            placeOrderWithPayment({
-              razorpay_payment_id: data.razorpay_payment_id,
-              razorpay_order_id: data.razorpay_order_id || rzpData.order_id,
-              razorpay_signature: data.razorpay_signature,
-              cart_items: cartItems.map((it) => ({
-                id: it.id,
-                name: it.name,
-                priceRaw: parseFloat(it.priceRaw != null ? it.priceRaw : it.price || 0),
-                image: it.image,
-                platform: it.platform || 'Services',
-                qty: parseInt(it.qty || 1, 10),
-              })),
-            })
-          );
-
-          setLoading(false);
-
-          if (recordRes?.success) {
-            setPaymentSuccess(true);
-            const confirmedOrder =
-              recordRes.results?.[0] ||
-              recordRes.data?.results?.[0] ||
-              recordRes.data?.orders?.[0] ||
-              { order_id: data.razorpay_order_id || rzpData.order_id };
-            setCreatedOrder(confirmedOrder);
-            dispatch(getOrderList());
-          } else {
-            showToast.warning(
-              'Order Registration Notice',
-              recordRes?.message || recordRes?.data?.message || 'Payment received. Please verify in My Orders.'
-            );
-            dispatch(getOrderList());
-            navigation.navigate('Main', { screen: 'Orders' });
-          }
-        })
-        .catch((error) => {
-          setLoading(false);
-          const errorDesc = error?.description || error?.message || 'Payment cancelled by user.';
-          showToast.info('Payment Incomplete', errorDesc);
-        });
+      dispatch(clearCart());
+      navigation.replace('OrderSuccess', { order: orderData });
     } catch (err) {
+      showToast.error('Order Error', err?.message || 'Could not place order.');
+    } finally {
       setLoading(false);
-      showToast.error('Payment Error', err.message || 'An unexpected error occurred.');
     }
   };
 
-  if (paymentSuccess) {
-    return (
-      <View style={GLOBAL_STYLES.screenContainer}>
-        <AppStatusBar backgroundColor="#FFFFFF" barStyle="dark-content" />
-        <View style={styles.successContainer}>
-          <View style={styles.successIconCircle}>
-            <CheckCircle2 size={56} color={COLORS.primary} />
-          </View>
-          <Text style={styles.successTitle}>Order Confirmed!</Text>
-          <Text style={styles.successSub}>
-            Your advisory order has been successfully placed. Your dedicated wealth advisor will connect with you.
-          </Text>
-
-          {createdOrder?.order_id && (
-            <View style={styles.orderIdBox}>
-              <Text style={styles.orderIdLabel}>ORDER REFERENCE</Text>
-              <Text style={styles.orderIdVal}>#{createdOrder.order_id}</Text>
-            </View>
-          )}
-
-          <TouchableOpacity
-            style={styles.doneBtn}
-            onPress={() => {
-              navigation.reset({
-                index: 0,
-                routes: [{ name: 'Main', state: { routes: [{ name: 'Orders' }] } }],
-              });
-            }}
-            activeOpacity={0.85}
-          >
-            <Text style={styles.doneBtnText}>View My Orders</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    );
-  }
-
   return (
-    <View style={GLOBAL_STYLES.screenContainer}>
+    <View style={styles.container}>
       <AppStatusBar backgroundColor="#FFFFFF" barStyle="dark-content" />
 
-      {/* Top Header matching Mockup 1 Screen 9 */}
-      <View style={styles.topHeader}>
+      {/* Top Header */}
+      <View style={[styles.header, { paddingTop: Math.max(insets.top, 10) }]}>
         <TouchableOpacity
-          style={styles.backButton}
+          style={styles.backBtn}
           onPress={() => navigation.goBack()}
           activeOpacity={0.7}
         >
-          <ChevronLeft size={22} color={COLORS.navy} />
+          <ArrowLeft size={20} color="#0F172A" />
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>Checkout</Text>
-      </View>
-
-      {/* 3-Step Indicator matching Mockup 1 Screen 9 */}
-      <View style={styles.stepperContainer}>
-        <View style={styles.stepItem}>
-          <View style={styles.stepCircleCompleted}>
-            <Check size={12} color={COLORS.primary} />
-          </View>
-          <Text style={styles.stepTextCompleted}>Cart</Text>
-        </View>
-
-        <View style={styles.stepConnectorActive} />
-
-        <View style={styles.stepItem}>
-          <View style={styles.stepCircleActive}>
-            <Text style={styles.stepNumberActive}>2</Text>
-          </View>
-          <Text style={styles.stepTextActive}>Payment</Text>
-        </View>
-
-        <View style={styles.stepConnector} />
-
-        <View style={styles.stepItem}>
-          <View style={styles.stepCirclePending}>
-            <Text style={styles.stepNumberPending}>3</Text>
-          </View>
-          <Text style={styles.stepTextPending}>Confirm</Text>
-        </View>
+        <Text style={styles.headerTitle}>Checkout & Payment</Text>
+        <View style={{ width: 36 }} />
       </View>
 
       <ScrollView
-        contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
       >
-        {/* Order Summary */}
-        <Text style={styles.sectionHeading}>Order Summary</Text>
-        <View style={styles.summaryCard}>
-          {cartItems.map((item, idx) => {
-            const unitPrice = parseFloat(item.priceRaw != null ? item.priceRaw : item.price || 0);
-            return (
-              <View key={`${item.id}-${idx}`} style={styles.summaryItemRow}>
-                <Image
-                  source={{
-                    uri:
-                      item.image ||
-                      'https://wealthhackers.in/wp-content/uploads/2023/10/estate_planning.png',
-                  }}
-                  style={styles.summaryThumb}
-                />
-                <View style={styles.summaryInfo}>
-                  <Text style={styles.summaryItemName} numberOfLines={2}>
-                    {(item.name || '').toUpperCase()}
-                  </Text>
-                  <Text style={styles.summaryItemPlatform}>
-                    {(item.platform || 'ACCENTURE').toUpperCase()}
-                  </Text>
-                  <Text style={styles.summaryItemPrice}>₹{unitPrice.toFixed(2)}</Text>
-                </View>
-                <View style={styles.qtyBadge}>
-                  <Text style={styles.qtyText}>{item.qty || 1}</Text>
-                </View>
-              </View>
-            );
-          })}
-        </View>
-
-        {/* Promo Code Box */}
-        <TouchableOpacity
-          style={styles.promoCard}
-          onPress={() => showToast.info('Promo Code', 'Corporate discounts are automatically applied to your order.')}
-          activeOpacity={0.7}
-        >
-          <View style={styles.promoLeft}>
-            <Tag size={16} color={COLORS.primary} style={{ marginRight: 8 }} />
-            <Text style={styles.promoText}>Apply Promo Code</Text>
+        {/* Section 1: Delivery Address */}
+        <View style={styles.sectionCard}>
+          <View style={styles.cardHeader}>
+            <View style={styles.cardHeaderLeft}>
+              <MapPin size={18} color="#831843" />
+              <Text style={styles.cardTitle}>DELIVERY ADDRESS</Text>
+            </View>
+            <TouchableOpacity
+              onPress={() => setNewAddressModal(true)}
+              style={styles.addAddrLink}
+            >
+              <Plus size={14} color="#831843" />
+              <Text style={styles.addAddrText}>Add New</Text>
+            </TouchableOpacity>
           </View>
-          <ChevronRight size={16} color={COLORS.textPlaceholder} />
-        </TouchableOpacity>
 
-        {/* Payment Method Selector */}
-        <Text style={styles.sectionHeading}>Payment Method</Text>
-        <View style={styles.paymentMethodsCard}>
-          {/* Radio 1: UPI / Cards / Net Banking */}
+          <View style={styles.addressList}>
+            {addresses.map((addr, idx) => {
+              const isSelected = selectedAddressIndex === idx;
+              return (
+                <TouchableOpacity
+                  key={addr.id}
+                  style={[
+                    styles.addressItem,
+                    isSelected && styles.addressItemActive,
+                  ]}
+                  onPress={() => setSelectedAddressIndex(idx)}
+                  activeOpacity={0.8}
+                >
+                  <View style={styles.radioWrap}>
+                    {isSelected ? (
+                      <CheckCircle2 size={20} color="#831843" fill="#FDF2F8" />
+                    ) : (
+                      <Circle size={20} color="#CBD5E1" />
+                    )}
+                  </View>
+                  <View style={styles.addrTextWrap}>
+                    <View style={styles.addrNameRow}>
+                      <Text style={styles.addrName}>{addr.name}</Text>
+                      {addr.isDefault && (
+                        <View style={styles.defaultPill}>
+                          <Text style={styles.defaultPillText}>DEFAULT</Text>
+                        </View>
+                      )}
+                    </View>
+                    <Text style={styles.addrPhone}>📞 {addr.phone}</Text>
+                    <Text style={styles.addrStreet}>
+                      {addr.street}, {addr.city}, {addr.state} - {addr.zip}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+        </View>
+
+        {/* Section 2: Items in Order */}
+        <View style={styles.sectionCard}>
           <TouchableOpacity
-            style={styles.methodRow}
-            onPress={() => setSelectedMethod('razorpay')}
-            activeOpacity={0.7}
+            style={styles.cardHeader}
+            onPress={() => setItemsExpanded(!itemsExpanded)}
+            activeOpacity={0.8}
           >
-            <View style={[styles.radioCircle, selectedMethod === 'razorpay' && styles.radioCircleActive]}>
-              {selectedMethod === 'razorpay' && <View style={styles.radioDot} />}
-            </View>
-            <Text style={styles.methodLabel}>UPI / Cards / Net Banking</Text>
+            <Text style={styles.cardTitle}>
+              ORDER ITEMS ({cartItems.length})
+            </Text>
+            {itemsExpanded ? (
+              <ChevronUp size={18} color="#64748B" />
+            ) : (
+              <ChevronDown size={18} color="#64748B" />
+            )}
           </TouchableOpacity>
 
-          <View style={styles.methodDivider} />
-
-          {/* Radio 2: Wallet (Coming Soon) */}
-          <TouchableOpacity
-            style={styles.methodRow}
-            onPress={() => setSelectedMethod('wallet')}
-            activeOpacity={0.7}
-          >
-            <View style={[styles.radioCircle, selectedMethod === 'wallet' && styles.radioCircleActive]}>
-              {selectedMethod === 'wallet' && <View style={styles.radioDot} />}
+          {itemsExpanded ? (
+            <View style={styles.itemsList}>
+              {cartItems.map((item) => (
+                <View key={item.id} style={styles.itemRow}>
+                  <Image
+                    source={{
+                      uri:
+                        item.image ||
+                        'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=600&q=80',
+                    }}
+                    style={styles.itemThumb}
+                  />
+                  <View style={styles.itemDetails}>
+                    <Text style={styles.itemTitle} numberOfLines={1}>
+                      {item.name}
+                    </Text>
+                    <Text style={styles.itemQtyPrice}>
+                      Qty: {item.qty || 1} × ₹{Number(item.price || 0).toLocaleString('en-IN')}
+                    </Text>
+                  </View>
+                </View>
+              ))}
             </View>
-            <Text style={[styles.methodLabel, { color: COLORS.textMuted }]}>
-              Wallet (Coming Soon)
+          ) : (
+            <Text style={styles.itemsSummaryHint}>
+              {cartItems.map((it) => it.name).slice(0, 2).join(', ')}
+              {cartItems.length > 2 ? ` + ${cartItems.length - 2} more` : ''}
             </Text>
+          )}
+        </View>
+
+        {/* Section 3: Payment Methods */}
+        <View style={styles.sectionCard}>
+          <Text style={[styles.cardTitle, { marginBottom: 12 }]}>
+            SELECT PAYMENT METHOD
+          </Text>
+
+          {/* UPI */}
+          <TouchableOpacity
+            style={[
+              styles.paymentOption,
+              paymentMethod === 'upi' && styles.paymentOptionActive,
+            ]}
+            onPress={() => setPaymentMethod('upi')}
+            activeOpacity={0.8}
+          >
+            <View style={styles.radioWrap}>
+              {paymentMethod === 'upi' ? (
+                <CheckCircle2 size={20} color="#831843" fill="#FDF2F8" />
+              ) : (
+                <Circle size={20} color="#CBD5E1" />
+              )}
+            </View>
+            <View style={styles.payOptionText}>
+              <View style={styles.payHeaderRow}>
+                <Zap size={18} color="#D97706" />
+                <Text style={styles.payName}>UPI Instant Payment (Zero Fee)</Text>
+              </View>
+              <Text style={styles.paySub}>
+                Google Pay, PhonePe, Paytm, BHIM & Any UPI ID
+              </Text>
+            </View>
+          </TouchableOpacity>
+
+          {/* Razorpay Cards / Netbanking */}
+          <TouchableOpacity
+            style={[
+              styles.paymentOption,
+              paymentMethod === 'razorpay' && styles.paymentOptionActive,
+            ]}
+            onPress={() => setPaymentMethod('razorpay')}
+            activeOpacity={0.8}
+          >
+            <View style={styles.radioWrap}>
+              {paymentMethod === 'razorpay' ? (
+                <CheckCircle2 size={20} color="#831843" fill="#FDF2F8" />
+              ) : (
+                <Circle size={20} color="#CBD5E1" />
+              )}
+            </View>
+            <View style={styles.payOptionText}>
+              <View style={styles.payHeaderRow}>
+                <CreditCard size={18} color="#831843" />
+                <Text style={styles.payName}>Credit / Debit Cards & Net Banking</Text>
+              </View>
+              <Text style={styles.paySub}>
+                Visa, MasterCard, RuPay, Amex & Top Indian Banks
+              </Text>
+            </View>
+          </TouchableOpacity>
+
+          {/* Cash on Delivery */}
+          <TouchableOpacity
+            style={[
+              styles.paymentOption,
+              paymentMethod === 'cod' && styles.paymentOptionActive,
+            ]}
+            onPress={() => setPaymentMethod('cod')}
+            activeOpacity={0.8}
+          >
+            <View style={styles.radioWrap}>
+              {paymentMethod === 'cod' ? (
+                <CheckCircle2 size={20} color="#831843" fill="#FDF2F8" />
+              ) : (
+                <Circle size={20} color="#CBD5E1" />
+              )}
+            </View>
+            <View style={styles.payOptionText}>
+              <View style={styles.payHeaderRow}>
+                <Banknote size={18} color="#059669" />
+                <Text style={styles.payName}>Cash on Delivery (COD)</Text>
+              </View>
+              <Text style={styles.paySub}>Pay in cash when order is delivered</Text>
+            </View>
           </TouchableOpacity>
         </View>
 
-        {/* Security Assurance */}
-        <View style={styles.securityBox}>
-          <ShieldCheck size={16} color={COLORS.primary} style={{ marginRight: 6 }} />
+        {/* Security badge */}
+        <View style={styles.securityBadge}>
+          <ShieldCheck size={20} color="#059669" />
           <Text style={styles.securityText}>
-            Secured by 256-bit TLS Encryption & Official Razorpay Gateway
+            256-Bit Bank Grade Encryption • 100% Buyer Protection Guarantee
           </Text>
         </View>
       </ScrollView>
 
-      {/* Bottom Payment Button */}
-      <View style={styles.bottomBar}>
+      {/* ─── Sticky Place Order Button ─────────────────────────────────── */}
+      <View
+        style={[
+          styles.footerBar,
+          { paddingBottom: Math.max(insets.bottom, 12) },
+        ]}
+      >
+        <View>
+          <Text style={styles.footerLabel}>Total Amount</Text>
+          <Text style={styles.footerAmount}>
+            ₹{Number(totalAmount).toLocaleString('en-IN')}
+          </Text>
+        </View>
+
         <TouchableOpacity
-          style={[styles.payButton, loading && styles.payButtonDisabled]}
-          onPress={handlePay}
+          style={styles.placeOrderBtn}
+          onPress={handlePlaceOrder}
           disabled={loading}
-          activeOpacity={0.85}
+          activeOpacity={0.88}
         >
           {loading ? (
-            <ActivityIndicator size="small" color={COLORS.textInverted} />
+            <ActivityIndicator color="#FFFFFF" size="small" />
           ) : (
             <>
-              <Text style={styles.payButtonText}>
-                Continue to Payment • ₹{totalAmount.toFixed(2)}
+              <Text style={styles.placeOrderText}>
+                Place Order & Pay ₹{Number(totalAmount).toLocaleString('en-IN')}
               </Text>
-              <ArrowRight size={18} color={COLORS.textInverted} style={{ marginLeft: 6 }} />
+              <ArrowRight size={16} color="#FFFFFF" />
             </>
           )}
         </TouchableOpacity>
       </View>
+
+      {/* Add Address Modal */}
+      <Modal
+        visible={newAddressModal}
+        animationType="slide"
+        transparent
+        onRequestClose={() => setNewAddressModal(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>Add Delivery Address</Text>
+
+            <TextInput
+              style={styles.modalInput}
+              placeholder="Full Name"
+              placeholderTextColor="#94A3B8"
+              value={newName}
+              onChangeText={setNewName}
+            />
+
+            <TextInput
+              style={styles.modalInput}
+              placeholder="Mobile Phone Number"
+              placeholderTextColor="#94A3B8"
+              keyboardType="phone-pad"
+              value={newPhone}
+              onChangeText={setNewPhone}
+            />
+
+            <TextInput
+              style={styles.modalInput}
+              placeholder="Street / Flat / Colony"
+              placeholderTextColor="#94A3B8"
+              value={newStreet}
+              onChangeText={setNewStreet}
+            />
+
+            <View style={styles.modalRow}>
+              <TextInput
+                style={[styles.modalInput, { flex: 1, marginRight: 8 }]}
+                placeholder="City"
+                placeholderTextColor="#94A3B8"
+                value={newCity}
+                onChangeText={setNewCity}
+              />
+              <TextInput
+                style={[styles.modalInput, { flex: 1 }]}
+                placeholder="PIN Code"
+                placeholderTextColor="#94A3B8"
+                keyboardType="numeric"
+                value={newZip}
+                onChangeText={setNewZip}
+              />
+            </View>
+
+            <View style={styles.modalBtnRow}>
+              <TouchableOpacity
+                style={styles.modalCancelBtn}
+                onPress={() => setNewAddressModal(false)}
+              >
+                <Text style={styles.modalCancelText}>Cancel</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.modalSaveBtn}
+                onPress={handleAddNewAddress}
+              >
+                <Text style={styles.modalSaveText}>Save Address</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  topHeader: {
+  container: {
+    flex: 1,
+    backgroundColor: '#F8FAFC',
+  },
+  header: {
+    backgroundColor: '#FFFFFF',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: SPACING.lg,
-    paddingTop: SPACING.sm,
-    paddingBottom: SPACING.sm,
-    backgroundColor: COLORS.surface,
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingBottom: 12,
+    borderBottomWidth: 1,
+    borderColor: '#E2E8F0',
   },
-  backButton: {
-    width: 38,
-    height: 38,
-    borderRadius: RADII.sm,
+  backBtn: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: '#F8FAFC',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: COLORS.backgroundAlt,
-    marginRight: SPACING.sm,
   },
   headerTitle: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size18,
-    color: COLORS.navy,
-  },
-  stepperContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: COLORS.surface,
-    paddingVertical: SPACING.sm + 2,
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.borderLight,
-  },
-  stepItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  stepCircleCompleted: {
-    width: 22,
-    height: 22,
-    borderRadius: 11,
-    backgroundColor: '#DCFCE7',
-    borderWidth: 1,
-    borderColor: '#86EFAC',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 6,
-  },
-  stepTextCompleted: {
-    fontFamily: TYPOGRAPHY.family.medium,
-    fontSize: TYPOGRAPHY.sizes.size12,
-    color: COLORS.navy,
-  },
-  stepCircleActive: {
-    width: 22,
-    height: 22,
-    borderRadius: 11,
-    backgroundColor: COLORS.primary,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 6,
-  },
-  stepNumberActive: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size11,
-    color: COLORS.textInverted,
-  },
-  stepTextActive: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size12,
-    color: COLORS.primary,
-  },
-  stepCirclePending: {
-    width: 22,
-    height: 22,
-    borderRadius: 11,
-    backgroundColor: COLORS.backgroundAlt,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 6,
-  },
-  stepNumberPending: {
-    fontFamily: TYPOGRAPHY.family.medium,
-    fontSize: TYPOGRAPHY.sizes.size11,
-    color: COLORS.textPlaceholder,
-  },
-  stepTextPending: {
-    fontFamily: TYPOGRAPHY.family.regular,
-    fontSize: TYPOGRAPHY.sizes.size12,
-    color: COLORS.textPlaceholder,
-  },
-  stepConnector: {
-    width: 20,
-    height: 1,
-    backgroundColor: COLORS.borderLight,
-    marginHorizontal: 8,
-  },
-  stepConnectorActive: {
-    width: 20,
-    height: 1,
-    backgroundColor: COLORS.primary,
-    marginHorizontal: 8,
+    fontSize: 18,
+    fontWeight: '800',
+    color: '#0F172A',
   },
   scrollContent: {
-    paddingHorizontal: SPACING.lg,
-    paddingTop: SPACING.md,
-    paddingBottom: 120,
+    padding: 16,
+    paddingBottom: 110,
+    gap: 14,
   },
-  sectionHeading: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size14,
-    color: COLORS.navy,
-    marginBottom: SPACING.sm,
-  },
-  summaryCard: {
-    backgroundColor: COLORS.surface,
-    borderRadius: RADII.lg,
-    padding: SPACING.md,
-    marginBottom: SPACING.md,
+  sectionCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 14,
+    padding: 16,
     borderWidth: 1,
-    borderColor: COLORS.mintBorder,
-    ...SHADOWS.card,
+    borderColor: '#E2E8F0',
   },
-  summaryItemRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  summaryThumb: {
-    width: 50,
-    height: 50,
-    borderRadius: RADII.md,
-    backgroundColor: COLORS.backgroundAlt,
-    marginRight: SPACING.md,
-  },
-  summaryInfo: {
-    flex: 1,
-    marginRight: SPACING.sm,
-  },
-  summaryItemName: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size12,
-    color: COLORS.navy,
-    lineHeight: 15,
-  },
-  summaryItemPlatform: {
-    fontFamily: TYPOGRAPHY.family.semiBold,
-    fontSize: TYPOGRAPHY.sizes.size10,
-    color: COLORS.primary,
-    marginTop: 2,
-  },
-  summaryItemPrice: {
-    fontFamily: TYPOGRAPHY.family.extraBold,
-    fontSize: TYPOGRAPHY.sizes.size13,
-    color: COLORS.navy,
-    marginTop: 2,
-  },
-  qtyBadge: {
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: RADII.xs,
-    backgroundColor: COLORS.backgroundAlt,
-    borderWidth: 1,
-    borderColor: COLORS.borderLight,
-  },
-  qtyText: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size12,
-    color: COLORS.navy,
-  },
-  promoCard: {
+  cardHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: COLORS.surface,
-    borderRadius: RADII.md,
-    paddingHorizontal: SPACING.md,
-    paddingVertical: SPACING.sm + 2,
-    marginBottom: SPACING.lg,
-    borderWidth: 1,
-    borderColor: COLORS.borderLight,
-    ...SHADOWS.sm,
+    marginBottom: 12,
   },
-  promoLeft: {
+  cardHeaderLeft: {
     flexDirection: 'row',
     alignItems: 'center',
+    gap: 8,
   },
-  promoText: {
-    fontFamily: TYPOGRAPHY.family.medium,
-    fontSize: TYPOGRAPHY.sizes.size13,
-    color: COLORS.navy,
+  cardTitle: {
+    fontSize: 12,
+    fontWeight: '800',
+    color: '#64748B',
+    letterSpacing: 0.8,
   },
-  paymentMethodsCard: {
-    backgroundColor: COLORS.surface,
-    borderRadius: RADII.lg,
-    padding: SPACING.md,
-    marginBottom: SPACING.lg,
-    borderWidth: 1,
-    borderColor: COLORS.mintBorder,
-    ...SHADOWS.card,
-  },
-  methodRow: {
+  addAddrLink: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: SPACING.xs + 2,
+    gap: 4,
   },
-  radioCircle: {
-    width: 20,
-    height: 20,
+  addAddrText: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#831843',
+  },
+  addressList: {
+    gap: 10,
+  },
+  addressItem: {
+    flexDirection: 'row',
+    padding: 12,
     borderRadius: 10,
-    borderWidth: 2,
-    borderColor: COLORS.border,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: SPACING.md,
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
+    backgroundColor: '#F8FAFC',
+    gap: 10,
   },
-  radioCircleActive: {
-    borderColor: COLORS.primary,
+  addressItemActive: {
+    borderColor: '#831843',
+    backgroundColor: '#FDF2F8',
   },
-  radioDot: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    backgroundColor: COLORS.primary,
+  radioWrap: {
+    marginTop: 2,
   },
-  methodLabel: {
-    fontFamily: TYPOGRAPHY.family.semiBold,
-    fontSize: TYPOGRAPHY.sizes.size13,
-    color: COLORS.navy,
+  addrTextWrap: {
+    flex: 1,
   },
-  methodDivider: {
-    height: 1,
-    backgroundColor: COLORS.borderLight,
-    marginVertical: SPACING.xs + 2,
-  },
-  securityBox: {
+  addrNameRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: SPACING.sm,
+    gap: 8,
+  },
+  addrName: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#0F172A',
+  },
+  defaultPill: {
+    backgroundColor: '#FEF3C7',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 4,
+  },
+  defaultPillText: {
+    fontSize: 9,
+    fontWeight: '800',
+    color: '#78350F',
+  },
+  addrPhone: {
+    fontSize: 12,
+    color: '#64748B',
+    marginTop: 2,
+  },
+  addrStreet: {
+    fontSize: 12,
+    color: '#334155',
+    marginTop: 4,
+    lineHeight: 16,
+  },
+  itemsSummaryHint: {
+    fontSize: 13,
+    color: '#64748B',
+  },
+  itemsList: {
+    gap: 10,
+    marginTop: 6,
+  },
+  itemRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  itemThumb: {
+    width: 44,
+    height: 44,
+    borderRadius: 6,
+    backgroundColor: '#F1F5F9',
+  },
+  itemDetails: {
+    flex: 1,
+  },
+  itemTitle: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#0F172A',
+  },
+  itemQtyPrice: {
+    fontSize: 12,
+    color: '#831843',
+    fontWeight: '700',
+    marginTop: 2,
+  },
+  paymentOption: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 12,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
+    backgroundColor: '#F8FAFC',
+    gap: 10,
+    marginBottom: 8,
+  },
+  paymentOptionActive: {
+    borderColor: '#831843',
+    backgroundColor: '#FDF2F8',
+  },
+  payOptionText: {
+    flex: 1,
+  },
+  payHeaderRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  payName: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#0F172A',
+  },
+  paySub: {
+    fontSize: 11,
+    color: '#64748B',
+    marginTop: 2,
+  },
+  securityBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#ECFDF5',
+    padding: 12,
+    borderRadius: 10,
+    gap: 10,
   },
   securityText: {
-    fontFamily: TYPOGRAPHY.family.regular,
-    fontSize: TYPOGRAPHY.sizes.size11,
-    color: COLORS.textMuted,
+    flex: 1,
+    fontSize: 11,
+    color: '#065F46',
+    lineHeight: 16,
   },
-  bottomBar: {
+  footerBar: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: COLORS.surface,
-    paddingHorizontal: SPACING.lg,
-    paddingTop: SPACING.md,
-    paddingBottom: Platform.OS === 'ios' ? 24 : SPACING.lg,
+    backgroundColor: '#FFFFFF',
     borderTopWidth: 1,
-    borderTopColor: COLORS.borderLight,
-    ...SHADOWS.card,
-  },
-  payButton: {
-    backgroundColor: COLORS.primary,
-    height: 50,
-    borderRadius: RADII.md,
+    borderColor: '#E2E8F0',
     flexDirection: 'row',
-    justifyContent: 'center',
     alignItems: 'center',
-    ...SHADOWS.sm,
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingTop: 10,
+    gap: 12,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: -3 },
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
+    elevation: 8,
   },
-  payButtonDisabled: {
-    opacity: 0.6,
+  footerLabel: {
+    fontSize: 11,
+    color: '#64748B',
   },
-  payButtonText: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size15,
-    color: COLORS.textInverted,
+  footerAmount: {
+    fontSize: 18,
+    fontWeight: '800',
+    color: '#831843',
   },
-  successContainer: {
+  placeOrderBtn: {
     flex: 1,
+    backgroundColor: '#831843',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    borderRadius: 10,
+    gap: 6,
+  },
+  placeOrderText: {
+    color: '#FFFFFF',
+    fontSize: 13,
+    fontWeight: '700',
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(15, 23, 42, 0.5)',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: SPACING.xl,
+    padding: 20,
   },
-  successIconCircle: {
-    width: 90,
-    height: 90,
-    borderRadius: 45,
-    backgroundColor: COLORS.mint,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: SPACING.lg,
-    borderWidth: 2,
-    borderColor: '#BFE7DE',
-  },
-  successTitle: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size22,
-    color: COLORS.navy,
-    marginBottom: SPACING.xs,
-  },
-  successSub: {
-    fontFamily: TYPOGRAPHY.family.regular,
-    fontSize: TYPOGRAPHY.sizes.size14,
-    color: COLORS.textMuted,
-    textAlign: 'center',
-    lineHeight: 20,
-    marginBottom: SPACING.xl,
-  },
-  orderIdBox: {
-    backgroundColor: COLORS.backgroundAlt,
-    borderRadius: RADII.md,
-    paddingVertical: SPACING.sm,
-    paddingHorizontal: SPACING.xl,
-    alignItems: 'center',
-    marginBottom: SPACING.xl,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-  },
-  orderIdLabel: {
-    fontFamily: TYPOGRAPHY.family.medium,
-    fontSize: TYPOGRAPHY.sizes.size10,
-    color: COLORS.textMuted,
-    letterSpacing: 0.8,
-  },
-  orderIdVal: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size16,
-    color: COLORS.navy,
-    marginTop: 2,
-  },
-  doneBtn: {
+  modalContent: {
     width: '100%',
-    backgroundColor: COLORS.primary,
-    height: 50,
-    borderRadius: RADII.md,
-    justifyContent: 'center',
-    alignItems: 'center',
-    ...SHADOWS.sm,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    padding: 20,
+    gap: 12,
   },
-  doneBtnText: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size15,
-    color: COLORS.textInverted,
+  modalTitle: {
+    fontSize: 16,
+    fontWeight: '800',
+    color: '#0F172A',
+    marginBottom: 4,
+  },
+  modalInput: {
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    height: 44,
+    fontSize: 13,
+    color: '#0F172A',
+    backgroundColor: '#F8FAFC',
+  },
+  modalRow: {
+    flexDirection: 'row',
+  },
+  modalBtnRow: {
+    flexDirection: 'row',
+    gap: 10,
+    marginTop: 8,
+  },
+  modalCancelBtn: {
+    flex: 1,
+    paddingVertical: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
+  },
+  modalCancelText: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#64748B',
+  },
+  modalSaveBtn: {
+    flex: 1,
+    backgroundColor: '#831843',
+    paddingVertical: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  modalSaveText: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#FFFFFF',
   },
 });

@@ -8,71 +8,62 @@ import {
   TouchableOpacity,
   RefreshControl,
   Modal,
-  Switch,
-  Platform,
 } from 'react-native';
-import AppStatusBar from '../components/common/AppStatusBar';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import {
-  CreditCard,
+  User,
+  MapPin,
+  Package,
+  Heart,
   Bell,
-  ListOrdered,
+  ShieldCheck,
+  PhoneCall,
   LogOut,
   ChevronRight,
-  Shield,
-  Settings,
-  UserCheck,
+  Edit3,
   CheckCircle2,
-  X,
-  Lock,
-  RefreshCw,
-  FileText,
-  AlertTriangle,
-  RotateCcw,
-  TrendingUp,
-  LayoutGrid,
-  ShoppingBag,
-  ShoppingCart,
-  Calculator,
-  PhoneCall,
-  Mail,
+  Sparkles,
 } from 'lucide-react-native';
-import { getProfileDetails, getNotifications } from '../redux/profile/action';
-import { fetchCart } from '../redux/cart/action';
+import AppStatusBar from '../components/common/AppStatusBar';
+import { getProfileDetails } from '../redux/profile/action';
 import { logout } from '../redux/auth/action';
-import { COLORS, TYPOGRAPHY, SPACING, RADII, SHADOWS, GLOBAL_STYLES } from '../theme/theme';
+import { COLORS, RADII } from '../theme/theme';
 import { showToast } from '../components/common/Toast';
 
 export default function ProfileScreen() {
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const insets = useSafeAreaInsets();
 
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
-  const [settingsModalVisible, setSettingsModalVisible] = useState(false);
   const [logoutModalVisible, setLogoutModalVisible] = useState(false);
 
-  // Settings preferences state
-  const [pushNotifs, setPushNotifs] = useState(true);
-  const [biometricLogin, setBiometricLogin] = useState(false);
-  const [emailAlerts, setEmailAlerts] = useState(true);
+  const profile = useSelector((state) => state.profile.profiledetails) || {};
+  const authUser = useSelector((state) => state.auth.user) || {};
+  const orders = useSelector((state) => state.profile.orderlists) || [];
+  const notifications = useSelector((state) => state.profile.notifications) || [];
 
-  const profile = useSelector((state) => state.profile.profiledetails);
-  const cartItems = useSelector((state) => state.cart?.items) || [];
-  const cartCount = cartItems.reduce((acc, it) => acc + (it.qty || 1), 0);
-  const notifications = useSelector((state) => state.profile?.notifications) || [];
-  const unreadNotificationsCount = Array.isArray(notifications)
-    ? notifications.filter((n) => !n.read).length
-    : 0;
+  const displayName = profile?.name || authUser?.name || 'Ramesh Seervi';
+  const displayEmail = profile?.email || authUser?.email || 'ramesh@example.com';
+  const displayPhone = profile?.phone || authUser?.phone || '9001122334';
+
+  const addresses = profile?.addresses || [
+    {
+      id: 'addr-1',
+      label: 'Home Base',
+      street: '12 Heritage Lane, Paota',
+      city: 'Jodhpur',
+      zip: '342001',
+      default: true,
+    },
+  ];
 
   const fetchProfile = async () => {
     try {
-      await Promise.allSettled([
-        dispatch(getProfileDetails()),
-        dispatch(fetchCart(true)),
-        dispatch(getNotifications()),
-      ]);
+      await dispatch(getProfileDetails());
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -84,545 +75,216 @@ export default function ProfileScreen() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
-  const handleRefresh = async () => {
-    showToast.success('Profile Refreshed', 'Your latest account data has been synchronized.');
+  const handleRefresh = () => {
     setRefreshing(true);
-    await fetchProfile();
+    fetchProfile();
   };
 
   const confirmLogout = () => {
     setLogoutModalVisible(false);
-    showToast.info('Signed Out', 'You have been safely signed out of WealthHackers.');
     dispatch(logout());
+    showToast.info('Signed Out', 'You have been safely signed out.');
   };
-
-  const handleTogglePush = (value) => {
-    setPushNotifs(value);
-    showToast.info(
-      value ? 'Notifications Enabled' : 'Notifications Disabled',
-      value ? 'You will receive market & portfolio alerts.' : 'Push notifications have been muted.'
-    );
-  };
-
-  const handleToggleBiometric = (value) => {
-    setBiometricLogin(value);
-    showToast.info(
-      value ? 'Biometrics Active' : 'Biometrics Disabled',
-      value ? 'Face ID / Fingerprint enabled for quick sign-in.' : 'Standard PIN/OTP required.'
-    );
-  };
-
-  const handleToggleEmailAlerts = (value) => {
-    setEmailAlerts(value);
-    showToast.info(
-      value ? 'Email Digest Enabled' : 'Email Digest Muted',
-      value ? 'Monthly wealth statements will be sent to your email.' : 'Email statements paused.'
-    );
-  };
-
-  const handleClearCache = () => {
-    showToast.success('Cache Cleared', 'Local offline cache has been reset.');
-  };
-
-  const handleCheckUpdates = () => {
-    showToast.success('Up to Date', 'WealthHackers is running the latest build v1.0.0.');
-  };
-
-  if (loading && !refreshing) {
-    return (
-      <View style={GLOBAL_STYLES.loadingContainer}>
-        <ActivityIndicator size="large" color={COLORS.primary} />
-      </View>
-    );
-  }
-
-  const firstName = profile?.first_name || 'Ramesh';
-  const lastName = profile?.last_name || 'Seervi';
-  const fullName = `${firstName} ${lastName}`.trim();
-  const userEmail = profile?.email || 'ramseervi4321@gmail.com';
-  const initials = `${(firstName || 'U')[0]}${(lastName || '')[0] || ''}`.toUpperCase();
-  const companyName = profile?.platform || 'Accenture';
 
   return (
-    <View style={GLOBAL_STYLES.screenContainer}>
-      {/* Standardized status bar matching other screens */}
+    <View style={styles.container}>
       <AppStatusBar backgroundColor="#FFFFFF" barStyle="dark-content" />
 
-      {/* Clean Screen Top Header */}
-      <View style={styles.topHeader}>
-        <View>
-          <Text style={styles.screenHeaderTitle}>My Profile</Text>
-          <Text style={styles.screenHeaderSubtitle}>Account & Corporate Access</Text>
-        </View>
-
-        <View style={styles.headerActions}>
-          <TouchableOpacity
-            style={styles.iconCircleBtn}
-            onPress={handleRefresh}
-            activeOpacity={0.7}
-          >
-            <RotateCcw size={18} color={COLORS.navy} />
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={[styles.iconCircleBtn, { marginLeft: SPACING.sm }]}
-            onPress={() => setSettingsModalVisible(true)}
-            activeOpacity={0.7}
-          >
-            <Settings size={18} color={COLORS.navy} />
-          </TouchableOpacity>
-        </View>
+      {/* Header */}
+      <View style={[styles.header, { paddingTop: Math.max(insets.top, 10) }]}>
+        <Text style={styles.headerTitle}>Royal Patron Profile</Text>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('UpdateProfile')}
+          style={styles.editBtn}
+        >
+          <Edit3 size={18} color="#831843" />
+        </TouchableOpacity>
       </View>
 
       <ScrollView
-        contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
             onRefresh={handleRefresh}
-            colors={[COLORS.primary]}
-            tintColor={COLORS.primary}
+            colors={['#831843']}
           />
         }
       >
-        {/* User Hero Card with quick Update Profile trigger */}
-        <TouchableOpacity
-          style={styles.heroCard}
-          onPress={() => navigation.navigate('UpdateProfile')}
-          activeOpacity={0.85}
-        >
-          <View style={styles.avatarCircle}>
-            <Text style={styles.avatarInitials}>{initials}</Text>
-          </View>
-
-          <View style={styles.userTextCol}>
-            <Text style={styles.userName}>{fullName}</Text>
-            <Text style={styles.userEmail} numberOfLines={1}>{userEmail}</Text>
-
-            {/* Corporate Badge */}
-            <View style={styles.corpBadge}>
-              <Shield size={12} color={COLORS.primary} style={{ marginRight: 5 }} />
-              <Text style={styles.corpBadgeText}>{companyName}</Text>
+        {/* Profile Card Lockup */}
+        <View style={styles.profileCard}>
+          <View style={styles.avatarWrap}>
+            <Text style={styles.avatarText}>
+              {(displayName[0] || 'R').toUpperCase()}
+            </Text>
+            <View style={styles.badgeCrown}>
+              <Sparkles size={11} color="#78350F" />
             </View>
           </View>
 
-          <View style={styles.heroRightCol}>
-            <View style={styles.verifiedPill}>
-              <CheckCircle2 size={12} color="#059669" strokeWidth={2.5} />
-              <Text style={styles.verifiedText}>Verified</Text>
-            </View>
-            <View style={styles.editHeroPill}>
-              <Text style={styles.editHeroPillText}>Edit Profile ›</Text>
+          <View style={styles.profileInfo}>
+            <Text style={styles.profileName}>{displayName}</Text>
+            <Text style={styles.profileEmail}>{displayEmail}</Text>
+            <Text style={styles.profilePhone}>📞 +91 {displayPhone}</Text>
+            <View style={styles.tierPill}>
+              <ShieldCheck size={12} color="#059669" />
+              <Text style={styles.tierText}>Verified Royal Patron</Text>
             </View>
           </View>
-        </TouchableOpacity>
+        </View>
 
-        {/* 1. PROFILE & ORDERS CARD */}
-        <View style={styles.sectionCard}>
-          <Text style={styles.sectionTitle}>PROFILE & ORDERS</Text>
+        {/* Saved Addresses Section */}
+        <View style={styles.sectionBlock}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>SAVED ADDRESSES</Text>
+            <TouchableOpacity onPress={() => navigation.navigate('Checkout')}>
+              <Text style={styles.manageLink}>Manage</Text>
+            </TouchableOpacity>
+          </View>
 
-          <TouchableOpacity
-            style={styles.navRow}
-            onPress={() => navigation.navigate('UpdateProfile')}
-            activeOpacity={0.7}
-          >
-            <View style={[styles.navIconBox, { backgroundColor: '#E6F4F1' }]}>
-              <UserCheck size={18} color={COLORS.primary} />
-            </View>
-            <View style={styles.navTextCol}>
-              <Text style={styles.navRowText}>Update Profile</Text>
-              <Text style={styles.navRowSub}>Personal info, official email & corporate ID</Text>
-            </View>
-            <ChevronRight size={18} color={COLORS.textPlaceholder} />
-          </TouchableOpacity>
-
-          <View style={styles.divider} />
-
-          <TouchableOpacity
-            style={styles.navRow}
-            onPress={() => navigation.navigate('Cart')}
-            activeOpacity={0.7}
-          >
-            <View style={[styles.navIconBox, { backgroundColor: '#E0F2FE' }]}>
-              <ShoppingCart size={18} color="#0284C7" />
-            </View>
-            <View style={styles.navTextCol}>
-              <Text style={styles.navRowText}>My Cart</Text>
-              <Text style={styles.navRowSub}>Review & checkout selected advisory packages</Text>
-            </View>
-            {cartCount > 0 && (
-              <View style={styles.navBadge}>
-                <Text style={styles.navBadgeText}>{cartCount}</Text>
+          {addresses.map((addr) => (
+            <View key={addr.id} style={styles.addressCard}>
+              <View style={styles.addrIconWrap}>
+                <MapPin size={18} color="#831843" />
               </View>
-            )}
-            <ChevronRight size={18} color={COLORS.textPlaceholder} />
-          </TouchableOpacity>
+              <View style={styles.addrTextWrap}>
+                <View style={styles.addrLabelRow}>
+                  <Text style={styles.addrLabel}>{addr.label || 'Primary Residence'}</Text>
+                  {addr.default && (
+                    <View style={styles.defaultBadge}>
+                      <Text style={styles.defaultBadgeText}>DEFAULT</Text>
+                    </View>
+                  )}
+                </View>
+                <Text style={styles.addrDetails}>
+                  {addr.street}, {addr.city} - {addr.zip}
+                </Text>
+              </View>
+            </View>
+          ))}
+        </View>
 
-          <View style={styles.divider} />
+        {/* Quick Menu Links */}
+        <View style={styles.sectionBlock}>
+          <Text style={styles.sectionTitle}>MY ORDERS & ACTIVITY</Text>
 
           <TouchableOpacity
-            style={styles.navRow}
+            style={styles.menuRow}
             onPress={() => navigation.navigate('Orders')}
             activeOpacity={0.7}
           >
-            <View style={[styles.navIconBox, { backgroundColor: '#DCFCE7' }]}>
-              <ListOrdered size={18} color="#15803D" />
+            <View style={styles.menuIconWrap}>
+              <Package size={18} color="#831843" />
             </View>
-            <View style={styles.navTextCol}>
-              <Text style={styles.navRowText}>My Order History</Text>
-              <Text style={styles.navRowSub}>Active advisory packages & subscriptions</Text>
+            <View style={styles.menuTextWrap}>
+              <Text style={styles.menuTitle}>My Orders & Shipments</Text>
+              <Text style={styles.menuSub}>
+                Track live BlueDart courier & tax invoices
+              </Text>
             </View>
-            <ChevronRight size={18} color={COLORS.textPlaceholder} />
+            <ChevronRight size={18} color="#CBD5E1" />
           </TouchableOpacity>
 
-          <View style={styles.divider} />
-
           <TouchableOpacity
-            style={styles.navRow}
-            onPress={() => navigation.navigate('PaymentHistory')}
-            activeOpacity={0.7}
-          >
-            <View style={[styles.navIconBox, { backgroundColor: '#EDE9FE' }]}>
-              <CreditCard size={18} color="#6366F1" />
-            </View>
-            <View style={styles.navTextCol}>
-              <Text style={styles.navRowText}>Payment & Transaction History</Text>
-              <Text style={styles.navRowSub}>Invoices, receipts & payment status</Text>
-            </View>
-            <ChevronRight size={18} color={COLORS.textPlaceholder} />
-          </TouchableOpacity>
-        </View>
-
-        {/* 2. WEALTH & PLANNING TOOLS CARD */}
-        <View style={styles.sectionCard}>
-          <Text style={styles.sectionTitle}>WEALTH & PLANNING TOOLS</Text>
-
-          <TouchableOpacity
-            style={styles.navRow}
-            onPress={() => navigation.navigate('Calculate')}
-            activeOpacity={0.7}
-          >
-            <View style={[styles.navIconBox, { backgroundColor: '#FEF3C7' }]}>
-              <Calculator size={18} color="#D97706" />
-            </View>
-            <View style={styles.navTextCol}>
-              <Text style={styles.navRowText}>Investment Calculator</Text>
-              <Text style={styles.navRowSub}>SIP, lumpsum & wealth growth projections</Text>
-            </View>
-            <ChevronRight size={18} color={COLORS.textPlaceholder} />
-          </TouchableOpacity>
-
-          <View style={styles.divider} />
-
-          <TouchableOpacity
-            style={styles.navRow}
-            onPress={() => navigation.navigate('SIPPortfolios')}
-            activeOpacity={0.7}
-          >
-            <View style={[styles.navIconBox, styles.sipIconBg]}>
-              <TrendingUp size={18} color="#0F766E" />
-            </View>
-            <View style={styles.navTextCol}>
-              <Text style={styles.navRowText}>SIP Portfolios</Text>
-              <Text style={styles.navRowSub}>Top performing Systematic Investment Plans</Text>
-            </View>
-            <ChevronRight size={18} color={COLORS.textPlaceholder} />
-          </TouchableOpacity>
-
-          <View style={styles.divider} />
-
-          <TouchableOpacity
-            style={styles.navRow}
-            onPress={() => navigation.navigate('Categories')}
-            activeOpacity={0.7}
-          >
-            <View style={[styles.navIconBox, styles.categoriesIconBg]}>
-              <LayoutGrid size={18} color="#059669" />
-            </View>
-            <View style={styles.navTextCol}>
-              <Text style={styles.navRowText}>Service Categories</Text>
-              <Text style={styles.navRowSub}>Explore wealth management & advisory domains</Text>
-            </View>
-            <ChevronRight size={18} color={COLORS.textPlaceholder} />
-          </TouchableOpacity>
-
-          <View style={styles.divider} />
-
-          <TouchableOpacity
-            style={styles.navRow}
-            onPress={() => navigation.navigate('Services')}
-            activeOpacity={0.7}
-          >
-            <View style={[styles.navIconBox, styles.servicesIconBg]}>
-              <ShoppingBag size={18} color="#7E22CE" />
-            </View>
-            <View style={styles.navTextCol}>
-              <Text style={styles.navRowText}>Corporate Services</Text>
-              <Text style={styles.navRowSub}>All corporate financial packages & solutions</Text>
-            </View>
-            <ChevronRight size={18} color={COLORS.textPlaceholder} />
-          </TouchableOpacity>
-        </View>
-
-        {/* 3. SUPPORT & PREFERENCES CARD */}
-        <View style={styles.sectionCard}>
-          <Text style={styles.sectionTitle}>SUPPORT & PREFERENCES</Text>
-
-          <TouchableOpacity
-            style={styles.navRow}
-            onPress={() => navigation.navigate('ContactAdvisor')}
-            activeOpacity={0.7}
-          >
-            <View style={[styles.navIconBox, { backgroundColor: '#CFFAFE' }]}>
-              <PhoneCall size={18} color="#0891B2" />
-            </View>
-            <View style={styles.navTextCol}>
-              <Text style={styles.navRowText}>Contact Wealth Advisor</Text>
-              <Text style={styles.navRowSub}>Portfolio queries & personalized consultation</Text>
-            </View>
-            <ChevronRight size={18} color={COLORS.textPlaceholder} />
-          </TouchableOpacity>
-
-          <View style={styles.divider} />
-
-          <TouchableOpacity
-            style={styles.navRow}
+            style={styles.menuRow}
             onPress={() => navigation.navigate('Notifications')}
             activeOpacity={0.7}
           >
-            <View style={[styles.navIconBox, { backgroundColor: '#FEF9C3' }]}>
-              <Bell size={18} color="#CA8A04" />
+            <View style={styles.menuIconWrap}>
+              <Bell size={18} color="#831843" />
             </View>
-            <View style={styles.navTextCol}>
-              <Text style={styles.navRowText}>Notifications & Alerts</Text>
-              <Text style={styles.navRowSub}>Order updates, tips & market alerts</Text>
+            <View style={styles.menuTextWrap}>
+              <Text style={styles.menuTitle}>Notifications & Royal Alerts</Text>
+              <Text style={styles.menuSub}>Exclusive discounts & festive launches</Text>
             </View>
-            {unreadNotificationsCount > 0 && (
-              <View style={[styles.navBadge, { backgroundColor: COLORS.error }]}>
-                <Text style={styles.navBadgeText}>{unreadNotificationsCount}</Text>
-              </View>
-            )}
-            <ChevronRight size={18} color={COLORS.textPlaceholder} />
-          </TouchableOpacity>
-
-          <View style={styles.divider} />
-
-          <TouchableOpacity
-            style={styles.navRow}
-            onPress={() => setSettingsModalVisible(true)}
-            activeOpacity={0.7}
-          >
-            <View style={[styles.navIconBox, { backgroundColor: '#F1F5F9' }]}>
-              <Settings size={18} color={COLORS.navy} />
-            </View>
-            <View style={styles.navTextCol}>
-              <Text style={styles.navRowText}>Account & App Settings</Text>
-              <Text style={styles.navRowSub}>Version 1.0.0 • Preferences • Security</Text>
-            </View>
-            <ChevronRight size={18} color={COLORS.textPlaceholder} />
+            <ChevronRight size={18} color="#CBD5E1" />
           </TouchableOpacity>
         </View>
 
-        {/* Logout Button */}
+        {/* Trust & Concierge */}
+        <View style={styles.sectionBlock}>
+          <Text style={styles.sectionTitle}>HERITAGE & ASSISTANCE</Text>
+
+          <TouchableOpacity
+            style={styles.menuRow}
+            onPress={() =>
+              showToast.info(
+                'Royal Guarantee',
+                'All artifacts come with 100% authentic GI certification from Rajasthan artisans.'
+              )
+            }
+            activeOpacity={0.7}
+          >
+            <View style={styles.menuIconWrap}>
+              <ShieldCheck size={18} color="#059669" />
+            </View>
+            <View style={styles.menuTextWrap}>
+              <Text style={styles.menuTitle}>Authenticity & GI Tag Guarantee</Text>
+              <Text style={styles.menuSub}>Directly supporting artisan families</Text>
+            </View>
+            <ChevronRight size={18} color="#CBD5E1" />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.menuRow}
+            onPress={() =>
+              showToast.info(
+                'Royal Concierge',
+                'Support available 7 days a week: concierge@marwari.heritage'
+              )
+            }
+            activeOpacity={0.7}
+          >
+            <View style={styles.menuIconWrap}>
+              <PhoneCall size={18} color="#831843" />
+            </View>
+            <View style={styles.menuTextWrap}>
+              <Text style={styles.menuTitle}>Royal Concierge Support</Text>
+              <Text style={styles.menuSub}>Toll-Free WhatsApp & Email assistance</Text>
+            </View>
+            <ChevronRight size={18} color="#CBD5E1" />
+          </TouchableOpacity>
+        </View>
+
+        {/* Sign Out CTA */}
         <TouchableOpacity
           style={styles.logoutBtn}
           onPress={() => setLogoutModalVisible(true)}
           activeOpacity={0.8}
         >
-          <LogOut size={18} color={COLORS.error} style={{ marginRight: 8 }} />
-          <Text style={styles.logoutBtnText}>Logout from Account</Text>
+          <LogOut size={18} color="#DC2626" />
+          <Text style={styles.logoutText}>Sign Out of Mārwāri</Text>
         </TouchableOpacity>
-
-        {/* Footer Version */}
-        <Text style={styles.footerVersion}>WealthHackers Mobile v1.0.0 (Build 2026.1)</Text>
       </ScrollView>
 
-      {/* ======================================================= */}
-      {/* Sleek Settings Bottom Sheet / Modal (Replaces Native Alert) */}
-      {/* ======================================================= */}
-      <Modal
-        visible={settingsModalVisible}
-        transparent
-        animationType="slide"
-        onRequestClose={() => setSettingsModalVisible(false)}
-      >
-        <View style={styles.modalBackdrop}>
-          <TouchableOpacity
-            style={styles.modalDismissTouchable}
-            activeOpacity={1}
-            onPress={() => setSettingsModalVisible(false)}
-          />
-
-          <View style={styles.sheetContainer}>
-            {/* Sheet Handle */}
-            <View style={styles.sheetHandle} />
-
-            {/* Sheet Header */}
-            <View style={styles.sheetHeader}>
-              <View style={styles.sheetTitleCol}>
-                <Text style={styles.sheetTitle}>Settings & Preferences</Text>
-                <Text style={styles.sheetSubtitle}>WealthHackers Financial Advisory v1.0.0</Text>
-              </View>
-              <TouchableOpacity
-                style={styles.closeBtn}
-                onPress={() => setSettingsModalVisible(false)}
-                activeOpacity={0.7}
-              >
-                <X size={18} color={COLORS.textMuted} />
-              </TouchableOpacity>
-            </View>
-
-            <ScrollView showsVerticalScrollIndicator={false} style={styles.sheetScroll}>
-              {/* Preferences Group */}
-              <Text style={styles.groupLabel}>NOTIFICATIONS & SECURITY</Text>
-
-              <View style={styles.prefRow}>
-                <View style={styles.prefIconWrap}>
-                  <Bell size={16} color={COLORS.primary} />
-                </View>
-                <View style={styles.prefTextWrap}>
-                  <Text style={styles.prefTitle}>Push Notifications</Text>
-                  <Text style={styles.prefDesc}>Portfolio insights & market updates</Text>
-                </View>
-                <Switch
-                  value={pushNotifs}
-                  onValueChange={handleTogglePush}
-                  trackColor={{ false: COLORS.border, true: COLORS.primary }}
-                  thumbColor={Platform.OS === 'android' ? COLORS.surface : undefined}
-                />
-              </View>
-
-              <View style={styles.prefRow}>
-                <View style={styles.prefIconWrap}>
-                  <Lock size={16} color={COLORS.primary} />
-                </View>
-                <View style={styles.prefTextWrap}>
-                  <Text style={styles.prefTitle}>Biometric Authentication</Text>
-                  <Text style={styles.prefDesc}>Face ID or Fingerprint unlock</Text>
-                </View>
-                <Switch
-                  value={biometricLogin}
-                  onValueChange={handleToggleBiometric}
-                  trackColor={{ false: COLORS.border, true: COLORS.primary }}
-                  thumbColor={Platform.OS === 'android' ? COLORS.surface : undefined}
-                />
-              </View>
-
-              <View style={styles.prefRow}>
-                <View style={styles.prefIconWrap}>
-                  <Mail size={16} color={COLORS.primary} />
-                </View>
-                <View style={styles.prefTextWrap}>
-                  <Text style={styles.prefTitle}>Email Statements</Text>
-                  <Text style={styles.prefDesc}>Monthly consolidated summary</Text>
-                </View>
-                <Switch
-                  value={emailAlerts}
-                  onValueChange={handleToggleEmailAlerts}
-                  trackColor={{ false: COLORS.border, true: COLORS.primary }}
-                  thumbColor={Platform.OS === 'android' ? COLORS.surface : undefined}
-                />
-              </View>
-
-              {/* Maintenance & Legal Group */}
-              <Text style={[styles.groupLabel, { marginTop: SPACING.md }]}>SYSTEM & LEGAL</Text>
-
-              <TouchableOpacity
-                style={styles.actionItem}
-                onPress={handleClearCache}
-                activeOpacity={0.7}
-              >
-                <View style={styles.actionIconWrap}>
-                  <RefreshCw size={16} color={COLORS.navy} />
-                </View>
-                <Text style={styles.actionItemText}>Clear Offline Cache</Text>
-                <ChevronRight size={16} color={COLORS.textPlaceholder} />
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={styles.actionItem}
-                onPress={handleCheckUpdates}
-                activeOpacity={0.7}
-              >
-                <View style={styles.actionIconWrap}>
-                  <Shield size={16} color={COLORS.navy} />
-                </View>
-                <Text style={styles.actionItemText}>Check for Updates</Text>
-                <Text style={styles.actionMetaText}>v1.0.0</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={styles.actionItem}
-                onPress={() => showToast.info('Terms of Service', 'Viewing WealthHackers advisory guidelines.')}
-                activeOpacity={0.7}
-              >
-                <View style={styles.actionIconWrap}>
-                  <FileText size={16} color={COLORS.navy} />
-                </View>
-                <Text style={styles.actionItemText}>Terms & Conditions</Text>
-                <ChevronRight size={16} color={COLORS.textPlaceholder} />
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={styles.actionItem}
-                onPress={() => showToast.info('Privacy Policy', 'Your financial data is protected by 256-bit encryption.')}
-                activeOpacity={0.7}
-              >
-                <View style={styles.actionIconWrap}>
-                  <Lock size={16} color={COLORS.navy} />
-                </View>
-                <Text style={styles.actionItemText}>Privacy & Data Protection</Text>
-                <ChevronRight size={16} color={COLORS.textPlaceholder} />
-              </TouchableOpacity>
-            </ScrollView>
-
-            <TouchableOpacity
-              style={styles.doneBtn}
-              onPress={() => setSettingsModalVisible(false)}
-              activeOpacity={0.8}
-            >
-              <Text style={styles.doneBtnText}>Done</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
-
-      {/* ======================================================= */}
-      {/* Custom Logout Confirmation Modal (Replaces Native Alert) */}
-      {/* ======================================================= */}
+      {/* Logout Confirmation Modal */}
       <Modal
         visible={logoutModalVisible}
         transparent
         animationType="fade"
         onRequestClose={() => setLogoutModalVisible(false)}
       >
-        <View style={styles.centerModalBackdrop}>
-          <View style={styles.confirmCard}>
-            <View style={styles.warnIconCircle}>
-              <AlertTriangle size={26} color={COLORS.error} />
-            </View>
-
-            <Text style={styles.confirmTitle}>Sign Out?</Text>
-            <Text style={styles.confirmMessage}>
-              Are you sure you want to log out of WealthHackers? You will need to sign in again with your corporate email.
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalCard}>
+            <Text style={styles.modalTitle}>Sign Out?</Text>
+            <Text style={styles.modalSubtitle}>
+              Are you sure you wish to sign out of your Mārwāri account?
             </Text>
 
-            <View style={styles.confirmBtnRow}>
+            <View style={styles.modalBtnRow}>
               <TouchableOpacity
-                style={styles.cancelBtn}
+                style={styles.modalCancelBtn}
                 onPress={() => setLogoutModalVisible(false)}
-                activeOpacity={0.7}
               >
-                <Text style={styles.cancelBtnText}>Cancel</Text>
+                <Text style={styles.modalCancelText}>Cancel</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={styles.destructiveBtn}
+                style={styles.modalConfirmBtn}
                 onPress={confirmLogout}
-                activeOpacity={0.8}
               >
-                <Text style={styles.destructiveBtnText}>Yes, Logout</Text>
+                <Text style={styles.modalConfirmText}>Sign Out</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -633,447 +295,275 @@ export default function ProfileScreen() {
 }
 
 const styles = StyleSheet.create({
-  topHeader: {
+  container: {
+    flex: 1,
+    backgroundColor: '#F8FAFC',
+  },
+  header: {
     backgroundColor: '#FFFFFF',
-    paddingHorizontal: SPACING.lg,
-    paddingTop: SPACING.md,
-    paddingBottom: SPACING.md,
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingBottom: 12,
     borderBottomWidth: 1,
-    borderBottomColor: COLORS.borderLight,
+    borderColor: '#E2E8F0',
   },
-  screenHeaderTitle: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size18,
-    color: COLORS.navy,
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: '800',
+    color: '#0F172A',
   },
-  screenHeaderSubtitle: {
-    fontFamily: TYPOGRAPHY.family.regular,
-    fontSize: TYPOGRAPHY.sizes.size11,
-    color: COLORS.textMuted,
-    marginTop: 2,
-  },
-  headerActions: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  iconCircleBtn: {
-    width: 38,
-    height: 38,
-    borderRadius: RADII.full,
-    backgroundColor: COLORS.backgroundAlt,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: COLORS.borderLight,
+  editBtn: {
+    padding: 6,
   },
   scrollContent: {
-    paddingHorizontal: SPACING.lg,
-    paddingTop: SPACING.lg,
-    paddingBottom: 130,
+    padding: 16,
+    paddingBottom: 40,
+    gap: 16,
   },
-  heroCard: {
-    backgroundColor: '#F0FDF9',
-    borderRadius: RADII.xl,
-    padding: SPACING.lg,
+  profileCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    padding: 18,
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#CCFBF1',
-    marginBottom: SPACING.lg,
-    ...SHADOWS.card,
+    borderColor: '#E2E8F0',
+    gap: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.04,
+    shadowRadius: 6,
+    elevation: 2,
   },
-  avatarCircle: {
-    width: 52,
-    height: 52,
-    borderRadius: 26,
-    backgroundColor: COLORS.primary,
+  avatarWrap: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    backgroundColor: '#831843',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: SPACING.md,
-    borderWidth: 2.5,
-    borderColor: COLORS.surface,
-    ...SHADOWS.card,
+    position: 'relative',
   },
-  avatarInitials: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size18,
-    color: COLORS.textInverted,
-    letterSpacing: 1,
+  avatarText: {
+    color: '#FEF08A',
+    fontSize: 24,
+    fontWeight: '800',
   },
-  userTextCol: {
+  badgeCrown: {
+    position: 'absolute',
+    bottom: -2,
+    right: -2,
+    backgroundColor: '#FEF08A',
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#FFFFFF',
+  },
+  profileInfo: {
     flex: 1,
   },
-  userName: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size16,
-    color: COLORS.navy,
+  profileName: {
+    fontSize: 17,
+    fontWeight: '800',
+    color: '#0F172A',
   },
-  userEmail: {
-    fontFamily: TYPOGRAPHY.family.regular,
-    fontSize: TYPOGRAPHY.sizes.size11,
-    color: COLORS.textMuted,
+  profileEmail: {
+    fontSize: 12,
+    color: '#64748B',
     marginTop: 2,
   },
-  corpBadge: {
+  profilePhone: {
+    fontSize: 12,
+    color: '#475569',
+    marginTop: 2,
+  },
+  tierPill: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: COLORS.surface,
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-    borderRadius: RADII.full,
-    marginTop: 6,
     alignSelf: 'flex-start',
-    borderWidth: 1,
-    borderColor: '#BFE7DE',
-  },
-  corpBadgeText: {
-    fontFamily: TYPOGRAPHY.family.semiBold,
-    fontSize: TYPOGRAPHY.sizes.size10,
-    color: COLORS.primary,
-  },
-  verifiedPill: {
-    flexDirection: 'row',
-    alignItems: 'center',
     backgroundColor: '#ECFDF5',
     paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: RADII.full,
-    borderWidth: 1,
-    borderColor: '#A7F3D0',
-    alignSelf: 'flex-start',
+    paddingVertical: 2,
+    borderRadius: 4,
+    gap: 4,
+    marginTop: 6,
   },
-  verifiedText: {
-    fontFamily: TYPOGRAPHY.family.semiBold,
-    fontSize: TYPOGRAPHY.sizes.size10,
+  tierText: {
+    fontSize: 10,
+    fontWeight: '700',
     color: '#059669',
-    marginLeft: 4,
   },
-  sectionCard: {
-    backgroundColor: COLORS.surface,
-    borderRadius: RADII.lg,
-    padding: SPACING.lg,
-    marginBottom: SPACING.md,
+  sectionBlock: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 14,
+    padding: 16,
     borderWidth: 1,
-    borderColor: COLORS.border,
-    ...SHADOWS.card,
+    borderColor: '#E2E8F0',
+    gap: 12,
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   sectionTitle: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size10,
-    color: COLORS.textMuted,
+    fontSize: 11,
+    fontWeight: '800',
+    color: '#64748B',
     letterSpacing: 0.8,
-    marginBottom: SPACING.md,
   },
-  navRow: {
+  manageLink: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#831843',
+  },
+  addressCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: SPACING.xs,
+    backgroundColor: '#F8FAFC',
+    borderRadius: 10,
+    padding: 12,
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
+    gap: 12,
   },
-  navIconBox: {
-    width: 38,
-    height: 38,
-    borderRadius: RADII.md,
+  addrIconWrap: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: '#FDF2F8',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: SPACING.md,
   },
-  sipIconBg: {
-    backgroundColor: '#E6F4F1',
-  },
-  categoriesIconBg: {
-    backgroundColor: '#FEF3C7',
-  },
-  servicesIconBg: {
-    backgroundColor: '#F3E8FF',
-  },
-  navTextCol: {
+  addrTextWrap: {
     flex: 1,
   },
-  navRowText: {
-    fontFamily: TYPOGRAPHY.family.semiBold,
-    fontSize: TYPOGRAPHY.sizes.size13,
-    color: COLORS.navy,
+  addrLabelRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
   },
-  navRowSub: {
-    fontFamily: TYPOGRAPHY.family.regular,
-    fontSize: TYPOGRAPHY.sizes.size10,
-    color: COLORS.textMuted,
+  addrLabel: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#0F172A',
+  },
+  defaultBadge: {
+    backgroundColor: '#FEF3C7',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 4,
+  },
+  defaultBadgeText: {
+    fontSize: 9,
+    fontWeight: '800',
+    color: '#78350F',
+  },
+  addrDetails: {
+    fontSize: 12,
+    color: '#64748B',
     marginTop: 2,
   },
-  divider: {
-    height: 1,
-    backgroundColor: COLORS.borderLight,
-    marginVertical: SPACING.sm,
+  menuRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 6,
+    gap: 12,
   },
-  heroRightCol: {
-    alignItems: 'flex-end',
-    justifyContent: 'center',
-  },
-  editHeroPill: {
-    backgroundColor: COLORS.primary,
-    paddingHorizontal: 9,
-    paddingVertical: 4,
-    borderRadius: RADII.full,
-    marginTop: 8,
-  },
-  editHeroPillText: {
-    fontFamily: TYPOGRAPHY.family.semiBold,
-    fontSize: 10,
-    color: '#FFFFFF',
-  },
-  navBadge: {
-    backgroundColor: COLORS.primary,
-    borderRadius: RADII.full,
-    minWidth: 20,
-    height: 20,
-    paddingHorizontal: 6,
+  menuIconWrap: {
+    width: 36,
+    height: 36,
+    borderRadius: 10,
+    backgroundColor: '#F8FAFC',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: SPACING.xs,
   },
-  navBadgeText: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: 10,
-    color: '#FFFFFF',
+  menuTextWrap: {
+    flex: 1,
+  },
+  menuTitle: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#0F172A',
+  },
+  menuSub: {
+    fontSize: 11,
+    color: '#64748B',
+    marginTop: 1,
   },
   logoutBtn: {
-    height: 48,
-    backgroundColor: COLORS.errorBg,
-    borderRadius: RADII.md,
-    borderWidth: 1,
-    borderColor: '#FECACA',
     flexDirection: 'row',
-    justifyContent: 'center',
     alignItems: 'center',
-    marginTop: SPACING.sm,
-    marginBottom: SPACING.md,
+    justifyContent: 'center',
+    backgroundColor: '#FEF2F2',
+    borderWidth: 1,
+    borderColor: '#FEE2E2',
+    paddingVertical: 14,
+    borderRadius: 12,
+    gap: 8,
   },
-  logoutBtnText: {
-    fontFamily: TYPOGRAPHY.family.semiBold,
-    fontSize: TYPOGRAPHY.sizes.size14,
-    color: COLORS.error,
+  logoutText: {
+    color: '#DC2626',
+    fontWeight: '700',
+    fontSize: 14,
   },
-  footerVersion: {
-    fontFamily: TYPOGRAPHY.family.regular,
-    fontSize: TYPOGRAPHY.sizes.size11,
-    color: COLORS.textPlaceholder,
-    textAlign: 'center',
-    marginBottom: SPACING.md,
-  },
-
-  /* Modal Backdrop & Bottom Sheet Styles */
-  modalBackdrop: {
+  modalOverlay: {
     flex: 1,
     backgroundColor: 'rgba(15, 23, 42, 0.45)',
-    justifyContent: 'flex-end',
-  },
-  modalDismissTouchable: {
-    flex: 1,
-  },
-  sheetContainer: {
-    backgroundColor: COLORS.surface,
-    borderTopLeftRadius: 28,
-    borderTopRightRadius: 28,
-    paddingTop: SPACING.sm,
-    paddingHorizontal: SPACING.lg,
-    paddingBottom: Platform.OS === 'ios' ? 36 : SPACING.lg,
-    maxHeight: '80%',
-    ...SHADOWS.card,
-  },
-  sheetHandle: {
-    width: 40,
-    height: 4,
-    borderRadius: 2,
-    backgroundColor: COLORS.border,
-    alignSelf: 'center',
-    marginVertical: 8,
-  },
-  sheetHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingVertical: SPACING.sm,
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.borderLight,
-    marginBottom: SPACING.md,
-  },
-  sheetTitleCol: {
-    flex: 1,
-  },
-  sheetTitle: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size18,
-    color: COLORS.navy,
-  },
-  sheetSubtitle: {
-    fontFamily: TYPOGRAPHY.family.regular,
-    fontSize: TYPOGRAPHY.sizes.size12,
-    color: COLORS.textMuted,
-    marginTop: 2,
-  },
-  closeBtn: {
-    width: 32,
-    height: 32,
-    borderRadius: RADII.full,
-    backgroundColor: COLORS.backgroundAlt,
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 20,
   },
-  sheetScroll: {
-    maxHeight: 380,
-  },
-  groupLabel: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size11,
-    color: COLORS.textMuted,
-    letterSpacing: 0.8,
-    marginBottom: SPACING.sm,
-  },
-  prefRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: SPACING.sm,
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.borderLight,
-  },
-  prefIconWrap: {
-    width: 32,
-    height: 32,
-    borderRadius: RADII.sm,
-    backgroundColor: COLORS.mint,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: SPACING.md,
-  },
-  prefTextWrap: {
-    flex: 1,
-  },
-  prefTitle: {
-    fontFamily: TYPOGRAPHY.family.semiBold,
-    fontSize: TYPOGRAPHY.sizes.size13,
-    color: COLORS.navy,
-  },
-  prefDesc: {
-    fontFamily: TYPOGRAPHY.family.regular,
-    fontSize: TYPOGRAPHY.sizes.size11,
-    color: COLORS.textMuted,
-    marginTop: 2,
-  },
-  actionItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: SPACING.md,
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.borderLight,
-  },
-  actionIconWrap: {
-    width: 32,
-    height: 32,
-    borderRadius: RADII.sm,
-    backgroundColor: COLORS.backgroundAlt,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: SPACING.md,
-  },
-  actionItemText: {
-    flex: 1,
-    fontFamily: TYPOGRAPHY.family.medium,
-    fontSize: TYPOGRAPHY.sizes.size13,
-    color: COLORS.navy,
-  },
-  actionMetaText: {
-    fontFamily: TYPOGRAPHY.family.regular,
-    fontSize: TYPOGRAPHY.sizes.size12,
-    color: COLORS.textMuted,
-  },
-  doneBtn: {
-    backgroundColor: COLORS.primary,
-    height: 46,
-    borderRadius: RADII.md,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: SPACING.md,
-    ...SHADOWS.button,
-  },
-  doneBtnText: {
-    fontFamily: TYPOGRAPHY.family.semiBold,
-    fontSize: TYPOGRAPHY.sizes.size14,
-    color: COLORS.textInverted,
-  },
-
-  /* Confirm Logout Modal Styles */
-  centerModalBackdrop: {
-    flex: 1,
-    backgroundColor: 'rgba(15, 23, 42, 0.55)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: SPACING.xl,
-  },
-  confirmCard: {
+  modalCard: {
     width: '100%',
-    backgroundColor: COLORS.surface,
-    borderRadius: RADII.xl,
-    padding: SPACING.xl,
-    alignItems: 'center',
-    ...SHADOWS.card,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    padding: 20,
+    gap: 10,
   },
-  warnIconCircle: {
-    width: 54,
-    height: 54,
-    borderRadius: 27,
-    backgroundColor: COLORS.errorBg,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: SPACING.md,
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: '800',
+    color: '#0F172A',
   },
-  confirmTitle: {
-    fontFamily: TYPOGRAPHY.family.bold,
-    fontSize: TYPOGRAPHY.sizes.size18,
-    color: COLORS.navy,
-    marginBottom: SPACING.xs,
+  modalSubtitle: {
+    fontSize: 13,
+    color: '#64748B',
+    lineHeight: 18,
   },
-  confirmMessage: {
-    fontFamily: TYPOGRAPHY.family.regular,
-    fontSize: TYPOGRAPHY.sizes.size13,
-    color: COLORS.textMuted,
-    textAlign: 'center',
-    lineHeight: 19,
-    marginBottom: SPACING.lg,
-  },
-  confirmBtnRow: {
+  modalBtnRow: {
     flexDirection: 'row',
-    width: '100%',
-    gap: SPACING.md,
+    gap: 10,
+    marginTop: 12,
   },
-  cancelBtn: {
+  modalCancelBtn: {
     flex: 1,
-    height: 44,
-    borderRadius: RADII.md,
+    paddingVertical: 12,
+    borderRadius: 8,
+    alignItems: 'center',
     borderWidth: 1,
-    borderColor: COLORS.border,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: COLORS.surface,
+    borderColor: '#E2E8F0',
   },
-  cancelBtnText: {
-    fontFamily: TYPOGRAPHY.family.semiBold,
-    fontSize: TYPOGRAPHY.sizes.size13,
-    color: COLORS.textMuted,
+  modalCancelText: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#64748B',
   },
-  destructiveBtn: {
+  modalConfirmBtn: {
     flex: 1,
-    height: 44,
-    borderRadius: RADII.md,
-    backgroundColor: COLORS.error,
-    justifyContent: 'center',
+    backgroundColor: '#DC2626',
+    paddingVertical: 12,
+    borderRadius: 8,
     alignItems: 'center',
   },
-  destructiveBtnText: {
-    fontFamily: TYPOGRAPHY.family.semiBold,
-    fontSize: TYPOGRAPHY.sizes.size13,
-    color: COLORS.textInverted,
+  modalConfirmText: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#FFFFFF',
   },
 });
