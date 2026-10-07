@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import React, { useEffect, useState, useCallback, useMemo, useRef } from 'react';
 import {
   View,
   Text,
@@ -64,6 +64,9 @@ export default function HomeScreen() {
   const cartItems = useSelector((state) => state.cart.items) || [];
   const cartCount = cartItems.reduce((acc, it) => acc + (it.qty || 1), 0);
 
+  const topProductsRef = useRef(null);
+  const topProductIndexRef = useRef(0);
+
   const loadData = useCallback(async () => {
     try {
       await Promise.allSettled([
@@ -80,6 +83,20 @@ export default function HomeScreen() {
   useEffect(() => {
     loadData();
   }, [loadData]);
+
+  // Auto-scroll Top Products
+  useEffect(() => {
+    if (products.length === 0) return;
+    const timer = setInterval(() => {
+      const maxItems = Math.min(6, products.length);
+      topProductIndexRef.current = (topProductIndexRef.current + 1) % maxItems;
+      topProductsRef.current?.scrollTo({
+        x: topProductIndexRef.current * 172,
+        animated: true,
+      });
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [products]);
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -308,10 +325,46 @@ export default function HomeScreen() {
             </View>
           </View>
 
+          {/* Section 1.5: Top Products Carousel */}
+          <View style={styles.sectionWrap}>
+            <View style={styles.sectionHeader}>
+              <View style={{ flex: 1, paddingRight: 10 }}>
+                <Text style={styles.sectionTitle}>Top Royal Treasures</Text>
+                <Text style={styles.sectionSubtitle}>
+                  Our most loved and highest rated authentic pieces
+                </Text>
+              </View>
+              <TouchableOpacity onPress={() => navigation.navigate('AllProducts')}>
+                <Text style={styles.seeAllText}>View All →</Text>
+              </TouchableOpacity>
+            </View>
+
+            <ScrollView
+              ref={topProductsRef}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.topProductsScroll}
+              snapToInterval={172} // card width (160) + margins (12)
+              decelerationRate="fast"
+            >
+              {products.slice(0, 6).map((prod) => (
+                <View key={`top-${prod.id}`} style={styles.topProductCardWrap}>
+                  <ProductCard
+                    product={prod}
+                    onPress={handleOpenProduct}
+                    onAddToCart={handleAddToCart}
+                    onToggleWishlist={handleToggleWishlist}
+                    isWishlisted={!!wishlist[prod.id]}
+                  />
+                </View>
+              ))}
+            </ScrollView>
+          </View>
+
           {/* Section 2: Heritage Categories Scroll */}
           <View style={styles.sectionWrap}>
             <View style={styles.sectionHeader}>
-              <View>
+              <View style={{ flex: 1, paddingRight: 10 }}>
                 <Text style={styles.sectionTitle}>Heritage Collections</Text>
                 <Text style={styles.sectionSubtitle}>
                   Centuries of royal artistry & traditional craftsmanship
@@ -365,7 +418,7 @@ export default function HomeScreen() {
           {/* Section 3: Featured Treasures (2-Column Grid) */}
           <View style={styles.sectionWrap}>
             <View style={styles.sectionHeader}>
-              <View>
+              <View style={{ flex: 1, paddingRight: 10 }}>
                 <Text style={styles.sectionTitle}>
                   {selectedCategory === 'All'
                     ? 'Featured Treasures'
@@ -375,6 +428,11 @@ export default function HomeScreen() {
                   Curated authentic masterpieces certified from Rajasthan
                 </Text>
               </View>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('AllProducts')}
+              >
+                <Text style={styles.seeAllText}>View All →</Text>
+              </TouchableOpacity>
             </View>
 
             <View style={styles.productGrid}>
@@ -395,7 +453,7 @@ export default function HomeScreen() {
           {/* Section 4: Royal Cities of Rajasthan */}
           <View style={styles.sectionWrap}>
             <View style={styles.sectionHeader}>
-              <View>
+              <View style={{ flex: 1, paddingRight: 10 }}>
                 <Text style={styles.sectionTitle}>Royal Cities of Rajasthan</Text>
                 <Text style={styles.sectionSubtitle}>
                   Each corner with its own timeless royal craft
@@ -778,6 +836,13 @@ const styles = StyleSheet.create({
   categoryPillAllTextActive: {
     color: '#831843',
     fontWeight: '800',
+  },
+  topProductsScroll: {
+    paddingVertical: 4,
+    paddingLeft: 4,
+  },
+  topProductCardWrap: {
+    width: 160,
   },
   productGrid: {
     flexDirection: 'row',

@@ -15,6 +15,7 @@ import OrderSuccessScreen from '../screens/OrderSuccessScreen';
 import OrderDetailsScreen from '../screens/OrderDetailsScreen';
 import OrdersScreen from '../screens/OrdersScreen';
 import CategoriesScreen from '../screens/CategoriesScreen';
+import AllProductsScreen from '../screens/AllProductsScreen';
 import UpdateProfileScreen from '../screens/UpdateProfileScreen';
 import NotificationsScreen from '../screens/NotificationsScreen';
 import PaymentHistoryScreen from '../screens/PaymentHistoryScreen';
@@ -70,6 +71,7 @@ export default function RootNavigator() {
           <Stack.Screen name="OrderDetails" component={OrderDetailsScreen} />
           <Stack.Screen name="Orders" component={OrdersScreen} />
           <Stack.Screen name="Categories" component={CategoriesScreen} />
+          <Stack.Screen name="AllProducts" component={AllProductsScreen} />
           <Stack.Screen name="UpdateProfile" component={UpdateProfileScreen} />
           <Stack.Screen name="Notifications" component={NotificationsScreen} />
           <Stack.Screen name="PaymentHistory" component={PaymentHistoryScreen} />

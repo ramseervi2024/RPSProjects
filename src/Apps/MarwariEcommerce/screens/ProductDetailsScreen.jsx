@@ -10,6 +10,7 @@ import {
   Share,
   useWindowDimensions,
 } from 'react-native';
+import ImageViewing from 'react-native-image-viewing';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -47,6 +48,7 @@ export default function ProductDetailsScreen({ route }) {
   const [selectedVariant, setSelectedVariant] = useState('Standard Royal Edition');
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [activeTab, setActiveTab] = useState('story'); // 'story' | 'materials' | 'care'
+  const [isImageViewVisible, setIsImageViewVisible] = useState(false);
 
   const cartItems = useSelector((state) => state.cart.items) || [];
   const cartCount = cartItems.reduce((acc, it) => acc + (it.qty || 1), 0);
@@ -159,7 +161,11 @@ export default function ProductDetailsScreen({ route }) {
         contentContainerStyle={styles.scrollContent}
       >
         {/* Hero Image Container */}
-        <View style={[styles.imageContainer, { width, height: width * 0.95 }]}>
+        <TouchableOpacity 
+          style={[styles.imageContainer, { width, height: width * 0.95 }]}
+          activeOpacity={0.9}
+          onPress={() => setIsImageViewVisible(true)}
+        >
           <Image
             source={{ uri: product.image }}
             style={styles.heroImage}
@@ -176,7 +182,7 @@ export default function ProductDetailsScreen({ route }) {
             <Sparkles size={11} color="#FEF08A" />
             <Text style={styles.zoomText}>Certified Masterpiece</Text>
           </View>
-        </View>
+        </TouchableOpacity>
 
         {/* Product Details Info Block */}
         <View style={styles.infoBlock}>
@@ -379,6 +385,15 @@ export default function ProductDetailsScreen({ route }) {
           <Text style={styles.buyNowText}>Buy Now</Text>
         </TouchableOpacity>
       </View>
+
+      <ImageViewing
+        images={[{ uri: product.image }]}
+        imageIndex={0}
+        visible={isImageViewVisible}
+        onRequestClose={() => setIsImageViewVisible(false)}
+        swipeToCloseEnabled={true}
+        doubleTapToZoomEnabled={true}
+      />
     </View>
   );
 }
