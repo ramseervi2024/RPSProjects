@@ -21,6 +21,8 @@ import {
   ShieldCheck,
   Phone,
   Sparkles,
+  Crown,
+  ArrowRight,
 } from 'lucide-react-native';
 import AppStatusBar from '../components/common/AppStatusBar';
 import { verifyLoginOtp, sendLoginOtp } from '../redux/auth/action';
@@ -50,8 +52,8 @@ export default function VerifyOTPScreen({ route }) {
   }, [countdown]);
 
   const handleVerify = async () => {
-    if (otp.length < 4) {
-      showToast.error('Code Required', 'Please enter the complete verification code.');
+    if (otp.length < 6) {
+      showToast.error('Code Required', 'Please enter the complete 6-digit verification code.');
       return;
     }
 
@@ -81,7 +83,24 @@ export default function VerifyOTPScreen({ route }) {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
-        <AppStatusBar backgroundColor="#077B9F" barStyle="light-content" />
+        <AppStatusBar backgroundColor="#F8FAFC" barStyle="dark-content" />
+
+        {/* Watermark Mock */}
+        <View style={styles.watermark}>
+          <View style={styles.watermarkPetal1} />
+          <View style={styles.watermarkPetal2} />
+          <View style={styles.watermarkPetal3} />
+        </View>
+
+        {/* Static Header Row */}
+        <View style={[styles.headerRow, { paddingTop: Math.max(insets.top, 16), paddingHorizontal: 24 }]}>
+          <TouchableOpacity
+            style={styles.backBtn}
+            onPress={() => navigation.goBack()}
+          >
+            <ArrowLeft size={20} color="#0F172A" />
+          </TouchableOpacity>
+        </View>
 
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : undefined}
@@ -91,97 +110,100 @@ export default function VerifyOTPScreen({ route }) {
             contentContainerStyle={[
               styles.scrollContent,
               {
-                paddingTop: Math.max(insets.top, 24),
+                paddingTop: 16,
                 paddingBottom: Math.max(insets.bottom, 20),
               },
             ]}
             bounces={false}
             showsVerticalScrollIndicator={false}
           >
-            <TouchableOpacity
-              style={styles.backBtn}
-              onPress={() => navigation.goBack()}
-              activeOpacity={0.8}
-            >
-              <ArrowLeft size={16} color="#FFFFFF" />
-              <Text style={styles.backText}>Back</Text>
-            </TouchableOpacity>
 
-            <View style={styles.authCard}>
-              <View style={styles.brandCrest}>
-                <ShieldCheck size={22} color="#077B9F" />
+            {/* Hero Icon */}
+            <View style={styles.heroWrap}>
+              <View style={styles.heroCircle}>
+                <ShieldCheck size={42} color="#831843" />
+                <View style={styles.sparkleWrap}>
+                  <Sparkles size={16} color="#831843" />
+                </View>
               </View>
+            </View>
 
-              <Text style={styles.cardTitle}>Verify Mobile</Text>
-              <Text style={styles.cardSubtitle}>
+            {/* Typography */}
+            <View style={styles.titleWrap}>
+              <Text style={styles.titleText}>Verify Mobile</Text>
+              <Text style={styles.subtitleText}>
                 We sent a 6-digit verification code to +91 {phone}
               </Text>
+            </View>
 
-              {/* OTP Input Boxes */}
-              <TouchableOpacity
-                style={styles.otpBoxesRow}
-                onPress={() => inputRef.current?.focus()}
-                activeOpacity={1}
-              >
-                {[0, 1, 2, 3, 4, 5].map((idx) => {
-                  const digit = otp[idx] || '';
-                  const isCurrent = idx === otp.length;
-                  return (
-                    <View
-                      key={idx}
-                      style={[
-                        styles.otpBox,
-                        isCurrent && styles.otpBoxFocused,
-                        digit ? styles.otpBoxFilled : {},
-                      ]}
-                    >
-                      <Text style={styles.otpDigit}>{digit}</Text>
-                    </View>
-                  );
-                })}
-              </TouchableOpacity>
+            {/* OTP Input Boxes */}
+            <TouchableOpacity
+              style={styles.otpBoxesRow}
+              onPress={() => inputRef.current?.focus()}
+              activeOpacity={1}
+            >
+              {[0, 1, 2, 3, 4, 5].map((idx) => {
+                const digit = otp[idx] || '';
+                const isCurrent = idx === otp.length;
+                return (
+                  <View
+                    key={idx}
+                    style={[
+                      styles.otpBox,
+                      isCurrent && styles.otpBoxFocused,
+                      digit ? styles.otpBoxFilled : {},
+                    ]}
+                  >
+                    <Text style={styles.otpDigit}>{digit}</Text>
+                  </View>
+                );
+              })}
+            </TouchableOpacity>
 
-              {/* Hidden text input */}
-              <TextInput
-                ref={inputRef}
-                style={styles.hiddenInput}
-                keyboardType="number-pad"
-                maxLength={6}
-                value={otp}
-                onChangeText={(text) => {
-                  setOtp(text);
-                  if (text.length === 6) {
-                    Keyboard.dismiss();
-                  }
-                }}
-                autoFocus
-              />
+            {/* Hidden text input */}
+            <TextInput
+              ref={inputRef}
+              style={styles.hiddenInput}
+              keyboardType="number-pad"
+              maxLength={6}
+              value={otp}
+              onChangeText={(text) => {
+                setOtp(text);
+                if (text.length === 6) {
+                  Keyboard.dismiss();
+                }
+              }}
+              autoFocus
+            />
 
-              <TouchableOpacity
-                style={styles.submitBtn}
-                onPress={handleVerify}
-                disabled={loading}
-                activeOpacity={0.88}
-              >
-                {loading ? (
-                  <ActivityIndicator color="#FFFFFF" />
-                ) : (
-                  <Text style={styles.submitBtnText}>VERIFY & ENTER</Text>
-                )}
-              </TouchableOpacity>
+            {/* Verify Button */}
+            <TouchableOpacity
+              style={styles.submitBtn}
+              onPress={handleVerify}
+              disabled={loading}
+              activeOpacity={0.88}
+            >
+              {loading ? (
+                <ActivityIndicator color="#FFFFFF" />
+              ) : (
+                <>
+                  <Text style={styles.submitBtnText}>Verify & Enter</Text>
+                  <ArrowRight size={18} color="#FFFFFF" />
+                </>
+              )}
+            </TouchableOpacity>
 
-              {/* Resend */}
-              <View style={styles.resendRow}>
-                {countdown > 0 ? (
-                  <Text style={styles.countdownText}>
-                    Resend code in {countdown}s
-                  </Text>
-                ) : (
-                  <TouchableOpacity onPress={handleResend}>
-                    <Text style={styles.resendBtnText}>Resend OTP Code</Text>
-                  </TouchableOpacity>
-                )}
-              </View>
+            {/* Resend Action */}
+            <View style={styles.resendRow}>
+              {countdown > 0 ? (
+                <Text style={styles.countdownText}>
+                  Resend code in {countdown}s
+                </Text>
+              ) : (
+                <TouchableOpacity onPress={handleResend} activeOpacity={0.7}>
+                  <Text style={styles.resendBtnText}>Resend OTP Code</Text>
+                </TouchableOpacity>
+              )}
             </View>
           </ScrollView>
         </KeyboardAvoidingView>
@@ -193,80 +215,133 @@ export default function VerifyOTPScreen({ route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#077B9F',
+    backgroundColor: '#F8FAFC',
+  },
+  watermark: {
+    position: 'absolute',
+    bottom: -60,
+    left: -40,
+    width: 200,
+    height: 200,
+    opacity: 0.1,
+    zIndex: 0,
+  },
+  watermarkPetal1: {
+    position: 'absolute',
+    bottom: 40,
+    left: 20,
+    width: 100,
+    height: 60,
+    backgroundColor: '#831843',
+    borderRadius: 50,
+    transform: [{ rotate: '45deg' }],
+  },
+  watermarkPetal2: {
+    position: 'absolute',
+    bottom: 20,
+    left: 60,
+    width: 100,
+    height: 60,
+    backgroundColor: '#831843',
+    borderRadius: 50,
+    transform: [{ rotate: '-15deg' }],
+  },
+  watermarkPetal3: {
+    position: 'absolute',
+    bottom: 70,
+    left: 70,
+    width: 100,
+    height: 60,
+    backgroundColor: '#831843',
+    borderRadius: 50,
+    transform: [{ rotate: '-65deg' }],
   },
   keyboardContainer: {
     flex: 1,
+    zIndex: 1,
   },
   scrollContent: {
+    paddingHorizontal: 24,
     flexGrow: 1,
-    justifyContent: 'center',
-    paddingHorizontal: 20,
+  },
+  headerRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: 40,
   },
   backBtn: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-    marginBottom: 20,
-  },
-  backText: {
-    color: '#FFFFFF',
-    fontSize: 14,
-    fontWeight: '700',
-  },
-  authCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    padding: 24,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.2,
-    shadowRadius: 16,
-    elevation: 10,
-  },
-  brandCrest: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    backgroundColor: '#E0F2FE',
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#F1F5F9',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 12,
   },
-  cardTitle: {
-    fontSize: 24,
+  brandGroup: {
+    alignItems: 'center',
+  },
+  brandText: {
+    fontSize: 12,
     fontWeight: '800',
-    color: '#4B5563',
-    marginBottom: 4,
+    color: '#831843',
+    marginTop: 2,
   },
-  cardSubtitle: {
-    fontSize: 13,
+  heroWrap: {
+    alignItems: 'center',
+    marginBottom: 24,
+  },
+  heroCircle: {
+    width: 110,
+    height: 110,
+    borderRadius: 55,
+    backgroundColor: '#FDF2F8',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  sparkleWrap: {
+    position: 'absolute',
+    top: 15,
+    right: 15,
+  },
+  titleWrap: {
+    marginBottom: 32,
+    alignItems: 'center',
+  },
+  titleText: {
+    fontSize: 28,
+    fontWeight: '800',
+    color: '#0F172A',
+    marginBottom: 8,
+  },
+  subtitleText: {
+    fontSize: 14,
     color: '#64748B',
-    lineHeight: 18,
-    marginBottom: 20,
+    lineHeight: 20,
+    textAlign: 'center',
+    paddingHorizontal: 20,
   },
   otpBoxesRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 24,
+    marginBottom: 32,
   },
   otpBox: {
-    width: 44,
+    width: 45,
     height: 52,
-    borderRadius: 8,
+    borderRadius: 12,
     borderWidth: 1.5,
-    borderColor: '#D1D5DB',
-    backgroundColor: '#F8FAFC',
+    borderColor: '#E2E8F0',
+    backgroundColor: '#FFFFFF',
     justifyContent: 'center',
     alignItems: 'center',
   },
   otpBoxFocused: {
-    borderColor: '#077B9F',
-    backgroundColor: '#FFFFFF',
+    borderColor: '#831843',
+    backgroundColor: '#FDF2F8',
   },
   otpBoxFilled: {
-    borderColor: '#077B9F',
-    backgroundColor: '#F0F9FF',
+    borderColor: '#831843',
   },
   otpDigit: {
     fontSize: 20,
@@ -275,34 +350,41 @@ const styles = StyleSheet.create({
   },
   hiddenInput: {
     position: 'absolute',
-    opacity: 0,
     width: 1,
     height: 1,
+    opacity: 0,
   },
   submitBtn: {
-    backgroundColor: '#077B9F',
-    borderRadius: 8,
-    paddingVertical: 14,
-    alignItems: 'center',
+    backgroundColor: '#831843',
+    height: 54,
+    borderRadius: 12,
+    flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 24,
+    shadowColor: '#831843',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    elevation: 4,
+    gap: 8,
   },
   submitBtnText: {
     color: '#FFFFFF',
-    fontSize: 14,
-    fontWeight: '800',
-    letterSpacing: 1,
+    fontSize: 16,
+    fontWeight: '700',
   },
   resendRow: {
     alignItems: 'center',
-    marginTop: 18,
   },
   countdownText: {
-    fontSize: 12,
+    fontSize: 14,
     color: '#94A3B8',
+    fontWeight: '500',
   },
   resendBtnText: {
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: '700',
-    color: '#077B9F',
+    color: '#831843',
   },
 });
