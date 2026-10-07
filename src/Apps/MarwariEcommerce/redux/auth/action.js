@@ -9,6 +9,14 @@ import {
 import { AuthAPI } from '../../services/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+const safeRemoveKeys = async (keys = []) => {
+  for (const k of keys) {
+    try {
+      await AsyncStorage.removeItem(k);
+    } catch (_) {}
+  }
+};
+
 export const initializeAuth = () => async (dispatch) => {
   try {
     const isLoggedOut = await AsyncStorage.getItem('user_logged_out');
@@ -51,7 +59,7 @@ export const login = (credentials) => async (dispatch) => {
         email: credentials.email,
         name: credentials.email.split('@')[0],
       };
-      await AsyncStorage.multiRemove(['user_logged_out', 'user_is_guest']);
+      await safeRemoveKeys(['user_logged_out', 'user_is_guest']);
       await AsyncStorage.setItem('user_token', token);
       await AsyncStorage.setItem('marwari_token', token);
       await AsyncStorage.setItem('marwari_user', JSON.stringify(user));
@@ -78,7 +86,7 @@ export const register = (userData) => async (dispatch) => {
         phone: userData.phone,
         addresses: [],
       };
-      await AsyncStorage.multiRemove(['user_logged_out', 'user_is_guest']);
+      await safeRemoveKeys(['user_logged_out', 'user_is_guest']);
       await AsyncStorage.setItem('user_token', token);
       await AsyncStorage.setItem('marwari_token', token);
       await AsyncStorage.setItem('marwari_user', JSON.stringify(user));
@@ -118,7 +126,7 @@ export const verifyLoginOtp = (phone, otp) => async (dispatch) => {
         name: `Patron ${phone.slice(-4)}`,
         addresses: [],
       };
-      await AsyncStorage.multiRemove(['user_logged_out', 'user_is_guest']);
+      await safeRemoveKeys(['user_logged_out', 'user_is_guest']);
       await AsyncStorage.setItem('user_token', token);
       await AsyncStorage.setItem('marwari_token', token);
       await AsyncStorage.setItem('marwari_user', JSON.stringify(user));
@@ -136,7 +144,7 @@ export const verifyLoginOtp = (phone, otp) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
   try {
-    await AsyncStorage.multiRemove([
+    await safeRemoveKeys([
       'user_token',
       'marwari_token',
       'marwari_user',

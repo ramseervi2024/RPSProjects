@@ -1,30 +1,16 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { View, StatusBar, StyleSheet } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { StatusBar } from 'react-native';
 
 export default function AppStatusBar({
-  backgroundColor = '#FFFFFF',
+  backgroundColor = 'transparent',
   barStyle = 'dark-content',
 }) {
-  const insets = useSafeAreaInsets();
-
   return (
-    <View style={[styles.container, { backgroundColor }]}>
-      <StatusBar
-        backgroundColor="transparent"
-        barStyle={barStyle}
-        translucent
-      />
-      {insets.top > 0 && (
-        <View style={{ height: insets.top, backgroundColor, width: '100%' }} />
-      )}
-    </View>
+    <StatusBar
+      backgroundColor={backgroundColor}
+      barStyle={barStyle}
+      translucent
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-  },
-});
