@@ -71,6 +71,8 @@ export default function RegisterScreen() {
         showToast.success('Welcome to Mārwāri', 'Your royal patronage account has been created.');
         if (navigation.canGoBack()) {
           navigation.goBack();
+        } else {
+          navigation.reset({ index: 0, routes: [{ name: 'Main' }] });
         }
       } else {
         showToast.error('Registration Notice', res?.error || 'Registration failed.');

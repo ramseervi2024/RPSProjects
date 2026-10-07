@@ -64,9 +64,11 @@ export default function LoginScreen() {
         showToast.success('Welcome Patron', 'Successfully authenticated into Mārwāri.');
         if (navigation.canGoBack()) {
           navigation.goBack();
+        } else {
+          navigation.reset({ index: 0, routes: [{ name: 'Main' }] });
         }
       } else {
-        // In dev or demo, if backend user credentials fail, provide a seamless fallback
+        // Fallback for demo
         showToast.error('Login Notice', res?.error || 'Invalid credentials.');
       }
     } catch (err) {
