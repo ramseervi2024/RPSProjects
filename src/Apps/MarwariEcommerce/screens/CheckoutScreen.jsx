@@ -29,7 +29,7 @@ import {
 } from 'lucide-react-native';
 import AppStatusBar from '../components/common/AppStatusBar';
 import { placeOrderWithPayment, clearCart } from '../redux/cart/action';
-import { getOrderList } from '../redux/profile/action';
+import { getOrderList, updateProfileDetails } from '../redux/profile/action';
 import { COLORS, RADII } from '../theme/theme';
 import { showToast } from '../components/common/Toast';
 
@@ -83,6 +83,10 @@ export default function CheckoutScreen({ route }) {
   // Saved Addresses
   const [addresses, setAddresses] = useState(defaultUserAddresses);
 
+  React.useEffect(() => {
+    setAddresses(defaultUserAddresses);
+  }, [defaultUserAddresses]);
+
   // Modal for new address
   const [newAddressModal, setNewAddressModal] = useState(false);
   const [newName, setNewName] = useState('');
@@ -112,6 +116,10 @@ export default function CheckoutScreen({ route }) {
     setSelectedAddressIndex(0);
     setNewAddressModal(false);
     showToast.success('Address Saved', 'New delivery address added.');
+
+    // Save to user profile for persistence
+    const existingAddresses = activeUser?.addresses || [];
+    dispatch(updateProfileDetails({ addresses: [created, ...existingAddresses] }));
   };
 
   const handlePlaceOrder = async () => {
