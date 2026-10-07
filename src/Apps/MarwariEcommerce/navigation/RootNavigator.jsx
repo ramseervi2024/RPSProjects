@@ -40,10 +40,9 @@ export default function RootNavigator() {
     );
   }
 
-  const isAccessAllowed = isAuthenticated || isGuest;
-
   return (
     <Stack.Navigator
+      initialRouteName="Main"
       screenOptions={{
         headerShown: false,
         headerStyle: { backgroundColor: '#FFFFFF' },
@@ -51,35 +50,25 @@ export default function RootNavigator() {
         headerShadowVisible: false,
       }}
     >
-      {!isAccessAllowed ? (
-        // Auth Stack: Login / Register / OTP / Welcome
-        <>
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="Register" component={RegisterScreen} />
-          <Stack.Screen name="VerifyOTP" component={VerifyOTPScreen} />
-          <Stack.Screen name="VerificationSuccess" component={VerificationSuccessScreen} />
-          <Stack.Screen name="Welcome" component={WelcomeScreen} />
-        </>
-      ) : (
-        // Main Store App Stack
-        <>
-          <Stack.Screen name="Main" component={AppNavigator} />
-          <Stack.Screen name="ProductDetails" component={ProductDetailsScreen} />
-          <Stack.Screen name="Cart" component={CartScreen} />
-          <Stack.Screen name="Checkout" component={CheckoutScreen} />
-          <Stack.Screen name="OrderSuccess" component={OrderSuccessScreen} />
-          <Stack.Screen name="OrderDetails" component={OrderDetailsScreen} />
-          <Stack.Screen name="Orders" component={OrdersScreen} />
-          <Stack.Screen name="Categories" component={CategoriesScreen} />
-          <Stack.Screen name="AllProducts" component={AllProductsScreen} />
-          <Stack.Screen name="UpdateProfile" component={UpdateProfileScreen} />
-          <Stack.Screen name="Notifications" component={NotificationsScreen} />
-          <Stack.Screen name="PaymentHistory" component={PaymentHistoryScreen} />
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="Register" component={RegisterScreen} />
-          <Stack.Screen name="VerifyOTP" component={VerifyOTPScreen} />
-        </>
-      )}
+      <Stack.Screen name="Main" component={AppNavigator} />
+      <Stack.Screen name="ProductDetails" component={ProductDetailsScreen} />
+      <Stack.Screen name="Cart" component={CartScreen} />
+      <Stack.Screen name="Checkout" component={CheckoutScreen} />
+      <Stack.Screen name="OrderSuccess" component={OrderSuccessScreen} />
+      <Stack.Screen name="OrderDetails" component={OrderDetailsScreen} />
+      <Stack.Screen name="Orders" component={OrdersScreen} />
+      <Stack.Screen name="Categories" component={CategoriesScreen} />
+      <Stack.Screen name="AllProducts" component={AllProductsScreen} />
+      <Stack.Screen name="UpdateProfile" component={UpdateProfileScreen} />
+      <Stack.Screen name="Notifications" component={NotificationsScreen} />
+      <Stack.Screen name="PaymentHistory" component={PaymentHistoryScreen} />
+      
+      {/* Auth screens available to navigate to anytime */}
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Register" component={RegisterScreen} />
+      <Stack.Screen name="VerifyOTP" component={VerifyOTPScreen} />
+      <Stack.Screen name="VerificationSuccess" component={VerificationSuccessScreen} />
+      <Stack.Screen name="Welcome" component={WelcomeScreen} />
     </Stack.Navigator>
   );
 }

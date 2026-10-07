@@ -13,6 +13,8 @@ import CartScreen from '../screens/CartScreen';
 import OrdersScreen from '../screens/OrdersScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 
+import GuestAuthModal from '../components/common/GuestAuthModal';
+
 const Tab = createBottomTabNavigator();
 
 const TABS = [
@@ -29,6 +31,9 @@ function CustomBottomTabBar({ state, navigation }) {
   const bottomInset = isIos ? Math.max(insets.bottom, 12) : Math.max(insets.bottom, 10);
   const cartItems = useSelector((s) => s.cart?.items) || [];
   const cartCount = cartItems.reduce((acc, it) => acc + (it.qty || 1), 0);
+  
+  const isAuthenticated = useSelector((s) => s.auth?.isAuthenticated);
+  const [showGuestModal, setShowGuestModal] = React.useState(false);
 
   const barContainerStyle = useMemo(
     () => [
@@ -42,12 +47,23 @@ function CustomBottomTabBar({ state, navigation }) {
   );
 
   return (
-    <View style={barContainerStyle}>
+    <>
+      <GuestAuthModal 
+        visible={showGuestModal} 
+        onClose={() => setShowGuestModal(false)} 
+        message="Please sign in to access your Bag, Orders, and Profile." 
+      />
+      <View style={barContainerStyle}>
       {state.routes.map((route, index) => {
         const isFocused = state.index === index;
         const tabMeta = TABS.find((t) => t.name === route.name) || {};
 
         const onPress = () => {
+          if (!isAuthenticated && (route.name === 'Orders' || route.name === 'Profile' || route.name === 'Cart')) {
+            setShowGuestModal(true);
+            return;
+          }
+
           const event = navigation.emit({
             type: 'tabPress',
             target: route.key,
@@ -101,6 +117,7 @@ function CustomBottomTabBar({ state, navigation }) {
         );
       })}
     </View>
+    </>
   );
 }
 

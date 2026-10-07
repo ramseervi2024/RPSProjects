@@ -32,6 +32,7 @@ import { placeOrderWithPayment, clearCart } from '../redux/cart/action';
 import { getOrderList, updateProfileDetails } from '../redux/profile/action';
 import { COLORS, RADII } from '../theme/theme';
 import { showToast } from '../components/common/Toast';
+import GuestAuthModal from '../components/common/GuestAuthModal';
 
 export default function CheckoutScreen({ route }) {
   const navigation = useNavigation();
@@ -51,6 +52,8 @@ export default function CheckoutScreen({ route }) {
   const [paymentMethod, setPaymentMethod] = useState('upi'); // 'upi' | 'razorpay' | 'cod'
 
   const authUser = useSelector((state) => state.auth.user);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const [showGuestModal, setShowGuestModal] = useState(false);
   const activeUser = userProfile?.name ? userProfile : authUser;
 
   const defaultUserAddresses = useMemo(() => {
@@ -123,6 +126,11 @@ export default function CheckoutScreen({ route }) {
   };
 
   const handlePlaceOrder = async () => {
+    if (!isAuthenticated) {
+      setShowGuestModal(true);
+      return;
+    }
+
     if (cartItems.length === 0) {
       showToast.warning('Cart Empty', 'Your cart has no items.');
       return;
@@ -178,6 +186,11 @@ export default function CheckoutScreen({ route }) {
   return (
     <View style={styles.container}>
       <AppStatusBar backgroundColor="#FFFFFF" barStyle="dark-content" />
+      <GuestAuthModal 
+        visible={showGuestModal} 
+        onClose={() => setShowGuestModal(false)} 
+        message="Please sign in to place your royal order." 
+      />
 
       {/* Top Header */}
       <View style={[styles.header, { paddingTop: Math.max(insets.top, 10) }]}>

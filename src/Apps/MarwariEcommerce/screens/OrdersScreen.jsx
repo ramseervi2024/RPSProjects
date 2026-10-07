@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import {
   ArrowLeft,
   Package,
@@ -27,6 +27,8 @@ import { getOrderList } from '../redux/profile/action';
 import { COLORS, RADII } from '../theme/theme';
 import { showToast } from '../components/common/Toast';
 
+import GuestAuthModal from '../components/common/GuestAuthModal';
+
 const FILTER_TABS = ['All', 'Processing', 'In Transit', 'Delivered'];
 
 export default function OrdersScreen() {
@@ -39,10 +41,13 @@ export default function OrdersScreen() {
   const [activeFilter, setActiveFilter] = useState('All');
 
   const orders = useSelector((state) => state.profile.orderlists);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   const fetchOrders = async () => {
     try {
-      await dispatch(getOrderList());
+      if (isAuthenticated) {
+        await dispatch(getOrderList());
+      }
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -52,12 +57,27 @@ export default function OrdersScreen() {
   useEffect(() => {
     fetchOrders();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
+  }, [dispatch, isAuthenticated]);
 
   const handleRefresh = () => {
     setRefreshing(true);
     fetchOrders();
   };
+
+  const isFocused = useIsFocused();
+
+  if (!isAuthenticated) {
+    return (
+      <View style={{ flex: 1, backgroundColor: '#F8FAFC' }}>
+        <AppStatusBar backgroundColor="#F8FAFC" barStyle="dark-content" />
+        <GuestAuthModal 
+          visible={isFocused} 
+          onClose={() => navigation.navigate('Dashboard')} 
+          message="Please sign in to view your orders." 
+        />
+      </View>
+    );
+  }
 
   const rawList = Array.isArray(orders) ? orders : [];
 

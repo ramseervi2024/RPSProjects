@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import {
   ArrowLeft,
   Trash2,
@@ -29,12 +29,16 @@ import { fetchCart, updateCartQty, removeFromCart, clearCart } from '../redux/ca
 import { COLORS, RADII } from '../theme/theme';
 import { showToast } from '../components/common/Toast';
 
+import GuestAuthModal from '../components/common/GuestAuthModal';
+
 export default function CartScreen() {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const insets = useSafeAreaInsets();
 
   const { items: cartItems = [], loading } = useSelector((state) => state.cart);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  
   const [refreshing, setRefreshing] = useState(false);
   const [couponCode, setCouponCode] = useState('');
   const [appliedCoupon, setAppliedCoupon] = useState(null); // { code: 'MARWARI10', discountPercent: 10, discountFlat: 0 }
@@ -42,6 +46,21 @@ export default function CartScreen() {
   useEffect(() => {
     dispatch(fetchCart(true));
   }, [dispatch]);
+
+  const isFocused = useIsFocused();
+
+  if (!isAuthenticated) {
+    return (
+      <View style={{ flex: 1, backgroundColor: '#F8FAFC' }}>
+        <AppStatusBar backgroundColor="#F8FAFC" barStyle="dark-content" />
+        <GuestAuthModal 
+          visible={isFocused} 
+          onClose={() => navigation.navigate('Dashboard')} 
+          message="Please sign in to access your Royal Bag." 
+        />
+      </View>
+    );
+  }
 
   const handleRefresh = async () => {
     setRefreshing(true);

@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import {
   MapPin,
   Package,
@@ -28,6 +28,8 @@ import AppStatusBar from '../components/common/AppStatusBar';
 import { getProfileDetails, getOrderList } from '../redux/profile/action';
 import { logout } from '../redux/auth/action';
 import { showToast } from '../components/common/Toast';
+
+import GuestAuthModal from '../components/common/GuestAuthModal';
 
 export default function ProfileScreen() {
   const navigation = useNavigation();
@@ -90,6 +92,21 @@ export default function ProfileScreen() {
     showToast.info('Signed Out', 'You have been safely signed out.');
     await dispatch(logout());
   };
+
+  const isFocused = useIsFocused();
+
+  if (!isAuthenticated) {
+    return (
+      <View style={{ flex: 1, backgroundColor: '#F8FAFC' }}>
+        <AppStatusBar backgroundColor="#F8FAFC" barStyle="dark-content" />
+        <GuestAuthModal 
+          visible={isFocused} 
+          onClose={() => navigation.navigate('Dashboard')} 
+          message="Please sign in to access your Profile." 
+        />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
