@@ -157,28 +157,19 @@ export default function OrdersScreen() {
 
         <View style={styles.divider} />
 
-        {/* Card Body - Products Thumbnails */}
+        {/* Card Body - Products List (Text Only) */}
         <View style={styles.itemsPreview}>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {items.map((prod, idx) => (
-              <Image
-                key={idx}
-                source={{
-                  uri:
-                    prod.image ||
-                    'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80',
-                }}
-                style={styles.itemThumb}
-              />
+          <View style={{ flex: 1, paddingVertical: 8 }}>
+            {items.slice(0, 3).map((prod, idx) => (
+              <Text key={idx} style={styles.itemFirstName} numberOfLines={1}>
+                {prod.quantity}x {prod.name}
+              </Text>
             ))}
-          </ScrollView>
-          <View style={styles.itemsMeta}>
-            <Text style={styles.itemsCount}>
-              {items.length} {items.length > 1 ? 'items' : 'item'}
-            </Text>
-            <Text style={styles.itemFirstName} numberOfLines={1}>
-              {items[0]?.name || 'Heritage Creation'}
-            </Text>
+            {items.length > 3 && (
+              <Text style={[styles.itemsCount, { marginTop: 4 }]}>
+                + {items.length - 3} more items
+              </Text>
+            )}
           </View>
         </View>
 

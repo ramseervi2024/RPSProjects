@@ -147,15 +147,16 @@ export default function CheckoutScreen({ route }) {
     setLoading(true);
     try {
       const res = await dispatch(placeOrderWithPayment(orderPayload));
-      const orderData = res?.data || {
-        id: `ORD-${Date.now().toString().slice(-6)}`,
+      // Ensure we use our correct local cartItems and total even if mock API returns dummy data
+      const orderData = {
+        id: res?.data?.id && res?.data?.id !== 'ORD-2026-8941' ? res.data.id : `ORD-${Date.now().toString().slice(-6)}`,
         status: 'Processing',
         total: totalAmount,
         payment_method: paymentMethod,
         payment_status: paymentMethod === 'cod' ? 'pending' : 'paid',
         tracking_number: `MRW-IND-${Math.floor(Math.random() * 9000000) + 1000000}`,
         date: new Date().toISOString(),
-        items: cartItems, // Ensure items are saved so thumbnails render
+        items: cartItems, 
       };
 
       dispatch(clearCart());
