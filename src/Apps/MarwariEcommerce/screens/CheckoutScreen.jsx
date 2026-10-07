@@ -153,12 +153,19 @@ export default function CheckoutScreen({ route }) {
         total: totalAmount,
         payment_method: paymentMethod,
         payment_status: paymentMethod === 'cod' ? 'pending' : 'paid',
-        tracking_number: 'MRW-IND-9921448',
+        tracking_number: `MRW-IND-${Math.floor(Math.random() * 9000000) + 1000000}`,
         date: new Date().toISOString(),
+        items: cartItems, // Ensure items are saved so thumbnails render
       };
 
       dispatch(clearCart());
-      dispatch(getOrderList());
+      
+      // Append to local Redux order list instead of fetching from non-persistent API
+      dispatch((dispatch, getState) => {
+        const currentOrders = getState()?.profile?.orderlists || [];
+        dispatch({ type: 'ORDER_LIST', payload: [orderData, ...currentOrders] });
+      });
+
       navigation.replace('OrderSuccess', { order: orderData });
     } catch (err) {
       showToast.error('Order Error', err?.message || 'Could not place order.');

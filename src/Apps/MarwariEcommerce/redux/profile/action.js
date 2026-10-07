@@ -126,10 +126,21 @@ export const getOrderList = () => async (dispatch, getState) => {
       }
     }
 
-    dispatch({ type: ORDER_LIST, payload: orders });
-    return { success: true, data: orders };
+    const existingOrders = getState()?.profile?.orderlists || [];
+    
+    // Merge API orders with existing local orders to prevent wipes during simulation
+    const mergedOrders = [...existingOrders];
+    orders.forEach((apiOrder) => {
+      if (!mergedOrders.find((o) => String(o.id) === String(apiOrder.id))) {
+        mergedOrders.push(apiOrder);
+      }
+    });
+
+    dispatch({ type: ORDER_LIST, payload: mergedOrders });
+    return { success: true, data: mergedOrders };
   } catch (error) {
-    dispatch({ type: ORDER_LIST, payload: [] });
+    // DO NOT clear order list if API fails
+    // dispatch({ type: ORDER_LIST, payload: [] });
     return { success: false, error: error?.message };
   }
 };
